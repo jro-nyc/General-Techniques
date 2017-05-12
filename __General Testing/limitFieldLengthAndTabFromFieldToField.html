@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<script>
+opt=new Object;
+opt.opNewNumber=function(){}
+
+function doTab(obj){
+	inputs=document.getElementsByTagName('input');
+	for(j=0;j<inputs.length;j++){
+		if(inputs[j]==obj) {
+			if(inputs[j+1]!=null) inputs[j+1].focus()
+		}	
+	}
+}
+</script>
+<input type="text" id="areaCode" size="3" onblur="opt.opNewNumber();" style="width:30px;margin-right:5px;"  tabindex="16" onkeyup="xx=this.value.toString();if(xx.length>2){doTab(this);}" onkeyptress="xx=this.value.toString();if(xx.length>2){this.value=xx.substring(0,2);doTab(this);}">
+<input type="text" id="areaPrefix" size="3" onblur="opt.opNewNumber();" style="width:30px;margin-right:5px;" tabindex="17" onkeyup="xx=this.value.toString();if(xx.length>2){doTab(this);}" onkeyptress="xx=this.value.toString();if(xx.length>2){this.value=xx.substring(0,2);doTab(this);}">
+<input type="text" id="areaSuffix" size="4" onblur="opt.opNewNumber();" style="width:40px;" tabindex="18" onkeyup="xx=this.value.toString();if(xx.length>3){doTab(this);}" onkeypress="xx=this.value.toString();if(xx.length>3){this.value=xx.substring(0,3);doTab(this);}">
+
+<input type="text">
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+	<script>
+document.getElementsByRegEx = function(pattern)
+{
+ var allTags = document.getElementsByTagName("*");
+ var myTags = new Array();
+ 
+ for(var i=0;i < allTags.length;i++)
+ {
+   if(allTags[i].innerHTML.search(pattern) != -1)
+    myTags[myTags.length] = allTags[i];
+ }
+ if(myTags.length != 0)
+  return myTags;
+ else
+  return null;
+}
+
+/* document.getElementsByRegEx(pattern)
+ *
+ * USAGE:
+ *
+ *  var myPattern = /^\$\d+\.\d{2}$/; // money alone in some tag in the document
+ *  var myElems = document.getElementsByRegEx(myPattern);
+ *
+ *  // will return:
+ *  //  null on fail
+ *  //  an array of HTMLElements (objects) if any are found
+ */
+	</script>
+</head>
+
+<body>
+<span>$151.00</span>
+<span>$32.01</span>
+<div ID="ID_div">$2300.99</div>
+<div ID="moreDIV_ID">money? $3.00</div>
+<span ID="anotherSpan">$3.02 Money?</span>
+<script>
+var myPattern = /^\$\d+\.\d{2}$/; // money alone in some tag in the document
+var myElems = document.getElementsByRegEx(myPattern);
+alert(myElems.length);
+for(var i=0;i < myElems.length;i++)
+ alert(myElems[i].firstChild.nodeValue); // or innerHTML or firstChild.data
+</script>
+</body>
+</html>

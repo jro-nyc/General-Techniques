@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Advanced: Shorthand Object for DOM scripting</title>
+</head>
+
+<body>
+<script>
+$D = function (){
+	return {
+		// Just a simple shortcut for getElementById:>>> $D.id('id1') == document.getElementById('id1')
+		id:function(el){ 
+			return document.getElementById(el);
+		},	
+		// Just a simple shortcut for getElementsByTagName:>>> $D.tag('table') == document.getElementsByTagName('table')
+		tag:function(el,daTag){ 
+			return el.getElementsByTagName(daTag);
+		},
+		// Just a simple shortcut for getting a Form object:>>> $D.form(0) == document.forms[0]
+		form:function(el){
+			return document.forms[el];		
+		},
+		// Takes $D.tag, then finds the first element that inclues the class Name specified.  
+		className:function(el,daTag,classNm){
+			daTag=el.getElementsByTagName(daTag);
+			for(i=0;i<daTag.length;i++){
+				if(daTag[i].className.indexOf(classNm)!=-1) return daTag[i];
+			}
+			return null;
+		},
+		// Takes $D.className, then gets the inputs inside of that object, and finds the first one with the specified name.  
+		classNameAndInput:function(el,daTag,classNm,daInputNm){
+			daTag=el.getElementsByTagName(daTag);
+			for(i=0;i<daTag.length;i++){
+				if(daTag[i].className.indexOf(classNm)!=-1) {
+					daInputs=daTag[i].getElementsByTagName('input');
+					for(k=0;k<daInputs.length;k++){
+						if(daInputs[k].name==daInputNm) return daTag[i];
+					}
+				}
+			}
+			return null;
+		},
+		// Takes $D.className, then gets the parent node of that object.
+		classNameGetParent:function(el,daTag,classNm){
+			daTag=el.getElementsByTagName(daTag);
+			for(i=0;i<daTag.length;i++){
+				if(daTag[i].className.indexOf(classNm)!=-1) {
+					if (daTag[i] && daTag[i].parentNode) { 
+						return daTag[i].parentNode; 
+					} 				
+				}
+			}
+			return null;
+		},		
+		// Takes $D.tag, then gets the parent node of each one and runs $D.className on them until it gets a match
+		getTagByParentClassName:function(el,tag,classNm){
+			daTag=el.getElementsByTagName(tag);
+			for(i=0;i<daTag.length;i++){
+				if (daTag[i] && daTag[i].parentNode) { 
+					if(daTag[i].parentNode.className.indexOf(classNm)!=-1) {					
+						if(daTag[i].parentNode.className.indexOf(classNm)!=-1) return daTag[i]; 						
+					} 				
+				}
+			}
+			return null;
+		},
+		//Hides the contents of a specfic id.  In this case, el should be the document object.
+		hideContainsID:function(el,idMatch){ 
+			if(el.id.toLowerCase().indexOf(idMatch.toLowerCase())!=-1) {
+				el.style.display='none';
+				return true;
+			}
+			else return false;
+		}
+	};
+}();
+
+alert('View the source, there\'s no HTML here');
+</script>
+
+</body>
+</html>

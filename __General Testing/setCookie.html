@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>QF set cookie</title>
+</head>
+
+<body>
+		<!-- creative setting code -->
+		<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td style="display:nofne;">Set a cookie in the domain this page is in</td>
+		</tr>
+		</table>
+		<div style="display:nofne;">
+		<table border="1" cellspacing="0" cellpadding="0">
+			<tr id="oo">
+				<td id="ff_ie_diff">
+				<table><form onsubmit="setTheSticky(document.forms[0].cookieName.value,document.forms[0].cookieValue.value);return false;">
+				<tr><td>Cookie Name - </td>
+					<td><input name="cookieName" type="text" value="" /></td>
+				</tr>
+				<tr><td>Cookie Value - </td>
+					<td><input name="cookieValue" type="text" value="" /></td>
+				</tr>
+				<tr><td colspan="2" style="text-align:center;"><button value="Set the Creative" type="submit">Set the Cookie</button></td></tr>
+				</form></table>
+				</td>
+			</tr>
+		</table>
+		</div>
+<script>
+function opXMLSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null) ? "" : (";domain=" + d));}
+function opXMLGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l < 2) sld = null;else if (!isNaN(dp[l-1]) && !isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+function setTheSticky(cookieName,value){
+	if(cookieName != ""){
+		opXMLSetCookieA(cookieName, value, opXMLGetDocumentSLD(), 2592000);
+	}
+}
+
+</script>
+
+
+
+</body>
+</html>

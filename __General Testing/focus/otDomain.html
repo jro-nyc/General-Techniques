@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>International Domain workaround</title>
+</head>
+
+<body>
+<script>
+var otDomainsArray=["philips.co.uk","philips.co.nl","philips.com"];
+function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null) ? "" : (";domain=" + d));}
+function opCreativeGetDocumentSLD_INTL(){
+	sld = document.domain;
+	var dp = sld.split(".");
+	if(dp.length==1) 
+		newSLD=document.domain;
+	else if(dp.length==2)
+		newSLD=dp[0]+'.'+dp[1];
+	else 
+		newSLD=dp[0]+'.'+dp[1]+'.'+dp[2];
+	returnedSLD=dp[0]+'.'+dp[1];
+	for(var i=0;i<otDomainsArray.length;i++){
+		if(newSLD.indexOf(otDomainsArray[i])!=-1)returnedSLD=otDomainsArray[i];
+	}
+	alert(returnedSLD);
+	return returnedSLD;	
+}
+function opCreativeGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l < 2) sld = null;else if (!isNaN(dp[l-1]) && !isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+
+opCreativeSetCookieA("op590philips_us_shopping_cartgum", "a00500e00n259om08x2je60ce", opCreativeGetDocumentSLD_INTL(), 604800);
+opCreativeSetCookieA("op590philips_us_shopping_cartliid", "a00500e00n259om08x2je60ce", opCreativeGetDocumentSLD_INTL(), 86400);
+
+</script>
+
+
+</body>
+</html>

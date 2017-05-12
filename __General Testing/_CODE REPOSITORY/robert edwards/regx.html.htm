@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<div id="RRR">
+My nombre es Jaime.
+	<h2>Hotel Facilities</h2>
+	<h3>General</h3>
+	<p class="b_hotelFacilities">Restaurant&nbsp;&ndash; Bar&nbsp;&ndash; 24-Hour Front Desk&nbsp;&ndash; Family Rooms&nbsp;&ndash; Elevator&nbsp;&ndash; Safety Deposit Box&nbsp;&ndash; Heating&nbsp;&ndash; Breakfast Buffet</p>
+	<h3>Services</h3>
+	<p class="b_hotelFacilities">Meeting/Banquet Facilities&nbsp;&ndash; Laundry&nbsp;&ndash; Dry Cleaning&nbsp;&ndash; Tour Desk&nbsp;&ndash; Fax/Photocopying&nbsp;&ndash; Wi-Fi/Wireless LAN</p>
+	<h3>Location</h3>
+	<p class="b_hotelFacilities">City Centre&nbsp;&ndash; Shopping Centre&nbsp;&ndash; Near Train Station&nbsp;&ndash; Park&nbsp;&ndash; Near Subway</p>
+	
+	<div id="b_hotelPoliciesInc">
+		<h2>Hotel Policies</h2>
+		<h3>Check In</h3>
+		<p>15:00 hours</p>
+		<h3>Check Out</h3>
+		<p>11:00 hours</p>
+		<div class="description"><a name="hotel_cancellation_policy"></a>
+			<h3>Cancellation</h3>
+			<p>Reservations must be cancelled 2 days in advance of your arrival date. In the event of a no show or a cancellation in breach of this policy, the cost of the entire reservation will be charged.</p>
+			<p>The cancellation policy may vary per room type; please check the room description as well.</p>
+		</div>
+		<div class="description">
+			<h3>Child policy</span></h3>
+			<p>Children older than 3 year are considered adult for room occupancy. Children no older than 2 year can stay for free.</p>
+		</div>
+		<h3>Accepted credit cards</h3>
+		<ul>
+			<li>American Express</li>
+			<li>Visa</li>
+			<li>Euro/Mastercard</li>
+			<li>Diners Club</li>
+		</ul>
+		<p>The hotel reserves the right to pre-authorise credit cards prior to arrival.</p>
+	</div>
+
+	<h2>Food &amp; Beverage</h2>
+	<p>Breakfast is served from 07:00 until 10:00. <br />
+	Price of Breakfast Buffet (if not included in Price of Room: 9.50 GBP). <br />
+	Price of Full English Breakfast (if not included in Price of Room): 9.50 GBP. <br />
+	</p>
+
+	<h2>Travel information</h2>
+	<p>We&#39;re situated close to main bus and underground routes, including the A2 airport bus to Heathrow, with Paddington station nearby. Ample car parking in the vicinity of the hotel completes the easy travel picture.</p>
+	<h2>Important information</h2>
+	<p>24 hours before date of arrival.</p>
+
+</DIV>
+<script>
+ff=document.getElementById('RRR').innerHTML;
+// regex1=/(\<h2\>[\s\S])\<div[\s\S]id\=["']?b\_hotelPoliciesInc/;
+regex1=/(\<h2\>[\s\S]*?)\<div.*?id=['"]?b\_hotelPoliciesInc/i;
+// use the '?' after the ['"] choice for '0 or 1 of' (this was your ie issue; and YOU warned me, remember!?!!)
+
+alert(ff);
+// don't alert(regex1.exec);
+result=regex1.exec(ff);
+// don't alert(regex1);
+var myResult = '';	// empty for now
+if(result != null)
+{
+	myResult = result[1];	// the first one
+}
+else alert('nope');
+alert(myResult);
+</script>
+
+</body>
+</html>

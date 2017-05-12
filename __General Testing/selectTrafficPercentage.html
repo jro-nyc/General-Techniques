@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Script code to select traffic percentage</title>
+</head>
+
+<body>
+<script>
+cookieName =  "avisBudgetProject3";  //the name of the cookie is set here
+percentage = 50;  // A number 0 to 100, percentage traffic going to Optimost
+
+function _osetcookie(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);
+document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + 
+"; path=/" + ((d==null) ? "" : (";domain=" + d));} 
+
+function _ogetcookie(cookieValue){
+var _oc = new Object;if (document.cookie.length > 0) { var _ca = document.cookie.split("\;");
+for (var i=0; i < _ca.length; i++) { var _cv = _ca[i].split("=");
+while (_cv[0].substring(0, 1) == " ") _cv[0] = _cv[0].substring(1, _cv[0].length);
+_oc[_cv[0]] = unescape(_cv[1]); } }
+
+if(_oc[cookieValue] != null) return _oc[cookieValue];else return null;}
+_cookie=_ogetcookie(cookieName);
+var _omvt=(_cookie==null)?(Math.floor(Math.random()*100)<percentage):(_cookie=="y");
+if(_cookie==null) _osetcookie(cookieName,_omvt?"y":"n",null,2592000);
+if (_omvt) {
+	//Render Optimost Trial code, and thus Optimost page.  Insert our code in here.
+}
+</script>
+
+
+</body>
+</html>

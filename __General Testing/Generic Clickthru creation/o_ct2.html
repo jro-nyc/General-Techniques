@@ -1,0 +1,460 @@
+
+<html>
+<head>
+<title>Universal CT testing</title>
+<base href="http://www.w3schools.com/TAGS/">
+<script>
+var $o_ct = function () {	
+	var oVars = new Object;
+	oVars.name = "$o_ct.setClickthru";
+	oVars.wlist = ["google.com","interwoven.com","w3schools.com"];	
+	function getAbsUrl(sUrl, bUseBase)
+	{
+		bUseBase = (bUseBase != null) ? bUseBase : true;
+		sUrl = sUrl || "";
+		if (sUrl.toLowerCase().substr(0,4) != "http")
+		{
+			var lnk = null;
+			if(bUseBase && document.getElementsByTagName('base')[0]){
+				lnk = document.createElement('a');
+				lnk.href = document.getElementsByTagName('base')[0].href;
+			}
+			else {lnk = location;}
+			if(lnk)
+			{
+				var pth = lnk.pathname.substr(0, lnk.pathname.lastIndexOf('/')+1);
+				sUrl = lnk.protocol + "//" + lnk.hostname + ((sUrl.substr(0,1) == "/") ? sUrl : ((pth.substr(0,1)  != "/") ? "/":"") + pth + sUrl);
+				if(lnk.tagName && lnk.tagName.toLowerCase() == 'a') {lnk=null;}
+			}
+		}
+		return sUrl;
+	}
+	oVars.getActionObj = function(oEl, sType)
+	{
+		var oUrl = null;
+		if(sType == "post" || sType == "get")
+		{
+			oUrl = oEl.attributes.getNamedItem('action');			
+			if(!oUrl)
+			{
+				oEl.setAttribute("action","");
+				oUrl = oEl.attributes.getNamedItem('action');
+			}
+		}
+		return oUrl;
+	}
+	oVars.setGetCT = function(oEl, clickthru, override, oUrl, sUrlOrig)
+	{
+		var oHid = document.createElement('input');
+		oHid.type = 'hidden';
+		oHid.name = override;
+		oHid.value = sUrlOrig;
+		if(oEl && oEl.appendChild)
+		{
+			oEl.appendChild(oHid);
+		}
+		oUrl.nodeValue = clickthru;
+	}
+	oVars.getAttribs = function(oAttrib)
+	{
+		var sAttrib = "";
+		if(typeof(oAttrib) == "object" && oAttrib != null)
+		{
+			for(var name in oAttrib)
+			{
+				sAttrib += (((sAttrib != "")) ? "&" : "") + name + "=" + oAttrib[name];
+			}
+		}
+		return sAttrib;
+		
+	}
+	oVars.setObjToString = function(attribObj)
+	{
+		var strObj = "";
+		if(attribObj != null && typeof(attribObj) == 'object')
+		{
+				for(var i in attribObj)
+				{
+					strObj += "'" + i + "':'" + attribObj[i] + "',";
+				}
+				strObj = strObj.replace(/\,$/, "");
+		}
+		if(strObj != "") strObj = "{" + strObj + "}";
+		return strObj;
+	}
+	oVars.inWList=function(href)
+	{
+		for(var i=0; i<oVars.wlist.length; i++)
+		{
+			if(href.toLowerCase().indexOf(oVars.wlist[i].toLowerCase()) > -1)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	oVars.setTargetCT = function(oEl, clickthru)
+	{
+		if(oEl.onclick && oEl.onclick.toString().indexOf("return " + oVars.name) > -1)
+		{
+			window.open(clickthru);
+			return false;
+		}
+		return true;
+	}
+	oVars.setTarget = function(sFunc)
+	{
+		if(sFunc.indexOf("return") == -1)
+		{
+			sFunc = "return " + sFunc;
+		}
+		return sFunc;
+	}
+	return {
+		setClickthru:function(obj, clickthru, override, attribs)
+		{
+			if(!obj || !(obj.attributes && obj.attributes.getNamedItem) || !obj.tagName)
+			{
+				return false;
+			}
+			var sObjType = (obj.tagName.toLowerCase() != "form") ? "link" : (obj.method && obj.method.toLowerCase() == "post") ? "post" : "get";
+			
+			var oUrl = null;
+			if(sObjType == "link")
+			{
+				oUrl = obj.attributes.getNamedItem("href");
+			}
+			//FORM ACTION begin
+			else if(oVars.getActionObj)
+			{
+				oUrl = oVars.getActionObj(obj, sObjType);
+				
+			}
+			//FORM ACTION end
+			
+			//if(!oUrl || !oUrl.nodeValue){ //Does not work for action=""  13 oct 2008
+			if(oUrl==null || oUrl.nodeValue==null){
+				return true;
+			}
+			
+			var sUrlOrig = oUrl.nodeValue;
+			if(sUrlOrig.toLowerCase().indexOf("optimost.com") > -1 || sUrlOrig.toLowerCase().indexOf("javascript:") > -1 || sUrlOrig.indexOf("#") > -1)
+			{
+				return true;
+			}
+			sUrlOrig = (sUrlOrig.toLowerCase().substr(0,4).indexOf("http") > -1) ? sUrlOrig : getAbsUrl(sUrlOrig);
+			//WHITE LIST CHECK begin
+			if(oVars.inWList && !oVars.inWList(sUrlOrig))
+			{
+				return true;
+			}
+			//WHITE LIST CHECK end
+			//ATTRIB begin
+			if(oVars.getAttribs && attribs)
+			{
+				var sAttribs = oVars.getAttribs(attribs);
+				if(sAttribs != "")clickthru+=((clickthru.indexOf("?") > -1) ? "&" : "?") + sAttribs;
+			}
+			//ATTRIB end
+			if(override == null)
+			{
+				oUrl.nodeValue = clickthru;
+			}
+			else
+			{
+				if(sObjType != "get")
+				{
+					clickthru += (clickthru.indexOf("?") > -1 ? "&":"?") + override + "=" + escape(sUrlOrig);
+					//TARGET begin
+					if(oVars.setTargetCT && sObjType == "link" && obj.target && obj.target.toLowerCase().indexOf("blank") > -1)
+					{
+						return oVars.setTargetCT(obj, clickthru);
+					}
+					//TARGET end
+					oUrl.nodeValue = clickthru;
+				}
+				//FORM GET begin
+				else if(sObjType == "get" && oVars.setGetCT)
+				{
+					oVars.setGetCT(obj, clickthru, override, oUrl, sUrlOrig);
+				}
+				//FORM GET end
+			}
+			
+			return true;			
+		},
+		setOnclick:function(obj, clickthru, override, attribObj)
+		{
+			if(!obj || !(obj.attributes && obj.attributes.getNamedItem) || !obj.tagName)
+			{
+				return true;
+			}
+			
+			var sType = (obj.tagName.toLowerCase() != "form") ? "link" : "form";
+			var sFunc = oVars.name + "(this, '" + clickthru + "'";
+			var tempFunc = "";
+			var sEvent = "onclick";		
+			
+			if(override) 
+			{
+					sFunc += ",'" + override + "'";
+			}
+			//ATTRIB begin
+			if(attribObj != null && oVars.setObjToString)
+			{
+				var strObj = oVars.setObjToString(attribObj);
+				if(strObj != "")
+				{
+					sFunc += "," + strObj;
+				}
+			}
+			//ATTRIB end
+				
+			sFunc += ');'
+			if(sType == "link")
+			{
+				if(obj.onclick != null){tempFunc=obj.onclick.toString();}
+			}
+			// FORM begin 
+			else if(sType == "form" && obj.onsubmit != null)
+			{
+				tempFunc=obj.onsubmit.toString();
+				sEvent="onsubmit";
+			}
+			else if(sType == "form"){//Added, 13 Oct 2008
+				sEvent="onsubmit";
+			}
+
+			//FORM
+			tempFunc=(tempFunc != "") ? tempFunc.substring(tempFunc.indexOf("{") + 1, tempFunc.lastIndexOf("}")) : "";
+			//TARGET begin
+			if(oVars.setTarget && sType == "link" && obj.target && obj.target.toLowerCase().indexOf("blank") > -1)
+			{
+				sFunc = tempFunc + ";" + oVars.setTarget(sFunc);	
+			}
+			else
+			{
+				sFunc+=tempFunc;
+			}
+			//TARGET end
+			obj[sEvent] = new Function(sFunc);
+			if(sEvent=="onsubmit"){
+				//alert(sFunc + ' is the onsubmit event for '+obj.tagName+'-'+obj.name);			
+			}
+			return true;
+			
+		},
+		getUrl:function(sUrl, bUseBase)
+		{
+			return getAbsUrl(sUrl, bUseBase);
+		}
+	};
+}();
+
+function opIndividualTracking(ctVal,elType,startingObj,matchAttribute,matchVal,passThruName){
+	this.ctVal = ctVal;			//The clickthru value
+	this.elType = elType;		//The element is what type of tag - anchor, area, form, etc
+	this.obj = startingObj;		//Our starting point to look for this.  Could be document, could be some container
+	this.attribute = matchAttribute;	//What attribute in the element are we looking for to "identify" the click
+	this.value = matchVal;				//What value does that attribute have
+	this.qs = passThruName;				//The name of the pass-thru argument we will use (usually "oplink")
+}
+function opContainterTracking(ctVal,elType,containerObj,passThruName){
+	this.ctVal = ctVal;			//The clickthru value
+	this.elType = elType;		//The element is what type of tag - anchor, area, form, etc
+	this.obj = containerObj;	//Our starting point, the container that has these clicks
+	this.qs = passThruName;		//The name of the pass-thru argument we will use (usually "oplink")
+}
+function processClickContainers(container){
+	if(container.elType=='a' && container.obj!=null && container.ctVal!='' && container.qs!=''){
+		anchors=container.obj.getElementsByTagName('a');
+		//alert("we have "+anchors.length+" Anchor tags");
+		for(var i=0;i<anchors.length;i++){
+			$o_ct.setOnclick(anchors[i], container.ctVal, container.qs);
+		}	
+	}
+	else if(container.elType=='area' && container.obj!=null && container.ctVal!='' && container.qs!=''){
+		areas=container.obj.getElementsByTagName('area');
+		//alert("we have "+areas.length+" Area tags");
+		for(var i=0;i<areas.length;i++){
+			$o_ct.setOnclick(areas[i], container.ctVal, container.qs);
+		}	
+	}
+	else if(container.elType=='form' && container.obj!=null && container.ctVal!='' && container.qs!=''){
+		formss=container.obj.getElementsByTagName('form');
+		//alert("we have "+formss.length+" Form tags");
+		for(var i=0;i<formss.length;i++){
+			if(formss[i].method.toLowerCase()=="get" && container.ctVal.toLowerCase().indexOf('/go/')!=-1){			
+				$o_ct.setOnclick(formss[i], container.ctVal, container.qs);
+			}
+			else if(formss[i].method.toLowerCase()=="post" && container.ctVal.toLowerCase().indexOf('/post/')!=-1){
+				$o_ct.setOnclick(formss[i], container.ctVal, container.qs);			
+			}
+		}	
+	}
+}
+
+function processIndividualClicks(individual){
+	if(individual.elType=='a' && individual.obj!=null && individual.ctVal!='' && individual.qs!='' && individual.attribute!='' && individual.value!=''){
+		anchors=individual.obj.getElementsByTagName('a');
+		for(var i=0;i<anchors.length;i++){
+			if(anchors[i].getAttribute(individual.attribute).indexOf(individual.value)!=-1)
+				$o_ct.setOnclick(anchors[i], individual.ctVal, individual.qs);
+		}	
+	}
+	else if(individual.elType=='area' && individual.obj!=null && individual.ctVal!='' && individual.qs!='' && individual.attribute!='' && individual.value!=''){
+		areas=individual.obj.getElementsByTagName('area');
+		//alert("we have "+areas.length+" Area tags");
+		for(var i=0;i<areas.length;i++){
+			if(areas[i].getAttribute(individual.attribute).indexOf(individual.value)!=-1)
+				$o_ct.setOnclick(areas[i], individual.ctVal, individual.qs);
+		}	
+	}
+	else if(individual.elType=='form' && individual.obj!=null && individual.ctVal!='' && individual.qs!='' && individual.attribute!='' && individual.value!=''){
+		formss=individual.obj.getElementsByTagName('form');
+		//alert("we have "+formss.length+" Form tags");
+		for(var i=0;i<formss.length;i++){
+			if(formss[i].method.toLowerCase()=="get" && individual.ctVal.toLowerCase().indexOf('/go/')!=-1){			
+				if(formss[i].getAttribute(individual.attribute).indexOf(individual.value)!=-1)
+					$o_ct.setOnclick(formss[i], individual.ctVal, individual.qs);
+			}
+			else if(formss[i].method.toLowerCase()=="post" && individual.ctVal.toLowerCase().indexOf('/post/')!=-1){
+				if(formss[i].getAttribute(individual.attribute).indexOf(individual.value)!=-1)
+					$o_ct.setOnclick(formss[i], individual.ctVal, individual.qs);
+			}
+		}	
+	}
+
+
+}
+</script>
+</head>
+<body>
+<a href="http://www.google.com/" >Link 1</a>
+<a href="http://www.interwoven.com/" >Link 2</a>
+<a href="http://www.w3schools.com/" >Link 3</a>
+<br/>
+<form name="frm" method="post" action="">
+<input type="submit" name="button" value="Post submit">
+</form>
+
+<form name="frm2" method="get" action="">
+<input type="submit" name="button" value="Get submit">
+</form>
+
+<p>Click on one of the planets:</p> 
+<img src ="http://kidwww.optimost.com/webtest/jim/js/planets.gif" width="145" height="126" alt="Planets" usemap ="#planetmap" />
+
+<map id ="planetmap" name="planetmap">
+  <area shape ="rect" coords ="0,0,82,126"  href ="sun.htm" target ="_blank"   alt="Sun" />
+  <area shape ="circle" coords ="90,58,3"  href ="mercur.htm" target ="_blank"   alt="Mercury" />
+  <area shape ="circle" coords ="124,58,8"  href ="venus.htm" target ="_blank" alt="Venus" />
+</map>
+
+
+<script>
+//How we will find clicks
+//#1 - A set of clicks inside a specific "container".  These will be tracked as a group with a single clickthru,
+//and if the customer OKs it, we can add a position attribute to differentiate one from the next.
+//After getting all the "container" clicks, you then:
+//#2 - Get the individual clicks. In all this, make sure this does not already have a click added to it.
+thePost="http://by.optimost.com/post/2-3589/a03l0mq2l024ani39o2aqc722/";
+theGet="http://by.optimost.com/go/2-3588/a03l0mq2l024ani39o2aqc722/";
+theGets=["http://by.optimost.com/go/2-3591/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3592/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3593/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3594/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3595/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3596/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3597/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3598/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3599/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3600/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3601/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3602/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3603/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3604/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3605/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3606/a03l0mq2l024ani39o2aqc722/",
+		"http://by.optimost.com/go/2-3607/a03l0mq2l024ani39o2aqc722/","http://by.optimost.com/go/2-3608/a03l0mq2l024ani39o2aqc722/"];
+
+opClickContainers=new Array;
+opClickContainers[opClickContainers.length]=new opContainterTracking(theGet,"a",document,"oplink");
+/*
+opClickContainers[opClickContainers.length]=new opContainterTracking;
+opClickContainers[opClickContainers.length-1].ctVal=theGet;
+opClickContainers[opClickContainers.length-1].elType="a";
+opClickContainers[opClickContainers.length-1].containerObj=document;
+opClickContainers[opClickContainers.length-1].qs="oplink";
+*/
+
+opClickContainers[opClickContainers.length]=new opContainterTracking(theGet,"area",document,"oplink");
+/*
+opClickContainers[opClickContainers.length]=new opContainterTracking;
+opClickContainers[opClickContainers.length-1].ctVal=theGet;
+opClickContainers[opClickContainers.length-1].elType="area";
+opClickContainers[opClickContainers.length-1].containerObj=document;
+opClickContainers[opClickContainers.length-1].qs="oplink";
+
+*/
+opClickContainers[opClickContainers.length]=new opContainterTracking(theGet,"form",document,"oplink");
+/*
+opClickContainers[opClickContainers.length]=new opContainterTracking;
+opClickContainers[opClickContainers.length-1].ctVal=theGet;
+opClickContainers[opClickContainers.length-1].elType="form";
+opClickContainers[opClickContainers.length-1].containerObj=document;
+opClickContainers[opClickContainers.length-1].qs="oplink";
+*/
+
+opClickContainers[opClickContainers.length]=new opContainterTracking(thePost,"form",document,"oplink");
+/*
+opClickContainers[opClickContainers.length]=new opContainterTracking;
+opClickContainers[opClickContainers.length-1].ctVal=thePost;
+opClickContainers[opClickContainers.length-1].elType="form";
+opClickContainers[opClickContainers.length-1].containerObj=document;
+opClickContainers[opClickContainers.length-1].qs="oplink";
+*/
+
+list='';
+for(var i=0;i<opClickContainers.length;i++){
+	//processClickContainers(opClickContainers[i]);
+	/*list+="\n\nThis is container #"+i+"\n";
+	for(var n in opClickContainers[i]) list+=n+" has the value "+opClickContainers[i][n]+"\n";*/
+}
+//alert(list);
+
+opIndividualClicks=new Array;
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(theGets[0],"a",document,"innerHTML","Link 1","oplink");
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(theGets[1],"a",document,"innerHTML","Link 2","oplink");
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(theGets[2],"a",document,"innerHTML","Link 3","oplink");
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(theGets[3],"area",document,"href","sun.htm","oplink");
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(theGets[4],"area",document,"href","mercur.htm","oplink");
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(theGets[5],"area",document,"href","venus.htm","oplink");
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(theGet,"form",document,"name","frm2","oplink");
+opIndividualClicks[opIndividualClicks.length]= new opIndividualTracking(thePost,"form",document,"name","frm","oplink");
+//opIndividualTracking(theGets[0],"a",document,"innerHTML","Link 1","oplink");
+//opIndividualTracking(theGets[0],"a",document,"innerHTML","Link 1","oplink");
+for(var i=0;i<opIndividualClicks.length;i++){
+	processIndividualClicks(opIndividualClicks[i]);
+}
+
+
+function opAggregateClicks(){
+	anchors=document.getElementsByTagName('a');
+	formss=document.getElementsByTagName('form');
+	areas=document.getElementsByTagName('area');
+	
+	thePost="http://by.optimost.com/post/2-3589/a03l0mq2l024ani39o2aqc722/";
+	theGet="http://by.optimost.com/go/2-3588/a03l0mq2l024ani39o2aqc722/";
+	
+	for(i=0;i<anchors.length;i++){
+		$o_ct.setOnclick(anchors[i], theGet, "oplink");
+	}
+	//alert(areas.length);
+	for(i=0;i<areas.length;i++){
+		$o_ct.setOnclick(areas[i], theGet, "oplink");
+	}
+	//alert(forms.length);
+	for(i=0;i<formss.length;i++){
+		if(formss[i].method.toLowerCase()=="get") $o_ct.setOnclick(formss[i], theGet, "oplink");
+		else if(formss[i].method.toLowerCase()=="post") $o_ct.setOnclick(formss[i], thePost, "oplink");
+	}
+}
+
+
+</script>
+</body>
+</html>
+

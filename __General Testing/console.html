@@ -1,0 +1,2206 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="https://asp.optimost.com/" />
+
+<title>Optimost -  [Let's Talk] Template Details - Version 2.25</title>
+
+<link type="text/css" rel="STYLESHEET" href="/css/styles.css">
+<link type="text/css" rel="STYLESHEET" href="/css/shared/styles.css">
+<link type="text/css" rel="STYLESHEET" href="/css/shared/tablesort.css">
+<link type="text/css" rel="STYLESHEET" href="/css/shared/listctrl.css" ID="listCtrl">
+<link type="text/css" rel="STYLESHEET" href="/css/shared/cb2.css">
+<link type="text/css" rel="STYLESHEET" href="/css/shared/tabctrl.css">
+
+
+<script type="text/javascript" src="/help/js/userhelp.js"></script>
+
+<script type="text/javascript" src="/js/shared/tablesort.js"></script>
+<script type="text/javascript" src="/js/shared/listctrl.js"></script>
+<script type="text/javascript" src="/js/shared/cb2.js"></script>
+<script type="text/javascript" src="/js/shared/tabctrl.js"></script>
+
+<link type="text/css" rel="STYLESHEET" href="/css/taskflyout.css">
+<script type="text/javascript" src="/js/taskflyout.js"></script>
+<script type="text/javascript" src="/js/shared/opendialog.js"></script>
+<script type="text/javascript" src="/js/report.js"></script>
+<script type="text/javascript" src="/js/shared/scriptaculous/prototype.js"></script> 
+<script type="text/javascript" src="/js/shared/scriptaculous/scriptaculous.js?load=effects"></script> 
+
+<style type="text/css">
+/* GeSHi (c) Nigel McNie 2004 (http://qbnz.com/highlighter) */
+.html4strict .imp {font-weight: bold; color: red;}
+.html4strict .kw1 {color: #b1b100;}
+.html4strict .kw2 {color: #000000; font-weight: bold;}
+.html4strict .kw3 {color: #000066;}
+.html4strict .coMULTI {color: #808080; font-style: italic;}
+.html4strict .es0 {color: #000099; font-weight: bold;}
+.html4strict .br0 {color: #66cc66;}
+.html4strict .st0 {color: #ff0000;}
+.html4strict .nu0 {color: #cc66cc;}
+.html4strict .sc0 {color: #00bbdd;}
+.html4strict .sc1 {color: #ddbb00;}
+.html4strict .sc2 {color: #009900;}
+/* GeSHi (c) Nigel McNie 2004 (http://qbnz.com/highlighter) */
+.javascript .imp {font-weight: bold; color: red;}
+.javascript .kw1 {color: #000066; font-weight: bold;}
+.javascript .kw2 {color: #003366; font-weight: bold;}
+.javascript .kw3 {color: #000066;}
+.javascript .co1 {color: #009900; font-style: italic;}
+.javascript .coMULTI {color: #009900; font-style: italic;}
+.javascript .es0 {color: #000099; font-weight: bold;}
+.javascript .br0 {color: #66cc66;}
+.javascript .st0 {color: #3366CC;}
+.javascript .nu0 {color: #CC0000;}
+.javascript .me1 {color: #006600;}
+.javascript .re0 {color: #0066FF;}
+</style>
+
+<style type="text/css">
+.geshiVarRef {
+	color: black;
+	font-weight: bold;
+	border: solid #808080 1px;
+	background-color: #ffff99;
+}
+.geshiClickRef {
+	color: black;
+	font-weight: bold;
+	border: solid #808080 1px;
+	background-color: #e8e8e8;
+}
+.geshiScriptBody {
+	background-color: #f5f5f5;
+}
+.geshiStyleBody {
+	background-color: white;
+}
+</style>
+
+<script language="javascript">
+var g_nTemplateID = 14;
+function UpdaterTracker()
+{
+	this.P = {};
+	this.Updater = null;
+	
+	this.SetUpdater = function (p, u)
+	{
+		this.P = {};
+		this.Updater = u;
+		
+		for (var i=0; i < p.length; i++)
+		{
+			var a = p[i].split("=", 2)
+			this.P[a[0]] = a[1];
+		}
+	};
+	
+	this.IsUpdater = function (p)
+	{
+		for (var i=0; i < p.length; i++)
+			if (this.P[p[i][0]] != p[i][1])
+				return false;
+		
+		return (this.Updater != null);
+	};
+	
+	this.DebugAlert = function ()
+	{
+		var s = "";
+		for (var i in this.P)
+			s += (i + "=" + this.P[i] + "\n");
+		alert(s);
+	};
+	
+	this.OnComplete = function ()
+	{
+		this.P = {};
+		this.Updater = null;
+	};
+};
+
+function KeyValueCache()
+{
+	this.H = {}; // key/value
+	this.A = {}; // key/arguments object
+	this.NextKey = null;
+	
+	this.IsCached = function (key)
+	{
+		return (typeof this.H[key] != "undefined" && this.H[key] != null);
+	};
+	
+	this.CacheValue = function (key, value, args)
+	{
+		if (key == null)
+			key = this.NextKey;
+		
+		if (key != null)
+		{
+			this.H[key] = value;
+			this.A[key] = args;
+		}
+		
+		this.NextKey = null;
+	};
+	
+	this.GetValue = function (key) 
+	{
+		return this.IsCached(key) ? this.H[key] : null;
+	};
+	
+	this.GetValueArgs = function (key) 
+	{
+		return this.IsCached(key) ? this.A[key] : null;
+	};
+	
+	this.RemoveKey = function (key) 
+	{
+		this.H[key] = null;
+		this.A[key] = null;
+	}
+	
+	this.ClearAll = function ()
+	{
+		this.H = {};
+		this.A = {};
+		this.NextKey = null;
+	};
+};
+
+var g_oTabctrl = null;
+var g_oTabctrlTabs = null;
+var g_oFCKEditInstance = null;
+var g_oViewSourceTextArea = null;
+var g_oEditSourceTextArea = null;
+var g_bSourceIsDirty = false;
+var g_aCurrentSaveUpdater = new UpdaterTracker();
+var g_aCurrentFetchUpdater = new UpdaterTracker();
+var g_aCurrentHighlightUpdater = new UpdaterTracker();
+var g_oHighlightedSourceCache = new KeyValueCache();
+var g_oEditSourceCache = new KeyValueCache();
+var g_bSetEditSourceDirtyOnValueChange = true;
+
+var DESIGNMODE_TAB_INDEX = 3;
+
+function changeTemplateDetails()
+{
+	if (openDialog("/template-details-d.phtml?tid=" + g_nTemplateID, "modalDialog", 415, 225, true) != null)
+		window.location.reload();
+}
+
+function btnFindReplace_Click()
+{
+	if (openDialog("/template-replace-d.phtml?tid=" + g_nTemplateID, "modalDialog", 295, 315, true) != null)
+		window.location.reload();
+}
+
+function deleteTemplate()
+{
+	var nSubjectID = 1;
+	if (openDialog("/template-delete-d.phtml?tid=" + g_nTemplateID, "modalDialog", 450, 140, true) != null)
+		window.location.href = "/subject.phtml?sid=" + nSubjectID;
+}
+
+function refreshCreatives()
+{
+	if (openDialog("/template-refresh-d.phtml?tid=" + g_nTemplateID, "modalDialog", 425, 130, true) != null)
+		window.location.reload();
+}
+
+function changeControl()
+{
+	openDialog("/template-baseline-d.phtml?tid=" + g_nTemplateID, "modalDialog", 400, 300, true);
+}
+
+function templateWizard(track)
+{
+	var newTemplate = openDialog("/template-new-d.phtml?track=" + track + "&tid=" + g_nTemplateID, "modalDialog", 600, 435, true);
+	if (newTemplate != null)
+	{
+		if (newTemplate[0] == g_nTemplateID)
+			window.location.reload();
+		else if (newTemplate[1] == 1)
+			window.location.href = "/template.phtml?tid=" + newTemplate[0];
+	}
+}
+
+function calendarNewTask()
+{
+	openDialog("/agency-usertask-new-d.phtml?relatedto=template&relatedid=" + g_nTemplateID, "modalDialog", 350, 320, true);
+}
+
+function addDocument()
+{
+	var url = "/document-new-d.phtml?relatedto=template&relatedid=" + g_nTemplateID;
+	if (openDialog(url, "modalDialog", 425, 290, true))
+		window.location.reload();
+}
+
+function tabctrl_OnResize()
+{
+	ResizeSourceTextAreas();
+}
+
+function btnSaveChanges_Click()
+{
+	SaveItemContent();
+}
+
+function btnCancelChanges_Click()
+{
+	FetchItemContent();
+}
+
+function btnRename_Click()
+{
+	var oRow = editableItemsList.getSelectedRow();
+	
+	if (oRow != null)
+	{
+		var ob = oRow.getAttribute('updater-ob');
+		var id = oRow.getAttribute('updater-id');
+		
+		if (id != null)
+			if (openDialog("/variable-value-rename-d.phtml?vvid=" + id, "modalDialog", 300, 140, true) != null)
+				window.location.reload();
+	}
+}
+
+function updaterForm_Submit()
+{
+	return false;
+}
+
+function onPageLoad()
+{
+	g_oTabctrl = $("tabctrl");
+	g_oTabctrlTabs = $("tabctrlTabs");
+	g_oViewSourceTextArea = $("ViewSourceTextArea");
+	g_oEditSourceTextArea = $('EditSourceTextArea');
+	
+	ResizeSourceTextAreas();
+	
+	ClearCachedContent();
+	
+	// Pre-select an item to edit
+	$("InitialObjectSelection").click();
+}
+
+function EditSourceTextArea_PropertyChange()
+{
+	// Allow saving if the content of EditSourceTextArea changes
+	if (event.propertyName == "value")
+		if (g_bSetEditSourceDirtyOnValueChange)
+			SetEditSourceDirty();
+}
+
+var g_keyCodeIgnore = [
+	16, // SHIFT
+	17, // CTRL
+	18, // ALT
+	19, // PAUSE
+	20, // CAPS
+	27, // ESC
+	33,34,35,36,37,38,39,40 // Navigation
+];
+
+var g_keyCodeCtrlKeep = [
+	86, // CTRL+V
+	88, // CTRL+X
+	90  // CTRL+Z
+];
+
+// EditSourceTextArea_PropertyChange doesn't fire 100% of the time, so we
+// make up for it by assuming most key events modify the content.
+function EditSourceTextArea_KeyDown(e)
+{
+	var e = (e) ? e : event;
+	var keyCode = (e.keyCode) ? e.keyCode : (e.which ? e.which : e.charCode);
+
+	if (g_keyCodeIgnore.indexOf(keyCode) >= 0)
+		return true; // Ignore non-editing characters
+	
+	if (e.altKey)
+		return true; // ALT-key combinations are typically non-editing
+	
+	if (e.ctrlKey && g_keyCodeCtrlKeep.indexOf(keyCode) < 0)
+		return true; // CTRL-key combinations are typically non-editing
+		
+	// Allow saving if the content of EditSourceTextArea changes
+	SetEditSourceDirty();
+	
+	return true;
+}
+
+// Called on page load after editor is initialized
+function FCKeditor_OnComplete(editorInstance)
+{
+	g_oFCKEditInstance = editorInstance;
+	
+	editorInstance.Events.AttachEvent('OnAfterSetHTML', FCKeditor_OnAfterSetHTML);
+}
+
+function FCKeditor_OnAfterSetHTML(editorInstance)
+{
+	// Start from a clean slate when new HTML is set
+	ResetDesignModeDirty();
+}
+
+// Called before editableItemsList_Select
+function editableItemsList_BeforeChangeSelection(currentRow, nextRow, event)
+{
+	if (currentRow == null)
+		return true; // if there is no current row, select something!
+	
+	if (nextRow == null)
+		return false; // don't allow selection to move to a nonselectable item
+	
+	if (currentRow == nextRow)
+		return false; // changing selection to self can cause save/fetch timing issues
+		
+	var oImgs = currentRow.getElementsByTagName("IMG");
+	if (oImgs.length == 1)
+		oImgs[0].src = "/images/shared/d.gif";
+		
+	PromptSaveChanges(true);
+	
+	return true;
+}
+
+// Called after editableItemsList_BeforeChangeSelection
+function editableItemsList_Select(event)
+{
+	var oRow = editableItemsList.getSelectedRow();
+	
+	if (oRow != null)
+	{
+		var ob = oRow.getAttribute('updater-ob');
+		var id = oRow.getAttribute('updater-id');
+		
+		$('updater-ob').value = ob;
+		$('updater-id').value = id;
+		
+		var oImgs = oRow.getElementsByTagName("IMG");
+		if (oImgs.length == 1)
+			oImgs[0].src = "/images/shared/icons/editing.gif";
+		
+		// Can rename certain items
+		btnRename.setEnabled(oRow.getAttribute('allow-rename')=='y');
+		
+		ResetEditSourceDirty();
+		
+		switch (g_oTabctrl.getCurrentTabPanelId())
+		{
+		case "tabctrlpanel_ViewTab":
+		case "tabctrlpanel_EditTab":
+		case "tabctrlpanel_DesignTab":
+			FetchItemContent();
+			break;
+		}
+	}
+	else
+	{
+		$('updater-ob').value = "";
+		$('updater-id').value = "";
+	}
+}
+
+function tabctrl_BeforeChangeTab(fromPanel, toPanel, event)
+{
+	// Sync the source edit box when leaving the design tab
+	if (fromPanel.id == "tabctrlpanel_DesignTab")
+	{
+		// Retain orginal content unless design was actually edited.
+		// This allows user to preview using Design mode without having
+		// the source re-formatted or modified.
+		if (g_oFCKEditInstance.IsDirty())
+		{
+			SyncEditSourceWithDesign();
+			SetEditSourceDirty();
+		}
+	}
+	
+	// Design is always based on the current source text
+	if (toPanel.id == "tabctrlpanel_DesignTab")
+	{
+		SyncDesignWithEditSource();
+	}
+	
+	// Update the highlighted source before changing tabs
+	if (toPanel.id == "tabctrlpanel_ViewTab")
+	{
+		// Take the opportunity to remind them to save if necessary
+		PromptSaveChanges(false);
+		
+		HighlightContent(false);
+	}
+	
+	return true;
+}
+
+function tabctrl_AfterChangeTab(currentPanel, event)
+{
+	// Restore button UI based on current tab + dirty state
+	UpdateButtonsUI();
+	
+	switch (currentPanel.id)
+	{
+	case "tabctrlpanel_DesignTab":
+		SetEditFocus();
+		break;
+	case "tabctrlpanel_EditTab":
+		// For whatever stupid reason, after the Tab change, IE will not fire the 
+		// onpropertychange event until the *second* key press. This is confusing
+		// because then the Save button is not enabled after the first text modification.
+		// This appears to be resolved by setting the focus to the control *then(
+		// setting the textarea value.
+		SetEditFocus();
+		SetEditSourceText(g_oEditSourceTextArea.value);
+		break;
+	}
+}
+
+function FetchItemContent()
+{
+	if ($('updater-ob').value == "" || $('updater-id').value == "")
+	{
+		SetCurrentItemContent('');
+		if (InViewMode())
+			HighlightContent(false);
+		return; // Nothing is selected
+	}
+	
+	var updaterParams = [Form.Element.serialize($('tid'))];
+	updaterParams.push("updater-op=fetch");
+	updaterParams.push(Form.Element.serialize($('updater-ob')));
+	updaterParams.push(Form.Element.serialize($('updater-id')));
+	
+	var key = GetSelectedItemCacheKey();
+	
+	// Use cached content if possible
+	if (g_oEditSourceCache.IsCached(key))
+	{
+		var args = g_oEditSourceCache.GetValueArgs(key);
+		
+		SetCurrentItemContent(g_oEditSourceCache.GetValue(key));
+		SetAllowDesignMode(args["allowDesignMode"]);
+		
+		if (InViewMode())
+			HighlightContent(false);
+		
+		return;
+	}
+	
+	SetCurrentItemContent('');
+	
+	// Save cached content under this key
+	g_oEditSourceCache.NextKey = key;
+	
+	StatusTextAppear('Retrieving content...');
+	
+	g_aCurrentFetchUpdater.SetUpdater(updaterParams,
+		new Ajax.Updater('UpdaterResponse', '/template-updater.phtml', {
+			asynchronous:true, 
+			method:'post', 
+			onFailure:FetchItemContent_Failure, 
+			onComplete:FetchItemContent_Complete, 
+			parameters:updaterParams.join('&')} )
+		);
+}
+
+function FetchItemContent_Complete(request, jsonObj)
+{
+//	alert(request.responseText);
+	
+	var itemContent = $("UpdaterResponseItemContent");
+	
+	if (typeof itemContent == "object")
+	{
+		var checkParams = [
+			['tid', itemContent.getAttribute("for-tid")],
+			['updater-op', itemContent.getAttribute("for-updater-op")],
+			['updater-ob', itemContent.getAttribute("for-updater-ob")],
+			['updater-id', itemContent.getAttribute("for-updater-id")]
+			];
+			
+		if (!g_aCurrentFetchUpdater.IsUpdater(checkParams))
+			return; // Ignore responses to everything but the most recent request
+		
+		g_aCurrentFetchUpdater.OnComplete();
+		
+		// Make sure the selection didn't change after the fetch request was made
+		if ($('updater-ob').value != itemContent.getAttribute("for-updater-ob") || 
+		    $('updater-id').value != itemContent.getAttribute("for-updater-id"))
+		{
+			StatusTextHide();
+			return;
+		}
+		
+		var bAllowDesignMode = (itemContent.getAttribute("allowDesignMode") == "y");
+		
+		// Cache the value so we can re-use if requested later
+		g_oEditSourceCache.CacheValue(null, itemContent.value, {"allowDesignMode":bAllowDesignMode});
+		
+		SetAllowDesignMode(bAllowDesignMode);
+		
+		SetCurrentItemContent(itemContent.value);
+		StatusTextHide();
+		
+		// Highlight the newly fetched content
+		if (InViewMode())
+			HighlightContent(itemContent.innerHTML);
+	}
+	else
+	{
+		var requestError = $("UpdaterResponseError");
+		
+		StatusTextHide();
+		
+		if (typeof requestError == "object")
+			alert(requestError.innerText);
+		else
+			alert('An invalid response was received. Please try again.');
+	}
+}
+
+function FetchItemContent_Failure(request)
+{
+	StatusTextHide();
+
+	alert('The update request failed. Please try again.');
+}
+
+function SaveItemContent()
+{
+	if (g_oEditSourceTextArea == null)
+		return; // Editing is disabled
+	if ($('updater-ob').value == "" || $('updater-id').value == "")
+		return; // Nothing is selected
+	
+	// Invalidated cached content to force reload when accessed again
+	var key = GetSelectedItemCacheKey();
+	g_oEditSourceCache.RemoveKey(key);
+	
+	// We save the content of EditSourceTextArea
+	if (InDesignMode())
+		SyncEditSourceWithDesign();
+	
+	var updaterParams = [Form.Element.serialize($('tid'))];
+	updaterParams.push("updater-op=save");
+	updaterParams.push(Form.Element.serialize($('updater-ob')));
+	updaterParams.push(Form.Element.serialize($('updater-id')));
+	updaterParams.push(Form.Element.serialize(g_oEditSourceTextArea));
+	
+	StatusTextAppear('Saving content...');
+	
+	g_aCurrentSaveUpdater.SetUpdater(updaterParams,
+		new Ajax.Updater('UpdaterResponse', '/template-updater.phtml', {
+			asynchronous:true, 
+			method:'post', 
+			onFailure:SaveItemContent_Failure, 
+			onComplete:SaveItemContent_Complete, 
+			parameters:updaterParams.join('&')} )
+		);
+}
+
+function SaveItemContent_Complete(request, jsonObj)
+{
+	var itemContent = $("UpdaterResponseItemContent");
+	
+	if (typeof itemContent == "object")
+	{
+		var checkParams = [
+			['tid', itemContent.getAttribute("for-tid")],
+			['updater-op', itemContent.getAttribute("for-updater-op")],
+			['updater-ob', itemContent.getAttribute("for-updater-ob")],
+			['updater-id', itemContent.getAttribute("for-updater-id")]
+			];
+			
+		if (!g_aCurrentSaveUpdater.IsUpdater(checkParams))
+			return; // Ignore responses to everything but the most recent request
+		
+		g_aCurrentSaveUpdater.OnComplete();
+		
+		StatusTextNotify('Changes saved');
+		
+		var lastModifiedBy = itemContent.getAttribute("lastModifiedBy");
+		if (lastModifiedBy != null && lastModifiedBy != "")
+			lastModifiedByFooter.innerText = "Last Modified By: " + lastModifiedBy;
+		
+		var bAllowDesignMode = (itemContent.getAttribute("allowDesignMode") == "y");
+		SetAllowDesignMode(bAllowDesignMode);
+		
+		ResetEditSourceDirty();
+		ResetDesignModeDirty();
+	}
+	else
+	{
+		var requestError = $("UpdaterResponseError");
+		
+		StatusTextHide();
+		
+		if (typeof requestError == "object")
+			alert('Your changes were not saved.\n' + requestError.innerText);
+		else
+			alert('Your changes were not saved. An invalid response was received. Please try again.');
+	}
+}
+
+function SaveItemContent_Failure(request)
+{
+	StatusTextHide();
+	
+	alert('Your changes were not saved. The update request failed. Please try again.');
+}
+
+function HighlightContent(unhighlightedContent)
+{
+	var updaterParams = [Form.Element.serialize($('tid'))];
+	updaterParams.push(Form.Element.serialize($('updater-id')));
+	
+	if (typeof g_oEditSourceTextArea == "object")
+	{
+		// If there is an edit box for editing source, highlight
+		// the text in the edit box.
+		
+		updaterParams.push("updater-op=highlight");
+		updaterParams.push('updater-ob=sourcetext');
+		updaterParams.push(Form.Element.serialize(g_oEditSourceTextArea));
+		
+		unhighlightedContent = g_oEditSourceTextArea.innerHTML;
+	}
+	else if ($('updater-ob').value != "" && $('updater-id').value != "")
+	{
+		// If there is no edit box for editing source, fetch the
+		// highlighted version of the content for the selected item.
+		
+		updaterParams.push("updater-op=fetch");
+		updaterParams.push(Form.Element.serialize($('updater-ob')));
+		updaterParams.push("highlight=1");
+	}
+	else
+	{
+		return; // Nothing is selected
+	}
+	
+	// Use a cache key based on the content itself since we can
+	// highlight any text entered into the source edit box.
+	var key = updaterParams.join('&');
+	
+	// Use cached content if possible
+	if (g_oHighlightedSourceCache.IsCached(key))
+	{
+		SetViewSourceText(g_oHighlightedSourceCache.GetValue(key));
+		return;
+	}
+	
+	// Show the unhighlighted source while highlighting is being peformed
+	if (typeof unhighlightedContent == "string")
+	{
+		SetViewSourceTextUnhighlighted(unhighlightedContent);
+		
+		if (unhighlightedContent == "")
+			return; // nothing to highlight
+	}
+	else
+	{
+		SetViewSourceText("Highlighting content, please wait...");
+	}
+	
+	StatusTextAppear('Highlighting content...');
+	
+	// Save cached content under this key
+	g_oHighlightedSourceCache.NextKey = key;
+	
+	g_aCurrentHighlightUpdater.SetUpdater(updaterParams,
+		new Ajax.Updater('UpdaterResponse', '/template-updater.phtml', {
+			asynchronous:true, 
+			method:'post', 
+			onFailure:HighlightContent_Failure, 
+			onComplete:HighlightContent_Complete, 
+			parameters:updaterParams.join('&')} )
+		);
+}
+
+function HighlightContent_Complete(request, jsonObj)
+{
+	var highlightContent = $("UpdaterResponseHighlightValue");
+	
+	if (typeof highlightContent == "object")
+	{
+		var checkParams = [
+			['tid', highlightContent.getAttribute("for-tid")],
+			['updater-op', highlightContent.getAttribute("for-updater-op")],
+			['updater-ob', highlightContent.getAttribute("for-updater-ob")],
+			['updater-id', highlightContent.getAttribute("for-updater-id")]
+			];
+			
+		if (!g_aCurrentHighlightUpdater.IsUpdater(checkParams))
+			return; // Ignore responses to everything but the most recent request
+		
+		g_aCurrentHighlightUpdater.OnComplete();
+		
+		// Make sure the selection didn't change after the highlight request was made
+		if ($('updater-id').value != highlightContent.getAttribute("for-updater-id"))
+		{
+			StatusTextHide();
+			return;
+		}
+		
+		// Cache the value so we can re-use if requested later
+		g_oHighlightedSourceCache.CacheValue(null, highlightContent.innerHTML, null);
+	
+		SetViewSourceText(highlightContent.innerHTML);
+		StatusTextHide();
+	}
+	else
+	{
+		var requestError = $("UpdaterResponseError");
+		
+		SetViewSourceText("");
+		StatusTextHide();
+		
+		if (typeof requestError == "object")
+			alert('Content could not be highlighted.\n' + requestError.innerText);
+		else
+			alert('Content could not be highlighted. An invalid response was received. Please try again.');
+	}
+}
+
+function HighlightContent_Failure(request)
+{
+	SetViewSourceText("");
+	StatusTextHide();
+	
+	alert('Content could not be highlighted. The highlight request failed. Please try again.');
+}
+
+function SetCurrentItemContent(content)
+{
+	// Always set the edit source text area
+	SetEditSourceText(content);
+	
+	switch (g_oTabctrl.getCurrentTabPanelId())
+	{
+	case "tabctrlpanel_DesignTab":
+		SetDesignModeText(content);
+		break;
+	}
+	
+	// Note that ResetDesignModeDirty will be called when SetDesignModeText
+	// calls SetHTML which calls FCKeditor_OnAfterSetHTML
+	
+	ResetEditSourceDirty();
+	
+	SetEditFocus();
+}
+
+function SetEditSourceDirty()
+{
+	g_bSourceIsDirty = true;
+	
+	UpdateButtonsUI();
+}
+
+function ResetEditSourceDirty()
+{
+	g_bSourceIsDirty = false;
+	
+	UpdateButtonsUI();
+}
+
+function ResetDesignModeDirty()
+{
+	if (g_oFCKEditInstance == null)
+		return; // Design mode not enabled
+	
+	// g_oFCKEditInstance.EditorDocument.body is inaccessible sometimes, no clue why
+	if (typeof g_oFCKEditInstance.EditorDocument.body != "unknown")
+		g_oFCKEditInstance.ResetIsDirty();
+
+	// This is a hack to reach in and reset the Undo stack (see FCKUndo._ApplyUndoLevel)
+	g_oFCKEditInstance.EditingArea.IFrame.document.frames.window.FCKUndo.CurrentIndex = -1;
+	g_oFCKEditInstance.EditingArea.IFrame.document.frames.window.FCKUndo.TypesCount = 0;
+	g_oFCKEditInstance.EditingArea.IFrame.document.frames.window.FCKUndo.Typing = false;
+}
+
+function UpdateButtonsUI()
+{
+	// Can't tell when design is edited, so must allow saving anytime while in design mode
+	var bInDesignMode = InDesignMode();
+	var bInViewMode = InViewMode();
+	
+	if (typeof btnSaveChanges == "object")
+	{
+		btnSaveChanges.style.display = (bInViewMode && !g_bSourceIsDirty) ? "none" : "";
+		btnSaveChanges.setEnabled(g_bSourceIsDirty || bInDesignMode);
+	}
+	
+	if (typeof btnCancelChanges == "object")
+	{
+		btnCancelChanges.style.display = (bInViewMode && !g_bSourceIsDirty) ? "none" : "";
+		btnCancelChanges.setEnabled(g_bSourceIsDirty || bInDesignMode);
+	}
+}
+
+function SetViewSourceText(v)
+{
+	if (g_oViewSourceTextArea != null)
+		g_oViewSourceTextArea.innerHTML = v;
+}
+
+function SetViewSourceTextUnhighlighted(v)
+{
+	var s = v.replace(/\n/g, '<BR>');
+	SetViewSourceText("<pre>"+s+"</pre>");
+}
+
+function SetEditSourceText(v)
+{
+	if (g_oEditSourceTextArea == null)
+		return; // Edit mode not enabled
+	
+	// Change the value without setting the source dirty
+	g_bSetEditSourceDirtyOnValueChange = false;
+	g_oEditSourceTextArea.value = v;
+	g_bSetEditSourceDirtyOnValueChange = true;
+	
+	ResetCaretPosition(g_oEditSourceTextArea);
+}
+
+function SetDesignModeText(v)
+{
+	if (g_oFCKEditInstance == null)
+		return; // Design mode not enabled
+	
+	var bFullPageMode = (/<html\s?[^>]*>/i).test(v) || (/<head\s?[^>]*>/i).test(v);
+	
+	// When not in FullPage mode, GetXHTML will return only snippets of HTML
+	g_oFCKEditInstance.Config["FullPage"] = bFullPageMode;
+	
+	g_oFCKEditInstance.SetHTML(v);
+}
+
+function SyncEditSourceWithDesign()
+{
+	if (g_oEditSourceTextArea != null && g_oFCKEditInstance != null)
+		g_oEditSourceTextArea.value = g_oFCKEditInstance.GetXHTML(true);
+}
+
+function SyncDesignWithEditSource()
+{
+	if (g_oEditSourceTextArea != null)
+		SetDesignModeText(g_oEditSourceTextArea.value);
+}
+
+function SetEditFocus()
+{
+	switch (g_oTabctrl.getCurrentTabPanelId())
+	{
+	case "tabctrlpanel_DesignTab":
+		if (g_oFCKEditInstance != null)
+			g_oFCKEditInstance.EditingArea.IFrame.document.frames.window.focus(); // g_oFCKEditInstance.EditingArea.Focus() is broke?
+		break;
+	case "tabctrlpanel_EditTab":
+		if (g_oEditSourceTextArea != null)
+			g_oEditSourceTextArea.focus();
+		break;
+	}
+}
+
+function KillEffects()
+{
+	// Stop any existing effects
+	var queue = Effect.Queues.get('global');
+	queue.each(function(e) { e.cancel() });
+}
+
+// Show a status message and hold it until StatusTextHide is called
+function StatusTextAppear(t)
+{
+	KillEffects();
+	
+	$('statusArea').innerText = t;
+	
+	new Effect.Appear('statusArea', {duration:0, from:0.0, to:1.0});
+}
+
+// Fade out any existing status message
+function StatusTextHide()
+{
+	KillEffects();
+	
+	new Effect.Fade('statusArea', {duration:1.0, from:1.0, to:0.0, queue:'end'});
+}
+
+// Just notify the user by briefly showing a message
+function StatusTextNotify(t)
+{
+	KillEffects();
+	
+	$('statusArea').innerText = t;
+	
+	new Effect.Appear('statusArea', {duration:0.5, from:0.0, to:1.0});
+	new Effect.Fade('statusArea', {delay:2.0, duration:1.0, from:1.0, to:0.0, queue:'end'});
+}
+
+function PromptSaveChanges(destructive)
+{
+	var bIsDirty = false;
+
+	switch (g_oTabctrl.getCurrentTabPanelId())
+	{
+	case "tabctrlpanel_ViewTab":
+	case "tabctrlpanel_EditTab":
+		bIsDirty = g_bSourceIsDirty;
+		break;
+	case "tabctrlpanel_DesignTab":
+		bIsDirty = g_bSourceIsDirty || g_oFCKEditInstance.IsDirty();
+		break;
+	}
+	
+	if (bIsDirty)
+	{
+		var message = 'Do you want to save your changes?';
+		if (destructive)
+			message += ' Click cancel to discard your changes.';
+			
+		if (confirm(message))
+			SaveItemContent();
+	}
+}
+
+function GetSelectedItemCacheKey()
+{
+	var updaterParams = [Form.Element.serialize($('tid'))];
+	updaterParams.push(Form.Element.serialize($('updater-ob')));
+	updaterParams.push(Form.Element.serialize($('updater-id')));
+	return updaterParams.join('&');
+}
+
+function InViewMode()
+{
+	return (g_oTabctrl.getCurrentTabPanelId() == "tabctrlpanel_ViewTab");
+}
+
+function InEditMode()
+{
+	return (g_oTabctrl.getCurrentTabPanelId() == "tabctrlpanel_EditTab");
+}
+
+function InDesignMode()
+{
+	return (g_oTabctrl.getCurrentTabPanelId() == "tabctrlpanel_DesignTab");
+}
+
+function ClearCachedContent()
+{
+	g_oEditSourceCache.ClearAll();
+	g_oHighlightedSourceCache.ClearAll();
+	
+	// Clear the cache every 5 minutes so content doesn't get too stale
+	window.setTimeout("ClearCachedContent()", 5*60*1000);
+}
+
+// Resize the edit boxes based on the size of the tab control
+// NOTE: setting x.style.width can cause another resize event!
+function ResizeSourceTextAreas()
+{
+	if (g_oTabctrlTabs == null)
+		return; // page not loaded yet
+	
+	var newWidth = (g_oTabctrlTabs.offsetWidth-13) + "px";
+	
+	if (g_oViewSourceTextArea != null)
+		g_oViewSourceTextArea.style.width = newWidth;
+	if (g_oEditSourceTextArea != null)
+		g_oEditSourceTextArea.style.width = newWidth;
+		
+}
+
+function SetAllowDesignMode(bAllowDesignMode)
+{
+	if (InDesignMode() && !bAllowDesignMode)
+		alert("It is not recommended that the content for this item be modified in Design mode.");
+		
+	g_oTabctrl.setTabEnabled(DESIGNMODE_TAB_INDEX, bAllowDesignMode);
+}
+
+// Positions the text area insertion point (carat) to the start of the content.
+// An alternate, supposedly Firefox friendly method is posted
+// at http://www.theblueform.com/Home/TheMakingOf.aspx on 06/07/2006
+function ResetCaretPosition(oField)
+{
+	var oSel = oField.createTextRange();
+	if (oSel != null)
+	{
+		oSel.collapse(true);
+		oSel.select();
+	}
+}
+
+//function GetFCKEditInstance()
+//{
+//	return (typeof FCKeditorAPI != "undefined") ? FCKeditorAPI.GetInstance("FCKEditTextArea") : null;
+//}
+</script>
+
+</head>
+<BODY class="accountBody" onload="onPageLoad();">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="white" style="border-bottom: solid black 1px">
+	<tr>
+		<td colspan="2"><img src="/images/shared/d.gif" width="1" height="3" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="2">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="160" align="center" valign="middle" style="padding-top:5px;">
+						<a href="/home.phtml"><img src="/images/logo-topnav.gif" width="128" height="36" border="0"></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td nowrap class="blackReg" align="right" valign="top" style="padding-right:7px">
+								<a href="/settings.phtml" class="toprightnav">Setup</a>
+			<span class="toprightnav">&middot;</span> 
+			<a href="/help/" onclick="return displayHelpIndex();" class="toprightnav">Help and Support</a>
+			<span class="toprightnav">&middot;</span> 
+			<a href="/signout.phtml" class="toprightnav" title="Sign out of this account">
+			Account sign out			</a>
+				</td>
+	</tr>
+	<tr>
+		<td nowrap class="blackReg" valign="bottom" align="right" style="padding-right:7px">
+		&nbsp;
+		Jim Romero at Optimost		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="/images/shared/d.gif" width="1" height="3" border="0"></td>
+	</tr>
+</table>
+<!--
+<table border="0" cellspacing="0" cellpadding="0" ID="topnavbar" width="100%" class="topnavArea">
+	<tr>
+		<td width="100" align="center" style="padding-top:4px; padding-bottom:4px;"><a class="topnavA" href="/home.phtml">Home</a></td>
+		<td width="110" align="center"><a class="topnavA" href="/campaigns.phtml">Campaigns</a></td>
+		<td><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+	</tr>
+</table>
+--><table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td width="160" valign="top" class="taskArea">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+					<td><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+					<td><img src="/images/shared/d.gif" width="160" height="1" border="0"></td>
+				</tr>
+				<tr>
+					<td><img src="/images/shared/d.gif" width="5" height="675" border="0"></td>
+					<td valign="top">
+
+<div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
+<script language="JavaScript" src="/js/shared/overlib.js"></script> 
+
+<TABLE ID="TaskTable" width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;"><img src="/images/shared/d.gif" width="1" height="5" border="0"></td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px; color: #006699;">Let's Talk</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" HREF="/home.phtml">Home</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" HREF="/campaigns.phtml">Campaigns</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">View</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" HREF="/template-clickthrus.phtml?tid=14">Clickthrus</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" HREF="/template-waves.phtml?tid=14">Waves</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" HREF="/template-creatives.phtml?tid=14">Named creatives</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">Common Tasks</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" HREF="/template-creative-preview.phtml?tid=14">Preview creatives</A></td>
+	</tr>
+	<tr onMouseover="flyoutMouseOver(flyouttasks_13)" onClick="flyoutClick(flyouttasks_13);" onMouseout="flyoutMouseOut()">
+		<td class="blackReg" style="padding-top: 1px; padding-bottom: 1px;"><script language="javascript">
+var flyouttasks_13 = "<"+"TABLE width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n\t<"+"tr>\n\t\t<"+"td class=\"blackReg\" colspan=\"2\" nowrap style=\"padding-top: 1px; padding-bottom: 1px;\"><"+"A class=\"taskLink\" onclick=\"JavaScript:changeTemplateDetails(); return false;\" HREF=\"JavaScript:void(0);\">Change properties<"+"/A><"+"/td>\n\t<"+"/tr>\n\t<"+"tr>\n\t\t<"+"td class=\"blackReg\" colspan=\"2\" nowrap style=\"padding-top: 1px; padding-bottom: 1px;\"><"+"A class=\"taskLink\" onclick=\"JavaScript:changeControl(); return false;\" HREF=\"JavaScript:void(0);\">Change control<"+"/A><"+"/td>\n\t<"+"/tr>\n<"+"/TABLE>\n";
+</script>
+<DIV class="taskSubLink">Change template details</DIV>
+
+</td>
+		<td class="taskSubLink" style="padding-top: 2px; padding-bottom: 1px; padding-right: 5px;" width="1%"><img src="/images/flyoutrt.gif" alt="" width="6" height="10" border="0"></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">Other Tasks</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" onclick="JavaScript:refreshCreatives(); return false;" HREF="JavaScript:void(0);">Refresh creatives</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" onclick="JavaScript:btnFindReplace_Click(); return false;" HREF="JavaScript:void(0);">Find and Replace</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" onclick="JavaScript:templateWizard('copy'); return false;" HREF="JavaScript:void(0);">Copy template</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" onclick="JavaScript:deleteTemplate(); return false;" HREF="JavaScript:void(0);">Delete template</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">Documents</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" onclick="JavaScript:addDocument(); return false;" HREF="JavaScript:void(0);">Add document</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" HREF="/document-search.phtml">Search</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">Calendar</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" nowrap style="padding-top: 1px; padding-bottom: 1px;"><A class="taskLink" onclick="JavaScript:calendarNewTask(); return false;" HREF="JavaScript:void(0);">New task</A></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">Reports</td>
+	</tr>
+	<tr onMouseover="flyoutMouseOver(flyouttasks_29)" onClick="flyoutClick(flyouttasks_29);" onMouseout="flyoutMouseOut()">
+		<td class="blackReg" style="padding-top: 1px; padding-bottom: 1px;"><script language="javascript">
+var flyouttasks_29 = "<"+"TABLE width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n\t<"+"tr>\n\t\t<"+"td class=\"blackReg\" colspan=\"2\" nowrap style=\"padding-top: 1px; padding-bottom: 1px;\"><"+"A class=\"taskLink\" onclick=\"JavaScript:ReportNavigate('/report-render-ia.phtml?report=template-clickthru&stdreport=1&tid=14', 0); return false;\" HREF=\"JavaScript:void(0);\">Clickthrus<"+"/A><"+"/td>\n\t<"+"/tr>\n\t<"+"tr>\n\t\t<"+"td class=\"blackReg\" colspan=\"2\" nowrap style=\"padding-top: 1px; padding-bottom: 1px;\"><"+"A class=\"taskLink\" onclick=\"JavaScript:ReportNavigate('/report-render-ia.phtml?report=template-creative&stdreport=1&tid=14', 0); return false;\" HREF=\"JavaScript:void(0);\">Creatives<"+"/A><"+"/td>\n\t<"+"/tr>\n\t<"+"tr>\n\t\t<"+"td class=\"blackReg\" colspan=\"2\" nowrap style=\"padding-top: 1px; padding-bottom: 1px;\"><"+"A class=\"taskLink\" onclick=\"JavaScript:ReportNavigate('/report-render-ia.phtml?report=template-regression&stdreport=1&tid=14', 0); return false;\" HREF=\"JavaScript:void(0);\">Regression<"+"/A><"+"/td>\n\t<"+"/tr>\n\t<"+"tr>\n\t\t<"+"td class=\"blackReg\" colspan=\"2\" nowrap style=\"padding-top: 1px; padding-bottom: 1px;\"><"+"A class=\"taskLink\" onclick=\"JavaScript:ReportNavigate('/report-render-ia.phtml?report=template-daily&stdreport=1&tid=14', 0); return false;\" HREF=\"JavaScript:void(0);\">Time Period<"+"/A><"+"/td>\n\t<"+"/tr>\n<"+"/TABLE>\n";
+</script>
+<DIV class="taskSubLink">View</DIV>
+
+</td>
+		<td class="taskSubLink" style="padding-top: 2px; padding-bottom: 1px; padding-right: 5px;" width="1%"><img src="/images/flyoutrt.gif" alt="" width="6" height="10" border="0"></td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="taskGroup" colspan="2" style="padding-top: 1px; padding-bottom: 1px;">FYI</td>
+	</tr>
+	<tr>
+		<td class="blackReg" colspan="2" style="padding-top: 1px; padding-bottom: 1px;"><TABLE border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="blackReg"><b>&#183;</b>&nbsp;This template has 11,520 possible creatives.</td>
+	</tr>
+</TABLE>
+</td>
+	</tr>
+</TABLE>
+
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="100%" valign="top">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+					<td><img src="/images/shared/d.gif" width="1" height="5" border="0"></td>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+				</tr>
+				<tr>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0" width="100%">
+							<tr>
+								<td class="breadCrumb">
+									<A class="breadCrumb" HREF="/campaigns.phtml" title="Go to Campaigns">Campaigns</A> &raquo; <A class="breadCrumb" HREF="/campaign.phtml?cid=1" title="Go to campaign Free Cell Phones">Free Cell Phones</A> &raquo; <A class="breadCrumb" HREF="/subject.phtml?sid=1" title="Go to subject Landing Page">Landing Page</A> &raquo; <SPAN class="blackReg">Version 2.25</SPAN>
+ &nbsp;
+								</td>
+								<td align="right" width="1%">
+									<TABLE border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><A onclick="displayContextHelp('template-details'); return false;" HREF="JavaScript:void(0);" title="Learn more about this page"><img src="/images/shared/icons/help.gif" width="16" height="16" border="0" align="absmiddle"></A></td>
+		<td style="padding-left: 2px;"><A class="workspaceContextHelp" onclick="displayContextHelp('template-details'); return false;" HREF="JavaScript:void(0);" title="Learn more about this page">Help</A></td>
+	</tr>
+</TABLE>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2"><img src="/images/shared/d.gif" width="1" height="5" border="0"></td>
+							</tr>
+							<tr>
+								<td colspan="2" style="padding-top: 4px; padding-bottom:4px; padding-left: 5px; filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#C0cccc99', EndColorStr='#FF999966')">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr><td colspan="2" class="workspaceEntity">Template Details</td></tr>										<tr>
+											<td width="1%"><IMG src="/images/16x16/template-html.gif" width="16" height="16" border="0"></td><td valign="middle"><DIV class="workspaceTitle" style="padding-left: 2px;">Version 2.25</DIV>
+</td>										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+				</tr>
+				<tr>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+					<td><img src="/images/shared/d.gif" width="1" height="5" border="0"></td>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+				</tr>
+				<tr>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+					<td align="left">
+
+<FORM ID="reportctx" style="margin: 0;" action="/template.phtml" method="GET" name="mainform">
+<INPUT TYPE="hidden" NAME="report" VALUE="template">
+<INPUT TYPE="hidden" NAME="tid" VALUE="14">
+</FORM>
+
+<FORM ID="updater" style="margin: 0;" onsubmit="return updaterForm_Submit();" action="/template.phtml" method="POST" name="mainform">
+<INPUT TYPE="hidden" NAME="tid" VALUE="14">
+<INPUT TYPE="hidden" NAME="updater-ob" VALUE="">
+<INPUT TYPE="hidden" NAME="updater-id" VALUE="">
+
+<div><img src="/images/shared/d.gif" width="1" height="10" border="0"></div>
+
+<div style="background-color:#c6c6aa; padding:2px">
+<table width="99%" border="0" cellspacing="0" cellpadding="0" bgcolor="#c6c6aa" onresize="tabctrl_OnResize()">
+	<tr>
+		<td valign="top" width="80%">
+			<DIV ID="tabctrl" beforechangetab="return tabctrl_BeforeChangeTab(currentTabPanel, nextTabPanel, event);" afterchangetab="return tabctrl_AfterChangeTab(currentTabPanel, event);" width="100%">
+<TABLE ID="tabctrlTabs" width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="padding-top: 4px; padding-bottom: 4px; padding-left: 10px; padding-right: 10px;" nowrap width="1%">View</td>
+		<td style="padding-top: 4px; padding-bottom: 4px; padding-left: 10px; padding-right: 10px;" nowrap width="1%">Edit</td>
+		<td style="padding-top: 4px; padding-bottom: 4px; padding-left: 10px; padding-right: 10px;" nowrap width="1%">Design</td>
+		<td><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+	</tr>
+	<tr>
+		<td width="1%"><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+		<td width="1%"><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+		<td width="1%"><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+		<td><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+	</tr>
+</TABLE>
+<DIV ID="tabctrlPanels" style="height: 490px;">
+<DIV>
+<DIV ID="tabctrlpanel_ViewTab"><TABLE width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="blackReg"><DIV ID="ViewSourceTextArea" class="blackReg" style="background: white; overflow-y: auto; overflow-x: auto; border: 1px solid black; padding: 2px; width: 650px; height: 477px;"></DIV>
+</td>
+	</tr>
+</TABLE>
+</DIV>
+</DIV>
+<DIV>
+<DIV ID="tabctrlpanel_EditTab"><TABLE width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="blackReg"><TEXTAREA ID="EditSourceTextArea" class="blackReg" style="width: 100%;" onpropertychange="EditSourceTextArea_PropertyChange();" onkeydown="return EditSourceTextArea_KeyDown(event);" NAME="EditSourceTextArea" ROWS="35" WRAP="off" tabindex="1"></TEXTAREA>
+</td>
+	</tr>
+</TABLE>
+</DIV>
+</DIV>
+<DIV>
+<DIV ID="tabctrlpanel_DesignTab"><TABLE width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="blackReg"><div><input type="hidden" id="FCKEditTextArea" name="FCKEditTextArea" value="" style="display:none" /><input type="hidden" id="FCKEditTextArea___Config" value="CustomConfigurationsPath=../fckconfig-edittemplate.js" style="display:none" /><iframe id="FCKEditTextArea___Frame" src="/fckeditor/editor/fckeditor.html?InstanceName=FCKEditTextArea&amp;Toolbar=optimostedittemplate" width="100%" height="475ex" frameborder="0" scrolling="no"></iframe></div></td>
+	</tr>
+</TABLE>
+</DIV>
+</DIV>
+</DIV>
+
+</DIV>
+		</td>
+		<td>&nbsp;</td>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="blackBold" nowrap><div style="padding:2px">Select an item to edit:</div></td>
+				</tr>
+				<tr>
+					<td valign="top" style="border:solid white 1px">
+						<DIV ID="editableItemsList_scrolldiv" class="scrollClass" style="height: 492px; overflow-y: auto;">
+<TABLE ID="editableItemsList" onselect="editableItemsList_Select()" beforechangeselection="return editableItemsList_BeforeChangeSelection(currentRow, nextRow, event);" onselectstart="return (event.srcElement.tagName.toLowerCase() == 'input')" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr notselectable="on">
+		<td bgcolor="#e8e8e8" style="padding-left: 5px; border-bottom: solid #808080 1px;" colspan="2" class="blackReg"><DIV style="font-weight: bold; padding-top: 3px; padding-bottom: 3px;">Copy</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr updater-ob="module-copy" updater-id="-1">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL ID="InitialObjectSelection" class="blackReg" title="Click to edit template copy">Template</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="template-shell" updater-id="0">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" title="Click to edit snippet shell">Snippet Shell</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="5"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#e8e8e8" style="padding-left: 5px; border-top: solid #808080 1px; border-bottom: solid #808080 1px;" colspan="2" class="blackReg"><DIV style="font-weight: bold; padding-top: 3px; padding-bottom: 3px;">Variables</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Master">areaA_listingHeader</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1682" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1683" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1_noNarrow</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1684" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2_narrowOnRight</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1685" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3_narrowOnLeft</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Master">areaB_sortOrder</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1686" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1687" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1_lowToHigh</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1688" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2_highToLow</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1689" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3_ctr_NOTUSED</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1690" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">4_lowToHighPrc</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1691" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">5_highToLowPrc</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Master with dependents">areaC_listings</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1692" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1693" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1_carrierLogo</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1694" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2_reviewScores</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1695" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3_description</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1696" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">4_popUpBullet</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1697" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">5_manufactrLogo</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Covariable of areaC_listings">areaC_listings.jsCode</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=c">areaC_lis...=c</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1717" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=1_carrierLogo">areaC_lis...=1_carrierLogo</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1718" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=2_reviewScores">areaC_lis...=2_reviewScores</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1719" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=3_description">areaC_lis...=3_description</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1720" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=4_popUpBullet">areaC_lis...=4_popUpBullet</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1721" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">4</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=5_manufactrLogo">areaC_lis...=5_manufactrLogo</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1722" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">5</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Covariable of areaC_listings">areaC_listings.style</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=c">areaC_lis...=c</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1711" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=1_carrierLogo">areaC_lis...=1_carrierLogo</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1712" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=2_reviewScores">areaC_lis...=2_reviewScores</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1713" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=3_description">areaC_lis...=3_description</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1714" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=4_popUpBullet">areaC_lis...=4_popUpBullet</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1715" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">4</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaC_listings=5_manufactrLogo">areaC_lis...=5_manufactrLogo</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1716" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">5</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Master with dependents">areaD_pricingDisplay</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1698" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1699" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1_noPriceToday</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1700" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2_noAfterRebates</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1701" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3_yellowBKG</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1702" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">4_bestDealsMsg</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Covariable of areaD_pricingDisplay">areaD_pricingDisplay.column</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=c">areaD_pri...=c</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1728" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=1_noPriceToday">areaD_pri...=1_noPriceToday</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1729" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=2_noAfterRebates">areaD_pri...=2_noAfterReb...</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1730" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=3_yellowBKG">areaD_pri...=3_yellowBKG</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1731" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=4_bestDealsMsg">areaD_pri...=4_bestDealsMsg</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1732" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">4</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Covariable of areaD_pricingDisplay">areaD_pricingDisplay.jsCode</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=c">areaD_pri...=c</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1723" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=1_noPriceToday">areaD_pri...=1_noPriceToday</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1724" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=2_noAfterRebates">areaD_pri...=2_noAfterReb...</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1725" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=3_yellowBKG">areaD_pri...=3_yellowBKG</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1726" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaD_pricingDisplay=4_bestDealsMsg">areaD_pri...=4_bestDealsMsg</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1727" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">4</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Master">areaE_button</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1703" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1704" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1_noChoosePlan</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1705" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2_1_orderNow</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1706" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3_1_chooseThis</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Master with dependents">areaF_numPhonesDisplayed</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1707" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1708" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1_10perPage</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1709" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2_20perPage</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1710" allow-rename="y">
+		<td nowrap style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3_topSell_NOTUSED</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Covariable of areaF_numPhonesDisplayed">areaF_numPhonesDisplayed.cell</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=c">areaF_num...=c</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1733" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=1_10perPage">areaF_num...=1_10perPage</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1734" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=2_20perPage">areaF_num...=2_20perPage</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1735" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=3_topSell_NOTUSED">areaF_num...=3_topSell_NO...</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1736" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td bgcolor="#dfdfdf" colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="1"></td>
+	</tr>
+	<tr notselectable="on">
+		<td colspan="2" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="1" height="2"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 5px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackBold" title="Covariable of areaF_numPhonesDisplayed">areaF_numPhonesDisplayed.jsCode</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=c">areaF_num...=c</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1737" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">c</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=1_10perPage">areaF_num...=1_10perPage</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1738" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">1</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=2_20perPage">areaF_num...=2_20perPage</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1739" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">2</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+	<tr notselectable="on">
+		<td nowrap colspan="2" style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;"><LABEL class="blackReg" style="font-style: italic;" title="areaF_numPhonesDisplayed=3_topSell_NOTUSED">areaF_num...=3_topSell_NO...</LABEL>
+</DIV>
+</td>
+	</tr>
+	<tr updater-ob="variable-value" updater-id="1740" allow-rename="y">
+		<td nowrap style="padding-left: 15px;" class="blackReg"><DIV style="padding-top: 2px; padding-bottom: 2px;">&middot;&nbsp;<LABEL class="blackReg" style="font-style: ;" title="Click to edit value">3</LABEL>
+</DIV>
+</td>
+		<td width="1%" valign="middle" style="padding-left: 5px;" class="blackReg"><IMG src="/images/shared/d.gif" width="16" height="16"></td>
+	</tr>
+</TABLE>
+</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<TABLE style="border-top-color: #c6c6aa;" width="100%" class="blueToolbar" align="left" border="0" cellspacing="0" cellpadding="2">
+	<tr>
+		<td><TABLE border="0" cellspacing="0" cellpadding="0" width="100%" align="left">
+	<tr>
+		<td id="btnSaveChanges" width="80px" tabindex="1" align="center" onaction="btnSaveChanges_Click()">Save Changes</td>
+		<td width="4px"><img src="/images/shared/d.gif" width="4" height="1" border="0"></td>
+		<td id="btnCancelChanges" width="80px" tabindex="1" align="center" onaction="btnCancelChanges_Click()">Cancel Changes</td>
+		<td width="4px"><img src="/images/shared/d.gif" width="4" height="1" border="0"></td>
+		<td id="btnRename" width="75px" tabindex="1" align="center" onaction="btnRename_Click()">Rename...</td>
+		<td><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+	</tr>
+</TABLE>
+</td>
+	</tr>
+</TABLE>
+		</td>
+		<td>&nbsp;</td>
+		<td align="center">
+			<div id="statusArea" style="display:none; font-weight:bold; color:#333333;"></div>
+		</td>
+	</tr>
+</table>
+</div>
+
+</FORM>
+<script type="text/javascript">
+	createListCtrl(editableItemsList);
+	editableItemsList.setAttribute('listCtrlSortable', false);
+</script>
+<script type="text/javascript">
+	createButton(btnSaveChanges);
+	btnSaveChanges.setEnabled(false);
+	btnSaveChanges.setAlwaysUp(true);
+	createButton(btnCancelChanges);
+	btnCancelChanges.setEnabled(false);
+	btnCancelChanges.setAlwaysUp(true);
+	createButton(btnRename);
+	btnRename.setEnabled(false);
+	btnRename.setAlwaysUp(true);
+</script>
+<script type="text/javascript">
+	createTabCtrl(tabctrl);
+</script>
+
+<div><img src="/images/shared/d.gif" width="1" height="10" border="0"></div>
+
+<TABLE cellpadding="0" cellspacing="0" border="0" width="606" >
+	<TR>
+		<TD rowspan="2" colspan="2"><IMG src="/images/shared/corners/curve_olive_8_8_tl.gif" width="8" height="8"/></TD>
+		<TD class="roundFieldset"><IMG src="/images/shared/d.gif" width="590" height="1"/></TD>
+		<TD rowspan="2" colspan="2"><IMG src="/images/shared/corners/curve_olive_8_8_tr.gif" width="8" height="8"/></TD>
+	</TR>
+	<TR>
+		<TD><IMG src="/images/shared/d.gif" width="1" height="7"/></TD>
+	</TR>
+		<TR>
+		<TD class="roundFieldset"><IMG src="/images/shared/d.gif" width="1" height="1"/></TD>
+		<TD><IMG src="/images/shared/d.gif" width="7" height="1"/></TD>
+		<TD class="groupCaption" style="padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px;">Related Documents</TD>
+		<TD><IMG src="/images/shared/d.gif" width="7" height="1"/></TD>
+		<TD class="roundFieldset"><IMG src="/images/shared/d.gif" width="1" height="1"/></TD>
+	</TR>
+		<TR>
+		<TD class="roundFieldset"><IMG src="/images/shared/d.gif" width="1" height="1"/></TD>
+		<TD><IMG src="/images/shared/d.gif" width="7" height="1"/></TD>
+		<TD>
+<DIV ID="documents_scrolldiv" class="scrollClass" style="height: 110px; overflow-y: auto;">
+<TABLE ID="documents" onselectstart="return (event.srcElement.tagName.toLowerCase() == 'input')" width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+	<tr>
+		<td width="1%" style="padding-left: 5px;" class="tdbtngn">&nbsp;</td>
+		<td style="padding-left: 5px;" class="tdbtngn">Name</td>
+		<td style="padding-left: 5px;" class="tdbtngn">Type</td>
+		<td width="15%" style="padding-left: 5px;" class="tdbtngn">Modified</td>
+	</tr>
+</thead>
+<tbody>
+	<tr listCtrlValue="13">
+		<td style="padding-left: 5px; padding-right: 1ex; padding-top: 1px; padding-bottom: 1px;" width="1%" class="blackReg"><A class="blackReg" HREF="/document-download.phtml?dcd=13" target="_blank" title="Download document"><IMG src="/images/shared/icons/download.gif" width="16" height="16" border="0"></A></td>
+		<td style="padding-left: 5px;" class="blackReg"><A class="blackReg" HREF="/document.phtml?dcd=13" title="Go to document details">Template Design Plan v1</A></td>
+		<td nowrap style="padding-left: 5px; padding-right: 1ex;" class="blackReg">DOC</td>
+		<td nowrap style="padding-left: 5px; padding-right: 1ex;" class="blackReg">Oct 26, 06</td>
+	</tr>
+</tbody>
+</TABLE>
+</div>
+		</TD>
+		<TD><IMG src="/images/shared/d.gif" width="7" height="1"/></TD>
+		<TD class="roundFieldset"><IMG src="/images/shared/d.gif" width="1" height="1"/></TD>
+	</TR>
+	<TR>
+		<TD rowspan="2" colspan="2"><IMG src="/images/shared/corners/curve_olive_8_8_bl.gif" width="8" height="8"/></TD>
+		<TD><IMG src="/images/shared/d.gif" width="1" height="7"/></TD>
+		<TD rowspan="2" colspan="2"><IMG src="/images/shared/corners/curve_olive_8_8_br.gif" width="8" height="8"/></TD>
+	</TR>
+	<TR>
+		<TD class="roundFieldset"><IMG src="/images/shared/d.gif" width="1" height="1"/></TD>
+	</TR>
+</TABLE><script type="text/javascript">
+	createListCtrl(documents);
+	documents.setAttribute('listCtrlSortable', false);
+</script>
+<div><img src="/images/shared/d.gif" width="1" height="10" border="0"></div>
+<TABLE border="0">
+	<tr>
+		<td nowrap class="blackReg">Created By: Jim Romero, Sep 8, 2006 11:09 PM GMT</td>
+	</tr>
+	<tr>
+		<td ID="lastModifiedByFooter" nowrap class="blackReg">Last Modified By: Jim Romero, Dec 18, 2006 5:28 PM GMT</td>
+	</tr>
+</TABLE>
+
+<div ID="UpdaterResponse" style="display:none"></div>
+
+					</td>
+					<td width="5"><img src="/images/shared/d.gif" width="5" height="1" border="0"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="1"><img src="/images/shared/d.gif" width="1" height="1" border="0"></td>
+	</tr>
+</table>
+
+<table align="center" width="616" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="100">
+			&nbsp;
+		</td>
+		<td valign="middle">
+			<table align="center">
+				<tr>
+					<td align="center">
+						<a href="http://www.optimost.com/privacyservice.phtml">Privacy Policy</a> | <a href="http://www.optimost.com/termswebsite.phtml">Legal Notices</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="blackSmall">Copyright &copy; 2002-2006 Optimost LLC. All rights reserved.</td>
+				</tr>
+			</table>
+		</td>
+		<td width="100" align="center">
+						&nbsp;
+					</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

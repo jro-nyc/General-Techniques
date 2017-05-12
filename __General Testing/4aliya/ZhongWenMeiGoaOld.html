@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+
+<style>
+	.bgDefault {
+	cursor: hand;
+	background-repeat : no-repeat;
+	width : 164px; 
+	height : 108px;
+	background-color : #bb0000;
+	text-align : center;
+	}
+	.textGIFs {
+	color: #111111; 
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	text-align: center;
+	font-weight: normal;
+	font-size: 8pt;
+	margin-top: 32px;
+	margin-left: 10px;
+	}
+	.choices
+	{
+	cursor: hand;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+	font-size: 13pt;
+    TEXT-ALIGN: center;
+	}
+
+
+</style>
+<script src="words.js"></script>
+<script language="javascript">
+<!--
+
+function getObject(daID){
+	if (document.layers) {         					return document.layers[daID]}
+	if (document.all ){								return document.all[daID];}
+	if (document.getElementById){                  	return document.getElementById(daID);}
+
+}
+
+var lastHit = -1;
+var lastID = -1;
+var lastSelection = '';
+var lastTD = '';
+				
+function getAnswer(row,col){
+
+var thisTD = '_'+ row + '_' + col;
+var selection = 'val' + thisTD;
+var nextHit = (row-1) * 4 + col;		
+var nextID;
+
+	if (!document.all){
+		nextID = document.getElementById(selection).name;	
+	}
+	else {
+		nextID = document.all[selection].name;	
+	}
+	if(lastHit == -1) {
+	}
+	else {
+		if(nextID == lastID && lastHit != nextHit)	{
+			if (!document.all){
+				document.getElementById(selection).style.backgroundColor = colores[nextHit];
+				document.getElementById(lastSelection).style.backgroundColor = colores[nextHit];			
+				document.getElementById(selection).style.color = '#000000';
+				document.getElementById(lastSelection).style.color = '#000000';			
+				document.getElementById(lastTD).style.backgroundColor = colores[nextHit];			
+				document.getElementById(thisTD).style.backgroundColor = colores[nextHit];			
+				document.getElementById(lastTD).style.backgroundImage = 'none';					
+				document.getElementById(thisTD).style.backgroundImage = 'none';			
+//				alert(name);		
+			}
+			else {
+				document.all[selection].style.backgroundColor = colores[nextHit];
+				document.all[lastSelection].style.backgroundColor = colores[nextHit];			
+				document.all[selection].style.color = '#000000';
+				document.all[lastSelection].style.color = '#000000';			
+				document.all[lastTD].style.backgroundColor = colores[nextHit];			
+				document.all[thisTD].style.backgroundColor = colores[nextHit];			
+				document.all[lastTD].style.backgroundImage = 'none';					
+				document.all[thisTD].style.backgroundImage = 'none';					
+//				alert(nextID);		
+			}		
+		}
+	}	
+	lastHit = nextHit;	
+	lastID = nextID;
+	lastSelection = selection;
+	lastTD = thisTD;
+}
+
+function getQuestions(){
+var textVal;
+var tdVal;
+var num;
+var randNum;
+var usedWord = new Array();
+var usedLoc = new Array();
+var wordPair, eng, zhw, x, y;
+var MATRIX_HEIGHT = 4;
+var MATRIX_WIDTH = 4;
+
+
+//	NUMWORDS = findArraySize();
+	NUMWORDS = inglesChino.length;
+	for(i=1;i<NUMQUESTIONS+1;i++){							//We are going to select vocabulary words
+		randNum = Math.floor(Math.random()*NUMWORDS);		//First,  choose a word pair
+		if(usedWord[randNum] == 'yes'){				
+			do {
+				randNum = (randNum + 1) % (NUMWORDS);
+			} while (usedWord[randNum] == 'yes')
+		}
+		usedWord[randNum] = 'yes';		
+		wordPair = randNum;		
+				
+		randNum = Math.ceil(Math.random()*NUMQUESTIONS*2);		//Next, choose the location of the english word
+		if(usedLoc[randNum] == 'yes'){				
+			do {
+				randNum = randNum + 1;
+				if(randNum == (NUMQUESTIONS*2+1)) randNum = 1;
+			} while (usedLoc[randNum]  == 'yes')
+		}
+		usedLoc[randNum] = 'yes';							//This number has not been used - ENGLISH
+		eng = randNum;		
+		
+		randNum = Math.ceil(Math.random()*NUMQUESTIONS*2);		//Next, choose the location of the Chinese word
+		if(usedLoc[randNum] == 'yes'){				
+			do {
+				randNum = randNum + 1;
+				if(randNum == (NUMQUESTIONS*2+1)) randNum = 1;
+			} while (usedLoc[randNum] == 'yes')
+		}
+		usedLoc[randNum] = 'yes';							//This number has not been used - CHINESE			
+		zhw = randNum;		
+//First, put in the English word
+		x = Math.ceil(eng/MATRIX_WIDTH);
+		y =  (eng % MATRIX_WIDTH) + 1;
+		tdVal = '_' + x + '_' + y;	
+		textVal = 'val' + tdVal;
+		if (!document.all){
+//			document.getElementById(textVal).value = ingles[wordPair];			
+			document.getElementById(textVal).value = inglesChino[wordPair][0];			
+			document.getElementById(textVal).name = wordPair;			
+			document.getElementById(textVal).style.color = '#000000';					
+			document.getElementById(textVal).style.backgroundColor = 'transparent';					 
+			document.getElementById(textVal).style.backgroundColor = '#ffffff';					 
+			document.getElementById(tdVal).style.backgroundImage = 'url(images/us-flag.gif)';
+			document.getElementById(tdVal).style.backgroundRepeat = 'no-repeat';		
+		}
+		else {
+//			document.all[textVal].value = ingles[wordPair];			
+			document.all[textVal].value = inglesChino[wordPair][0];			
+			document.all[textVal].name = wordPair;			
+			document.all[textVal].style.color = '#000000';					
+			document.all[textVal].style.backgroundColor = 'transparent';					 
+			document.all[textVal].style.backgroundColor = '#ffffff';					 
+			document.all[tdVal].style.backgroundImage = 'url(images/us-flag.gif)';
+			document.all[tdVal].style.backgroundRepeat = 'no-repeat';
+		}
+		
+//Next, put in the Chinese word
+		x = Math.ceil(zhw/MATRIX_WIDTH);
+		y =  (zhw % MATRIX_WIDTH) + 1;
+		tdVal = '_' + x + '_' + y;	
+		textVal = 'val' + tdVal;
+		if (!document.all){
+//			document.getElementById(textVal).value = chino[wordPair];			
+			document.getElementById(textVal).value = inglesChino[wordPair][1];			
+			document.getElementById(textVal).name = wordPair;							
+			document.getElementById(textVal).style.color = '#ffffff';					
+			document.getElementById(textVal).style.backgroundColor = 'transparent';					 
+			document.getElementById(tdVal).style.backgroundImage = 'url(images/ch-flag.gif)';
+			document.getElementById(tdVal).style.backgroundRepeat = 'no-repeat';
+			document.getElementById(tdVal).style.backgroundColor = '#bb0000';							
+		}
+		else {
+//			document.all[textVal].value = chino[wordPair];			
+			document.all[textVal].value = inglesChino[wordPair][1];			
+			document.all[textVal].name = wordPair;							
+			document.all[textVal].style.color = '#ffffff';					
+			document.all[textVal].style.backgroundColor = 'transparent';					 
+			document.all[tdVal].style.backgroundImage = 'url(images/ch-flag.gif)';
+			document.all[tdVal].style.backgroundRepeat = 'no-repeat';
+			document.all[tdVal].style.backgroundColor = '#bb0000';					
+		}	
+	}	
+//	alert("outta here");
+}
+
+//-->
+</script>
+</head>
+
+<body onload=getQuestions() >
+			 
+<table width="656px" style="border-bottom-color: Black; border: thick solid;">
+<tr>
+	<td id="_1_1" class="bgdefault" onclick=getAnswer(1,1)>
+		<div  class="textGIFs"><input type="text" id="val_1_1" name="1" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_1_2"  class="bgdefault" onclick=getAnswer(1,2)>
+		<div  class="textGIFs"><input type="text" id="val_1_2" name="2" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_1_3" class="bgdefault" onclick=getAnswer(1,3)>
+		<div  class="textGIFs"><input type="text" id="val_1_3" name="4" value="" size="9" class="choices" readonly> </td>
+		</div>
+	</td>
+	<td id="_1_4" class="bgdefault" onclick=getAnswer(1,4)>
+		<div  class="textGIFs"><input type="text" id="val_1_4" name="3" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td id="_2_1" class="bgdefault" onclick=getAnswer(2,1)>
+		<div  class="textGIFs"><input type="text" id="val_2_1" name="3" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_2_2"  class="bgdefault" onclick=getAnswer(2,2)>
+		<div  class="textGIFs"><input type="text" id="val_2_2" name="4" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_2_3" class="bgdefault" onclick=getAnswer(2,3)>
+		<div  class="textGIFs"><input type="text" id="val_2_3" name="1" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_2_4"  class="bgdefault" onclick=getAnswer(2,4)>
+		<div  class="textGIFs"><input type="text" id="val_2_4" name="2" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td id="_3_1" class="bgdefault" onclick=getAnswer(3,1)>
+		<div  class="textGIFs"><input type="text" id="val_3_1" name="3" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_3_2" class="bgdefault" onclick=getAnswer(3,2)>
+		<div  class="textGIFs"><input type="text" id="val_3_2" name="4" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_3_3" class="bgdefault" onclick=getAnswer(3,3)>
+		<div  class="textGIFs"><input type="text" id="val_3_3" name="1" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_3_4" class="bgdefault" onclick=getAnswer(3,4)>
+		<div  class="textGIFs"><input type="text" id="val_3_4" name="2" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td id="_4_1" class="bgdefault" onclick=getAnswer(4,1)>
+		<div  class="textGIFs"><input type="text" id="val_4_1" name="1" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_4_2" class="bgdefault" onclick=getAnswer(4,2)>
+		<div  class="textGIFs"><input type="text" id="val_4_2" name="2" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_4_3" class="bgdefault" onclick=getAnswer(4,3)>
+		<div  class="textGIFs"><input type="text" id="val_4_3" name="4" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_4_4" class="bgdefault" onclick=getAnswer(4,4)>
+		<div  class="textGIFs"><input type="text" id="val_4_4" name="3" value="" size="9" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr><td colspan=4 align=center><Button name=startGame type=button onclick="getQuestions();return false;">Click for new Test!!</BUTTON></td></tr>
+</table>
+</body>
+</html>

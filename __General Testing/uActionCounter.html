@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<!-- BEGIN OPTIMOST COUNTER CODE V2.2
+Copyright 2004 Optimost LLC. All Rights Reserved.
+Campaign: JR area
+Counter: Unique Action
+The counter was last modified 2005-06-09 23:48 GMT.
+This script should not be included in a secure (https) page.
+-->
+<script language="JavaScript">
+function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null) ? "" : (";domain=" + d));}
+function opCreativeGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l < 2) sld = null;else if (!isNaN(dp[l-1]) && !isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+var _opUrl="http://by.optimost.com/action.php/2/-/4/";var _opdoc=document;
+var _oploc=_opdoc.location;var _opsrh=_oploc.search;var _opdt=new Date;var 
+_opqsv=new Object;var _opckv=new Object;var _oparg=new Object;function _opPQS(
+){if(_opsrh.length>3){for(var a=_opsrh.substring(1).split("&"),i=0,l=a.length;
+i<l;i++){var p=a[i].indexOf("=");if(p>0)_opqsv[unescape(a[i].substring(
+0,p))]=unescape(a[i].substring(p+1));}}}function _opPCK(){var _ck=_opdoc.cookie;
+if(_ck.length>3){for(var a=_ck.split(";"),i=0,_cl=a.length;i<_cl;i++){var 
+_cv=a[i].split("=");while(_cv[0].substring(0,1)==" ")_cv[0]=_cv[0].substring(
+1,_cv[0].length);if(_cv.length==2)_opckv[unescape(_cv[0])]=unescape(_cv[1]);
+}}}function _opSrc(){var qs="";for(var _n in _oparg){var _v=_oparg[_n];if(
+_v!=null)qs+=(qs.length>0?"&":(_opUrl.indexOf("?")>0?"&":"?"))+_n+
+"="+_v;}return _opUrl+qs;}function opArgV(n,v){_oparg[escape(n)]=(v!=null)
+?escape(v):"";}function opArgQ(n,q){opArgV(n,_opqsv[q]);}function opArgC(
+n,c){opArgV(n,_opckv[c]);}_opPQS();_opPCK();for(var _n in _opckv)if(_n.substring(
+0,2)=="op")opArgC(_n,_n);opArgV("val1",(typeof val1!="undefined")?val1:null);
+opArgV("val2",(typeof val2!="undefined")?val2:null);opArgV("DOC_cklen",_opdoc.cookie.length);
+opArgV("DOC_loc",_oploc.hostname+_oploc.pathname);opArgV("DOC_ref",_opdoc.referrer);
+opArgV("DOC_tzo",_opdt.getTimezoneOffset());
+if(_opckv["op22landingpagecounted"] == null) document.write('<'+'script type="text/javascript" src="'+
+_opSrc()+'"><\/script>');
+opCreativeSetCookieA("op22landingpagecounted", "si", opCreativeGetDocumentSLD(), null);
+</script>
+<!-- END OPTIMOST COUNTER CODE -->
+
+
+
+</body>
+</html>

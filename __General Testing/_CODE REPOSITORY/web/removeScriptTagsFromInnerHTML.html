@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Remove script tags from innerHTML of area where it was rendered.</title>
+</head>
+
+<body>
+<div style="width: 490px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Remove script tags from innerHTML of area where it was rendered.</strong><br><br>  Why would you need to do this?  
+Well, this is useful when we are reading <u>dynamic content</u> via the DOM and are re-rendering it in our code (Say mortgage interest rates, 
+sports scores, or other time-sensitive content). This is because the area may containg HTML AND the script tags, which will likely cause it 
+to be rendered twice.<br><br>
+<a href="#" onclick="doThingy();" style="color:#9999FF;font-weight:bold;">CLICK HERE</a> to view contents of innerHTML of the div "utilLinks" 
+at the bottom, and an alert that shows the contents before and after the script tags are purged.
+</div>
+<div id="utilLinks">
+	<ul class="v1">
+	<script type="text/javascript" src="/html/js/community/mpButtons.js"></script>
+		<!--[if IE]><li id="bkmrk"><a href="javascript:bookMark('http://shopper.cnet.com/4014-6490_9-31878847.html?tag=pl', 'Jwin JX-CD926 MP3 CD Player  110 Sec. Anti Skip Protection - Compare prices, shop, and buy Jwin JX-CD926 MP3 CD Player  110 Sec. Anti Skip Protection & MP3 players from online stores. CNET Shopper.com')">Bookmark this page</a></li><![endif] -->
+		<li id="prt"><a href="javascript:ToReviews('/Jwin_JX_CD926_MP3_CD_Player_110_Sec_Anti_Skip_Protection/4041-6490_9-31878847.html?tag=prnt','print','0','0','no','yes');">Printer friendly version</a></li>
+		<li id="em"><a href="/Jwin_JX_CD926_MP3_CD_Player_110_Sec_Anti_Skip_Protection/4512-6490_9-31878847.html">Email this user</a></li>
+		<li id="report"><a href="/4002-5_9-1008693.html?tag=upidmlp">Send us feedback</a></li>
+		
+		<li class="liNone">
+			<div class="mp_wrap" id="31878847">
+				<div class="mp_add" id="notonlist">
+					<div class="mp_pad">
+						<a href=""><b>Add to my products</b></a><br />
+						<p id="addbtnt">New!</p> <a href="">What is this?</a><br />
+					</div>
+				</div>	<script type="text/javascript" src="/html/js/community/mpButtons.js"></script>
+
+				<div id="mp_add_exp">
+					<div class="mp_pad">
+						<b>Add to my products</b><br />
+						<p id="addbtnt">New!</p> <a href="">What is this?</a><br />
+					</div>
+					<div class="mp_pad_exp">
+						<div class="mp_want">
+							<a href="" class="a3 wht">I want it</a>
+							Track pricing and other product info.
+						</div>
+						<div class="mp_got">
+							<a href="" class="a3 wht">I got it</a>
+							Get a custom support center on this product.
+						</div>
+						<div class="mp_close">
+							<a href="">Close</a>
+						</div>
+					</div>
+				</div>
+				<div class="mp_added" id="onlist">
+					<div class="mp_pad">
+						<a href=""><b>Added to my products</b></a><br />
+						<a href=""><span id="mpListText">I got it</span> (See my list)</a><br />
+				    </div>
+				</div>
+			</div>
+		</li>
+	<script type="text/javascript">//isProductOnList(' ',' ','31878847');
+	</script>
+	</ul>
+</div>
+<div id="utilLinks2"></div>
+<script>
+function removeScriptTagsFromINNER(inner){
+	newInner = '';
+	innerLeft = inner;
+	do {
+		start = 0;
+		openScriptTags = innerLeft.toLowerCase().indexOf('<script ');
+		if(openScriptTags != -1) newInner += innerLeft.substring(start,openScriptTags);
+		else newInner += innerLeft.substring(start,999999)
+		//alert(newInner);
+		closeScriptTags = innerLeft.toLowerCase().indexOf('<\/script>');
+		if (closeScriptTags != -1) {
+			closeScriptTags = closeScriptTags + 9;
+			start = closeScriptTags;
+			innerLeft = innerLeft.substring(closeScriptTags,9999999);
+		}
+		//alert(innerLeft);
+	} while(closeScriptTags != -1)
+	alert(inner + '\n\n\nNotice the Script tags in the code above \n-----------------------------------------------------\nNotice the script tags are gone in the code below\n\n\n' + newInner);
+	//alert(newInner);
+	return newInner;
+}
+function removeScriptTagsFromINNERold(inner){
+	newInner = '';
+	innerLeft = inner;
+	do {
+		start = 0;
+		openScriptTags = innerLeft.toLowerCase().indexOf('<script ');
+		if(openScriptTags != -1) newInner += innerLeft.substring(start,openScriptTags);
+		else newInner += innerLeft.substring(start,999999)
+		//alert(newInner);
+		closeScriptTags = innerLeft.toLowerCase().indexOf('/script>');
+		if (closeScriptTags != -1) {
+			closeScriptTags = closeScriptTags + 8;
+			start = closeScriptTags;
+			innerLeft = innerLeft.substring(closeScriptTags,9999999);
+		}
+		//alert(innerLeft);
+	} while(closeScriptTags != -1)
+	alert(inner + '\n\n\n' + newInner);
+	return newInner;
+}
+
+function doThingy(){
+	xx = document.getElementById('utilLinks').innerHTML;
+	xx = removeScriptTagsFromINNER(xx);
+	//alert('<div id="utilLinks2">' + xx + '</div>');
+	document.getElementById("utilLinks2").innerHTML = xx;
+	document.getElementById("utilLinks2").style.border = '9px red dashed';
+}
+</script>                
+                
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+    <FORM id=refinanceForm name=refinanceForm onsubmit="return checkForm();" action=formdo.php method=post>
+        <INPUT type=hidden value=Refinance name=type>
+        <INPUT type=hidden value="Real Time" name=upload_type>
+        <INPUT type=hidden value=2 name=publisher_id>
+        <INPUT type=hidden value=yes name=autofill>
+        <INPUT type=hidden name=subid>
+        <INPUT type=hidden name=rcid id=rcid>
+        <INPUT type=hidden name=home_phone id=home_phone>
+        <INPUT type=hidden name=work_phone id=work_phone>        
+     <h2 id="step1">1. Loan Information </h2>
+        <table width="560" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="label"><label for="loantype">Desired Loan Type</label></td>
+        <td><select class="input_field" id="field_9" onchange="redirect(this, 'URL')" name="field_9">
+          <option value="Refinance - Cash Out">Refinance - Cash Out</option>
+          <option value="Debt Consolidation">Debt Consolidation</option>
+          <option value="Home Equity Loan">Home Equity Loan</option>
+          <option value="Home Improvement">Home Improvement</option>
+          <option value="Purchase">Purchase</option>
+          <option value="Refinance" selected="selected">Refinance</option>
+        </select></td>
+        <td class="label"><label for="housetype">House Type</label>
+        </td>
+        <td><select class="input_field" id="field_1" name="field_1">
+          <option value="Condominium">Condominium</option>
+          <option value="Duplex">Duplex</option>
+          <option value="Multi-Family Dwelling Unit">Multi-Family</option>
+          <option value="Single Family" selected="selected">Single Family</option>
+          <option value="Town Home">Town Home</option>
+        </select></td>
+        </tr>
+          <tr>
+            <td class="label"><label for="housevalue">House Value</label></td>
+        <td><select class="input_field" id="field_2" name="field_2">
+          <option value="" selected="selected">Select One</option>
+          <option value="75000-90000">$75,000-$90,000</option>
+          <option value="90001-105000">$90,001-$105,000</option>
+          <option value="105001-120000">$105,001-$120,000</option>
+          <option value="120001-135000">$120,001-$135,000</option>
+          <option value="135001-150000">$135,001-$150,000</option>
+          <option value="150001-165000">$150,001-$165,000</option>
+          <option value="165001-180000">$165,001-$180,000</option>
+          <option value="180001-195000">$180,001-$195,000</option>
+          <option value="195001-210000">$195,001-$210,000</option>
+          <option value="210001-225000">$210,001-$225,000</option>
+          <option value="225001-240000">$225,001-$240,000</option>
+          <option value="240001-255000">$240,001-$255,000</option>
+          <option value="255001-270000">$255,001-$270,000</option>
+          <option value="270001-285000">$270,001-$285,000</option>
+          <option value="285001-300000">$285,001-$300,000</option>
+          <option value="300001-315000">$300,001-$315,000</option>
+          <option value="315001-330000">$315,001-$330,000</option>
+          <option value="330001-345000">$330,001-$345,000</option>
+          <option value="345001-360000">$345,001-$360,000</option>
+          <option value="360001-375000">$360,001-$375,000</option>
+          <option value="375001-390000">$375,001-$390,000</option>
+          <option value="390001-405000">$390,001-$405,000</option>
+          <option value="405001-420000">$405,001-$420,000</option>
+          <option value="420001-435000">$420,001-$435,000</option>
+          <option value="435001-450000">$435,001-$450,000</option>
+          <option value="450001-465000">$450,001-$465,000</option>
+          <option value="465001-480000">$465,001-$480,000</option>
+          <option value="480001-495000">$480,001-$495,000</option>
+          <option value="495001-510000">$495,001-$510,000</option>
+          <option value="510001-525000">$510,001-$525,000</option>
+          <option value="525001-540000">$525,001-$540,000</option>
+          <option value="540001-555000">$540,001-$555,000</option>
+          <option value="555001-570000">$555,001-$570,000</option>
+          <option value="570001-585000">$570,001-$585,000</option>
+          <option value="585001-600000">$585,001-$600,000</option>
+          <option value="600001-615000">$600,001-$615,000</option>
+          <option value="615001-630000">$615,001-$630,000</option>
+          <option value="630001-645000">$630,001-$645,000</option>
+          <option value="645001-660000">$645,001-$660,000</option>
+          <option value="660001-675000">$660,001-$675,000</option>
+          <option value="675001-690000">$675,001-$690,000</option>
+          <option value="690001-705000">$690,001-$705,000</option>
+          <option value="705001-720000">$705,001-$720,000</option>
+          <option value="720001-735000">$720,001-$735,000</option>
+          <option value="735001-750000">$735,001-$750,000</option>
+          <option value="750001-765000">$750,001-$765,000</option>
+          <option value="765001-780000">$765,001-$780,000</option>
+          <option value="780001-795000">$780,001-$795,000</option>
+          <option value="795001-810000">$795,001-$810,000</option>
+          <option value="810001-825000">$810,001-$825,000</option>
+          <option value="825001-840000">$825,001-$840,000</option>
+          <option value="840001-855000">$840,001-$855,000</option>
+          <option value="855001-870000">$855,001-$870,000</option>
+          <option value="870001-885000">$870,001-$885,000</option>
+          <option value="885001-900000">$885,001-$900,000</option>
+          <option value="900001-915000">$900,001-$915,000</option>
+          <option value="915001-930000">$915,001-$630,000</option>
+          <option value="930001-945000">$930,001-$645,000</option>
+          <option value="945001-960000">$945,001-$660,000</option>
+          <option value="960001-975000">$960,001-$975,000</option>
+          <option value="975001-990000">$975,001-$990,000</option>
+          <option value="990001-1000000">$990,001-$1,000,000</option>
+          <option value="1000001-1100000">$1.0M-$1.1M</option>
+          <option value="1100001-1200000">$1.11M-$1.2M</option>
+          <option value="1200001-1300000">$1.21M-$1.3M</option>
+          <option value="1300001-1400000">$1.31M-$1.4M</option>
+          <option value="1400001-1500000">$1.41M-$1.5M</option>
+          <option value="1500001-1600000">$1.51M-$1.6M</option>
+          <option value="1600001-1700000">$1.61M-$1.7M</option>
+          <option value="1700001-1800000">$1.71M-$1.8M</option>
+          <option value="1800001-1900000">$1.81M-$1.9M</option>
+          <option value="1900001-2000000">$1.91M-$2.0M</option>
+          <option value="2000001">$2.0M or more</option>
+        </select></td>
+        <td class="label"><label for="1stmortgage">Current Mortgage Balance</label></td>
+        <td><select class="input_field" id="field_4" name="field_4">
+          <option value="" selected="selected">Select One</option>
+          <option value="50000-75000">$50,000-$75,000</option>
+          <option value="75001-90000">$75,001-$90,000</option>
+          <option value="90001-105000">$90,001-$105,000</option>
+          <option value="105001-120000">$105,001-$120,000</option>
+          <option value="120001-135000">$120,001-$135,000</option>
+          <option value="135001-150000">$135,001-$150,000</option>
+          <option value="150001-165000">$150,001-$165,000</option>
+          <option value="165001-180000">$165,001-$180,000</option>
+          <option value="180001-195000">$180,001-$195,000</option>
+          <option value="195001-210000">$195,001-$210,000</option>
+          <option value="210001-225000">$210,001-$225,000</option>
+          <option value="225001-240000">$225,001-$240,000</option>
+          <option value="240001-255000">$240,001-$255,000</option>
+          <option value="255001-270000">$255,001-$270,000</option>
+          <option value="270001-285000">$270,001-$285,000</option>
+          <option value="285001-300000">$285,001-$300,000</option>
+          <option value="300001-315000">$300,001-$315,000</option>
+          <option value="315001-330000">$315,001-$330,000</option>
+          <option value="330001-345000">$330,001-$345,000</option>
+          <option value="345001-360000">$345,001-$360,000</option>
+          <option value="360001-375000">$360,001-$375,000</option>
+          <option value="375001-390000">$375,001-$390,000</option>
+          <option value="390001-405000">$390,001-$405,000</option>
+          <option value="405001-420000">$405,001-$420,000</option>
+          <option value="420001-435000">$420,001-$435,000</option>
+          <option value="435001-450000">$435,001-$450,000</option>
+          <option value="450001-465000">$450,001-$465,000</option>
+          <option value="465001-480000">$465,001-$480,000</option>
+          <option value="480001-495000">$480,001-$495,000</option>
+          <option value="495001-510000">$495,001-$510,000</option>
+          <option value="510001-525000">$510,001-$525,000</option>
+          <option value="525001-540000">$525,001-$540,000</option>
+          <option value="540001-555000">$540,001-$555,000</option>
+          <option value="555001-570000">$555,001-$570,000</option>
+          <option value="570001-585000">$570,001-$585,000</option>
+          <option value="585001-600000">$585,001-$600,000</option>
+          <option value="600001-615000">$600,001-$615,000</option>
+          <option value="615001-630000">$615,001-$630,000</option>
+          <option value="630001-645000">$630,001-$645,000</option>
+          <option value="645001-660000">$645,001-$660,000</option>
+          <option value="660001-675000">$660,001-$675,000</option>
+          <option value="675001-690000">$675,001-$690,000</option>
+          <option value="690001-705000">$690,001-$705,000</option>
+          <option value="705001-720000">$705,001-$720,000</option>
+          <option value="720001-735000">$720,001-$735,000</option>
+          <option value="735001-750000">$735,001-$750,000</option>
+          <option value="750001-765000">$750,001-$765,000</option>
+          <option value="765001-780000">$765,001-$780,000</option>
+          <option value="780001-795000">$780,001-$795,000</option>
+          <option value="795001-810000">$795,001-$810,000</option>
+          <option value="810001-825000">$810,001-$825,000</option>
+          <option value="825001-840000">$825,001-$840,000</option>
+          <option value="840001-855000">$840,001-$855,000</option>
+          <option value="855001-870000">$855,001-$870,000</option>
+          <option value="870001-885000">$870,001-$885,000</option>
+          <option value="885001-900000">$885,001-$900,000</option>
+          <option value="900001-915000">$900,001-$915,000</option>
+          <option value="915001-930000">$915,001-$630,000</option>
+          <option value="930001-945000">$930,001-$645,000</option>
+          <option value="945001-960000">$945,001-$660,000</option>
+          <option value="960001-975000">$960,001-$975,000</option>
+          <option value="975001-990000">$975,001-$990,000</option>
+          <option value="990001-1000000">$990,001-$1,000,000</option>
+          <option value="1000001-1100000">$1.0M-$1.1M</option>
+          <option value="1100001-1200000">$1.11M-$1.2M</option>
+          <option value="1200001-1300000">$1.21M-$1.3M</option>
+          <option value="1300001-1400000">$1.31M-$1.4M</option>
+          <option value="1400001-1500000">$1.41M-$1.5M</option>
+          <option value="1500001-1600000">$1.51M-$1.6M</option>
+          <option value="1600001-1700000">$1.61M-$1.7M</option>
+          <option value="1700001-1800000">$1.71M-$1.8M</option>
+          <option value="1800001-1900000">$1.81M-$1.9M</option>
+          <option value="1900001-2000000">$1.91M-$2.0M</option>
+          <option value="2000001">$2.0M or more</option>
+     </select></td>
+        </tr>
+          <tr>
+            <td class="label" align="top"><label for="loanammount">Desired Loan Amount</label><br>
+           <span><label class="font11">(Current Mtg + Additional Cash)</span></label>
+            </td>
+        <td align="top"><select class="input_field" id="field_3" name="field_3">
+          <option value="" selected="selected">Select One</option>
+          <option value="0-50000">$0-$50,000</option>
+          <option value="50001-75000">$50,001-$75,000</option>
+          <option value="75001-90000">$75,001-$90,000</option>
+          <option value="90001-105000">$90,001-$105,000</option>
+          <option value="105001-120000">$105,001-$120,000</option>
+          <option value="120001-135000">$120,001-$135,000</option>
+          <option value="135001-150000">$135,001-$150,000</option>
+          <option value="150001-165000">$150,001-$165,000</option>
+          <option value="165001-180000">$165,001-$180,000</option>
+          <option value="180001-195000">$180,001-$195,000</option>
+          <option value="195001-210000">$195,001-$210,000</option>
+          <option value="210001-225000">$210,001-$225,000</option>
+          <option value="225001-240000">$225,001-$240,000</option>
+          <option value="240001-255000">$240,001-$255,000</option>
+          <option value="255001-270000">$255,001-$270,000</option>
+          <option value="270001-285000">$270,001-$285,000</option>
+          <option value="285001-300000">$285,001-$300,000</option>
+          <option value="300001-315000">$300,001-$315,000</option>
+          <option value="315001-330000">$315,001-$330,000</option>
+          <option value="330001-345000">$330,001-$345,000</option>
+          <option value="345001-360000">$345,001-$360,000</option>
+          <option value="360001-375000">$360,001-$375,000</option>
+          <option value="375001-390000">$375,001-$390,000</option>
+          <option value="390001-405000">$390,001-$405,000</option>
+          <option value="405001-420000">$405,001-$420,000</option>
+          <option value="420001-435000">$420,001-$435,000</option>
+          <option value="435001-450000">$435,001-$450,000</option>
+          <option value="450001-465000">$450,001-$465,000</option>
+          <option value="465001-480000">$465,001-$480,000</option>
+          <option value="480001-495000">$480,001-$495,000</option>
+          <option value="495001-510000">$495,001-$510,000</option>
+          <option value="510001-525000">$510,001-$525,000</option>
+          <option value="525001-540000">$525,001-$540,000</option>
+          <option value="540001-555000">$540,001-$555,000</option>
+          <option value="555001-570000">$555,001-$570,000</option>
+          <option value="570001-585000">$570,001-$585,000</option>
+          <option value="585001-600000">$585,001-$600,000</option>
+          <option value="600001-615000">$600,001-$615,000</option>
+          <option value="615001-630000">$615,001-$630,000</option>
+          <option value="630001-645000">$630,001-$645,000</option>
+          <option value="645001-660000">$645,001-$660,000</option>
+          <option value="660001-675000">$660,001-$675,000</option>
+          <option value="675001-690000">$675,001-$690,000</option>
+          <option value="690001-705000">$690,001-$705,000</option>
+          <option value="705001-720000">$705,001-$720,000</option>
+          <option value="720001-735000">$720,001-$735,000</option>
+          <option value="735001-750000">$735,001-$750,000</option>
+          <option value="750001-765000">$750,001-$765,000</option>
+          <option value="765001-780000">$765,001-$780,000</option>
+          <option value="780001-795000">$780,001-$795,000</option>
+          <option value="795001-810000">$795,001-$810,000</option>
+          <option value="810001-825000">$810,001-$825,000</option>
+          <option value="825001-840000">$825,001-$840,000</option>
+          <option value="840001-855000">$840,001-$855,000</option>
+          <option value="855001-870000">$855,001-$870,000</option>
+          <option value="870001-885000">$870,001-$885,000</option>
+          <option value="885001-900000">$885,001-$900,000</option>
+          <option value="900001-915000">$900,001-$915,000</option>
+          <option value="915001-930000">$915,001-$630,000</option>
+          <option value="930001-945000">$930,001-$645,000</option>
+          <option value="945001-960000">$945,001-$660,000</option>
+          <option value="960001-975000">$960,001-$975,000</option>
+          <option value="975001-990000">$975,001-$990,000</option>
+          <option value="990001-1000000">$990,001-$1,000,000</option>
+          <option value="1000001-1100000">$1.0M-$1.1M</option>
+          <option value="1100001-1200000">$1.11M-$1.2M</option>
+          <option value="1200001-1300000">$1.21M-$1.3M</option>
+          <option value="1300001-1400000">$1.31M-$1.4M</option>
+          <option value="1400001-1500000">$1.41M-$1.5M</option>
+          <option value="1500001-1600000">$1.51M-$1.6M</option>
+          <option value="1600001-1700000">$1.61M-$1.7M</option>
+          <option value="1700001-1800000">$1.71M-$1.8M</option>
+          <option value="1800001-1900000">$1.81M-$1.9M</option>
+          <option value="1900001-2000000">$1.91M-$2.0M</option>
+          <option value="2000001">$2.0M or more</option>
+                  </select></td>
+        <td class="label"><label for="creditstatus">Credit Status</label></td>
+        <td><select class="input_field" id="field_6" name="field_6">
+          <option value="" selected="selected">Select One</option>
+          <option value="Excellent">Excellent</option>
+          <option value="Good" >Good</option>
+          <option value="Fair">Fair</option>
+          <option value="Poor">Poor</option>
+        </select></td>
+        </tr>
+          <tr>
+            <td class="label"><label for="ratetype">Interest Rate Type</label></td>
+        <td><select class="input_field" id="field_7" name="field_7">
+          <option value="Adjustable">Adjustable</option>
+          <option value="Fixed" selected="selected">Fixed</option>
+        </select></td>
+        <td class="label"><label for="currentrate">Current Interest Rate</label></td>
+        <td><select class="input_field" id="field_8" name="field_8">
+          <option value="4">4%</option>
+          <option value="4.125">4.125%</option>
+          <option value="4.25">4.25%</option>
+          <option value="4.375">4.375%</option>
+          <option value="4.5">4.5%</option>
+          <option value="4.625">4.625%</option>
+          <option value="4.75">4.75%</option>
+          <option value="4.875">4.875%</option>
+          <option value="5">5%</option>
+          <option value="5.125">5.125%</option>
+          <option value="5.25">5.25%</option>
+          <option value="5.375">5.375%</option>
+          <option value="5.5">5.5%</option>
+          <option value="5.625">5.625%</option>
+          <option value="5.75">5.75%</option>
+          <option value="5.875">5.875%</option>
+          <option value="6">6%</option>
+          <option value="6.125">6.125%</option>
+          <option value="6.25">6.25%</option>
+          <option value="6.375">6.375%</option>
+          <option value="6.5">6.5%</option>
+          <option value="6.625">6.625%</option>
+          <option value="6.75">6.75%</option>
+          <option value="6.875">6.875%</option>
+          <option value="7">7%</option>
+          <option value="7.125">7.125%</option>
+          <option value="7.25">7.25%</option>
+          <option value="7.375">7.375%</option>
+          <option value="7.5">7.5%</option>
+          <option value="7.625">7.625%</option>
+          <option value="7.75">7.75%</option>
+          <option value="7.875">7.875%</option>
+          <option value="8" selected="selected">8%</option>
+          <option value="8.125">8.125%</option>
+          <option value="8.25">8.25%</option>
+          <option value="8.375">8.375%</option>
+          <option value="8.5">8.5%</option>
+          <option value="8.625">8.625%</option>
+          <option value="8.75">8.75%</option>
+          <option value="8.875">8.875%</option>
+          <option value="9">9%</option>
+          <option value="9.125">9.125%</option>
+          <option value="9.25">9.25%</option>
+          <option value="9.375">9.375%</option>
+          <option value="9.5">9.5%</option>
+          <option value="9.625">9.625%</option>
+          <option value="9.75">9.75%</option>
+          <option value="9.875">9.875%</option>
+          <option value="10">10%</option>
+          <option value="10.125">10.125%</option>
+          <option value="10.25">10.25%</option>
+          <option value="10.375">10.375%</option>
+          <option value="10.5">10.5%</option>
+          <option value="10.625">10.625%</option>
+          <option value="10.75">10.75%</option>
+          <option value="10.875">10.875%</option>
+          <option value="11">11%</option>
+          <option value="11.125">11.125%</option>
+          <option value="11.25">11.25%</option>
+          <option value="11.375">11.375%</option>
+          <option value="11.5">11.5%</option>
+          <option value="11.625">11.625%</option>
+          <option value="11.75">11.75%</option>
+          <option value="11.875">11.875%</option>
+          <option value="12">12%</option>
+          <option value="12.125">12.125%</option>
+          <option value="12.25">12.25%</option>
+          <option value="12.375">12.375%</option>
+          <option value="12.5">12.5%</option>
+          <option value="12.625">12.625%</option>
+          <option value="12.75">12.75%</option>
+          <option value="12.875">12.875%</option>
+          <option value="13">13%</option>
+          <option value="13.125">13.125%</option>
+          <option value="13.25">13.25%</option>
+          <option value="13.375">13.375%</option>
+          <option value="13.5">13.5%</option>
+          <option value="13.625">13.625%</option>
+          <option value="13.75">13.75%</option>
+          <option value="13.875">13.875%</option>
+          <option value="14">14%</option>
+          <option value="14.125">14.125%</option>
+          <option value="14.25">14.25%</option>
+          <option value="14.375">14.375%</option>
+          <option value="14.5">14.5%</option>
+          <option value="14.625">14.625%</option>
+          <option value="14.75">14.75%</option>
+          <option value="14.875">14.875%</option>
+          <option value="15">15%</option>
+          <option value="15.125">15.125%</option>
+          <option value="15.25">15.25%</option>
+          <option value="15.375">15.375%</option>
+          <option value="15.5">15.5%</option>
+          <option value="15.625">15.625%</option>
+          <option value="15.75">15.75%</option>
+          <option value="15.875">15.875%</option>
+          <option value="16">16%</option>
+          <option value="16.125">16.125%</option>
+          <option value="16.25">16.25%</option>
+          <option value="16.375">16.375%</option>
+          <option value="16.5">16.5%</option>
+          <option value="16.625">16.625%</option>
+          <option value="16.75">16.75%</option>
+          <option value="16.875">16.875%</option>
+          <option value="17">17%</option>
+          <option value="17.125">17.125%</option>
+          <option value="17.25">17.25%</option>
+          <option value="17.375">17.375%</option>
+          <option value="17.5">17.5%</option>
+          <option value="17.625">17.625%</option>
+          <option value="17.75">17.75%</option>
+          <option value="17.875">17.875%</option>
+          <option value="18">18%</option>
+        </select></td>
+        </tr>
+        </table>
+        <br />
+        <h2 id="step2">2. Contact Information </h2>
+        <table width="560" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="130" class="label"><label for="firstname">First Name</label></td>
+        <td width="140"><span >
+          <input name="first_name" id="first_name" style="font-size: 11px;" maxlength="40" />
+        </span></td>
+        <td width="148" class="label"><label for="address">Address</label></td>
+        <td width="142"><span >
+          <input name="street_address" id="street_address" style="font-size: 11px;" maxlength="40" />
+        </span></td>
+        </tr>
+          <tr>
+            <td class="label"><label for="lastname">Last Name</label></td>
+        <td><span >
+          <input name="last_name" id="last_name" style="font-size: 11px;" maxlength="40" />
+        </span></td>
+        <td class="label"><label for="city">City</label></td>
+        <td width="142"><span >
+          <input name="city" id="city" style="font-size: 11px;" maxlength="40" />
+        </span></td>
+        </tr>
+          <tr>
+            <td class="label"><label for="email">Email</label></td>
+        <td><span >
+          <input name="email_address" id="email_address" style="font-size: 11px;" maxlength="40" />
+        </span></td>
+        <td class="label"><label for="state">State</label></td>
+        <td width="142"><span class="form_text">
+          <select id="state" style="font-size: 11px;" name="state">
+            <option value="AL" selected="selected">AL</option>
+            <option value="AK">AK</option>
+            <option value="AZ">AZ</option>
+            <option value="AR">AR</option>
+            <option value="CA">CA</option>
+            <option value="CO">CO</option>
+            <option value="CT">CT</option>
+            <option value="DC">DC</option>
+            <option value="DE">DE</option>
+            <option value="FL">FL</option>
+            <option value="GA">GA</option>
+            <option value="HI">HI</option>
+            <option value="ID">ID</option>
+            <option value="IL">IL</option>
+            <option value="IN">IN</option>
+            <option value="IA">IA</option>
+            <option value="KS">KS</option>
+            <option value="KY">KY</option>
+            <option value="LA">LA</option>
+            <option value="ME">ME</option>
+            <option value="MD">MD</option>
+            <option value="MA">MA</option>
+            <option value="MI">MI</option>
+            <option value="MN">MN</option>
+            <option value="MS">MS</option>
+            <option value="MO">MO</option>
+            <option value="MT">MT</option>
+            <option value="NE">NE</option>
+            <option value="NV">NV</option>
+            <option value="NH">NH</option>
+            <option value="NJ">NJ</option>
+            <option value="NM">NM</option>
+            <option value="NY">NY</option>
+            <option value="NC">NC</option>
+            <option value="ND">ND</option>
+            <option value="OH">OH</option>
+            <option value="OK">OK</option>
+            <option value="OR">OR</option>
+            <option value="PA">PA</option>
+            <option value="PR">PR</option>
+            <option value="RI">RI</option>
+            <option value="SC">SC</option>
+            <option value="SD">SD</option>
+            <option value="TN">TN</option>
+            <option value="TX">TX</option>
+            <option value="UT">UT</option>
+            <option value="VT">VT</option>
+            <option value="VA">VA</option>
+            <option value="WA">WA</option>
+            <option value="WV">WV</option>
+            <option value="WI">WI</option>
+            <option value="WY">WY</option>
+          </select>
+        </span>
+        <label for="zip">Zip</label>
+        &nbsp;<span class="form_text">
+        <input name="zip" id="zip" style="font-size: 11px;" size="6" maxlength="10" />
+        </span></td>
+        </tr>
+          <tr>
+            <td class="label"><label for="homephone">Primary Phone</label></td>
+        <td><span >( <input onkeyup="move2next_3(this, this.form.home_phone2)" style="font-size: 11px; width: 30px;" maxlength="3" size="3" name="home_phone1" />
+        </span>)&nbsp;<span >
+        <input onkeyup="move2next_3(this, this.form.home_phone3)" style="font-size: 11px; width: 30px;" maxlength="3" size="3" name="home_phone2" />
+        </span>-&nbsp;<span >
+        <input style="font-size: 11px; width: 30px;" maxlength="4" size="4" name="home_phone3" />
+        </span></td>
+        <td class="label"><label for="calltime">Best Time to Call</label></td>
+        <td width="142"><select id="best_time_to_call" style="font-size: 11px;" name="best_time_to_call">
+          <option value="Morning">Morning</option>
+          <option value="Afternoon">Afternoon</option>
+          <option value="Evening" selected="selected">Evening</option>
+        </select></td>
+        </tr>
+          <tr>
+            <td valign="top" class="label"><label for="workphone">Work Phone </label>
+          <br />
+              <span class="smalltext">(Optional)</span></td>
+        <td valign="top"><span >( <input onkeyup="move2next_3(this, this.form.work_phone2)" style="font-size: 11px; width: 30px;" maxlength="3" size="3" name="work_phone1" />
+        </span>)&nbsp;<span >
+        <input onkeyup="move2next_3(this, this.form.work_phone3)" style="font-size: 11px; width: 30px;" maxlength="3" size="3" name="work_phone2" />
+        </span>-&nbsp; <span >
+        <input style="font-size: 11px; width: 30px;" maxlength="4" size="4" name="work_phone3" />
+        </span></td>
+        <td colspan="2" valign="top" style="padding-left:30px;"><table border="0" cellpadding="0" cellspacing="0" id="checkboxtable">
+              <tr>
+                <td width="20" valign="top"><span class="claims" style="padding-left: 2px;">
+                  <input  value="N" name="include_in_market" type="checkbox" />
+                </span></td>
+				<td width="240"><label for="checkbox" id="chckbxlabel" class="font11">Yes, I want to join
+				the mailing list for other money-saving offers from ReallyGreatRate</label></td>
+				</tr>
+				</table></td>
+        </tr>
+        </table>
+        <p>
+          <label for="imageField"></label>
+          <br />
+          <input type="image" name="imageField" src="images/request-quote-button.gif" id="imageField" />
+        &nbsp; &nbsp; &nbsp;<img src="images/security-lock.gif" width="43" height="47" /></p>
+      </form>
+    <p>We value your privacy. All personal information and email addresses are
+      kept confidential.
+      <br />
+      <br />
+    </p>
+  </div>
+  <div id="sidebar">
+    <h3>Why ReallyGreatRate?</h3>
+    <ul>
+      <li id="b1"><strong>Save Time</strong><br />
+        No long applications</li>
+      <li id="b2"><strong>Expert Advice</strong><br />
+        Get the right loan for you</li>
+      <li id="b3"><strong>Fast Response</strong><br />
+        Get results instantly</li>
+    </ul>
+    <img alt="Find the right mortgage loan to refinance a home loan for your family." src="images/picture.jpg" width="237" height="273" /> 
+	<div id="merits">
+
+	<img src="http://www.reallygreatrate.com/images/bbb_logo.gif" alt="BBBOnline Reliability Program" />
+	<br>
+</div>    </div>
+</div>
+
+<script language="javascript">
+formObj = document.forms[0];
+origAction=document.forms[0].action;
+hiddenList='';
+for (i=0;i<formObj.length;i++){
+	if(formObj.elements[i].type.toLowerCase()== 'hidden') {
+		hiddenList+='<input type="hidden" name="'+formObj.elements[i].name+'" '+ 
+		(formObj.elements[i].id!=null?(formObj.elements[i].id!=''?'id="'+formObj.elements[i].id+'" ':''):'')+
+		' value="'+formObj.elements[i].value+'" />\n';
+	}
+}
+</script>
+
+<form name="newForm">
+
+<script>document.write(hiddenList);</script>
+
+</form>
+</body>
+</html>

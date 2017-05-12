@@ -1,0 +1,95 @@
+
+<script language="javascript" type="text/javascript">
+// I have made modifications to the Donchek code based on issues we have been
+// having with pages that have client-side error chekcing code. 
+// Basically now I read all the pertinent values, remove the area, then reuse the values in my code to simplify life
+// Also, in non-IE browsers, the IDs can change, depending on how they are generated.  Some customers have '$' in the 
+// IDs, and those become '_' in non-IE browsers, but the NAMEs still have the '$'
+var opServerControlIds = [
+"ZipCode",
+"HowMuchCash",
+"PropertyType",
+"RateType",
+"PropertyUse",
+"LoanTerm",
+"EstimatedValue",
+"Bankruptcy",
+"FirstMortBalance",
+"CreditHistory",
+"Select2Mortgage",
+"GrossSalary",
+"LoanType",
+"MonthlyDebt",
+"btnFastFind",
+"varShowHide",
+"SecondMortBalance"
+];
+
+var opServerValidatorIds2 = [
+"phBodyTopJavaScript",
+"lblCoBrandJavaScript",
+"lblError",
+"ValidationSummary1",
+"rfvZip",
+"errZipCode",
+"rfvCashAmt",
+"cvCashAmount",
+"errCashOut",
+"rfvEstimatedPropertyValue",
+"cvEstimatedValueProperty",
+"errEstimatedValue",
+"rfvEstBal",
+"cvEstBal",
+"errFirstBal",
+"errCreditHistory",
+"rfvGrossIncome",
+"cvGrossIncome",
+"errIncome",
+"rfvWhichLoan",
+"rfvMonthlyExp",
+"cvMonthlyexp",
+"errMonthlyDebt",
+"rfvSecondMortBal",
+"cvSecondMortBal",
+"errSecondMortBal",
+"IfYes",
+"IfYesCurrency"
+];
+
+var daInputs =  new Object;
+var daErrors =  new Object;
+
+function opDotNet(){
+	for(i=0;i<opServerControlIds.length;i++) {
+		if(document.getElementById(opServerControlIds[i]) != null) daInputs[opServerControlIds[i]] = document.getElementById(opServerControlIds[i]).value;
+//non-IE with '$' in ID/NAME 		//if(document.forms[0].elements[opServerControlIds[i]] != null) daInputs[opServerControlIds[i]] = document.forms[1].elements[opServerControlIds[i]].value ;
+	}
+	for(i=0;i<opServerValidatorIds2.length;i++) {
+		if(document.getElementById(opServerValidatorIds2[i]) != null) daErrors[opServerValidatorIds2[i]] = document.getElementById(opServerValidatorIds2[i]).innerHTML;
+	}
+	if(document.getElementById('opDefault') != null) document.getElementById('opDefault').innerHTML = '';
+}
+opDotNet();
+</script>
+
+		
+<script language="Javascript">
+//  Line below kills hidden content.  Make sure there isn't anything important in the code you kill.
+
+if(document.getElementById('opDefault') != null) document.getElementById('opDefault').innerHTML = '';
+
+function doDotNetInit() {
+	for(i=0;i<opServerControlIds.length;i++) {
+		if(daInputs[opServerControlIds[i]] != null) document.getElementById(opServerControlIds[i]).value = daInputs[opServerControlIds[i]];	
+//non-IE with '$' in ID/NAME 	//if(daInputs[opServerControlIds[i]] != null) document.forms[0].elements[opServerControlIds[i]].value = daInputs[opServerControlIds[i]];	
+	}
+	for(i=0;i<opServerValidatorIds2.length;i++) {
+		if(daErrors[opServerValidatorIds2[i]] != null) document.getElementById(opServerValidatorIds2[i]).innerHTML = daInputs[opServerValidatorIds2[i]];	
+	}
+}
+
+</script>
+
+
+
+

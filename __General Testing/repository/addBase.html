@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Create a new Base statement and add a path</title>
+<script>
+function changeBase(){
+	heads=document.getElementsByTagName('head');
+	var newBase=document.createElement("base");
+	heads[0].appendChild(newBase);
+	bases=document.getElementsByTagName('base');
+	bases[0].href=document.forms[0].newBase.value;
+	document.getElementById('ppp').href=document.forms[0].newPage.value
+	//for(i=0;i<bases.length;i++) alert(bases[i].href+ ' is the new base, click on a relative link and see...');
+}
+function goNewPage(){
+	//document.getElementById('ppp').href=document.forms[0].newPage.value;
+	document.getElementById('ppp').click();
+}
+</script>
+<style>
+	.fancy{
+		background-image: url(http://us.i1.yimg.com/us.yimg.com/i/us/smbiz/misc/v1_fin_doma_name_shadow.gif);
+		text-decoration: none;
+		background-position: top;
+	}
+</style>
+</head>
+
+<body>
+<div style="width: 590px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Adding a Base statement via DOM</strong> - why in the world would you do this, Dogg?</strong><br><br>   
+Good question, but in our quest for more tools and techniques, <strong><em>build it and they will come</em></strong>.<br/><br/>
+Actually, this has some pertinence.  My girl Julia was working on an A/B test where the customer gave us a
+bunch of links to files that were in different domains - some their regular domain, some their test domain, etc.
+This was an A/B test, and we where hosting the bottom of the head, so we could put a base statement in the copy.
+Great for the Agency, but that would not be good to field.  So I thought of doing it dynamically through the DOM so
+that in the Agency, add it, but when live (detect the actual domain), don't<br/><br/>
+Play around below and see it work.
+
+</div>
+<form onsubmit="changeBase();return false">
+<table>
+	<tr><td>Enter the Base URL here</td><td><input name="newBase" value="http://www.optimost.com/" size="50" onclick="this.value='http://';" ></td></tr>
+	<tr><td>Enter the page name</td><td><input name="newPage" value="test.html" size="50"></td></tr>
+	<tr><td colspan="2" align="center"><button value="" type="submit">Press to Change the base and page</button></td></tr>
+	<tr><td colspan="2" align="center"><a href="index2.html" id="ppp" onclick="this.href=document.forms[0].newPage.value;" target="_blank" class="fancy">&nbsp;&nbsp;&nbsp;&nbsp;Press to redirect to that&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;new base and page combo&nbsp;</a></td></tr>
+	<tr><td>This is a relative link, test it</td><td ><a href="index1.html" target="_blank">index1</a></td></tr>
+	<tr><td>This is a relative link, test it<td ><a href="home2.html" target="_blank">index2</a></td></tr>
+</table>
+</form>
+
+</body>
+</html>

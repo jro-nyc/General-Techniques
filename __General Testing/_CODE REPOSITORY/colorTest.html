@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Color testing - how does a text and background color combo look?</title>
+<style>
+.class1{background-color: #ffffff;color:000000;}
+body td{text-align:center;margin:0;padding:0;margin: 0 auto;line-height: 20px; font-family:Arial, Helvetica, sans-serif; font-size: 14px; }
+</style>
+<script>
+textList=['Julia feels like she is going to die from boredom. She told reporters:<br/>"This job is more boring then stamping cans in a tuna factory<br/>And I\'m Ukranian, I would know!"',
+'Jennie enjoys working here very much.<br/>She expecially enjoys running to 6th avenue to catch the last express bus to Staten Island.<br/>"It\'s great because I have to sit on my behind all day since my boss won\'t let any of us<br/>walk around. He has me chained to my desk, just like during the cultural revolution!"',
+'Mr Mean really enjoys being the boss. He told our reporters:<br/>"Telling people what to do is so much fun, I wish I had realized this when I was younger!"',
+'Here is the color combo, what do you think?<br/>Does it make my browser look fat?'
+]
+
+function doNewColors(tID){
+	mask="000000";
+	valid="0123456789ABCDEF";
+	bkg = document.forms[0].bkg.value;
+	for(i=0;i<6-document.forms[0].bkg.value.length;i++) bkg="0"+bkg;
+	bkg=bkg.toUpperCase();
+	for (var i=0; i<bkg.length; i++) {
+		temp = "" + bkg.substring(i, i+1);		//Parse the number string, one character at a time
+		if (valid.indexOf(temp) == "-1") {		//check to see if the value is a "valid" value
+			alert('The Background color is not valid, only use valid hexadecimal digits');
+			document.forms[0].bkg.value = '';
+			return false;
+		}		
+	}
+	bkg="#"+bkg;
+	//alert(bkg);
+	color = document.forms[0].color.value;
+	color=color.toUpperCase();
+	for (var i=0; i<color.length; i++) {
+		temp = "" + color.substring(i, i+1);		//Parse the number string, one character at a time
+		if (valid.indexOf(temp) == "-1") {		//check to see if the value is a "valid" value
+			alert('The Text color is not valid, only use valid hexadecimal digits');
+			document.forms[0].color.value = '';
+			return false;
+		}		
+	}
+	for(i=0;i<6-document.forms[0].color.value.length;i++) color="0"+color;
+	color="#"+color;
+	//alert(color);
+	document.getElementById(tID).style.backgroundColor = bkg;
+	document.getElementById(tID).style.color = color;
+	index = parseInt(Math.random()*4);
+	document.getElementById(tID).innerHTML=textList[index];
+}
+</script>
+</head>
+
+<body>
+<form>
+<table>
+<tr><td colspan="2" >Test Colors - Input background and text colors see what they look like.<br/><strong>Make sure you enter ALL 6 Hex digits for each color</strong></td></tr>
+<tr><td>Background Color in hex&nbsp;<input type="text" name="bkg" size="6" maxsize="6" value="000000" onfocus="this.value='';"></td><td>Text Color in hex&nbsp;<input type="text" name="color" size="6"  maxsize="6" value="ffffff"  onfocus="this.value='';"></td></tr>
+<tr><td colspan="2" ><button onclick="doNewColors('testArea1');">See It!</button></td></tr>
+<tr><td colspan="2" id="testArea1" class="class1" style="background-color: #ffffff;color:000000;text-align:center;vertical-align:middle;border:2px solid #000000;height:100px;width:600px;">Here is the color combo, what do you think?<br/>Does it make my browser look fat?</td></tr>
+</table>
+</form>
+
+</body>
+</html>

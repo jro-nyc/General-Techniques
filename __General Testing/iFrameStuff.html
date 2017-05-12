@@ -1,0 +1,278 @@
+
+<html>
+<head>
+    <style type="text/css">
+<!--
+
+    body, td, th, div, table, p, span, li {
+      font-family: arial, verdana, helvetica, lucida, sans-serif;
+    }
+    body {
+      color: black;
+      background-color: white;
+      margin-top: 2px;
+    }
+    form {
+      margin: 0px;
+      padding: 0px;
+    }
+    a:link {
+      color: #0000cc;
+    }
+    a:visited {
+      color: #551a8b;
+    }
+    a:active {
+      color: #ff0000;
+    }
+    a.navbutton {
+      padding: 5px;
+      border: 1px solid #ddad08;
+      background-color: #f7ebc6;
+    }
+    table table.layout, table table.layout td, table table.layout tr {
+      border-left-width: 0px;
+      border-right-width: 0px;
+      border-top-width: 0px;
+      border-bottom-width: 0px;
+    }
+    .footer {
+      color: #666666;
+    }
+    textarea:focus, input:focus {
+      background-color: #ffffee;
+    }
+    .errorbox-good {
+      display: inline;
+    }
+    div#main {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+  //--></style>
+<script type="text/javascript" language="JavaScript"><!--
+
+    var aw_ff_ok = false;
+    function aw_ff() {
+      if (aw_ff_ok) {
+        return;
+      }
+      var row = document.getElementById("ga-fprow");
+      // Change the width of the Email and Password inputs
+      var oem = document.getElementById("Email");
+      if (oem) {
+        oem.style.width = 116;
+        document.getElementById("Passwd").style.width = 116;
+        aw_ff_ok = true;
+      }
+      var captcha = document.getElementById("logincaptcha");
+      if (captcha) {
+        captcha.size = 15;
+      }
+      if (row) {
+        var tableCell = row.getElementsByTagName("td").item(0);
+        tableCell.setAttribute("colSpan", "1");
+        tableCell.setAttribute("height", "17.0em");
+        tableCell.setAttribute("align", "left");
+        var cellLeft = row.insertCell(0);
+      }
+    }
+  //-->
+</script>
+</head>
+   <body onLoad="gaia_setFocus(); aw_ff();" style="padding: 0px; margin:0px;" dir="ltr">
+   	<table cellpadding="0" width="100%" cellspacing="0" border="0">
+   		<tr>
+   			<td align="left" valign="top">
+   				<table cellpadding="0" cellspacing="0" style="width: 17.0em;" border="0">
+   					<tr>
+   						<td style="padding-left:3px; padding-right:1px;">
+   							<table bgcolor="#e6f2ea" style="border: 2px solid rgb(0,102,51);" width="100%">
+   								<tr>
+   									<td style="font-size: 83%; padding-left: 8px; padding-top: 6px;" align="left">   									   
+   									   <font color="#006633">   									              Existing Customer Login</font>
+   									</td>
+   								</tr>
+   								<tr>
+   									<td>
+<script type="text/javascript"><!--
+  
+
+
+function gaia_onLoginSubmit() {
+  if (window.gaiacb_onLoginSubmit) {
+    return gaiacb_onLoginSubmit();
+  } else {
+    return true;
+  }
+}
+
+function gaia_setFocus() {
+  var f = null;
+  if (document.getElementById) { 
+    f = document.getElementById("gaia_loginform");
+  } else if (window.gaia_loginform) { 
+    f = window.gaia_loginform;
+  } 
+  if (f) {
+    if (f.Email.value == null || f.Email.value == "") { 
+      f.Email.focus();
+    } else {
+      f.Passwd.focus();
+    } 
+  }
+}
+
+//-->
+</script>
+   									    <style type="text/css">
+<!--
+
+      div.errormsg { color: red; font-size: smaller; font-family:arial,sans-serif; }
+      font.errormsg { color: red; font-size: smaller; font-family:arial,sans-serif; }  
+  //--></style>
+   									    <style type="text/css">
+<!--
+
+.gaia.le.lbl { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+.gaia.le.fpwd { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+.gaia.le.chusr { font-family: Arial, Helvetica, sans-serif; font-size: 70%; }
+.gaia.le.val { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+.gaia.le.button { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+.gaia.le.rem { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+
+   
+  .gaia.captchahtml.desc { font-family: arial, sans-serif; font-size: smaller; } 
+  .gaia.captchahtml.cmt { font-family: arial, sans-serif; font-size: smaller; font-style: italic; }
+  
+//--></style><!-- ServiceLoginElements.nui=default -->
+   										<div id="gaia_loginbox" class="body">   										      
+   										   <form action="ServiceLoginAuth" onsubmit="return(gaia_onLoginSubmit());" id="gaia_loginform" method="post">
+   										      <input type="hidden" name="ltmpl" value="login">
+   										   	<table cellpadding="1" cellspacing="0" align="center" border="0" id="gaia_table">
+   										   		<tr>
+   										   			<td colspan="2" align="center">
+   										   				<div class="errorbox-good">
+   										   				</div>
+   										   			</td>
+   										   		</tr>
+   										   		<tr>
+   										   			<td nowrap>
+   										   				<div align="right">
+   										   				    <span class="gaia le lbl">
+Email:</span>
+   										   				</div>
+   										   			</td>
+   										   			<td>
+   										   			   <input type="hidden" name="continue" value="https://adwords.google.com/select/gaiaauth">
+   										   			   <input type="hidden" name="followup" value="https://adwords.google.com/select/gaiaauth">
+   										   			   <input type="hidden" name="service" value="adwords">
+   										   			   <input type="hidden" name="nui" value="3">
+   										   			   <input type="hidden" name="fpui" value="1">
+   										   			   <input type="hidden" name="ifr" value="true">
+   										   			   <input type="hidden" name="rm" value="hide">
+   										   			   <input type="hidden" name="ltmpl" value="login">
+   										   			   <input type="hidden" name="hl" value="en-US">
+   										   			   <input type="hidden" name="alwf" value="true">
+   										   			   <input type="hidden" name="GA3T" value="eigxY8hqq_Q">
+   										   			   <input type="text" name="Email" value="" class="gaia le val" id="Email" size="18">
+   										   			</td>
+   										   		</tr>
+   										   		<tr>
+   										   			<td>
+   										   			</td>
+   										   			<td align="left">
+   										   			</td>
+   										   		</tr>
+   										   		<tr>
+   										   			<td align="right">
+   										   			    <span class="gaia le lbl">
+Password:</span>
+   										   			</td>
+   										   			<td>
+   										   			   <input type="password" name="Passwd" class="gaia le val" id="Passwd" size="18">
+   										   			</td>
+   										   		</tr>
+   										   		<tr>
+   										   			<td>
+   										   			</td>
+   										   			<td align="left">
+   										   			</td>
+   										   		</tr>	<!-- LoginElementsSubmitButton.nui=default -->
+   										   		<tr>
+   										   			<td>
+   										   			</td>
+   										   			<td align="left">
+   										   			   <input type="submit" name="null" value="Sign in" class="gaia le button">
+   										   			</td>
+   										   		</tr>
+   										   		<tr id="ga-fprow">
+   										   			<td colspan="2" align="center" height="33.0" valign="bottom" nowrap class="gaia le fpwd"><a href="ForgotPasswd?continue=https%3A%2F%2Fadwords.google.com%2Fselect%2Fgaiaauth&amp;followup=https%3A%2F%2Fadwords.google.com%2Fselect%2Fgaiaauth&amp;service=adwords&amp;hl=en-US&amp;fpui=1" target="_top">
+Forgot your password?
+</a>
+   										   			</td>
+   										   		</tr>
+   										   	</table>
+   										   </form>
+   										</div>
+<script type="text/javascript" language="JavaScript"><!--
+
+                aw_ff();
+              //-->
+</script>
+   									    <style type="text/css">
+<!--
+
+                div.errormsg { color: red; font-size: 70%; font-family:arial,sans-serif; }
+                font.errormsg { color: red; font-size: 70%; font-family:arial,sans-serif; }
+                .gaia.le.fpwd { font-family: Arial, Helvetica, sans-serif; font-size: 60%; }
+              //--></style>
+   									</td>
+   								</tr>
+   							</table>
+   						</td>
+   					</tr>
+   				</table>
+   				<table cellpadding="0" width="100%" cellspacing="0" border="0">
+   					<tr>
+   						<td style="font-size: 83%;">
+   							<iframe src="https://adwords.google.com/select/gaiatemplate?hl=en-US" style="width: 20.5em; height: 500px;" name="awgpromo" align="top" marginwidth="0" marginheight="0" scrolling="no" id="awgpromo" frameborder="0"></iframe>
+   						</td>
+   					</tr>
+   				</table>
+   			</td>
+   		</tr>
+   	</table>
+   </body>
+</html>
+
+<script>
+function doPop(){
+	iframes = document.getElementsByTagName('iframe');
+	alert(iframes[0].document.body.innerHTML);	
+	tds = iframes[0].getElementsByTagName('td');
+	for (var i = 0; i < tds.length; i++){
+		if(tds[i].innerHTML.toLowerCase().indexOf('<iframe') != -1)tds[i].innerHTML = '';
+	}
+	document.write(iframes[0].document.body.innerHTML)
+	insideFrames = iframes[0].document.getElementsByTagName('iframe');
+	//alert(insideFrames.length);
+	//	alert(insideFrames[0].document.body.innerHTML);
+}
+addLoadEvent( function(){
+	doPop();
+});
+
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} 
+	else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+</script>

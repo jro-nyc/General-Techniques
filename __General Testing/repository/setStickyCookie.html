@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Setting sticky cookie from within our copy</title>
+</head>
+
+<body>
+		<!-- creative setting code -->
+		<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td style="display:ndone;"><a href="javascript:doPop(document.getElementById('ff_ie_diff').innerHTML,'SetCreatve','Test Rig creative setting tool','sticky');">Set the creative Number</a></td>
+		</tr>
+		</table>
+		<div style="display:nodne;">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr id="oo">
+				<td id="ff_ie_diff">
+				<table><form onsubmit="setTheSticky(document.forms[0].page.value,document.forms[0].creative.value);return false;">
+				<tr><td>QF Page - </td>
+					<td><select name="page">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</td>
+				</tr>
+				<tr><td>Creative Number - </td>
+					<td><input name="creative" type="text" value="" /></td>
+				</tr>
+				<tr><td colspan="2"><button value="Set the Creative" type="submit">Set the Creative</button></td></tr>
+				</form></table>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<script>
+		function doPop(content,daName,title,cookieName){
+			var popunder=window.open('',daName,'height=590,width=520,scrollbars=1,resizable=1',false);
+			if(popunder.document.getElementsByTagName('table').length==0){
+				popunder.document.write('<html>');
+				popunder.document.write('<head><title>We are in the "'+document.domain+'" domain</title><script>');
+				popunder.document.write('function opXMLSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null) ? "" : (";domain=" + d));}');
+				popunder.document.write('function opXMLGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l < 2) sld = null;else if (!isNaN(dp[l-1]) && !isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}');
+				popunder.document.write('function setTheSticky(qfPage,crNum,cookieName){opXMLSetCookieA(cookieName, crNum, opXMLGetDocumentSLD(), 2592000);}');
+				popunder.document.write('<\/script></head><body>');
+				popunder.document.write(content);
+				popunder.document.write('</body>');
+				popunder.document.write('</html>');
+			}
+			else popunder.focus();
+		}
+		</script>
+
+
+
+</body>
+</html>

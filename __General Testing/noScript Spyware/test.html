@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body id="bod">
+<table cellspacing="0" cellpadding="0" id="t1" style="border: 6px groove #CCCC00;">
+	<tr id="r1"><td id="c1">This is the first line</td></tr>
+	<tr id="r2"><td id="c2">This is the second line</td></tr>
+	<tr id="r3"><td id="c3">This is the third line</td></tr>
+	<tr id="r4"><td id="c4">This is the fourth line</td></tr>
+	<tr id="r5"><td id="c5">This is the fifth line</td></tr>
+	<tr id="r6"><td id="c6">This is the sixth line</td></tr>
+	<tr id="r7"><td id="c7">This is the seventh line</td></tr>
+	<tr id="r8">
+		<td id="c8">
+			<table id="c8_t1">
+				<tr id="c8_t1_r1">
+					<td id="c8_t1_r1_c1">
+						<table id="c8_t1_r1_c1_t1">
+							<tr id="c8_t1_r1_c1_t1_r1">
+								<td id="c8_t1_r1_c1_t1_r1_c1">Hola</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<div id="d1" style="border:2px dotted #CC0000;">This is the First Div</div>
+<span id="s1" style="border:2px solid #CC00CC;">This is the First Span</span>
+
+<script>
+/*
+first = document.documentElement;
+first_tier = first.childNodes;
+//alert(first_tier.length);
+for (var i = 0; i < first_tier.length; i++) {
+	alert(first_tier[i].id);
+} */
+/*
+allNodes = document.body.childNodes;
+for (i=0;i< allNodes.length; i++) {
+	alert(allNodes[i].id + ' is of length ' + allNodes[i].childNodes.length);
+	for(j=0;j<allNodes[i].childNodes.length;j++){
+		alert(allNodes[i].childNodes[j].id);	
+	}
+	//alert(allNodes[i].childNodes[i].id);
+}*/
+tr = document.getElementsByTagName("tr");
+for (i=0;i<tr.length;i++) alert(tr[i].id);
+td = document.getElementsByTagName("td");
+for (i=0;i<td.length;i++) alert(td[i].id);
+tb = document.getElementsByTagName("table");
+for (i=0;i<tb.length;i++) alert(tb[i].id);
+div = document.getElementsByTagName("div");
+for (i=0;i<div.length;i++) alert(div[i].id);
+span = document.getElementsByTagName("span");
+for (i=0;i<span  .length;i++) alert(span[i].id);
+
+</script>
+</body>
+</html>

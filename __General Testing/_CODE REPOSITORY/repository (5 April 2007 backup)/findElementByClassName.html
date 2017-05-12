@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Get Elements By Class Name</title>
+</head>
+
+<body>
+<div style="width: 740px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong><strong>Find an Element Sequentially By Class Name</strong><br/><br/>
+
+Why would you need to do this?
+<BR/>&middot;<strong>One of our clients used different tags for dynamic
+text, but the same class name to identify them. we need to pull them out sequentially cuz we will be using 
+the same tag on our end to write it out in our template.  So we can't pull them out by tag name, UNLESS we
+use '*' as the tag.</strong>   
+<br/><br/>
+<strong style="color:#88FF88;"> 
+In this example, we use document.getElementsByTagName('*'), which is the W3C version of document.all  <br/><br/>
+<button style="border:2px solid yellow;background-color:009966;color:#FFFFFF" onclick="doRenameStuff();">Click Here</button> to change all the tags with class='listurl', and see what they are. 
+</strong><br/></div>
+   <div class="bh1">Listings</div>
+   <br class="br10">
+    <div class="listlink">	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.i-datatech.com%2Faccountmate.html&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=1&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=73607B27-58DC-4B0E-BC4A-21B4BF71AA51&mkt=&mkw=&bdck=C1428F9C-7823-4E84-AE3A-A8CCAB942C46&bdcc=aze" target=_blank class=titleli>Accountmate ERP Solutions</a>
+
+        <div class="listdesc">AccountMate the customizable business management and <b>accounting</b> solution designed to address the needs of medium-sized businesses.</div>
+        <div class=listmlink><a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.i-datatech.com%2Faccountmate.html&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=1&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=73607B27-58DC-4B0E-BC4A-21B4BF71AA51&mkt=&mkw=&bdck=C1428F9C-7823-4E84-AE3A-A8CCAB942C46&bdcc=aze" target=_blank class=titleli>Accountmate</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.i-datatech.com%2Fmas90.html&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=2&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=73607B27-58DC-4B0E-BC4A-21B4BF71AA51&mkt=&mkw=&bdck=C1428F9C-7823-4E84-AE3A-A8CCAB942C46&bdcc=aze" target=_blank class=titleli>MAS90 / MAS200</a></div><span class="listurl">www.i-datatech.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://www.arthurandersen.com/" onclick="return gt(this.href,'il.l.ml.e','2','','')" target=_blank class=titleli>Andersen</a>
+
+        <div class="listdesc">Contact information for the firm formerly known as &quot;Arthur Andersen.&quot;</div>
+        <div class="listurl">www.arthurandersen.com</div><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.pgww.com%2Fdefault.asp%3FBDCDCMP%3D248297&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=3&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=53C6F42A-E0C4-4C39-AD20-5591C2C28640&mkt=&mkw=&bdck=75C9A296-D153-4E98-8F13-24AA7860D6D1&bdcc=aze" target=_blank class=titleli>Budgeting and Forecasting: Pinnacle Group Worldwide</a>
+
+        <div class="listdesc">Let a Hyperion Preferred Reseller and Consulting Partner help you with budgeting and forecasting. Includes Budgeting on Demand at K2Analytics.com</div>
+        <div class=listmlink><a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.pgww.com%2Faboutus%2Faboutus.asp%3FBDCDCMP%3D248297&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=1&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=53C6F42A-E0C4-4C39-AD20-5591C2C28640&mkt=&mkw=&bdck=75C9A296-D153-4E98-8F13-24AA7860D6D1&bdcc=aze" target=_blank class=titleli>About Us</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.pgww.com%2Fsolutions%2Fbudgeting.asp%3FBDCDCMP%3D248297&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=2&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=53C6F42A-E0C4-4C39-AD20-5591C2C28640&mkt=&mkw=&bdck=75C9A296-D153-4E98-8F13-24AA7860D6D1&bdcc=aze" target=_blank class=titleli>Budgeting</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.k2analytics.com%2Fdefault.asp%3FBDCDCMP%3D248297&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=3&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=53C6F42A-E0C4-4C39-AD20-5591C2C28640&mkt=&mkw=&bdck=75C9A296-D153-4E98-8F13-24AA7860D6D1&bdcc=aze" target=_blank class=titleli>On Demand</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.pgww.com%2Faboutus%2Fcontactus.asp%3FBDCDCMP%3D248297&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=4&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=53C6F42A-E0C4-4C39-AD20-5591C2C28640&mkt=&mkw=&bdck=75C9A296-D153-4E98-8F13-24AA7860D6D1&bdcc=aze" target=_blank class=titleli>Contact Us</a></div><span class="listurl">www.pgww.com/BudgetingAndForecasting</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fc.camcil.com%2Fcgi%2Fr%3F%3Bn%3D203%3Bc%3D242328%3Bs%3D3086%3Bx%3D7936%3Bf%3D200612181550480%3Bu%3Dj%3Bz%3DTIMESTAMP%3Bac%3D001%26ti%3DECB31A6AFE867BF1C6B5603AAFD5B54E9F1644F8%26kw%3DBudgeting_and_Forecasting&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=4&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=0A6D61BD-ACAC-433D-A58C-2847AE7920C6&mkt=&mkw=&bdck=6F17AE4A-7DFA-4902-8929-29ADF92B8EA6&bdcc=aze" target=_blank class=titleli>Compare CRM Solutions With Vendor Guru</a>
+
+        <div class="listdesc">Research which CRM is right for you. Request free evaluations.</div>
+        <span class="listurl">vendorguru.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://www.us.deloitte.com/" onclick="return gt(this.href,'il.l.ml.e','5','','')" target=_blank class=titleli>Deloitte &amp; Touche</a>
+
+        <div class="listdesc">Parent/holding company primarily involved in <b>accounting,</b> auditing, tax and management consulting services, with a high-tech operating unit involved in information technology consulting services. This company was capitalized by private investmen...</div>
+        <div class="listurl">www.us.deloitte.com</div><br>
+		
+<table style="margin:30px;border:4px solid blue;">
+<tr><td class="listurl">Just addded this to a TD for fun</td></tr>
+</table>		
+		
+<table style="margin:30px;border:4px solid green;">
+<tr><th class="listurl">Just addded this to a TH for fun</th></tr>
+</table>		
+		
+		
+	<a href="http://www.deloitte.com/" onclick="return gt(this.href,'il.l.ml.e','6','','')" target=_blank class=titleli>Deloitte Touche Tohmatsu International (Deloitte &amp; Touche)</a>
+
+        <div class="listdesc">International professional services firm providing services in assurance and advisory, tax, corporate finance, and human capital and management consulting (includes management solutions, enterprise risk, emerging markets and financial advisory p...</div>
+        <div class="listurl">www.deloitte.com</div><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.findaccountingsoftware.com%3Fs%3D6%26c%3D1%26kw%3DAccounting%26wcw%3Dbusiness&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=8&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=AD0373F4-456A-41EE-8605-FBC03058208D&mkt=&mkw=&bdck=F2DD1560-27BC-4852-B14F-6A187F6E2D70&bdcc=bza" target=_blank class=titleli>FindAccountingSoftware.com: <b>Accounting</b></a>
+
+        <div class="listdesc">Online database comparing <b>accounting/business</b> management software. Conduct software searches based on industry, operating system or application.</div>
+        <span class="listurl">www.findaccountingsoftware.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://www.hcvt.com" onclick="return gt(this.href,'il.l.ml.e','9','','')" target=_blank class=titleli>Holthouse Carlin &amp; Van Trigt LLP</a>
+
+        <div class="listdesc">Provider of tax, <b>accounting,</b> and consulting services for closely held businesses and the related individuals. The Firm has extensive expertise with real estate entities, service firms, and entertainment and distribution companies.</div>
+        <div class="listurl">www.hcvt.com</div><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.cpa-offices.com%2Faccounting.php%3Ftrackcode%3Dbizcom&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=10&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=DD1368F4-10CB-4EB7-A45A-F3D8F81B875F&mkt=&mkw=&bdck=691F0CE5-2C0F-4ABD-A6C7-EBB505A6F0BD&bdcc=aze" target=_blank class=titleli>Kashani &amp; Co. CPAs: <b>Accounting</b> &amp; Financial Statements</a>
+
+        <div class="listdesc">Provides detailed financial statements, evaluations, and recommendations. Forecasts of cash flows, payroll calculations, and bookkeeping setup.</div>
+        <span class="listurl">www.cpa-offices.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://www.kpmg.com/" onclick="return gt(this.href,'il.l.ml.e','12','','')" target=_blank class=titleli>KPMG International</a>
+
+        <div class="listdesc">Global professional advisory firm providing a wide range of business services including auditing, tax, consulting, financial advisory, corporate finance and corporate recovery. Has offices in 159 countries worldwide. One of the &quot;Big 5&quot; account...</div>
+        <div class="listurl">www.kpmg.com</div><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.accountingaisle.com%2Flanding%2Faccounting-service.php%3Futm_source%3Dbusiness%26utm_medium%3Dppc&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=13&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=9041E6DA-860A-4B27-9532-0E9884D2A2C7&mkt=&mkw=&bdck=778D07DC-D4A5-4727-9613-1C16D1F1DB85&bdcc=bza" target=_blank class=titleli>Local Accountants and CPAs</a>
+
+        <div class="listdesc">Find great accountants in your area. Get proposals from four local CPAs.</div>
+        <span class="listurl">www.accountingaisle.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.pgww.com%3FBDCDCMP%3D248295&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=14&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=B8FBB1DC-B5B4-49A7-9997-5B760EFBF09A&mkt=&mkw=&bdck=33EB7FF7-C5C5-4136-93AF-9D6A34C6932A&bdcc=aze" target=_blank class=titleli>Pinnacle Group Worldwide</a>
+
+        <div class="listdesc">Let a Hyperion Preferred Reseller and Consulting Partner help you with consolidation and reporting.</div>
+        <span class="listurl">www.pgww.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://www.pwc.com/" onclick="return gt(this.href,'il.l.ml.e','15','','')" target=_blank class=titleli>PricewaterhouseCoopers (PwC)</a>
+
+        <div class="listdesc">Professional services firm providing audit, assurance, financial, human resource, management, business process outsourcing and tax consulting services through offices in 150 countries and territories. One of the &quot;Big 5&quot; <b>accounting</b> firms.</div>
+        <div class="listurl">www.pwc.com</div><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.shelko.com%2F&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=16&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=B004DEF0-12DA-47F8-8A30-6335637C7684&mkt=&mkw=&bdck=24125E9C-0E89-42FD-8FC2-33365C1D93D6&bdcc=azg" target=_blank class=titleli>Shelko Consulting: <b>Accounting</b> Software Consulting</a>
+
+        <div class="listdesc">Provider of sales, training, crystal report writing and support for Sage MAS 90/200 and MAS 500 <b>accounting</b> software to companies in NJ, NY, CT, PA.</div>
+        <div class=listmlink><a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.shelko.com%2Fmas90%2Fmas90overview.html&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=1&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=B004DEF0-12DA-47F8-8A30-6335637C7684&mkt=&mkw=&bdck=24125E9C-0E89-42FD-8FC2-33365C1D93D6&bdcc=azg" target=_blank class=titleli>Sage MAS 90 ERP</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.shelko.com%2Fmas500%2Fmas500overview.html&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=2&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=B004DEF0-12DA-47F8-8A30-6335637C7684&mkt=&mkw=&bdck=24125E9C-0E89-42FD-8FC2-33365C1D93D6&bdcc=azg" target=_blank class=titleli>Sage MAS 500</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.shelko.com%2FCRM_software_overview.html&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=3&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=B004DEF0-12DA-47F8-8A30-6335637C7684&mkt=&mkw=&bdck=24125E9C-0E89-42FD-8FC2-33365C1D93D6&bdcc=azg" target=_blank class=titleli>CRM Software</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.shelko.com%2Fsagecrm%2Fsagecrmoverview.html&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=4&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=B004DEF0-12DA-47F8-8A30-6335637C7684&mkt=&mkw=&bdck=24125E9C-0E89-42FD-8FC2-33365C1D93D6&bdcc=azg" target=_blank class=titleli>Hosted Online CRM</a></div><span class="listurl">www.shelko.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.integralaccounting.com%3Ftrackcode%3Dbizcom&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=17&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=0045D084-2FB8-4EB6-AB1B-657A9644432F&mkt=&mkw=&bdck=D9280C84-BDA5-4536-A90C-CDD385493DF6&bdcc=bzh" target=_blank class=titleli>STFB Inc (Integral <b>Accounting):</b> <b>Accounting</b></a>
+
+        <div class="listdesc">Web-Based <b>Accounting</b> &amp; ERP System with source code and distribution rights for the Dot Net &amp; SQL Server platforms. Multi-Lingual &amp; Multi-Currency.</div>
+        <span class="listurl">www.integralaccounting.com</span><span class="pd">[Paid]</span><br><br>
+	<a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.netsuite.com%2Fportal%2Fproducts%2Fsbc.shtml%3Fpromocode%3Db25&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=18&partner=bdc&bdcz=il.l.ml.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=82EEF09B-5832-4DBA-8D8C-A57EEF0ABFD9&mkt=&mkw=&bdck=A1A2F644-6682-4792-8DCF-FF80731C1C18&bdcc=bzi" target=_blank class=titleli>Web-Based <b>Accounting</b> Software: NetSuite</a>
+
+        <div class="listdesc">Reduce time and costs with NetSuite's <b>accounting</b> software. This comprehensive solution is quick to deploy and easy to use. Free Trial.</div>
+        <div class=listmlink><a href="http://qard.business.com/index.asp?bdcu=https%3A%2F%2Fforms.netsuite.com%2Fapp%2Fsite%2Fcrm%2Fexternalleadpage.nl%3Fcompid%3DNLCORP%26formid%3D410%26h%3Daa167d1fb16c21714163%26promcode%3Db25&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=1&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=82EEF09B-5832-4DBA-8D8C-A57EEF0ABFD9&mkt=&mkw=&bdck=A1A2F644-6682-4792-8DCF-FF80731C1C18&bdcc=bzi" target=_blank class=titleli>Free Trial</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.netsuite.com%2Fportal%2Fresource%2Fedemo_main.shtml%3Fpromocode%3Db25&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=2&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=82EEF09B-5832-4DBA-8D8C-A57EEF0ABFD9&mkt=&mkw=&bdck=A1A2F644-6682-4792-8DCF-FF80731C1C18&bdcc=bzi" target=_blank class=titleli>Online Demo</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.netsuite.com%2Fportal%2Fcustomers%2Fmain.shtml%3Fpromocode%3Db25&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=3&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=82EEF09B-5832-4DBA-8D8C-A57EEF0ABFD9&mkt=&mkw=&bdck=A1A2F644-6682-4792-8DCF-FF80731C1C18&bdcc=bzi" target=_blank class=titleli>Success Stories</a> | <a href="http://qard.business.com/index.asp?bdcu=http%3A%2F%2Fwww.netsuite.com%2Fportal%2Fpress%2Fawards%2Fmain.shtml%3Fpromocode%3Db25&bdcf=956EFDBA-09BE-11D4-8F5E-00D0B7473557&bdcr=4&partner=bdc&bdcz=i.l.l.slot.e&bdcs=A6609866-DC19-4D41-94A1-3180D4FB5BBD20071233910950_gamma&bdcp=82EEF09B-5832-4DBA-8D8C-A57EEF0ABFD9&mkt=&mkw=&bdck=A1A2F644-6682-4792-8DCF-FF80731C1C18&bdcc=bzi" target=_blank class=titleli>Awards</a></div><span class="listurl">www.netsuite.com</span><span class="pd">[Paid]</span><br><br>
+</div><br>
+<!-- end standard listings-->
+
+<script>
+function doRenameStuff(){
+	//alert('Click here to find a list of cells based on class=\'listurl\', in order, but irrespective of if the cell they are in (<td>, <span>, <div>, etc)\n'+
+	//'Here we use document.getElementsByTagName(\'*\'), which is the W3C version of document.all');
+	daNodes=document.getElementsByTagName('*');
+	num=1;
+	//alert(daNodes.length);
+	for(i=0;i<daNodes.length;i++){
+		if(daNodes[i].className=='listurl') {
+			daNodes[i].innerHTML+='<span style="color:#FF3333;font-weight:bold;"> and this is element #'+num+' and is a <u>'+ daNodes[i].tagName+'</u></span>';
+			num++;
+		}
+	}
+}
+addLoadEvent( function(){
+	//doRenameStuff();
+});
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} 
+	else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+</script>
+
+
+</body>
+</html>

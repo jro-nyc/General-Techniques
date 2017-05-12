@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+	<script>
+
+function checkEmail(rval) {
+
+	var emailStr=rval.value;
+	
+	if (emailStr!="") {
+		var checkTLD=1;
+		var knownDomsPat=/^(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum)$/;
+		var emailPat=/^(.+)@(.+)$/;
+		var specialChars="\\(\\)><@,;:\\\\\\\"\\.\\[\\]";
+		var validChars="\[^\\s" + specialChars + "\]";
+		var quotedUser="(\"[^\"]*\")";
+		var atom=validChars + '+';
+		var word="(" + atom + "|" + quotedUser + ")";
+		var userPat=new RegExp("^" + word + "(\\." + word + ")*$");
+		var domainPat=new RegExp("^" + atom + "(\\." + atom +")*$");
+		
+		var matchArray=emailStr.match(emailPat);
+		
+		if (matchArray==null) {
+			return 0;
+		}
+		
+		var user=matchArray[1];
+		var domain=matchArray[2];
+		
+		for (i=0; i<user.length; i++) {
+			if (user.charCodeAt(i)>127) {
+				return 0;
+		   }
+		}
+		for (i=0; i<domain.length; i++) {
+			if (domain.charCodeAt(i)>127) {
+				return 0;
+		   }
+		}
+		
+		if (user.match(userPat)==null) {
+			return 0;
+		}
+		
+	
+		// Domain is symbolic name.  Check if it's valid.	 
+		var atomPat=new RegExp("^" + atom + "$");
+		var domArr=domain.split(".");
+		var len=domArr.length;
+		for (i=0;i<len;i++) {
+			if (domArr[i].search(atomPat)==-1) {
+				return 0;
+			}
+		}
+		
+		if (checkTLD && domArr[domArr.length-1].length!=2 && domArr[domArr.length-1].search(knownDomsPat)==-1) {
+			return 0;
+		}
+		if (len<2) {
+			return 0;
+		}
+		return true;
+	}
+	else alert('inside empty');
+}
+
+function checkEmailNow(val){
+	if(val != null) {
+		if(checkEmail(val) == true) alert('valid');
+		else alert('invalid');
+	}
+	else alert('empty');
+}
+	</script>
+</head>
+
+<body>
+<table BORDER=2 CELLPADDING=0 CELLSPACING=0>
+	<tr>
+		<td>
+		Give us your email address, son....<input type="text" name="daEmail" size="30" value=""  style="width=150px" onblur="javascript:checkEmailNow(this);"  maxlength="100">
+		</td>
+	</tr>
+	
+</table>
+
+
+
+</body>
+</html>

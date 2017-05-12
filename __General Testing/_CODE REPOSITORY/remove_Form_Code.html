@@ -1,0 +1,55 @@
+<html>
+<body>
+<div style="width: 490px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Remove a FORM object from the DOM.</strong><br><br>  Why would you need to do this?  
+Well, this is useful when we are reading <u>dynamic form content</u> via the DOM and are re-rendering it in our code in some manner, and we would 
+like to reuse the same form name. It's very useful for form pages because the you can use their client-side correction code<br><br>
+In the code, we have two forms with identical names and inputs, I just changed the values.  I kill the first one.  Look in the code 
+for more specifics<br><br>
+<a href="#" onclick="doThingy();" style="color:#9999FF;font-weight:bold;">CLICK HERE</a> to see what happens in alerts.
+</div>
+<form name="theForm" action="https://www.peoplepc.com/signup/start.asp" method="post" id="eee">
+	<input type="hidden" name="offercode" value="AARPWEBSITE">
+	<input type="hidden" name="packageid" value="5">
+	<input type="hidden" name="offergroupid" value="125">
+</form>
+<script language="javascript" type="text/javascript">
+var formElement = document.forms[0]; 
+if (formElement && formElement.parentNode && formElement.parentNode.removeChild) { 
+     //formElement.parentNode.removeChild(formElement); 
+} 
+</script>
+<form name="theForm" action="http://by.optimost.com/post/91-1552/" method="post">
+	<input type="hidden" name="offercode" value="A1AR1PWEBSITE_2">
+	<input type="hidden" name="packageid" value="5_2">
+	<input type="hidden" name="offergroupid" value="125_2">
+</form>
+<script>
+function doThingy(){
+	list = '';
+	for (j=0;j<document.forms.length;j++){
+		list += document.forms[j].name + ' is the name of the form\n\n';
+		for(i=0;i<document.forms[j].length;i++){
+			list += document.forms[j].elements[i].name + ' has a value of ' + document.forms[j].elements[i].value + '\n';
+		}
+		list +='_________________________________\n\n';
+	}
+	alert('The existing forms before the purge are:\n---------------------------------------------\n' + list);
+	list = '';
+	var formElement = document.forms[0]; 
+	if (formElement && formElement.parentNode && formElement.parentNode.removeChild) { 
+	     formElement.parentNode.removeChild(formElement); 
+	} 
+	for (j=0;j<document.forms.length;j++){
+		list += document.forms[j].name + ' is the name of the form\n\n';
+		for(i=0;i<document.forms[j].length;i++){
+			list += document.forms[j].elements[i].name + ' has a value of ' + document.forms[j].elements[i].value + '\n';
+		}
+		list +='_________________________________\n\n';
+	}
+	alert('The existing forms after the purge are:\n----------------------------------------------\n' + list);
+}
+</script>
+
+</body>
+</html>

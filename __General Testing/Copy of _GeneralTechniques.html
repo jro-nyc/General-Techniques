@@ -1,0 +1,1919 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Compendium of javascript routines to do stuff</title>
+	
+<style>
+	.bgDefault {
+	cursor: hand;
+	background-repeat : no-repeat;
+	width : 24px; 
+	height : 18px;
+	background-color : #bbbb00;
+	text-align : center;
+	}
+	.textGIFs {
+	color: #111111; 
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	text-align: center;
+	font-weight: normal;
+	font-size: 8pt;
+	margin-top: 32px;
+	margin-left: 10px;
+	}
+	.choices
+	{
+	cursor: hand;
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+	font-size: 13pt;
+    TEXT-ALIGN: center;
+	background-color : #bbbb00;
+	}
+	.myHeader {
+	color: #bbbb00; 
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	text-align: center;
+	font-weight: normal;
+	font-size: 18pt;
+	}	
+  	.isVisible { 
+  	display: block; 
+	}
+  	.isNotVisible { 
+	display: none; 
+	}
+</style>
+<script language="javascript" type="text/javascript">
+//1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+//This is for a text box which has text to entice the user to enter,
+//but text you want to remove as soon as the user focuses in the box.
+//  Here, you must differentiate between IE and Netscape
+function changeTextbox() 
+{
+	if (!document.all){//Netscape******** Note that you use ID to identify, NOT Name!!!!!
+		if(document.getElementById('searchforText').value == "Type Search Here"){
+			document.getElementById('searchforText').value = "";
+		}
+		else if(document.getElementById('searchforText').value == "Type Search Term Here"){
+			document.getElementById('searchforText').value = "";	
+		}	
+	}
+	else{//IE
+		if(document.all['searchforText'].value == "Type Search Here"){
+			document.all['searchforText'].value = "";
+		}
+		else if(document.all['searchforText'].value == "Type Search Term Here"){
+			document.all['searchforText'].value = "";	
+		}	
+	}
+	
+}
+//2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+//These two functions are for a search box that is part of a form which has text to entice the user to enter,
+//but text you want to remove as soon as the user focuses in the box.
+//  Here, you don't have to differentiate between IE and Netscape
+function gotoSearch2() { 
+if ((document.opsymbol_search_form.searchfor.value=="Type Search Here") || (document.opsymbol_search_form.searchfor.value=="Type Search Term Here")) document.opsymbol_search_form.searchfor.value="";
+}
+function changeFormTextbox()
+{
+	if(document.opsymbol_search_form.searchfor.value == "Type Search Here"){
+		document.opsymbol_search_form.searchfor.value = "";
+	}
+	else if(document.opsymbol_search_form.searchfor.value == "Type Search Term Here"){
+		document.opsymbol_search_form.searchfor.value = "";	
+	}
+}
+
+//3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+//Here, we have a random number generator and sorter for a range of values. Here, we pick 8 pairs out of 32 pairs.
+//We then put them in a grid that shows the numbers, then we can match them.
+var NUMQUESTIONS=8;
+var NUMWORDS=20;
+var roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX']
+var arabic = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
+
+function randomNumberGeneratorANDSorter(){
+var textVal;
+var tdVal;
+var num;
+var randNum;
+var usedWord = new Array();		
+var usedLoc = new Array();
+var wordPair, eng, zhw, x, y;
+var MATRIX_HEIGHT = 4;
+var MATRIX_WIDTH = 4;
+
+
+	for(i=1;i<NUMQUESTIONS+1;i++){							//We are going to select vocabulary words
+		randNum = Math.floor(Math.random()*NUMWORDS);		//First,  choose a word pair
+		if(usedWord[randNum] == 'yes'){				
+			do {
+				randNum = (randNum + 1) % (NUMWORDS);
+			} while (usedWord[randNum] == 'yes')
+		}
+		usedWord[randNum] = 'yes';		
+		wordPair = randNum;		
+				
+		randNum = Math.ceil(Math.random()*NUMQUESTIONS*2);		//Next, choose the location of the english word
+		if(usedLoc[randNum] == 'yes'){				
+			do {
+				randNum = randNum + 1;
+				if(randNum == (NUMQUESTIONS*2+1)) randNum = 1;
+			} while (usedLoc[randNum]  == 'yes')
+		}
+		usedLoc[randNum] = 'yes';							//This number has not been used - ENGLISH
+		eng = randNum;		
+		
+		randNum = Math.ceil(Math.random()*NUMQUESTIONS*2);		//Next, choose the location of the Chinese word
+		if(usedLoc[randNum] == 'yes'){				
+			do {
+				randNum = randNum + 1;
+				if(randNum == (NUMQUESTIONS*2+1)) randNum = 1;
+			} while (usedLoc[randNum] == 'yes')
+		}
+		usedLoc[randNum] = 'yes';							//This number has not been used - CHINESE			
+		zhw = randNum;		
+
+//First, Enter the first word
+		x = Math.ceil(eng/MATRIX_WIDTH);
+		y =  (eng % MATRIX_WIDTH) + 1;
+		tdVal = '_' + x + '_' + y;	
+		textVal = 'val' + tdVal;
+		if (!document.all){
+			document.getElementById(textVal).value = arabic[wordPair];			
+			document.getElementById(textVal).name = wordPair;			
+			document.getElementById(textVal).style.backgroundColor = '#bbbb00';			
+			document.getElementById(tdVal).style.backgroundColor = '#bbbb00';			
+		}
+		else {
+			document.all[textVal].value = arabic[wordPair];			
+			document.all[textVal].name = wordPair;			
+			document.all[textVal].style.backgroundColor = '#BBBB00';		
+			document.all[tdVal].style.backgroundColor = '#BBBB00';		
+		}
+		
+//Next, put in the matching word
+		x = Math.ceil(zhw/MATRIX_WIDTH);
+		y =  (zhw % MATRIX_WIDTH) + 1;
+		tdVal = '_' + x + '_' + y;	
+		textVal = 'val' + tdVal;
+		if (!document.all){
+			document.getElementById(textVal).value = roman[wordPair];			
+			document.getElementById(textVal).name = wordPair;							
+			document.getElementById(textVal).style.backgroundColor = '#bbbb00';			
+			document.getElementById(tdVal).style.backgroundColor = '#bbbb00';			
+		}
+		else {
+			document.all[textVal].value = roman[wordPair];			
+			document.all[textVal].name = wordPair;							
+			document.all[textVal].style.backgroundColor = '#BBBB00';		
+			document.all[tdVal].style.backgroundColor = '#BBBB00';		
+		}	
+	}	
+}
+
+var lastHit = 0;
+var lastID = 0;
+var lastSelection;
+var lastTD;
+
+function getAnswer(row,col){
+
+var thisTD = '_'+ row + '_' + col;
+var selection = 'val' + thisTD;
+var nextHit = (row-1) * 4 + col;		
+var nextID;
+
+	if (!document.all){
+		nextID = document.getElementById(selection).name;	
+	}
+	else {
+		nextID = document.all[selection].name;	
+	}
+	if(lastHit == 0) {
+	}
+	else {
+		if(nextID == lastID && lastHit != nextHit)	{
+			if (!document.all){
+				document.getElementById(selection).style.backgroundColor = '#000000';
+				document.getElementById(lastSelection).style.backgroundColor = '#000000';			
+				document.getElementById(lastTD).style.backgroundColor = '#000000';			
+				document.getElementById(thisTD).style.backgroundColor = '#000000';		
+			}
+			else {
+				document.all[selection].style.backgroundColor = '#000000';
+				document.all[lastSelection].style.backgroundColor = '#000000';		
+				document.all[lastTD].style.backgroundColor = '#000000';		
+				document.all[thisTD].style.backgroundColor = '#000000';			
+		}
+			
+		}
+	}	
+	lastHit = nextHit;	
+	lastID = nextID;
+	lastSelection = selection;
+	lastTD = thisTD;
+}
+
+//4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+//Here, we get the date from the Future, DAY_IN_THE_FUTURE days in the future from now
+var g_strByDate;
+var DAY_IN_THE_FUTURE = 66;
+
+function dateGetter(){
+var today;
+var day;
+var msecs;
+var nextOne;
+var daMonths;
+var enSeis;
+daMonths = new Array('Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.');
+
+	today = new Date();
+	msecs = today.getTime();	
+	day = today.getDay();		
+	msecs = msecs + 1000*60*60*24*DAY_IN_THE_FUTURE;  
+	nextOne = new Date(today.setTime(msecs));
+//	msecs = msecs + (6-day)*1000*60*60*24;	//This ties the routing to a specific DAY in x weeks (the first wednesday...)
+//	msecs = msecs + 1000*60*60*24;
+	enSeis = new Date(today.setTime(msecs));
+	g_strByDate = daMonths[enSeis.getMonth()] + " " + enSeis.getDate() + ", " + enSeis.getYear();
+
+}
+
+//5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+//Here we just check to see which Browser we are up against in the first routine, and then change
+// the background color of a div based on the browser type
+
+function BrowserType(){
+	nn4    = false; // netscape 4.x
+	ie4    = false; // internet explorer 4.x
+	ie5up  = false; // internet explorer 5.0 and above
+	modern = false; // other modern browsers
+	
+	if (document.layers) {         					alert('NN4'); nn4=true;}
+	if (document.all && !document.getElementById){	alert('IE4'); ie4=true;}
+	if (document.all && document.getElementById){  	alert('IE5+'); ie5up=true;}
+	if (document.getElementById){                  	alert('NS-IE-modern'); modern=true;}
+	
+	if (modern == true)
+	{
+	   // do standards compliant stuff
+	}
+	else
+	{
+	   // do other stuff
+	}
+}
+
+
+//6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+//Here, we generically change a parameter name for different browsers
+function changeColor(){
+	if (document.layers)
+		document.layers["changeBkg"].style.backgroundColor = "#00cccc";
+	else if (document.getElementById != null)
+		document.getElementById("changeBkg").style.backgroundColor = "#00cccc";
+	else
+		document.all["changeBkg"].style.backgroundColor = "#00cccc";		
+
+}
+
+//7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+// Javascript function to give you a way to automatically scroll back to the top of a page.
+// You also create a DIV with the specific scroll gif in it, which is then moved
+// up and down as need be
+function doScrollThingy(){
+	initfloatingimage();
+	if (document.all)
+		window.onscroll = floating;
+	else
+		setInterval ('floating()', 60);
+}
+
+var queryPlatform = navigator.userAgent;
+var platform;
+if (queryPlatform.indexOf('Mac') !=-1)  {
+	platform = 'mac';
+} else {
+	platform = 'win';
+}
+
+function back2Top()
+{
+	if (document.getElementById)
+	{ scrollTo (0,0) ; }
+}
+
+function floating () {
+	if (document.all) {
+		
+		if (platform == 'mac')
+		{	
+		}
+		else
+		{
+			document.all.ToTop.style.pixelTop = document.body.clientHeight - 150 + document.body.scrollTop;
+		}
+	}
+	else if (document.layers) {
+		document.ToTop.top = window.innerHeight - 150 + window.pageYOffset;
+	}
+	else if (document.getElementById) {
+		document.getElementById('ToTop').style.top = window.innerHeight - 150 - 5 + window.pageYOffset + 'px';
+		}
+}
+
+function initfloatingimage () {
+	
+	if (document.all) {
+		document.all.ToTop.style.pixelLeft = 616;
+		if (platform == 'mac')
+		{
+			document.all.ToTop.style.visibility = 'hidden';
+		}
+		else
+		{
+			document.all.ToTop.style.visibility = 'visible';
+		}
+	}
+	else if (document.layers) {
+		document.ToTop.left = 616;
+		document.ToTop.visibility = 'show';
+	}
+	else if (document.getElementById) {
+		document.getElementById('ToTop').style.left = 616;
+		document.getElementById('ToTop').style.visibility = 'visible';
+		}
+	}
+
+//8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
+//Here, I display some innovative ways to describe arrays	
+
+function arrayHeaven(){
+	var fl_ar=new Array();
+	fl_ar["Box in"]=0;
+	fl_ar["Box out"]=1;
+	fl_ar["Circle in"]=2;
+	fl_ar["Circle out"]=3;
+	fl_ar["Wipe up"]=4;
+	fl_ar["Wipe down"]=5;
+	fl_ar["Wipe right"]=6;
+	fl_ar["Wipe left"]=7;
+	fl_ar["Vertical blinds"]=8;
+	fl_ar["Horizontal blinds"]=9;
+	fl_ar["Checkerboard across"]=10;
+	fl_ar["Checkerboard down"]=11;
+	fl_ar["Random dissolve"]=12;
+	fl_ar["Split vertical in"]=13;
+	fl_ar["Split vertical out"]=14;
+	fl_ar["Split horizontal in"]=15;
+	fl_ar["Split horizontal out"]=16;
+	fl_ar["Strips left down"]=17;
+	fl_ar["Strips left up"]=18;
+	fl_ar["Strips right down"]=19;
+	fl_ar["Strips right up"]=20;
+	fl_ar["Random bars horizontal"]=21;
+	fl_ar["Random bars vertical"]=22;
+	fl_ar["Random filter"]=23;
+	
+	var argu=arguments;
+	var st_endarg="var argtn=argt.length-1;for(i=0;i<argtn;i++) eval(\"var \"+argt[i][0]+\"=(i<argu.length)?argu[i]:argt[i][1];\");";
+	
+		var argt=[
+		["offset","auto"],["offset_l","0"],["offset_t","0"],["arrange","vertically"],
+		["arrow",""],["arrow_w","-1"],["arrow_h","-1"],
+		["spacing","3"],["padding","0"],
+		["bg_cl","#ffffff"],["bg_image",""],["bg_rep","repeat"],
+		["bd_cl","#000000"],["bd_sz","0"],["bd_st","none"],
+		["trans","0"],["spec","Normal"],["spec_sp","50"],
+		["lw_max","16"],["lh_max","16"],["rw_max","16"],["rh_max","16"],
+		["bg_pos_x","0%"],["bg_pos_y","0%"],
+		["ds_sz","0"],["ds_color","gray"],
+		["hdsp","false"],["bd_cl_t",""],["bd_cl_r",""],["bd_cl_b",""],
+		["ds_st","none"],
+		["",""]];
+	
+	var argtn=argt.length-1;		//Built-in, dude!!
+	eval(st_endarg);				//Global method that evaluates string with javascript
+	alert(fl_ar["Strips right up"]);	//You can define a string value to equal a number
+	alert(argt[0]);		// You get 'offset,auto'
+	alert(argt[0][0]);	// You get 'offset'	
+	alert(argt[2][1]);	// You get '0'
+		
+	/* HERE WE DEFINE AN ARRAT TO REFERENCE IT MUCH LIKE WE DO STYLE ELEMENTS */	
+	chapters = [	
+	{	groupNumber: '45',
+		location: 'New York, NY',
+		memberCount: '937'
+	}, {
+		groupNumber: '54',
+		location: 'Washington, DC',
+		memberCount: '287'
+	}];
+	alert(chapters[0].groupNumber);  // You get '45'
+	alert(chapters[1].location);	 // You get 'Washington, DC'
+	/* HERE WE DEFINE AN ARRAT TO REFERENCE IT MUCH LIKE WE DO STYLE ELEMENTS */	
+	
+	//Multidimensional array
+	var zipLocations = new Array ( new Array(), new Array());
+}
+
+//9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
+//This is slick.  Figure out what version of the browser you have, then gives you the object
+//that allows you to manipulate using the DOM. You  pass in the object ID.
+function getObject(daID){
+	if (document.layers) {         					return document.layers[daID]}
+	if (document.all ){								return document.all[daID];}
+	if (document.getElementById){                  	return document.getElementById(daID);}
+
+}
+
+//10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 
+//Here, I switch the button based on the existence of another button.  Used originally in the 
+//Lucky Surf job as a "patch"
+function addButton(){
+
+if (document.lotto_games_form.opRoundedEdge)
+	document.write('<IMG alt="Add &gt;&gt;" height=20 src="http://www.thebigpayout.com/pix/optimost/add_round.gif" width=65 border=0>');
+else if (document.lotto_games_form.opSharpEdge)
+	document.write('<IMG alt="Add &gt;&gt;" height=20 src="http://www.thebigpayout.com/pix/optimost/add_lightYellow_Horit.gif" width=65 border=0>');
+else 
+	document.write('<IMG alt="Add &gt;&gt;" height=20 src="http://www.thebigpayout.com/pix/optimost/add_Yellow_Hort.gif" width=65 border=0>');
+}
+
+function addButtonX(){
+
+if (document.lotto_games_form.opRoundedEdge)
+	document.lotto_games_form.opRoundedEdge.src="http://www.thebigpayout.com/pix/optimost/add_round.gif";
+else if (document.lotto_games_form.opSharpEdge)
+	document.lotto_games_form.opSharpEdge.src="http://www.thebigpayout.com/pix/optimost/add_lightYellow_Horit.gif";
+}
+
+//11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 
+// This is to help avoid the "javascript executing inside javascript" issue.  This is a problem on Mozilla
+// because if you have an image that is created with a document.write inside our Trial code, it WILL NOT be
+// execute until the END of the trial code, which means it will not be put in the correct spot.  However,
+// if you first create and name the image, give it a dummy spacer, then change the .src of that image, then
+// everybody's happy :) 
+
+function javascriptInsideJavascriptIssue(){
+	if (!document.all)
+		document.getElementById('groupImage').src = "http://es.optimost.com/es/41/c/2/u/home_logo-new.gif";
+	else 
+		document.all['groupImage'].src = "http://es.optimost.com/es/41/c/2/u/home_logo-new.gif";			
+}
+
+//12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+// Here, we read the query sting, look for the keyword origin which contains the type of activity we
+// will be engaing in
+
+var fundArray=[
+		["","General Fundrasing","http://www.fundraising.entertainment.com/images/fund/ent_bookandsf.gif"],
+		["Youth Fundraising","Youth Fundraising","http://fundraising.entertainment.com/images/106866C.jpg"],
+		["Cheerleading Fundraising","Cheerleading Fundraising Ideas","http://fundraising.entertainment.com/images/Cheerleader.jpg"]
+		];
+
+function arrayChecker(origin){
+	
+	for (i = 0; i < fundArray.length; i++) 
+		if(fundArray[i][0] == origin) return i;
+		
+	return 0;
+}
+
+	var params = getParams();	
+
+function getParams()
+{
+	var query  = unescape(top.location.search.substring(1)).split('&');
+	var params = new Array();
+
+	for (i = 0; i < query.length; i++)
+	{
+		var tmp = query[i].split('=');
+		params[tmp[0]] = tmp[1]
+	}
+	return params;
+}
+
+
+//13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 
+// Here, we use innerHTML to add the contents of a previously created DIV.
+
+function addInnerHTML(idName){
+
+	if (!document.all)
+		document.getElementById(idName).innerHTML = '<B><FONT color="0052A5">Millions of Consumers</FONT></B> Buy Our Products Every Year';			
+	else 
+		document.all[idName].innerHTML = '<B><FONT color="0052A5">Millions of Consumers</FONT></B> Buy Our Products Every Year';	
+}
+
+//13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 13.5 
+//Another innerHTML example, this one allows me to create the image array's individual values after the fact, 
+//which I used on the LuckySurf layout for Mozilla issues.
+function opPointerAway(val){
+	document.images["number" + val].src = "http://www.thebigpayout.com/pix/nc1_chose.gif";
+
+}
+
+function opPointerOver(val){
+	document.images["number" + val].src = "http://www.thebigpayout.com/pix/nc1_valide.gif";
+}
+
+function opPointerClick(val){
+	document.images["number" + val].src = "http://www.thebigpayout.com/pix/nc1_valide.gif";
+}
+
+function createNumbers(){
+	var string = "";
+	  for (var index = 1; index <= 60; index++) {
+	    string += "<a href=\"javascript:opPointerClick(" + index + ");\"";
+	    string += "onMouseOut=\"opPointerAway(" + index + ");\"";
+	    string += "onMouseOver=\"opPointerOver(" + index + ");\">";
+	    string += "<img border=\"0\" name=\"number" + index + "\" src=\"http://www.thebigpayout.com/pix/z.gif\"";
+	    string += "\" height=\"21\" width=\"21\"></a>";
+	  }
+	  document.write (string);
+
+}
+
+function createNumbersInnerHTML(idName){
+	var string = "";
+	  for (var index = 1; index <= 60; index++) {
+	    string += "<a href=\"javascript:opPointerClick(" + index + ");\"";
+	    string += "onMouseOut=\"opPointerAway(" + index + ");\"";
+	    string += "onMouseOver=\"opPointerOver(" + index + ");\">";
+	    string += "<img border=\"0\" name=\"number" + index + "\" src=\"http://www.thebigpayout.com/pix/z.gif\"";
+	    string += "\" height=\"21\" width=\"21\"></a>";
+	  }
+	  	if (!document.all)
+			document.getElementById(idName).innerHTML = string;			
+		else 
+			document.all[idName].innerHTML = string;	
+}
+
+// 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14
+// Here, we use Divs to create pull-down menus.  You turn them off by clickin with your mouse.
+// I've seen better versions that go away when you leave the menu, but much more complicated.
+// You'll notice the styles at the bottomo
+var cm=null;
+document.onclick = new Function("showNav(null)")
+function getNavPos(el,sProp) {
+	var iPos = 0
+	while (el!=null) {
+		iPos+=el["offset" + sProp]
+		el = el.offsetParent
+	}
+	return iPos
+
+}
+
+function showNavAbove(el,m) {
+	if (m) {
+		m.style.display='';
+		m.style.pixelLeft = getNavPos(el,"Left")
+		m.style.pixelTop = getNavPos(el,"Top") - m.offsetHeight
+	}
+	if ((m!=cm) && (cm)) cm.style.display='none'
+	cm=m
+}
+function showNav(el,m) {
+	if (m) {
+		m.style.display='';
+		m.style.pixelLeft = getNavPos(el,"Left")
+		m.style.pixelTop = getNavPos(el,"Top") + el.offsetHeight
+	}
+	if ((m!=cm) && (cm)) cm.style.display='none'
+	cm=m
+}
+//15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 
+// Here a routing that pulls the value out of a query string, then adds it to our counter
+//value as the Impression Identifier.  Notice I have a bogus URL cuz I don't want to 
+//piss Lance off.
+
+function getOpCreativeIDFromQueryString(){
+
+	var query  = unescape(top.location.search.substring(1)).split('&');
+	var params = new Array();
+
+	for (i = 0; i < query.length; i++)
+	{
+		var tmp = query[i].split('=');
+		params[tmp[0]] = tmp[1]
+	}
+	if(params['opcreativeid']) {
+		creativeID = params['opcreativeid'];
+		document.write('<'+'script type="text/javascript" src="' +
+						"http://by.abcdefghij.com/action.php/40/1/1/" + creativeID +
+						'"><\/script>');
+		opcreativeIDarea.innerHTML = '-'+'script type="text/javascript" src="' + '"http://by.rfdecsdwes.com/action.php/40/1/1/' + creativeID + '"'				
+	}		
+	else {
+		opcreativeIDarea.innerHTML = '-'+'script type="text/javascript" src="' + '"http://by.rfdecsdwes.com/action.php/40/1/1/' + 'nada' + '"'				
+	}	
+	
+}
+//16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 
+//This was a fun one.  Ran into the issue of DIVs resulting in an uncentered page.  
+//I was going to blow it off, but I was told to deal with it.  First panic, then 
+//remembered a technique used in the Trustwave page for that tracking cursur thingy.
+//Anyways, what I do is find the current width of the page, then subtract the min
+//width of the page, and divide by 2. On startup, I read the left position of all
+//my DIVs.  Then each time the page is resized, I add these two values to find the 
+//new left position. The only way to improve is to find all the DIVs programatically
+//so I can just plug this guy in to my code in the future.  Could make on Optimost
+//policy to start all divs with "opt"
+var posAreaA;
+var posAreaBC;
+var posAreaD;
+var VIEW_WIDTH = 740;
+
+function resetDIVs(){
+	var newWidth;
+	if (document.all) {
+		newWidth = document.body.clientWidth;
+		if(newWidth < VIEW_WIDTH ) newWidth = VIEW_WIDTH ;
+		newOffset = (newWidth - VIEW_WIDTH )/2;
+		document.all['areaA'].style.left = posAreaA + newOffset;
+		document.all['areaBC'].style.left = posAreaBC + newOffset;
+		document.all['areaD'].style.left = posAreaD + newOffset;
+	}
+	else if (document.getElementById) {
+		newWidth = document.body.clientWidth;
+		if(newWidth < VIEW_WIDTH ) newWidth = VIEW_WIDTH ;
+		newOffset = (newWidth - VIEW_WIDTH )/2;
+		document.getElementById('areaA').style.left = posAreaA + newOffset + 'px';
+		document.getElementById('areaBC').style.left = posAreaBC + newOffset + 'px';
+		document.getElementById('areaD').style.left = posAreaD + newOffset + 'px';
+	}
+	else if (document.layers) {
+		newWidth = document.body.clientWidth;
+		if(newWidth < VIEW_WIDTH ) newWidth = VIEW_WIDTH ;
+		newOffset = (newWidth - VIEW_WIDTH )/2;
+		document.all.areaA.left = posAreaA + newOffset;
+		document.all.areaBC.left = posAreaBC + newOffset;
+		document.all.areaD.left = posAreaD + newOffset;
+	}
+}
+
+function setWidth(){
+	if (document.all) {
+		posAreaA = parseInt(document.all['areaA'].style.left);
+		posAreaBC = parseInt(document.all['areaBC'].style.left);
+		posAreaD = parseInt(document.all['areaD'].style.left);
+	}
+	else if (document.getElementById) {
+		posAreaA = parseInt(document.getElementById('areaA').style.left);
+		posAreaBC = parseInt(document.getElementById('areaBC').style.left);
+		posAreaD = parseInt(document.getElementById('areaD').style.left);
+	}
+	else if (document.layers) {
+		posAreaA = parseInt(document.areaA.left);
+		posAreaBC = parseInt(document.areaBC.left);
+		posAreaD = parseInt(document.areaD.left);
+	}
+	resetDIVs();
+}
+
+//17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 
+//This technique takes check for a valid US phone number and extension, assuming
+//10 digits.  Could check for "1" or "0" in front and other international dialing issues,
+//which I could in the future, but this is a nice start.
+function checkphone(userPhoneNum){
+
+var valid = "0123456789-(). "
+var valid2 = "0123456789"
+var ok = "yes";
+var temp;
+var ok2 = "yes";
+var temp2;
+var temp3="";
+
+	for (var i=0; i<userPhoneNum.value.length; i++) {
+		temp = "" + userPhoneNum.value.substring(i, i+1);//Parse the number string, one character at a time
+		if (valid.indexOf(temp) == "-1") ok = "no";		//check to see if the value is a "valid" value
+	}
+	if (ok == "no") {
+		alert("Invalid entry.  Only numeric phone numbers are accepted!");// If not, do it again
+		userPhoneNum.focus();
+		userPhoneNum.select();
+	}
+	else {
+		for (var i=0; i<userPhoneNum.value.length; i++) {	//Having determined validity, now we remove
+			temp2 = "" + userPhoneNum.value.substring(i, i+1);//".", "-", "(", and ")" from the number
+			if (valid2.indexOf(temp2) != "-1") 
+			 temp3=temp3+temp2;
+		}
+	
+		if ((temp3.length !=10)) {	//Now, we check to make sure the number of ....
+			alert("Invalid entry.  Please enter the complete phone number including area code.");
+			userPhoneNum.focus();							//digits entered is valid
+			userPhoneNum.select();
+		}
+	}
+}
+
+function checkExtension(userExtension){
+
+var valid = "xX0123456789"
+var ok = "yes";
+var temp;
+
+	for (var i=0; i<userExtension.value.length; i++) {
+		temp = "" + userExtension.value.substring(i, i+1);//Parse the number string, one character at a time
+		if (valid.indexOf(temp) == "-1") ok = "no";		//check to see if the value is a "valid" value
+	}
+	if (ok == "no") {
+		alert('Invalid extension.  Only numeric extensions with an "x" prefix are accepted!');// If not, do it again
+		userExtension.focus();
+		userExtension.select();
+	}
+}
+//18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18  -- Feb 10 2004
+//Here is one more issue that Optimost needs to handle that I just learned about yesterday.  There may be cases where 
+//a customer has form data, and if the data is in error, the page is redisplayed, but with BRIGHT RED text telling the
+//user what fields need to be filled in.  This is for GoToMyPC, and  
+var errorCondx = '';
+var emailError= '';
+var email2Error= '';
+var fNameError= '';
+var lNameError= '';
+
+var tdIndex = new Array();
+var stringPrefix='<table cellspacing=0 cellpadding=0 border=0><tr><td height=8></td></tr>'+
+				'<tr><td valign=top nowrap><img src="http://www.gotomypc.com/images/error_icon.gif" width=16 height=16>'+
+				'<font face="Verdana,Arial,Helvetica" size=1>&nbsp;</font></td>'+
+				'<td width=100%><font face="Verdana,Arial,Helvetica" size=1><font color=#ff0000 size=2>'+
+				'<b>Please correct the fields marked in red.<br></b></font></font></td></tr><tr><td height=4></td></tr>'+
+				'<tr><td colspan=2><font face="Verdana,Arial,Helvetica" size=1><font color=#ff0000>';
+
+var stringsuffix='</font></td></tr><tr><td height=8></td></tr></table>';
+
+function addErrorMessage(idName){
+	var invalidFields = '';
+	var index=0;
+	if(typeof(fNameError) == "string"){
+		invalidFields = invalidFields + '<b>First Name</b> is a required field.<br>'
+		tdIndex[index++] = 'tdFname';
+	}
+	if(typeof(lNameError) == "string"){
+		invalidFields = invalidFields + '<b>Last Name</b> is a required field.<br>'
+		tdIndex[index++] = 'tdLname';
+	}
+	if(typeof(emailError) == "string"){
+		invalidFields = invalidFields + '<b>Email</b> is a required field.<br>'
+		tdIndex[index++] = 'tdEmail';
+	}
+	if(typeof(email2Error) == "string"){
+		invalidFields = invalidFields + '<b>Re-enter Email</b> is a required field.<br>'
+		tdIndex[index++] = 'tdEmail2';
+	}
+	if (!document.all){
+		document.getElementById(idName).innerHTML = stringPrefix + invalidFields + stringsuffix;
+		for(i=0;i<tdIndex.length;i++)	document.getElementById(tdIndex[i]).style.color = '#ff0000';		
+	}
+	else {
+		document.all[idName].innerHTML = stringPrefix + invalidFields + stringsuffix;	
+		for(i=0;i<tdIndex.length;i++)	document.all[tdIndex[i]].style.color = '#ff0000';		
+	
+	}
+}
+
+//19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 
+//Here I just parse a string.  Not a big deal, but good technique to have.
+
+function getLetter(phrase,idName){
+	var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+	var result = '';
+	var temp = '' + phrase.toLowerCase();
+	for (i=0;i<phrase.length;i++){
+		for (j=1;j<alphabet.length+1;j++){
+			if(temp.substring(i,i+1) == alphabet.substring(j-1,j)) {
+				result = result + temp.substring(i,i+1) + ' is letter ' + j + ' of the english alphabet<br>';
+			}
+		}
+	}
+	if (!document.all)
+		document.getElementById(idName).innerHTML = result;			
+	else 
+		document.all[idName].innerHTML = result;
+}
+//20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+//Just a case statement, in case I need the syntax
+function text_4(group)
+{
+	switch(group) {
+	case 'Sally Focus':
+		return '<B><FONT color="0052A5">Easy to sell</FONT></B> because people want our products';
+		break;
+
+	default:
+		return '<B><FONT color="0052A5">Entertainment Coupon Book- #1 Name in Savings</FONT></b><BR>  Full of 50% discounts that helps your supporters save money on the things they do.';
+		break;
+	}
+
+}
+//21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 21 
+//Just a delay function.  You set the dealy, and the prescribed function is executed delay later.
+function setDelay(secs){
+var t = setTimeout("delayedFunction();", secs * 1000);
+}
+function delayedFunction(){
+//	alert('You waited ' + secs + ' seconds to trigger');
+	alert('Thanks for waiting');
+}
+
+//22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22
+//How to set radio buttons in javascript. They are defined based on order of creation 0 first, 1 second, 2 third, etc.
+function setGender(bitGender) {
+	if (bitGender =='0') document.radioTest.bitGender[0].click();
+	else if (bitGender =='1') document.radioTest.bitGender[1].click();
+}
+
+//23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 
+//How to toggle div area on/off when it was off by default.  Key is setting DIV style using CSS referenced
+// by Div ID 
+function toggleDiv(divName) {
+	if(document.all != null){
+		if(document.all[divName].style.visibility == 'visible') document.all[divName].style.visibility = 'hidden';
+		else document.all[divName].style.visibility = 'visible';
+	}	
+	else if(document.getElementById != null){
+		if(document.getElementById(divName).style.visibility == 'visible') document.getElementById[divName].style.visibility = 'hidden';
+		else document.getElementById(divName).style.visibility = 'visible';
+	}
+}
+
+function changeBackgroudImage(){
+	if(document.all != null){
+		document.all['opBasicBkg'].style.backgroundImage = "url(http://es.optimost.com/es/38/c/8/u/BasicRight.gif)";
+	}
+	else if(document.getElementById != null){
+		document.getElementById('opBasicBkg').style.backgroundImage = "url(http://es.optimost.com/es/38/c/8/u/BasicRight.gif)";
+	}
+}
+//24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 
+function setDaCookies(cookieName,cookieValue){
+	document.cookie= cookieName + "=" + escape(cookieValue) + "; path=/;";
+	document.cookie="CookieName=leCookie" + "; path=/; domain=.domainName.com;";
+}
+function getDaCookies(cookieValue){
+var _opcookies = new Object;
+	if (document.cookie.length > 0) { var _ca = document.cookie.split("\;");
+	for (var i=0; i < _ca.length; i++) { var _cv = _ca[i].split("=");
+	while (_cv[0].substring(0, 1) == " ") _cv[0] = _cv[0].substring(1, _cv[0].length);
+	_opcookies[_cv[0]] = unescape(_cv[1]); } }
+	if(_opcookies[cookieValue] != null) {alert(cookieValue + '=' + _opcookies[cookieValue]);return _opcookies[cookieValue];}
+	else {alert('Cookie not set');return null;}
+ 	
+}
+
+//25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 
+function opValidateRadio(frm, btnName)
+{
+	var btn = frm[btnName]
+	var valid
+	
+	for (var x = 0;x < btn.length; x++)
+	{
+		valid = btn[x].checked
+		if (valid) {break}
+	}
+	if(!valid)
+	{
+		alert("Please select an answer.")
+	}
+}
+
+</SCRIPT>
+
+<STYLE>
+.menu {background-color:#0066cc;width:100; color: #CCFFCC; text-align: center}
+.submenu {position:absolute;background-color:#6666cc;width:100}
+.majorNav
+{
+	font-family: Tahoma, Arial, Helvetica;
+	font-size: 11px;
+	font-weight: bold;
+	color: #CCFFCC;
+	text-decoration: none;
+}
+
+.navLinkSelected
+{
+	font-family: Tahoma, Arial, Helvetica;
+	font-size: 11px;
+	font-weight: normal;
+	color: #CCCCCC;
+	text-decoration: none;
+}
+</STYLE>
+
+
+</head>
+
+<body>
+<table>
+	<tr>
+		<td width="100%">
+			<input type="text" id="searchforText" value="Type Search Term Here" style="color:#aaaaaa; width:100%; HEIGHT:24px; background-color:#FDFEDB;" onfocus="changeTextbox()">
+		</td>
+	</tr>
+</table>
+<table>
+<form name="opsymbol_search_form" method="get" action="http://www.optimost.com/" onSubmit="return gotoSearch2()" style="margin:0px">
+	<tr>
+		<td width="100%">
+			<input type="text" name="searchfor" value="Type Search Term Here" style="color:#aaaaaa; width:100%; HEIGHT:24px; background-color:#FDFEDB;" onfocus="changeFormTextbox()">
+		</td>
+&euro;	</tr>
+</form>
+</table>
+<table width="100px" style="border-bottom-color: Black; border: thick solid;">
+<tr><td colspan=4 class="myHeader">Roman to Arabic test!</td></tr>
+<tr>
+	<td id="_1_1" class="bgdefault" onclick=getAnswer(1,1)>
+		<div  class="textGIFs"><input type="text" id="val_1_1" name="1" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_1_2"  class="bgdefault" onclick=getAnswer(1,2)>
+		<div  class="textGIFs"><input type="text" id="val_1_2" name="2" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_1_3" class="bgdefault" onclick=getAnswer(1,3)>
+		<div  class="textGIFs"><input type="text" id="val_1_3" name="4" value="" size="4" class="choices" readonly> </td>
+		</div>
+	</td>
+	<td id="_1_4" class="bgdefault" onclick=getAnswer(1,4)>
+		<div  class="textGIFs"><input type="text" id="val_1_4" name="3" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td id="_2_1" class="bgdefault" onclick=getAnswer(2,1)>
+		<div  class="textGIFs"><input type="text" id="val_2_1" name="3" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_2_2"  class="bgdefault" onclick=getAnswer(2,2)>
+		<div  class="textGIFs"><input type="text" id="val_2_2" name="4" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_2_3" class="bgdefault" onclick=getAnswer(2,3)>
+		<div  class="textGIFs"><input type="text" id="val_2_3" name="1" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_2_4"  class="bgdefault" onclick=getAnswer(2,4)>
+		<div  class="textGIFs"><input type="text" id="val_2_4" name="2" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td id="_3_1" class="bgdefault" onclick=getAnswer(3,1)>
+		<div  class="textGIFs"><input type="text" id="val_3_1" name="3" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_3_2" class="bgdefault" onclick=getAnswer(3,2)>
+		<div  class="textGIFs"><input type="text" id="val_3_2" name="4" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_3_3" class="bgdefault" onclick=getAnswer(3,3)>
+		<div  class="textGIFs"><input type="text" id="val_3_3" name="1" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_3_4" class="bgdefault" onclick=getAnswer(3,4)>
+		<div  class="textGIFs"><input type="text" id="val_3_4" name="2" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td id="_4_1" class="bgdefault" onclick=getAnswer(4,1)>
+		<div  class="textGIFs"><input type="text" id="val_4_1" name="1" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_4_2" class="bgdefault" onclick=getAnswer(4,2)>
+		<div  class="textGIFs"><input type="text" id="val_4_2" name="2" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_4_3" class="bgdefault" onclick=getAnswer(4,3)>
+		<div  class="textGIFs"><input type="text" id="val_4_3" name="4" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+	<td id="_4_4" class="bgdefault" onclick=getAnswer(4,4)>
+		<div  class="textGIFs"><input type="text" id="val_4_4" name="3" value="" size="4" class="choices" readonly></td>
+		</div>
+	</td>
+</tr>
+<tr><td colspan=4 align=center><Button name=randomNum type=button onclick="randomNumberGeneratorANDSorter();return false;">Click for new Test!!</BUTTON></td></tr>
+</table>
+<table width="120px" style="border-bottom-color: Green; border: thick solid;">	
+	<tr><td>
+		<font class="sansblacksml"><b><script>dateGetter();document.write(g_strByDate)</script></b></font>
+	</td></tr>
+</table>
+<table width="120px" style="border-bottom-color: Green; border: thick solid;">	
+<tr><td colspan=4 align=center><Button name=checkDaBrowser type=button onclick="BrowserType();return false;">Click to check your Browser</BUTTON></td></tr>
+</table>
+<table width="120px" style="border-bottom-color: Green; border: thick solid;">	
+<tr><td colspan=4 align=center><Button name=changeBackground id=changeBkg type=button onclick="changeColor();return false;">Click to change this button's background</BUTTON></td></tr>
+</table>
+<table width="120px"  style="border-bottom-color: orange; border: thin solid;">	
+<tr><td colspan=4 align=center><Button name=doArrayStuff id=arrayStuff type=button onclick="arrayHeaven();return false;">Click to do array tests</BUTTON></td></tr>
+</table>
+<table width="120px" height="500px" style="border-bottom-color: blue; border: thin dashed;">	
+<tr><td colspan=4 align=center><Button name=addScrollThingy id=scrollThingy type=button onclick="doScrollThingy();return false;">Click to add Scroll Thingy</BUTTON></td></tr>
+</table>
+<div id="ToTop" style="POSITION: absolute; TOP: 700px; VISIBILITY: hidden">
+	<a href="#top"><IMG height="12" alt="Back To Top" src="http://www.trustwave.com/images/backToTop.gif" width="80" border="0"></a>
+</div>	
+
+<form action="http://www.optimost.com/" method="post" name="lotto_games_form">
+<table border=2><tr><td>
+			<table>
+				<tr><td>
+				<IMG height=24 name="roundedEdge" alt="Continue" src="http://www.thebigpayout.com/images/continue.gif" width=104 border=0>
+				</td></tr>
+			</table>
+	</td>
+	<td valign=top>
+			<table>
+				<tr><td>
+				<IMG name="xxx" alt="Check Out" height=20 src="http://www.thebigpayout.com/pix/optimost/add_Yellow_Hort.gif" width=65 border=0>
+				<script>addButtonX();</script>
+				</td></tr>
+				<tr><td>
+				<script>addButton();</script>
+				</td></tr>
+			</table>
+	</td>
+	
+</tr></table>
+				<TABLE cellpadding="0" cellspacing="0" width="100%" >
+					<TR>
+						<TD valign="top" width="1%">
+						<img name=groupImage src="http://www.fundraising.entertainment.com/images/misc/spacer.gif">
+						<script>javascriptInsideJavascriptIssue();</script>
+						</TD>
+						<!--<TD valign="top" style="font-size : 12px">-->
+					</TR>	
+				</TABLE>
+
+</form>		
+<!-- Technique 12 12 12  -->
+<table><tr><td>
+<img name=groupImage11 src="http://www.fundraising.entertainment.com/images/misc/spacer.gif" width="200px">
+</td><td>
+<script language="javascript" type="text/javascript">
+	var params = getParams();
+	var index = arrayChecker(params['origin']);
+	document.write(fundArray[index][1]);
+	if (!document.all)
+		document.getElementById('groupImage11').src = fundArray[index][2];			
+	else 
+		document.all['groupImage11'].src = fundArray[index][2];	
+
+</script>
+</td></tr></table>
+<!-- Technique 14 14 14 14 14 14 14 14 14 -->
+<TABLE CELLPADDING=0 CELLSPACING=0 BGCOLOR="#0066CC">
+	<tr>
+		<td valign="middle" bgcolor="#0066CC" align="center" width="10px"><IMG src="images/blank.gif" BORDER="0" height="30px" width="1px" style="background-color: green;" alt=""></td>
+		<TD CLASS=majorNav nowrap><DIV ID="d1" onmouseover="showNav(this,washPost);" class="menu">&nbsp;&nbsp;&nbsp;Washington Post</DIV></TD>
+		<td valign="middle" bgcolor="#0066CC" align="center" width="10px"><IMG src="images/blank.gif" BORDER="0" height="30px" width="1px" style="background-color: green;" alt=""></td>
+		<TD CLASS=majorNav nowrap><DIV ID="d2" onmouseover="showNav(this,nyTimes);" class="menu">&nbsp;&nbsp;New York Times</DIV></TD>
+		<td valign="middle" bgcolor="#0066CC" align="center" width="10px"><IMG src="images/blank.gif" BORDER="0" height="30px" width="1px" style="background-color: green;" alt=""></td>
+		<TD CLASS=majorNav nowrap><DIV ID="d3" onmouseover="showNavAbove(this,espn);" class="menu">&nbsp;&nbsp;ESPN</DIV></TD>
+	</tr>
+</table>
+
+
+<DIV ID="washPost" CLASS="submenu" STYLE="display:none">
+	<table CELLPADDING=0 CELLSPACING=0 width="100"><!-- MEMBER CENTER INFO -->
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.washingtonpost.com/sports">Sports</A>
+		  </TD>
+		</TR>
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.washingtonpost.com/Finance">Finance</A>
+			</TD>
+		</TR>
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.washingtonpost.com/Nation">Nation</A>
+			</TD>
+		</TR>
+	</table>
+</DIV>
+
+<div id="nyTimes" CLASS="submenu" STYLE="display:none">
+	<TABLE CELLPADDING=0 CELLSPACING=0>  <!-- Referral Center -->
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.nyTimes.com/Life">Life</A>
+		  </TD>
+		</TR>
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.nyTimes.com/metro">Metro</A>
+			</TD>
+		</TR>
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.nyTimes.com/Local">Local</A>
+			</TD>
+		</TR>
+	</table>
+</div>
+
+<div id="espn" CLASS="submenu" STYLE="display:none">
+	<TABLE BORDER=0 WIDTH=121 CELLPADDING=0 CELLSPACING=0><!-- Phone Hog Central-->
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://espn.go.com/page2">Page 2</A>
+		  </TD>
+		</TR>
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/nba/index/">NBA</A>
+			</TD>
+		</TR>
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/nba/index/">College Ball</A>
+			</TD>
+		</TR>		
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/nfl/index/">NFL</A>
+			</TD>
+		</TR>		
+		<TR><TD CLASS=minorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/mlb/index/">Baseballl</A>
+			</TD>
+		</TR>		
+	</TABLE>
+</div>
+
+<!-- Technique 13 13 13, modifying both a DIV and TD -->
+<table border=8 bordercolor=blue>
+	<tr>
+		<td >
+		<div id="mosuxA"></div>
+		</td>
+	</tr>
+	<script>addInnerHTML('mosuxA');</script>
+	<tr>
+		<td id="mosuxB">
+		</td>
+	</tr>
+	<script>addInnerHTML('mosuxB');</script>
+</table>
+<!-- Technique 13.5 13.5 13.5 -->
+<table>
+	<tr>
+		<td width="211" height="127" colspan="3" bgcolor="#FFFFFF" background="http://www.thebigpayout.com/pix/gamepad01.gif" id="moSucks">
+		<script>createNumbersInnerHTML('moSucks');</script>
+		</td>
+	</tr>
+</table>
+<table>
+<tr><td id="opcreativeIDarea" name="opcreativeIDarea"><script>getOpCreativeIDFromQueryString();</script></td></tr>
+</table>
+<!-- Technique 16 16 16 -->
+<table BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<tr>
+		<td><img src="http://www.fundraising.entertainment.com/images/misc/spacer.gif" height="150" width="100">
+		</td>
+	</tr>
+</table>
+<div align="center" class="default">
+	<div id="areaA" STYLE="LEFT: 10; VISIBILITY: visible; WIDTH: 170; POSITION: absolute; TOP: 1700; HEIGHT: 155;">		
+				<a href="http://www.optimost.com/"><img src="http://www.paloalto.com/common/gifs/2004Pro&Premier.gif" alt="Business Plan Pro Boxes" border=0 width=154 height=131></a>
+	</div>	
+	<div id="areaBC" STYLE="LEFT: 195; VISIBILITY: visible; WIDTH: 350; POSITION: absolute; TOP: 1700; HEIGHT: 155;">		
+				<img src="http://www.paloalto.com/common/gifs/decisionpageheader.gif" border=0 alt="Business Plan Pro 2004" width="307" height="51"><br>
+				<FONT face="Arial, Helvetica, sans-serif" size=2>
+				<li> Test your idea with 9,000+ industry profiles<br>
+				<li> Create your plan with <a href="http://www.optimost.com" >400+ sample business plans</a><br>
+				<li> Get funded with the preferred format<br>
+				<li> #1 Rated and <a href="http://www.optimost.com" target="new">Best Selling Business Plan Software</a>
+				</FONT>
+	</div>	
+	<div id="areaD" STYLE="LEFT: 555; VISIBILITY: visible; WIDTH: 150; POSITION: absolute; TOP: 1710; HEIGHT: 155;">		
+				<a href="http://www.optimost.com/"><img src="http://www.paloalto.com/common/gifs/qa/bpw/2004/screenshot_chartsSmall.gif" alt="Business Plan Pro Screenshots" border=0 width=165 height=120></a>
+	</div>
+</div>
+<script language="javascript" type="text/javascript">
+if(document.all) {
+	document.body.onresize = function(){resetDIVs();}
+}
+else{
+	window.addEventListener("resize",resetDIVs,false);
+}
+setWidth();
+</script>
+<!-- Technique 17 17 17 -->
+<table BORDER=2 CELLPADDING=0 CELLSPACING=0>
+	<tr>
+		<td>
+		Give us your phone number, Boy...<input type="text" name="daPhone" size="20" value=""  style="width=150px" onblur="javascript:checkphone(this);"  maxlength="20"> extension:<input type="text" name="daExt" size="8" value=""  style="width=80px" onblur="javascript:checkExtension(this);"  maxlength="20">
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Give us your email address, son....<input type="text" name="daEmail" size="30" value=""  style="width=150px" onblur="javascript:checkEmail(this);"  maxlength="100">
+		</td>
+	</tr>
+	
+</table>
+<!-- Technique 18 18 18 18 -->
+	<table cellpadding=0 cellspacing=0 border=0 width=400 bgcolor=#f4f4f4>
+		<tr>
+			<td height=10 bgcolor=#f4f4f4 colspan=3 id="msgArea" name="msgArea">
+
+			</td>
+		</tr>
+		<tr>
+			<td valign=top id="tdFname" name="tdFname"><font face='Verdana,Arial,Helvetica' size=1>First Name:</font><br>
+				<input type=text name=Name_First value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+			</td>
+			<td valign=top id="tdLname" name="tdLname"><font face='Verdana,Arial,Helvetica' size=1>Last Name:</font><br>						
+				<input type=text name=Name_Last value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+			</td>		
+			</tr>
+			<tr>
+				<td height=5></td>
+			</tr>
+			<tr>					
+			<td valign=top id="tdEmail" name="tdEmail"><font face='Verdana,Arial,Helvetica' size=1>Email</font><br>													
+				<input type=text name=Email value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+			</td>
+			<td valign=top id="tdEmail2" name="tdEmail2"><font face='Verdana,Arial,Helvetica' size=1>Re-enter Email:</font><br>													
+				<input type=text name=Email2 value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+			</td>
+		</tr>
+		<tr>
+			<td height=5></td>
+		</tr>
+	</table>
+<!-- Technique 19 19 19 19-->
+	<table cellpadding=0 cellspacing=0 border=0 border=1>
+		<tr><td>Enter a word or phrase to parse<input type=text name=phrase value="" size=55 onblur="getLetter(this.value,'parseString');">
+			</td>
+		</tr>
+		<tr>
+			<td id="parseString" style="color: Fuchsia; border: thick Blue;" name="parseString" border="1">
+			</td>
+		</tr>
+	</table>
+<!-- Technique 21 21 21 21-->
+<table BORDER=2 CELLPADDING=0 CELLSPACING=0>
+	<tr>
+		<td>
+		How many second delay do you want?<input type="text" name="daDelay" size="20" value=""  style="width=150px" onblur="javascript:setDelay(this.value);"  maxlength="20">
+		</td>
+	</tr>
+</table>
+<!-- Technique 22 22 22 22 -->
+<table><tr>
+<form name="radioTest"><script>var bitGender = 1;</script>
+	<td valign="middle" height="40">
+		<div align="left">
+			<input type=radio value="0" name="bitGender" >Male&nbsp;&nbsp;<input type=radio value="1" name="bitGender" >Female</div>
+	</td></tr>
+			<script> setGender(bitGender);</script>
+</form>
+</table>
+
+<!-- Image on top of an image-->
+<table border=1>
+	<tr><td style="background-image: url(http://www.hydroderm.com/hydroderm/final_images/f_control_bullets.gif)">
+		<div style="width: 390px; height: 156px; padding-left: 220px; padding-top: 88px;"><img src="http://www.hydroderm.com/hydroderm/final_images/h_controla_2buts.gif" width="168" height="24"></div></td></tr>	
+</table>
+
+<table><tr>
+<td>
+<a class="bluetext" name="opBrowse" id="opBrowse" href="javascript:void(0);" onMouseOver="nn.style.color='#ff9900';window.status='http://www.real.com/rhapsody/opt/artistlist.html'; return true;" onMouseOut="window.status='';nn.style.color='#006699';">Browse the Artists</a>
+<script language="javascript" type="text/javascript">if(document.all) var nn=document.all['opBrowse']; else if(document.getElementById) var nn=document.getElementById('opBrowse')</script>
+</td>
+
+</tr></table>
+
+<!--- How to modify a form action--->
+<table><tr><td>
+<!--<form action="{{$clickthru.register.url}}" method="post" id="form1" name="register">-->
+<form action="http://by.optimost.com/post.php/58,74/" method="post" id="form1" name="register">
+<script language="javascript" type="text/javascript">
+if (!((typeof(_url) == "string") && (_url.length > 0))) var _url = "www.fool.com/community/register/registerstartd.asp";
+var daURL = "https://" + _url;
+var tmp = document.register.action.split("ttp://by.optimost.com/");
+document.register.action = "https://by.essl.optimost.com/by/" + tmp[1] + "?newPostLoc=" + escape(daURL);
+var daString = document.register.action;
+</script>
+<input type="hidden" name="freemailsub" value="6" id="checkbox1" />
+</form>
+<a href="#" onclick="javacript:alert(daString);">Click here to get new action</a>
+</td></tr></table>
+
+<!-- 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 23 -->
+<style type="text/css">
+	DIV#visTest, DIV#otherOne{
+		position: absolute;
+		display: block;
+		visibility: hidden;
+		font-family: arial, sans-serif, helvetica;
+		font-color: #ff00ff;
+		background-color: #FFDEAD;
+		border: 3px Fuchsia;
+	}
+</style>
+
+<table><tr><td><a href="#visTester" onclick="javacript:toggleDiv('visTest');">Click here to toggle DIV visibility</a></td></tr>
+<tr><td>
+<div id="visTest">Howdy Howdy</div>
+</td></tr>
+<a name="visTester"></a>
+</table>
+<table>
+<!-- 24 Mouseover in an area-->
+<TR>
+	<TD><IMG id="opAreaC" src="http://images.sportsline.com/images/c-control.jpg" border="0" usemap="#opSignup"><script>if(document.all != null) var nn=document.all['opAreaC'];else if(document.getElementById != null) var nn=document.getElementById('opAreaC');</script>
+	</TD>
+</TR>
+<MAP name="opSignup">
+<AREA shape="rect" coords="78,0,198,23"  onclick="window.location.replace('http://fake.by.optimost.com/click.php/xx,yyyy/')" onMouseOver="window.status='http://football.qa.sportsline.com/splash/do-signup/football/spln/mgmt/gold/1193';nn.style.cursor='pointer';return true;" onMouseOut="window.status='';nn.style.cursor=''">
+</MAP>
+</TABLE>
+<!-- Displaying FLASH-->
+<table><tr><td>
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="352" height="352">  
+<param name="movie" value="http://promos.smileycentral.com/optimost/screenshot_test02final.swf">
+<param name="quality" value="high">
+<embed src="http://promos.smileycentral.com/optimost/screenshot_test02final.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="352" height="352"></embed>
+</object>
+</td></tr></table>
+</td></tr></table><form action="http://by.optimost.com/post.php/58,74/" method="post" id="cookieTest" name="cookieTest">
+		<input type="text" name="cookName" size="25" value=""  style="width=150px" maxlength="25">Cookie Name
+		</td>
+	</tr>
+	<tr>
+		<td valign="middle" height="40">
+		<input type="text" name="cookVal" size="25" value=""  style="width=150px" maxlength="25">Cookie Value
+		</td>
+	</tr>
+	<tr><td><Button name="setCookies" type="button" value="" onclick="setDaCookies(document.cookieTest.cookName.value,document.cookieTest.cookVal.value);return false;">Set Cookies</button>
+	</td></tr>
+
+	<tr><td><Button name="getCookies" type="button" value="" onclick="getDaCookies(document.cookieTest.cookName.value);return false;">Get Cookies</button>
+	</td></tr>
+</form>
+</td></tr></table>
+<table>
+<tr>
+<td><img src="http://es.optimost.com/es/38/c/8/u/FSU.gif" border="0" usemap="#opFSU">
+	</td>
+	<MAP name="opFSU">
+	<area shape="rect" coords="175,70,275,95" href="http://www.optimost.com" onclick="window.open(this,'FSU','menubar=1,toolbar=1,location=0,directories=0,status=0,scrollbars=1,resizable=1,width=800,height=800'); return false;" onmouseover="this.style.cursor='pointer';return true;" onmouseout="this.style.cursor=''">
+	</MAP>
+</tr>
+<tr>
+  <td><img src="http://www.consumerreports.org/optimost/images/A_images/A1_NCBK.gif" border="0" usemap="#opAreaA"></td>
+  <map name="opAreaA"><area shape="rect" coords="0,40,400,80"  onclick="window.location.replace('http://www.optimost.com');return false;" onMouseOver="window.status='http://www.consumerreports.org/main/'; return true;" onMouseOut="window.status='';"></map>
+<tr>
+</table>
+<table><tr><td>
+<form>
+	<input type="radio" name="question1" id="1b1" value="1">Always</input>
+	<input type="radio" name="question1" id="1b2" value="2">Often</input>
+	<input type="radio" name="question1" id="1b3" value="3">Sometimes</input>
+	<input type="radio" name="question1" id="1b4" value="4">Rarely</input>
+	<input type="radio" name="question1" id="1b5" value="5">Never</input>
+	<div>
+		<input type="button" value="Submit Answer" onClick="opValidateRadio(this.form, 'question1')"/>
+	</div>
+</form>
+</td></tr></table>
+
+<!-- ***********************HOW TO ADD A SPAN TAG AROUND A TABLE SO IT IS ALL CLICKABLE******************************** -->
+<span onClick="window.location.href='http://www.optimost.com';" style="cursor:hand;" >
+<table border=0 cellpadding=0 cellspacing=0 bgcolor="#99CCFF" style="border-collapse: collapse" bordercolor="#111111">
+	<tr valign=top>
+		<td width="300" align=center>
+			<table cellSpacing="3" cellPadding="0" width="300" bgColor="#99CCFF">
+				<tr>
+					<td vAlign="bottom" align="middle" width="111" bgColor="#ffffff">
+					<font face="Arial" size="2">
+					<img src="http://smileys.smileycentral.com/cat/23/23_6_115.gif" width="108" height="65"></font></td>
+					<td align="middle" width="112" bgColor="#ffffff">
+					<img src="http://smileys.smileycentral.com/cat/10/10_9_137.gif" width="81" height="50"></td>
+					<td vAlign="bottom" align="middle" width="119" bgColor="#ffffff">
+					<img src="http://smileys.smileycentral.com/cat/23/23_4_142.gif" width="85" height="70"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>			
+</span>		
+<!-- ***********************HOW TO ADD A SPAN TAG AROUND A TABLE SO IT IS ALL CLICKABLE******************************** -->
+<map name="opF_ctBot">
+<area alt="clickHere" coords="37,33,85,48" onclick="window.location.replace('{{$clickthru.clickHere.url}}');return false;" {{$clickthru.clickHere.spoofstatus}}>
+</map>
+<!-- ***********************HOW TO ADD A SPAN TAG AROUND A TABLE SO IT IS ALL CLICKABLE******************************** -->
+
+<!-- ***********************HOW TO ADD A BORDER TO THE SIDES OF A TABLE or CELL ******************************* -->
+<TABLE border="0" cellspacing="0" cellpadding="0" style="border-right: 4px solid #315A00;border-left: 4px solid #315A00;">
+	<TR>
+		<TD><IMG src="http://www.getbootcamp.com/Images/Nav_Left.gif" width="67" height="29"></TD>
+		<TD style="border-right: 4px solid #315A00;border-left: 4px solid #315A00;"><A href="http://www.getbootcamp.com/Homepage.asp?section=Home"><IMG src="http://www.getbootcamp.com/Images/Nav_Home-On.gif" name="NavHome" width="71" height="29" border="0" id="NavHome" onMouseOver="MM_swapImage('NavHome','','http://www.getbootcamp.com/Images/Nav_Home-On.gif',0)" onMouseOut="MM_swapImgRestore()"></A></TD>
+		<TD><A href="http://www.getbootcamp.com/product_main.asp?Section=Info"><IMG src="http://www.getbootcamp.com/Images/Nav_Info.gif" name="NavInfo" width="162" height="29" border="0" id="NavInfo" onMouseOver="MM_swapImage('NavInfo','','http://www.getbootcamp.com/Images/Nav_Info-On.gif',0)" onMouseOut="MM_swapImgRestore()"></A></TD>
+		<TD><A href="http://www.getbootcamp.com/Meet.asp?Section=Meet"><IMG src="http://www.getbootcamp.com/Images/Nav_Meet.gif" name="NavMeet" width="125" height="29" border="0" id="NavMeet" onMouseOver="MM_swapImage('NavMeet','','http://www.getbootcamp.com/Images/Nav_Meet-On.gif',0)" onMouseOut="MM_swapImgRestore()"></A></TD>
+		<TD><A href="http://www.getbootcamp.com/Success.asp?Section=Success"><IMG src="http://www.getbootcamp.com/Images/Nav_Success.gif" name="NavSuccess" width="147" height="29" border="0" id="NavSuccess" onMouseOver="MM_swapImage('NavSuccess','','http://www.getbootcamp.com/Images/Nav_Success-On.gif',0)" onMouseOut="MM_swapImgRestore()"></A></TD>
+		<TD><A href="https://shop.rsgsystems.com/bootcamp/shoppingcart.asp?ShopName=getbootcamp&OrderId=0&UserId=0&SessionID=0"><IMG src="http://www.getbootcamp.com/Images/Nav_Cart.gif" name="NavCart" width="69" height="29" border="0" onMouseOver="MM_swapImage('NavCart','','http://www.getbootcamp.com/Images/Nav_Cart-On.gif',0)" onMouseOut="MM_swapImgRestore()"></A></TD>	
+		<TD><A href="Help.asp?Section=Help"><IMG src="http://www.getbootcamp.com/Images/Nav_Help.gif" name="NavHelp" width="72" height="29" border="0" id="NavHelp" onMouseOver="MM_swapImage('NavHelp','','http://www.getbootcamp.com/Images/Nav_Help-On.gif',0)" onMouseOut="MM_swapImgRestore()"></A></TD>
+		<TD><IMG src="http://www.getbootcamp.com/Images/Nav_Right.gif" width="48" height="29"></TD>
+	</TR>
+</TABLE>
+<!-- ***********************HOW TO ADD A BORDER TO THE SIDES OF A TABLE or CELL ******************************* -->
+
+<!-- ***********************HOW TO ADD INPUT BUTTON TO REPLACE A RADIO BUTTON BUT RETAIN THE RADIO'S POST CHARACTERISTICS******************************** -->
+
+<!--****** ORIGINAL RADIO BUTTONS --> <INPUT name="ProductID" type="radio" value="ALL NEW Billy BootCamp&trade; (DVD)|400|14.95|39.95" checked>
+<!--****** ORIGINAL RADIO BUTTONS --> <INPUT name="ProductID" type="radio" value="ALL NEW Billy BootCamp&trade; (VHS)|401|14.95|39.95">
+<script language="javascript" type="text/javascript">
+function opMaskRadio(media){
+	if(media == 'dvd'){
+		document.addtocart.ProductID.value = 'ALL NEW Billy BootCamp&trade; (DVD)|400|14.95|39.95';
+		document.getElementById('imageField').click();
+	}
+	else if(media == 'vhs') {
+		document.addtocart.ProductID.value = 'ALL NEW Billy BootCamp&trade; (VHS)|401|14.95|39.95';
+		document.getElementById('imageField').click();
+	}
+}
+</script>
+<INPUT name="ProductID" type="hidden">
+<TABLE border="0" align="center" cellpadding="4" cellspacing="0">
+	<TR>
+		<TD>
+			<TABLE border="0" align="center" cellpadding="2" cellspacing="0">
+				<TR>
+					<TD><INPUT name="opProductID_dvd" type="button" value="Buy DVD" onclick="opMaskRadio('dvd')"></TD>
+					<TD class="DVDVHS">&nbsp;</TD>
+					<TD><INPUT name="opProductID_vhs" type="button" value="Buy VHS" onclick="opMaskRadio('vhs')"></TD>
+					<TD class="DVDVHS">&nbsp;</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD class="Price" align="center">Only $39.95</TD>
+	</TR>
+</TABLE>
+<!-- ***********************HOW TO ADD INPUT BUTTON TO REPLACE A RADIO BUTTON BUT RETAIN THE RADIO'S POST CHARACTERISTICS******************************** -->
+
+<!-- ***********************HOW TO CHANGE THE VALUES IN AN EXISTING SELECT USING THE DOM******************************** -->
+<table  border="0" cellpadding="0" width="125" cellspacing="0">
+	<TR>
+		<TD width="70%" align="left" valign="middle" colspan="2"><P class="question">Household combined yearly income</TD>
+		<TD>&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD width="35%">&nbsp;</TD>
+		<TD width="35%" align="left" valign="bottom">
+			<SELECT name="DMT_258" class="formtext" required="Yes">
+				<OPTION value="0">Choose One</OPTION>
+				<OPTION value="43204">$1 - $7,499</OPTION>
+				<OPTION value="43205">$7,500 - $9,999</OPTION>
+				<OPTION value="43206">$10,000 - $12,499</OPTION>
+				<OPTION value="43207">$12,500 - $14,999</OPTION>
+				<OPTION value="43208">$15,000 +</OPTION>
+				<OPTION value="74528">No answer/Prefer not to answer</OPTION>
+			</SELECT>
+		</TD>
+	</TR>
+</table>
+<script language="javascript" type="text/javascript">
+function fnChange(){
+   var vals;
+   vals = DMT_258.options[0].text + "\n";
+   document.getElementById('DMT_258').options[0].text = "Escoja uno";
+   for(i=1;i<document.getElementById('DMT_258').options.length; i++){
+	   document.getElementById('DMT_258').options[i].text = document.getElementById('DMT_258').options[i].text + ' - show me the money';
+   }
+   //alert(document.getElementById('DMT_258').options.length);
+}
+fnChange();
+</script>
+<!-- ***********************HOW TO CHANGE THE VALUES IN AN EXISTING SELECT USING THE DOM******************************** -->
+<!-- ***********************SLIGHT MOD - HOW TO CHANGE THE VALUES IN AN EXISTING SELECT USING THE DOM AND THE EVAL FUNCTION******************************** -->
+<TABLE>
+	<TR>
+		<TD width="35%" align="right" valign="middle">
+<P class="question"><B>* </B>Race
+		</TD>
+		<TD width="35%" align="left" valign="bottom">
+			<SELECT name="DMT_260" class="formtext" required="Yes" id="DMT_260">
+				<OPTION value="0">Choose One</OPTION>
+				<OPTION value="43242">White</OPTION>
+				<OPTION value="43243">Black/African-American</OPTION>
+				<OPTION value="43244">Asian or Pacific Islander</OPTION>
+				<OPTION value="43245">American Indian, Aleut Eskimo</OPTION>
+				<OPTION value="43246">Other</OPTION>
+				<OPTION value="43241">No Answer/Prefer not to answer</OPTION>
+			</SELECT>
+		</TD>
+		<TD width="30%">	&nbsp;
+		</TD>
+	</TR>	<!-- Error stuff-->
+	<TR>
+		<TD width="35%" align="right" valign="middle">
+<P class="question"><B>* </B>Employment Status
+		</TD>
+		<TD width="35%" align="left" valign="bottom">
+			<SELECT name="DMT_262" class="formtext" required="Yes" id="DMT_262">
+				<OPTION value="0">Choose One</OPTION>
+				<OPTION value="43314">Full Time</OPTION>
+				<OPTION value="43315">Part Time</OPTION>
+				<OPTION value="43316">Retired</OPTION>
+				<OPTION value="43317">Not Employed</OPTION>
+				<OPTION value="43313">No answer/Prefer not to answer</OPTION>
+			</SELECT>
+		</TD>
+		<TD width="30%">	&nbsp;
+		</TD>
+	</TR>	<!-- Error stuff-->
+</TABLE>
+
+<script language="javascript" type="text/javascript">
+pf_dmt_260 = '43245';
+pf_dmt_262 = '43314';
+var daVarSel = ['pf_dmt_260','pf_dmt_262'];
+for(i=0;i<daVarSel.length;i++) {
+	var tmp = daVarSel[i].split('pf_');
+	var _new = tmp[1];
+	if((_new.indexOf('dma') != -1)||(_new.indexOf('dmt') != -1)||(_new.indexOf('fake') != -1)) _new = _new.toUpperCase();
+	var checkVal="if (" + daVarSel[i] + " != ''){for(j=0;j<document.getElementById('" + _new + "').options.length; j++){if(document.getElementById('" + _new + "').options[j].value == " + daVarSel[i] + "){document.getElementById('" + _new + "').options[j].selected = true;}}}"
+	eval(checkVal);				
+}	
+</SCRIPT>
+<!-- ***********************SLIGHT MOD - HOW TO CHANGE THE VALUES IN AN EXISTING SELECT USING THE DOM AND THE EVAL FUNCTION******************************** -->
+<!-- DIV MAGIC - USING THE FLOAT PROPERTY TO SET AN OBJECT TO THE LEFT OR RIGHT OF (USUALLY) A TEXT SECTION -->
+<!-- This could give you a lot of flexibility in doing funky layouts -->
+<style>
+.regPic1 {
+  padding-right:15px;
+  float:left;
+  display:inline;
+  padding-bottom:100px;
+}
+.regPic3 {
+  display:inline;
+  float:left;
+  border: 1px solid #00FFFF;
+}
+</style>
+<TABLE border="0" cellspacing="0" cellpadding="0" width="100%">
+  <TR valign="top">
+    <TD valign="top">
+      <div style="border: 1px solid Fuchsia;">
+        <DIV class="regPic1" align="center"><IMG src="http://www.realtytrac.com/subscript/optimost/images/Square6.jpg" width="187" height="186"></DIV>
+        <DIV class="rtText20BoldBlue regTitle">Join FREE and Save BIG <DIV class="regTitleSub">With Foreclosures!</DIV></DIV>
+        <DIV class="rtText12 regText1">Search the nations most comprehensive foreclosure data service, helping homebuyers find properties. </DIV>
+        <DIV class="rtText12 regText2">Subscribe to RealtyTrac today for the opportunity to <SPAN class="rtText12Bold">save 20-50% off market value! </SPAN></DIV>
+        <DIV class="rtText12 regText3">Just complete the two easy steps below and <SPAN class="rtText12Bold">start searching today!</SPAN></DIV>
+        <DIV class="regLink1"><A href="#" onClick="javascript:window.open('http://www.realtytrac.com/pub/REO_detail.html','Detail','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=600') ">Sample Property Detail Page</A></DIV>
+        <DIV class="regLink1"><A href="#" onClick="javascript:window.open('http://www.realtytrac.com/pub/REO_detail.html','Detail','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=600') ">Sample Property Detail Page</A></DIV>
+        <DIV class="regPic3" align="center"><IMG src="http://www.realtytrac.com/subscript/optimost/images/Horiz7.jpg" width="198" height="151"><IMG src="http://www.realtytrac.com/subscript/optimost/images/Opt-HorizTest1.gif" width="150" height="151"></DIV>
+        <DIV class="regLink1"><A href="#" onClick="javascript:window.open('http://www.realtytrac.com/pub/REO_detail.html','Detail','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=600') ">Sample Property Detail Page</A></DIV>
+        <DIV class="regLink1"><A href="#" onClick="javascript:window.open('http://www.realtytrac.com/pub/REO_detail.html','Detail','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=600') ">Sample Property Detail Page</A></DIV>
+        <DIV class="regLink1"><A href="#" onClick="javascript:window.open('http://www.realtytrac.com/pub/REO_detail.html','Detail','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=600') ">Sample Property Detail Page</A></DIV>
+        <DIV class="regLink1"><A href="#" onClick="javascript:window.open('http://www.realtytrac.com/pub/REO_detail.html','Detail','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=600') ">Sample Property Detail Page</A></DIV>
+        <DIV class="regLink1"><A href="#" onClick="javascript:window.open('http://www.realtytrac.com/pub/REO_detail.html','Detail','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=500,height=600') ">Sample Property Detail Page</A></DIV>
+      </DIV>
+    </TD>
+  </TR>
+</TABLE>
+<!-- DIV MAGIC - USING THE FLOAT PROPERTY TO SET AN OBJECT TO THE LEFT OR RIGHT OF (USUALLY) A TEXT SECTION -->
+
+<!-- Automatically tab to the next input when the field is "FULL" perfect for Phone numbers or zip codes-->
+<table>
+	<form name="test" action="">
+	<tr><td><input type="text" name="first" size="3" maxlength="3" onkeyup="if(this.value.length == this.size)second.focus();" tabIndex="4"></td></tr>
+	<tr><td><input type="text" name="second" size="3" maxlength="3" onkeyup="if(this.value.length == this.size)third.focus();" tabIndex="5"></td></tr>
+	<tr><td><input type="text" name="third" size="4" maxlength="4" onkeyup="if(this.value.length == this.size)last.focus();" tabIndex="6"></td></tr>
+	<tr><td><input type="text" name="last" size="3" maxlength="3" onkeyup="if(this.value.length == this.size)last.focus();" tabIndex="6"></td></tr>
+	</form>
+</table>
+<!-- Automatically tab to the next input when the field is "FULL" perfect for Phone numbers or zip codes-->
+
+<!-- adding a src address and events to an image - for events, must add a "new function"-->
+<div><img id="op_Btn"></div>
+<script language="javascript" type="text/javascript">
+document.getElementById('op_Btn').src = 'http://www.emusic.com/images/buttons/SYFT/Control/ffffff.gif';
+document.getElementById('op_Btn').onmouseover = new Function('this.src="http://www.emusic.com/images/buttons/SYFT/Control/ro_ffffff.gif"');
+document.getElementById('op_Btn').onmouseout = new Function('this.src="http://www.emusic.com/images/buttons/SYFT/Control/ffffff.gif"');
+</script>
+<!-- adding a src address and events to an image - for events, must add a "new function"-->
+
+<!-- ABSOLUTE FROM RELATIVE - PULLING THE DEFAULT PATH, STRIPPING OUT ANY QUERY STRING PARAMETERS, BUT LEAVING ALL BEFORE THE '?' -->
+<script language="javascript" type="text/javascript">
+//var opBaseURL = document.location;
+var opBaseURL = escape(document.location);
+var tmp = opBaseURL.split('%3F');
+opBaseURL = unescape(tmp[0]);
+</script>
+<!-- ABSOLUTE FROM RELATIVE - PULLING THE DEFAULT PATH, STRIPPING OUT ANY QUERY STRING PARAMETERS, BUT LEAVING ALL BEFORE THE '?'  -->
+
+<!-- Adds commmas to integers for numerical display-->
+<script language="javascript" type="text/javascript">
+function addCommas(val){
+	val =  value.toString();
+	bits = new Array();
+	index = val.length;
+	newVal = '';
+	if(val.length>3){
+		for(i=0;i<val.length; i+=3){
+			index = i/3;
+			bits[index] = val.substring(val.length-i, val.length-i-3);
+			tmp = i;
+		}
+		for(j=index;j>0;j--) newVal += bits[j] + ',';
+		newVal += bits[0];
+		return newVal;
+	}
+	else return val;
+}
+<!-- Adds commmas to integers for numerical display-->
+
+</script>
+<!-- ABSOLUTE FROM RELATIVE - PULLING THE DEFAULT PATH, STRIPPING OUT EVERYTHING AFTER THE LAST '/' -->
+<script language="javascript" type="text/javascript">
+var newVal='';
+var opBaseURL = escape(document.location);
+var tmp = opBaseURL.split('/');
+for (i = 0; i < tmp.length-1; i++)
+{
+	newVal += tmp[i] + '/';
+}
+newVal = unescape(newVal);
+</SCRIPT>
+<!-- ABSOLUTE FROM RELATIVE - PULLING THE DEFAULT PATH, STRIPPING OUT EVERYTHING AFTER THE LAST '/' -->
+
+<!-- Generating a popup window and inserting text -->
+<script language="javascript" type="text/javascript">
+function daPop()
+{
+  var generator=window.open('','name','height=400,width=500');
+  
+  generator.document.write('<html><head><title>Test Popup</title>');
+  generator.document.write('</head><body>');
+  generator.document.write('<TEXTAREA COLS="50" ROWS="3" READONLY WRAP="hard" onKeyDown="return false;" STYLE="width:100&#37;">CLUBMOM TERMS AND CONDITIONS<br><br><br>Updated March 2004<br><br>These Terms and Conditions are a binding agreement between each ClubMom member and ClubMom.  They govern your membership in ClubMom.<br><br>' +
+  							'ClubMom rules!!!!!!!!!!!!!!!</TEXTAREA>');
+  generator.document.write('<p><a href="javascript:self.close()"> Close</a> the popup.</p>');
+  generator.document.write('</body></html>');
+  generator.document.close();
+}
+</script>
+<a href="javascript:daPop();">Do da Pop</a> 
+
+<!-- Detect state of Checkbox -->
+<table border="5" width="200">
+	<tr><td colspan="3">Click on the button to<br>transfer the status of the<br>left checkbox to the right one.</td></tr>
+	<tr>
+		<td id="opLeft">
+			<form name="quickRegisterForm" style="margin:0;">
+			<input type="checkbox" name="agreed" onclick="doColor();">
+			</form>
+		</td>
+		<td width="1%">
+			<button onclick="checkIfBoxChecked();">doit</button>
+		</td>
+		<td id="opRight">
+			<form name="theErrorForm" style="margin:0;">
+			<input type="Checkbox" name="agreed">
+			</form>
+		</td>
+	</tr>
+</table>
+<script>
+function checkIfBoxChecked(){
+	if(document.quickRegisterForm.elements["agreed"].checked == true) {
+		document.theErrorForm.elements["agreed"].checked = true;
+		document.getElementById('opRight').style.backgroundColor = '#3366CC';
+		
+	}
+	else {
+		document.theErrorForm.elements["agreed"].checked = false;
+		document.getElementById('opRight').style.backgroundColor = '#CC0000';
+	
+	}
+}
+function doColor(){
+	if(document.quickRegisterForm.elements["agreed"].checked == true) 
+		document.getElementById('opLeft').style.backgroundColor = '#3366CC';
+	else document.getElementById('opLeft').style.backgroundColor = '#CC0000';
+}
+</script>
+
+
+<!-- Generating a popup window and inserting text -->
+<!-- ADDING VARIABLES TO A FORM AFTER STARTUP - HERE, HIDDEN ONES -->
+<form  name="testAddVariables" action="http://www.optimost.com">
+<input type="hidden" name="ee" value="44">
+<div id="opQS"></div>
+<script language="javascript" type="text/javascript">
+var query  = unescape(top.location.search.substring(1)).split('&');
+var params = new Array();
+for (i=0;i<query.length;i++){
+	var tmp = query[i].split('=');
+	params[tmp[0]] = tmp[1]
+	input = document.createElement("input");
+	input.setAttribute("type", "hidden");
+	input.setAttribute("name", tmp[0]); 
+	input.setAttribute("value", tmp[1]); 
+	document.getElementById("opQS").appendChild(input);
+}
+</script>
+</form>
+<!-- ADDING VARIABLES TO A FORM AFTER STARTUP - HERE, HIDDEN ONES -->
+
+<!-- ADDING VALUE TO HIDDEN VARIABLES IN A FORM FROM QUERY STRING 
+USING EVAL FUNCTION TO DETERMINE IF A HIDDEN VARIABLE EXISTS
+WITH THE SAME NAME AS THE QS PARAMETER, AND IF SO, POPULATE IT -->
+<table><tr><td>Form Area
+<form name="df" action="http://by.optimost.com/click.php/96,2/" method="get">
+<input type="hidden" name="nc" value="">
+<input type="hidden" name="pageref" value="">
+<input type="hidden" name="detid" value="">
+<input type="hidden" name="reservation_key" value="">
+<input type="hidden" name="vehicle_number" value="">
+<input type="hidden" name="year" value="">
+<input type="hidden" name="make_number" value="">
+<input type="hidden" name="model_number" value="">
+<input type="hidden" name="zip" value="">
+<input type="hidden" name="trade_in" value="0">
+<input type="hidden" name="type" value="">
+<input type="hidden" name="state" value="">
+<input type="hidden" name="city" value="">
+<input type="hidden" name="r_area_code" value="">
+<input type="hidden" name="rh" value="">
+</form></td></tr></table>
+<script language="javascript">
+var query  = unescape(top.location.search.substring(1)).split('&');
+var params = new Array();
+for (i = 0; i < query.length; i++){
+	var tmp = query[i].split('=');
+	params[tmp[0]] = tmp[1];
+	eval('if(document.df.'+ tmp[0] + ' != null) document.df.'+ tmp[0] + '.value ="' + tmp[1] + '";');
+}
+</script>
+<!-- ADDING VALUE TO HIDDEN VARIABLES IN A FORM FROM QUERY STRING 
+USING EVAL FUNCTION TO DETERMINE IF A HIDDEN VARIABLE EXISTS
+WITH THE SAME NAME AS THE QS PARAMETER, AND IF SO, POPULATE IT -->
+
+<!-- PASSWORD TRICK - PUT ENTER PASSWORD HERE IN PASSWORD BOX BY A TRICK THAT SWITCHES THE REGULAR INPUT BOX WITH A PASSWORD INPUT WHEN THE USER FOCUSES ON THE BOX -->
+<form name="pwdTrick">
+	<div class="formline"><label for="Email">your email:</label><input type="text" name="Email" size="20" maxlength="50" onfocus="if(!opFirst){this.value='';}else opFirst=false;" value="enter your email address here"  class="signup_signup_textbox"></div>
+	<div class="formline"><label for="Password">create a password:</label><span id="opPWDx"><input type="text" name="opDummy" size="20" maxlength="20" onfocus="this.style.visibility='hidden';doPwdStuff();" value="enter a password here" class="signup_signup_textbox"></span></div>	
+	<script type="text/javascript">function doPwdStuff(){document.getElementById('opPWDx').innerHTML= '<input  type="password" name="Password" size="20" maxlength="20" value="" class="signup_signup_textbox">';document.pwdTrick.Password.focus();}</script>
+	<script type="text/javascript">opFirst=true;document.pwdTrick.Email.focus();</script>
+</form>
+<!-- PASSWORD TRICK - PUT ENTER PASSWORD HERE IN PASSWORD BOX BY A TRICK THAT SWITCHES THE REGULAR INPUT BOX WITH A PASSWORD INPUT WHEN THE USER FOCUSES ON THE BOX -->
+
+
+<script language="javascript" type="text/javascript">
+if (typeof(errorCondx) == "string") addErrorMessage('msgArea'); //If the variable errorCondx has been added at the top, then execute
+																//addErrorMessage(), which adds red error messages next to the empty fields
+																
+																//In case I need this, if var exists AND != ''
+//if ((typeof(errorCondx) == "string") && (errorCondx.length > 0))addErrorMessage('msgArea');
+//if (typeof(errorCondx) != "undefined") {}
+//if(document.getElementById('op3') != null) 
+
+</SCRIPT>
+
+<!-- adding  inputs to a form-->
+<script language="javascript" type="text/javascript">
+function doFormInput(name, value, type, formName){
+	var f=document.forms[formName];
+	var newInput=document.createElement('input');
+	newInput.setAttribute('type',type);
+	newInput.setAttribute('name',name);
+	newInput.setAttribute('value',value);
+	f.appendChild(newInput);
+}
+
+<!-- ON LOAD EVENT	 that hijacks elements and makes changes.  Great extra tool. -->
+
+addLoadEvent( function(){
+	if (typeof(opClear) != "undefined") {
+		if(opClear == true) {
+			var imgs = document.getElementsByTagName('img');
+			for (var i = 0; i < imgs.length; i++) {
+				imgs[i].className;
+				if((imgs[i].className == "opREA1")) {
+					var tmp = imgs[i].src.split('but1');
+					var _new = tmp[0] + 'but1_transp.gif';	
+					imgs[i].src = _new;
+				}
+				else if((imgs[i].className == "opREA2")) {
+					var tmp = imgs[i].src.split('but2');
+					var _new = tmp[0] + 'but2_transp.gif';
+					imgs[i].src = _new;
+				} 
+				else if((imgs[i].className == "opREA")) {
+					//var tmp = imgs[i].src.split('arrow');
+					//var _new = tmp[0] + 'arrow_clr.gif';
+					//imgs[i].src = _new;
+					imgs[i].src = "http://es.optimost.com/es/85/c/1/u/circl_arrow_clr.gif";
+				} 
+			} 
+		}
+	}
+});
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} 
+	else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+</script>
+<!-- ON UNLOAD EVENT - 	 Here I generate a popup on unload.  When I do not have control of the body tag -->
+<script>
+function doPop(){
+var popunder=window.open('','name','height=390,width=520');
+popunder.document.write('<html>');
+popunder.document.write('<body>');
+popunder.document.write('<title>Get up to $200 in discounts!</title>');
+popunder.document.write('<img src="https://www.quickenloans.com/media/image/ql/optimost/control/sectionn_1.gif">');
+popunder.document.write('</body>');
+popunder.document.write('</html>');
+//popunder.blur();
+}
+</SCRIPT>
+
+<script language="javascript" type="text/javascript">
+addLoadEvent( function(){
+	doPop();
+});
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} 
+	else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+</script>
+
+<script language="javascript" type="text/javascript">
+function getTags(el){
+	var result = (el ? el:'hola');
+	alert(result);
+}
+getTags();
+getTags('lere');
+alert(window.location.pathname);
+</script>
+<script>
+<!-- How to add an option at top and slide the others down --> 
+function addOptionAtTop(){
+	var myNewOption = new Option("Please Select","0");
+	document.Default.Brand.options[document.Default.Brand.length] = myNewOption;
+	for(i=document.Default.Brand.length-1;i>0;i--) {
+		document.Default.Brand.options[i].text = document.Default.Brand.options[i-1].text;
+		document.Default.Brand.options[i].value = document.Default.Brand.options[i-1].value;
+	}
+	document.Default.Brand.options[0].text = "Please Select";
+	document.Default.Brand.options[0].value = "0";
+}
+</script>
+
+<!-- How to set a select OR a radio based on value.  Very useful when we need to preset a --> 
+<!-- value from a customer and we are testing list boxes and radio buttons. --> 
+<script>
+function setSelectOrRadioOnStart(){
+for(i=0; i<document.formName.elements["selOrRadioName"].length;i++){
+	if(document.formName.elements["selOrRadioName"][i].value == valueSetByCustomer) {
+		document.formName.elements["selOrRadioName"][i].checked = true;
+		document.formName.elements["selOrRadioName"][i].selected= true;
+	}
+}
+</script>
+
+
+</body>
+</html>
+<SCRIPT language="JavaScript">
+var optrial = new Object;
+optrial.oppost = "http://www.julia.com/";
+</SCRIPT>
+[OP_DeclareNestedVariables]
+[/OP_DeclareNestedVariables]

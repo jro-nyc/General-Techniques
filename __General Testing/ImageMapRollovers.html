@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>What do we do about image tags since Spoofstatus does not work?</title>
+</head>
+
+<body>
+<!-- OK, here's the skinny.  Within the MAP statement, in each AREA tag, first create a copy of the href tag, but call it h2ref, go through the wizard, and you'll have -->
+<!-- the regular href with a clickthru and the h2ref with the regular URL-->
+<SPAN style="border:4px solid red;"><img src="http://es.optimost.com/es/102/c/4/u/spacer.gif" height="200" width="200" usemap="#opA9"></SPAN><BR /><BR /> 
+<SPAN style="border:4px solid green;marging-top:20px;"><img src="http://es.optimost.com/es/102/c/4/u/spacer.gif" height="200" width="200" usemap="#opA9a"></SPAN>
+
+<map name="opA9">
+  <area shape="rect" coords="2,50,83,65" href="{{$clickthru.New_Baby.url}}" h2ref="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fnew%20baby&bcCat=1" alt="New Baby" {{$clickthru.New_Baby.spoofstatus}}>
+  <area shape="rect" coords="95,50,176,65" href="{{$clickthru.Birthday.url}}" h2ref="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fbirthday&bcCat=1" alt="Birthday" {{$clickthru.Birthday.spoofstatus}}>
+  <area shape="rect" coords="2,68,83,85" href="{{$clickthru.Wedding.url}}" h2ref="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fwedding&bcCat=1" alt="Wedding" {{$clickthru.Wedding.spoofstatus}}>
+  <area shape="rect" coords="95,68,186,85" href="{{$clickthru.Anniversary.url}}" h2ref="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fanniversary&bcCat=1" alt="Anniversary" {{$clickthru.Anniversary.spoofstatus}}>
+</map>
+
+<!-- Next, replace href with an onclick event that changes the window.location to the click, and returns false so href is not executed, rename h2ref to href, and delete spoofstatus -->
+
+<map name="opA9a">
+  <area shape="rect" coords="2,50,83,65" href="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fnew%20baby&bcCat=1" onclick="window.location='{{$clickthru.New_Baby.url}}';return false;" alt="New Baby" >
+  <area shape="rect" coords="95,50,176,65" href="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fbirthday&bcCat=1" onclick="window.location='{{$clickthru.Birthday.url}}';return false;" alt="Birthday" >
+  <area shape="rect" coords="2,68,83,85" href="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fwedding&bcCat=1" onclick="window.location='{{$clickthru.Wedding.url}}';return false;" alt="Wedding" >
+  <area shape="rect" coords="95,68,186,85" href="http://www.clientURL.com/subcollection.jsp?nc=1&category=%2foccasion%2fanniversary&bcCat=1" onclick="window.location='{{$clickthru.Anniversary.url}}';return false;" alt="Anniversary" >
+</map>
+
+
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Questions</title>
+	<style>
+		div{text-align:right;width:100px;padding-right:5px}
+		#four{padding-top:0px;border-top:#888888 sdolid 1px}
+		#fake{vertical-align:top}
+		#real{vertical-align:top}
+	</style>
+</head>
+
+<body>
+Do the content containers have unique IDs or class definitions that can be used to uniquely identify them?<br/>
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td id="real" style="width:300px;">
+			<form onsubmit="doCalc0(this);return false;">
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						<td>Value</td>
+						<td>Ratio</td></tr>
+					<tr>
+						<td><input name="myVal" type="text" value="1000" onfocus="if(this.value=='1000')this.value='';"></td>
+						<td><input name="myRatio" type="text" value="1.500" onfocus="if(this.value=='1.500')this.value='';"></td>	
+					</tr>
+					<tr><td colspan"2"><input name="submit2" type="submit" value="Real"></td></tr>
+				
+				</table>
+			</form>
+			<div id="one"></div>
+			<div id="two" style="display:none" ></div>
+			<div id="three" style="display:none" ></div>
+			<div id="four" onclick="toggle5()"></div>
+			<div id="five" style="display:none" onclick="toggle5()"></div>
+		</td>
+		<td style="border:1px solid #efefef;" onclick="toggleThis(this)">
+			<div id="fake" style="visibility:hidden;">
+				<form onsubmit="doCalc1(this);return false;">
+					<table cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td>Value</td>
+							<td>Ratio</td></tr>
+						<tr>
+							<td><input name="myVal" type="text" value="1000" onfocus="if(this.value=='1000')this.value='';"></td>
+							<td><input name="myRatio" type="text" value="1.500" onfocus="if(this.value=='1.500')this.value='';"></td>	
+						</tr>
+						<tr><td colspan"2"><input name="submit2" type="submit" value="Fake"></td></tr>
+					
+					</table>
+				</form>
+				<div id="_one"></div>
+				<div id="_two" style="display:none" ></div>
+				<div id="_three" style="display:none" ></div>
+				<div id="_four" onclick="toggle5_1()"></div>
+				<div id="_five" style="display:none" onclick="toggle5_1()"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+<script>
+function doCalc0(obj){
+	firstVal=parseInt(document.forms[0].myVal.value);
+	firstRatio=parseFloat(document.forms[0].myRatio.value);
+	var first=[345,6549];
+	//var second=[1097,1859];
+	//var third=[1097,3718];
+	var second=[1097,2672];
+	var third=[1097,2904];
+	var one=parseInt(((firstVal-first[0])*first[1])*firstRatio);
+	var two=parseInt(((firstVal-second[0])*second[1])*firstRatio);
+	var three=parseInt(((firstVal-third[0])*third[1])*firstRatio);
+	document.getElementById('one').innerHTML=one;
+	if(two>0) {
+		document.getElementById('two').innerHTML=two;
+		document.getElementById('two').style.display='block';
+	}
+	else {
+		two=0;
+		document.getElementById('two').style.display='none';
+	}
+	if(three>0){
+		document.getElementById('three').innerHTML=three;
+		document.getElementById('three').style.display='block';
+	}
+	else {
+		three=0;	
+		document.getElementById('three').style.display='none';
+	}	
+	document.getElementById('four').innerHTML=one+two;
+	document.getElementById('five').innerHTML=one+two+three;
+	createCookie(document.forms[0].myVal.value,document.forms[0].myRatio.value,'myPast');
+	return false;
+}
+var five=false;
+function toggle5(){
+	if(!five)document.getElementById('five').style.display='none';
+	else document.getElementById('five').style.display='block';
+	five=!five;
+
+}
+var five_1=false;
+function toggle5_1(){
+	if(!five_1)document.getElementById('_five').style.display='none';
+	else document.getElementById('_five').style.display='block';
+	five_1=!five_1;
+
+}
+function toggleThis(obj){
+	document.getElementById('fake').style.visibility="visible";
+}
+function doCalc1(obj){
+	firstVal=parseInt(document.forms[1].myVal.value);
+	firstRatio=parseFloat(document.forms[1].myRatio.value);
+	var first=[345,6549];
+	//var second=[1097,1859];
+	//var third=[1097,3718];
+	var second=[1097,2672];
+	var third=[1097,2904];
+
+	var one=parseInt(((firstVal-first[0])*first[1])*firstRatio);
+	var two=parseInt(((firstVal-second[0])*second[1])*firstRatio);
+	var three=parseInt(((firstVal-third[0])*third[1])*firstRatio);
+	document.getElementById('_one').innerHTML=one;
+	if(two>0) {
+		document.getElementById('_two').innerHTML=two;
+		document.getElementById('_two').style.display='block';
+	}
+	else {
+		two=0;
+		document.getElementById('_two').style.display='none';
+	}
+	if(three>0){
+		document.getElementById('_three').innerHTML=three;
+		document.getElementById('_three').style.display='block';
+	}
+	else {
+		three=0;	
+		document.getElementById('_three').style.display='none';
+	}	
+	document.getElementById('_four').innerHTML=one+two;
+	document.getElementById('_five').innerHTML=one+two+three;
+	return false;
+}
+function opGetCookies(ckName){
+	var opC=document.cookie;
+	var _C=new Object;
+	if(opC.length>3){
+		for(var a=opC.split(";"),i=0,b=a.length;i<b;i++){
+			var v=a[i].split("=");
+			while(v[0].substring(0,1)==" ")v[0]=v[0].substring(1,v[0].length);
+			if(v.length==2 && v[0]==ckName) return unescape(v[1]);
+		}
+	}
+	return null;
+}
+function opSetCookie(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null) ? "" : (";domain=" + d));}
+function opGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l < 2) sld = null;else if (!isNaN(dp[l-1]) && !isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+function setTheSticky(cookieName,value){
+	if(cookieName != ""){
+		opSetCookie(cookieName, value, opGetDocumentSLD(), 2592000);
+	}
+}
+function createCookie(x,y,name){
+	//alert('setting cookie');
+	var myDate=new Date();
+	var Months = new Array('Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.');
+	var nDate=myDate.getDate()+'.'+ Months[myDate.getMonth()]+''+myDate.getFullYear();
+	var str=x+'|'+y+'|'+nDate;
+	if(myCookies!=null){
+		temp=new Array;
+		temp.push(myCookies)
+		temp.push(str);
+		opSetCookie(name, temp, opGetDocumentSLD(), 2592000*12*10);
+	}
+	else opSetCookie(name, str, opGetDocumentSLD(), 2592000*12*10);
+	
+}
+var myCookies=opGetCookies('myPast');
+if(myCookies!=null){
+	last=null;
+	var temp=myCookies.split(",");
+	str='';
+	for(var i=0;i<temp.length;i++){
+		str+=temp[i]+'\n';	
+	}
+	//alert(str);
+	if(temp[temp.length-1]!=null){
+		var inside=temp[temp.length-1].split("|");
+		if(inside.length==3){
+			document.forms[0].myVal.value=inside[0];
+			document.forms[0].myRatio.value=inside[1];		
+		}	
+	}	
+}
+</script>
+
+Do you gaurantee that there will be some unique identifiable characteristic "available" before our code?
+</body>
+</html>

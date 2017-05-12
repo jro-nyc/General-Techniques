@@ -1,0 +1,20 @@
+// This will make all links relative that have a 'link' override
+ 
+
+function makeRelativeLinks() {
+	origBase='www.verio.com';
+	newBase = document.location.host;
+	var hrefs = document.getElementsByTagName('a');
+	for (var i = 0; i < hrefs.length; i++) {
+		if(hrefs[i].onmouseover != null){
+			daLink = hrefs[i].onmouseover.toString();
+			start = daLink.indexOf('http');
+			end = daLink.indexOf(';',start) - 1;
+			//alert(daLink);
+			newLink = daLink.substring(start,end);
+			newLink = newLink.replace(origBase,newBase);
+			hrefs[i].href  += ((hrefs[i].href.indexOf('?') == -1)?'?':'&') + 'link=' + newLink;
+			//alert(newLink);
+		}
+	}
+}

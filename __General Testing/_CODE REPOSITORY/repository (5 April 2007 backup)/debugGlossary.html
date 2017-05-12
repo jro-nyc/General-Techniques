@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Debug Glossary</title>
+	<script>
+	function doPop(content,daName,title){
+		//daName = 'question'+num;
+		//daName='name';
+		var popunder=window.open('',daName,'height=590,width=520,scrollbars=1,resizable=1',false);
+		if(popunder.document.getElementsByTagName('table').length==0){
+			popunder.document.write('<html>');
+			popunder.document.write('<head><title>'+title+'</title></head>');
+			popunder.document.write('<body>');
+			popunder.document.write(content);
+			popunder.document.write('</body>');
+			popunder.document.write('</html>');
+		}
+		else popunder.focus();
+	}
+	</SCRIPT>
+</head>
+
+<body>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td valign="top">#1&bull;&nbsp;</td><td><a href="javascript:doPop(document.getElementById('ff_ie_diff').innerHTML,'page1','IE versus FF');">
+	I've noticed that sometimes pages works differently in Firefox and IE &mdash; why is that?</a></td>
+</tr>
+<tr>
+	<td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+	<td valign="top">#2&bull;&nbsp;</td><td><a href="javascript:doPop(document.getElementById('theirs_vs_ours').innerHTML,'page2','Their environment versus ours');">
+	On the page we're testing, I get the view>source, add a base statement, put it in Homesiste/kidwww,<br/>
+	and I get a bunch of errors or it does not display as on their regular page &mdash; what gives?</a></td>
+</tr>
+<tr>
+	<td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+	<td valign="top">#3&bull;&nbsp;</td><td><a href="javascript:doPop(document.getElementById('view_vs_viewhtml').innerHTML,'page3','View as HTML (debug) versus View');">
+	On the page we're testing, in the Agency it does not display as on their regular page,<br/>
+	or it displays fine when I say <strong>View as HTML (debug)</strong> versus <strong>View</strong> &mdash; what gives?</a></td>
+</tr>
+<tr>
+	<td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+	<td valign="top">#4&bull;&nbsp;</td><td><a href="javascript:doPop(document.getElementById('css_issues').innerHTML,'page3','CSS issue - short list');">
+	On the page we're testing, I get a bunch of wierd spacing issues on Firefox and IE &mdash; what gives?</a></td>
+</tr>
+<tr>
+	<td colspan="2">&nbsp;</td>
+</tr><tr>
+	<td valign="top">#5&bull;&nbsp;</td><td><a href="javascript:doPop(document.getElementById('form_post_issues').innerHTML,'page4','Form Post issue - FF works, IE doesn\'t');">
+	On a From page we're testing, I posts fine on IE, but gets hung on a blank page on Firefox &mdash; what gives?</a></td>
+</tr>
+</table>
+<div style="display:none;">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr id="oo">
+	<td id="ff_ie_diff">
+	<table><tr>
+	<td><strong>#1&middot;I've noticed that sometimes pages works differently in Firefox and IE &mdash; why is that?</strong></td></tr>
+	<tr><td>
+	Well, there are number of specific reasons why.  But let's start from the top:<br/>
+	The differences can be boiled down to the architecural philosohpy behind the engines that run the two browsers - <u>the struggle of Equality versus Freedom</u><br/>
+	<ul>
+	IE, architected by a capitalist pig who wants to make the most money possible by 
+	making life easy for the unwashed masses, has <u>Freedom</u> as it's Philosophical underpining....  
+	<strong>"We've decided to add a feature that makes your life easier, we're not going to ask for anyones approval, and we think you'll like it."</strong><br/><br/>
+	So it tends to overlook:
+	<li>Bad HTML</li>
+	<li>Bad CSS</li>
+	<li>Bad coding in general</li><br/><br/>
+	Firefox (and Mozilla and Netscape), on the other hand, developed by left-wing Unix types that 
+	spend their lives in Universities/government settings not cutting their hair or bathing, use <u>Equality</u> 
+	as their Philosophical underpining.... <strong>"The people's committee has decided that every Internet user has the <u>right</u> to the same user experience, we think you'll like it."</strong><br/><br/>
+	Now I will grant you that Equality is necessary in certain areas - which side of the road to drive on immediately comes to mind - 
+	but the inevitable rigid beurocracy usually results in innovation and efficiency being sacrificed (ie. The Soviet Union and New York City government).<br/><br/>	
+	
+	Gecko Engine, that runs Firefox et al, is W3C compliant and that's it.  You want to add a property, method, etc, 
+	you gotta go to the W3C politburo, and maybe a few years later it gets approved.  IE, though, says, hey, why don't we do this,
+	it will make it easier on the programmers, and they do it. But since we have to work with both, we need to accomadate the commies.<br/><br/>	
+	
+	So this means that there may be improperly formated HTML on the page, and if you did 
+	not notice this when you started the template, now you pay for it. 
+	Specifically, things like:
+	<li>unclosed tags or unopened tr, td, table, div, span, etc tags</li>
+	<li>reading the innerHTML of tables or rows</li><br/><br/>
+	Technically (as in W3C compliance) you need to close all your tags, you can only read 
+	the innerHTML of valid cells (tr th, and tables are not valid cells).<br/>AND there are a number of functions, methods, properties, 
+	that IE implements that are not W3C compliant, so be careful. Like outerHTML, document.all[].  So you need to be careful when coding.
+	<br/><br/>
+	You may also have some issue where the page renders differently in the Agency or QA, go to #3 for more details.
+	<br/><br/>So remember to thank the MoveOn.org types that came up with this next time you're mad about this.
+	</ul></td></tr></table>
+	
+	</td>
+</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr id="oo">
+	<td id="theirs_vs_ours">
+	<table><tr>
+	<td><strong>#1&bull;On the page we're testing, I get the view>source, add a base statement, put it in Homesiste/kidwww,
+	and I get a bunch of errors &mdash; what gives?</strong><br/><br/></td></tr>
+	<tr><td>
+		Well, let's think about this. Remember, web pages have no state, there's no magical server calls, everything has to be 
+		in the browser or accessible via the DOM.  So a page that worked great on their site suddenly triggers a thousand and one errors. 
+		Make sure debug is set on IE or you look at the javascript console on Firefox, and debug the errors.  
+		<strong>YOU MUST DO THIS TO FIGURE OUT WHAT IS GOING ON.</strong>
+	<br/><br/><strong><u>Cookies -</u></strong> If the page is pulling cookies and acting based on their state, this will not work. 
+	<br/><br/><strong><u>Query string parameters -</u></strong> If the page is pulling Query string parameters and acting based 
+	on their state, you will need to figure/find out out what the paremeters are and put them in the URL to simulate proper behavior.
+	<br/><br/><strong><u>Frames -</u></strong> If there are Frames on the page (frames or iframes), there are domain security issues 
+	that may prevent you from doing stuff
+	</td></tr></table>
+</td>
+</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr id="oo">
+	<td id="view_vs_viewhtml">
+	<table><tr>
+	<td><strong>#3&bull;On the page we're testing, in the Agency it does not display as on their regular page, or it displays fine when I say
+	<u>View as HTML (debug)</u> versus <u>View</u> &mdash; what gives?</strong><br/><br/></td></tr>
+	<tr><td>
+		This is caused by browser limitations or, in rare instances, errors in your javascript code. Here's the deal:
+		<br/><br/>When a browser loads a page, it starts at the top and loads the content, line by line.  When it gets to a 
+		<strong>tag referencing external content</strong> (could be script or link tag), it goes to the src URL location 
+		to call and then load the returned content,	and then renders it. If it is inline content, it executes the javacript immediately.<br/><br/>
+		So when it gets to the Optimost Trial code, it calls us and	we send it a document.write that contains/encapsulates the HTML content and any 
+		javascript blocks with native="no".  Script blocks that don't have native="no" are executed as inline script.  
+		This can result in the following issues:
+		<ul>
+			<li>If you have script blocks inside our copy (inside the content we render, you may hear me call this phenomenon <strong>a script block inside of a script block</strong>), those will NOT be executed until the entire document.write is finished.
+				This means that if the content of that internal script block is inline rendered content - say an inline document.write - it will now be rendered in the wrong place,
+				at the end of our code, which may not even be a valid cell so it may show up anywhere. To work around this, you must:
+				<ul style="padding:0;">
+					<li>Read the content of the script call (go to the URL) and insert it in the same place on the page as inline script.  
+					Only do this if it is inline rendered content(HTML)</li>
+					<li>Make sure from the Client that this code will not be changing for the duration of the test</li>
+				</ul>
+			</li>
+			<li>If you are referencing new elements by id, tagname, etc, that are in the rendered copy, some browsers may not execute them correctly 
+				(which is a nice way of saying the Commie Gecko browsers).  What happens is that the contents of the document.write are not 
+				entered into the DOM tree until the script is completely finished executing.  So getElementById fails. So what to do?
+				<ul style="padding:0;">
+					<li>Don't use <strong>document.getElementById</strong> if at all possible.  Always do a document.write if you can</li>
+					<li>If you can't do a document.write, put the code containing the <strong>document.getElementById</strong> at the 
+					bottom of the page in a separate script block with <strong>native="no" </strong>set in the script tag definition</li>
+				</ul>			
+			</li>
+		</ul>
+	</td></tr></table>
+</td>
+</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr id="oo">
+	<td id="css_issues">
+	<table><tr>
+	<td><strong>#4&bull;On the page we're testing, i get a bunch of wierd spacing issues on Firefox and IE &mdash; what gives?</strong></td></tr>
+	<tr><td>
+		This is caused by browser inconsistencies in implementing CSS. Here's the deal, part of it:
+		<br/><br/>CSS is not implemented identically across browsers, which is in fact the main motivation behind changes to IE 7. 
+		There are a bunch of things that can cause problems, here is a short list.
+		<ul>
+			<li>Adding style to paragraph -'&lt;P&gt;'- tags
+				<ul style="padding:0;">
+					<li>Paragraph tags are very popular because they give you paragraph breaks between blocks of text.  Great</li>
+					<li>But if you try to add more padding using styles.... well, <strong>DON'T DO IT!!</strong>.  Firefox would add a bunch of extra spacing and mess it up.</li>
+					<li><strong>Solution</strong> - just create a DIV with top and bottom padding equal to the line height, and then add additional padding incrementally to those baseline numbers </li>
+				</ul>
+			</li>
+			<li>DIV blocks floating inside DIV or TABLE cell
+				<ul style="padding:0;">
+					<li>This almost always arises from starting with client code, CSS based pages, and they don't give us HTML. So we have to wing it</li>
+					<li>An aside - this is the ongoing question of what does the client supply, table that discussion for now</li>
+					<li>We should make sure to create these elements in the cleanest and most understandable manner.  This sound vague, but usually means creating a table within the cell of interest since you can easily determine spacing for that.</li>
+					
+				</ul>			
+			</li>
+		</ul>
+	</td></tr></table>
+</td>
+</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0">
+<tr id="oo">
+	<td id="form_post_issues">
+	<table><tr>
+	<td><strong>On a From page we're testing, I posts fine on IE, but gets hung on a blank page on Firefox &mdash; what gives?</strong></td></tr>
+	<tr><td>
+		This is caused by a bug in FF that effect how we track click-thrus:
+		<br/><br/>The way we do it, the visitor clicks on the link, Optimost then sends back a 302 redirect with the post information in the page, 
+		and the method:<br/><strong>forms[0].submit();</strong><br/>Well, on Firefox, it confuses the method submit() with an input named submit (and if you have 
+		this behavior, you do have an input named submit).  You will need to rename the input to submitt or _submit, or whatever. 
+		Generally, this input is not meaningful in any way to the back-end server process, so you should be OK.
+	</td></tr></table>
+</td>
+</tr>
+</table>
+
+
+
+</div>
+
+</body>
+</html>

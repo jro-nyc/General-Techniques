@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<script>
+var g_strByDate;
+var DAY_IN_THE_FUTURE = 66;
+
+function dateGetter(){
+var today;
+var day;
+var msecs;
+var nextOne;
+var daMonths;
+var enSeis;
+daMonths = new Array('Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.');
+
+	today = new Date();
+	msecs = today.getTime();	
+	day = today.getDay();		
+	msecs = msecs + 1000*60*60*24*DAY_IN_THE_FUTURE;  
+	nextOne = new Date(today.setTime(msecs));
+//	msecs = msecs + (6-day)*1000*60*60*24;	//This ties the routing to a specific DAY in x weeks (the first wednesday...)
+//	msecs = msecs + 1000*60*60*24;
+	enSeis = new Date(today.setTime(msecs));
+	g_strByDate = daMonths[enSeis.getMonth()] + " " + enSeis.getDate() + ", " + enSeis.getYear();
+
+}
+
+function countdownTo_11_59_ET(){
+var today;
+var day;
+var msecs;
+var hours;
+var minutes;
+var enSeis;
+
+	today = new Date();
+	hours = today.getUTCHours();	
+	minutes = today.getUTCMinutes();
+	hours = (hours- 4 + 24)%24;   //Normalize Hour based on midnight ET, which is 4:00 Z
+	alert(hours + ':' + minutes);
+	minutesLeft = 59 - minutes;
+	hoursLeft = 23 - hours;
+	alert('You have ' + hoursLeft + ':' + minutesLeft + ' left before');
+	document.write('<span style="color:#FF3333;">This great deal expires in ' + hoursLeft + ' hours and ' + minutesLeft + ' minutes, unless it sells out sooner.</span>'); 
+
+}
+
+countdownTo_11_59_ET();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<link rel="stylesheet" type="text/css" href="https://www.snapfish.com/default/jsp/include/styles/global.css" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<base href="https://qa.snapfish.com/" />
+	</head>
+<!-- BEGIN HumanTag Monitor. DO NOT MOVE! MUST BE PLACED JUST BEFORE THE /BODY TAG -->
+	<body bgcolor="#3399cc" link="#0033cc" aLink="#ffcc00" vLink="#3399cc" text="#000000" topMargin="0" leftMargin="0" marginheight="0" marginwidth="0">
+<div style="width: 690px; background-color: #000000; color: #FFFF00; padding: 8px; border: 4px solid brown; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+<strong>Relativizing links at run-time</strong> - How and why do we do it?</strong><br><br>  
+We do it because certain clients want to test stuff in all environments and have it work seamlessly.  Key to us doing it is using the 
+existing spoofstatus to pull out the original full-path link, and based on this knowledge (what the original base URL was), change the URL
+of the spoofstatus value to the new enviroment, and then sent it back via our clickthru using "link" as the override argument (which you 
+must set up for each click).  Code also only changes it if the original URL is in the original path, cuz if it's a call to a different
+environment, then it never was a relative path.
+</div>
+		<table width="75%" bgcolor="#FFFFFF" cellpadding=0 cellspacing=0 border=0>
+		   <tr>
+			    <td width=12><img src="https://images1.snapfish.com//default/images/spacer.gif" width=12 height=1></td>
+			    <td width=120><a href="javascript:openPrivacyWindow('https://by.essl.optimost.com/by/go/155-689/');" onMouseOver="window.status='https://www.snapfish.com/popupprivacypopup/'; return true;" onMouseOut="window.status='';"><img src="https://images1.snapfish.com//default/images/user/truste.gif" width=116 height=31 border=0 alt=" TrustE " vspace=12></a></td>
+			    <td width=12><img src="https://images1.snapfish.com//default/images/spacer.gif" width=12 height=1></td>
+			    <td><font face=verdana size=1 color=#969696>Snapfish is certified by TRUSTe, an independent entity that monitors the privacy practices of online businesses. We're also a member of the Better Business Bureau's Online Reliability Program.</font></td>
+		   </tr>
+		</table>
+		<table width="90%" bgcolor="#FFFFFF" cellpadding=0 cellspacing=0 border=0>
+			  <tr>
+				    <td width=12><img src="https://images1.snapfish.com//default/images/spacer.gif" width=12 height=1></td>
+				    <td width=88><a href="https://by.essl.optimost.com/by/go/155-666/" target="view_window" onMouseOver="window.status='http://www.bbbonline.org/cks.asp?id=1010213125553'; return true;" onMouseOut="window.status='';"><img src="https://images1.snapfish.com//default/images/user/bbb.gif" width=88 height=29 border=0 alt=" BBBOnline "></a></td>
+				    <td align=center valign="bottom"><font face="verdana,arial,helvetica,sans-serif" size=1 color="#666666">
+				    	<a href="javascript:openTermsnConditionsWindow('https://by.essl.optimost.com/by/go/155-688/');" onMouseOver="window.status='https://www.snapfish.com/popuptermsnconditionspopup/'; return true;" onMouseOut="window.status='';"><font color="#666666">terms and conditions</font></a> &nbsp;|&nbsp;
+				    	<a href="javascript:openPrivacyWindow('https://by.essl.optimost.com/by/go/155-678/');" onMouseOver="window.status='https://www.snapfish.com/popupprivacypopup/'; return true;" onMouseOut="window.status='';"><font color="#666666">privacy</font></a> &nbsp;|&nbsp;
+				    	<a href="javascript:openPricingWindow('https://by.essl.optimost.com/by/go/155-677/');" onMouseOver="window.status='https://www.snapfish.com/helppricingpopup/'; return true;" onMouseOut="window.status='';"><font color="#666666">pricing</font></a>
+				    	<a href="javascript:openPricingWindow('https://by.essl.optimovst.com/by/go/155-677/');" onMouseOver="window.status='https://www.snapfish.com/helppricingpopup/'; return true;" onMouseOut="window.status='';"><font color="#666666">Extra pricing(not a clickthru)</font></a>
+				    	<a href="https://by.essl.optimost.com/by/go/155-697/" onMouseOver="window.status='https://www.snapfish.com/helppricingpopup/'; return true;" onMouseOut="window.status='';"><font color="#666666">Extra extra pricing(different setup)</font></a>
+				    	</font>
+					</td>
+			 </tr>
+			 <tr>
+			 	<td height=6 colspan=3><img src="https://images1.snapfish.com//default/images/spacer.gif" width=1 height=6></td>
+			</tr>
+		</table>
+		<table width="100%" cellPadding=0 cellSpacing=0 border=0>
+			<tr>
+		          <td bgcolor="#66cc33"><img src="https://images1.snapfish.com//default/images/footer/footer-left.gif" width=15 height=35 border=0></td>        
+		          <td bgcolor="#66cc33" align=right><img src="https://images1.snapfish.com//default/images/footer/footer-right.gif" width=377 height=35 border=0></td>
+		    </tr>
+		</table>     	
+
+
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<script language="javascript" type="text/javascript">
+// Get the ROOT PATH, either Base or actual location.
+if(document.getElementsByTagName('base')[0] != null){ // If we have a base statement, use that to set the root path
+	daRoot = document.getElementsByTagName('base')[0].href;
+	var orig = daRoot.split("//");
+	protocol = orig[0] + '//';
+	var dir = orig[1].split("/");
+	var dirs = "";
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':'');  	
+	}
+	daDomain = protocol + dir[0] + '/';
+	daRoot = protocol + dirs;
+	//alert('Got the root from the base statement and it is ' + daRoot + ' and the root domain is ' + daDomain)
+}
+else {
+	var sPage = window.location.pathname;
+	var dir = sPage.split("/");
+	var dirs = "";
+	var baseURL;
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':''); 	
+	}
+	daDomain = location.protocol+"//"  + location.host + '/';
+	daRoot = location.protocol+"//" + location.host + "/" + dirs;
+	//alert('Got the root from the path and it is ' + daRoot+ ' and the root domain is ' + daDomain)
+}	
+</script>
+
+
+<script language="javascript" type="text/javascript" native="no">
+//Changes to the URLs, make them valid for the new environment.
+
+origBase = '//www.snapfish.com';  //PUT ORIGINAL BASE HERE
+newBase = daRoot.split(':')[1];
+if(newBase.substring(newBase.length-1,newBase.length) == '/') newBase= newBase.substring(0,newBase.length-1);
+//alert(newBase);
+function doRelativePathing(){
+	newLink = newBase;
+	var hrefs = document.getElementsByTagName('a');alert(hrefs.length);
+	for (var i = 0; i < hrefs.length; i++) {
+		if(hrefs[i].onmouseover != null){	//We need to mouseover to pull out the original link	
+			daLink = hrefs[i].onmouseover.toString();
+			daLink = daLink.substring(daLink.indexOf("{") + 1, daLink.lastIndexOf("}"));
+			start=daLink.indexOf("http");
+			match=daLink.substr(start-1,1);
+			end=daLink.indexOf(match,start+1);	//alert(start+'-'+match+'-'+end);
+			urlOrig = daLink.substring(start,end);
+			//alert(daLink+' has a match of '+match+'---'+urlOrig+' for the Orig of href #'+i);
+			urlNew = urlOrig.replace(origBase,newBase);
+			qs = 'link='+escape(urlNew);
+			if((urlNew!=urlOrig) && (hrefs[i].href.indexOf('.optimost.')!=-1) &&(hrefs[i].href.toLowerCase().indexOf('javascript')!=-1)){				
+				daLink = hrefs[i].href;
+				start=daLink.indexOf("http");
+				match=daLink.substr(start-1,1);
+				end=daLink.indexOf(match,start+1);	//alert(start+'-'+match+'-'+end);
+				urlNow = daLink.substring(start,end);
+				//alert(daLink+' has a match of '+match+'---'+urlNow+' for the clickthru of href #'+i);
+				urlNowQS = urlNow+((urlNow.indexOf('?') == -1)?'?':'&')+qs;
+				//urlNowQS = urlNowQS.replace(origBase,newBase);
+				hrefs[i].href = hrefs[i].href.replace(urlNow,urlNowQS);
+				alert('OLD-'+urlNow+'\n\nNEW-'+urlNowQS+'\n\n'+daLink+'\n\nbegat\n\n'+hrefs[i].href);
+			}
+			else if((urlNew!=urlOrig) && (hrefs[i].href.indexOf('.optimost.')!=-1)){				
+				daLink = hrefs[i].href;urlNow=daLink;
+				daLink = daLink.split('?')[0];
+				urlNowQS = daLink + '?'+qs;
+				hrefs[i].href = urlNowQS;
+				//alert('OLD-'+urlNow+'\n\nQS'+qs+'\n\nTransformed'+urlNew+'\n\nNEW-'+urlNowQS+'\n\n'+daLink+'\n\nbegat\n\n'+hrefs[i].href);				
+				alert('OLD-'+urlNow+'\n\nNEW-'+urlNowQS+'\n\n'+daLink+'\n\nbegat\n\n'+hrefs[i].href);
+			}
+			else alert('no begatting here\n\n'+hrefs[i].href);
+		}
+	}
+}
+doRelativePathing();
+</script>
+
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+	</body>
+</html>

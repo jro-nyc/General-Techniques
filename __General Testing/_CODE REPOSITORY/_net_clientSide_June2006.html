@@ -1,0 +1,201 @@
+<div style="width: 600px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>.NET Form</strong> - How do we intergrate into a .NET form?</strong><br><br>
+.NET pages impose a certain strutcture around the form that originally forced us to change how we handled
+server side form validation, but now we use this same basic mechanism for all our form validation, .NET or not <br/><br/>
+To do this, we continue to use the client's existing .NET code, but we hide that code by putting it inside the following DIV tag:<br/><br/>
+&lt;div id="opIndexedContent" style="display:none;"&gt;<br/>..<br/>original content in here <br/>..<br/>&lt;/div&gt;<br/><br/>
+This should emcompass the section we are testing, BUT CANNOT contain the open or closed form tag, and the hidden variables just below the 
+form tag (__VIEWSTATE, __EVENTTARGET, __EVENTARGUMENT, __VIEWSTATEGUID, which may or may not all be there). 
+Those go in the snippet shell above and below our code (depending on where they are in the original page). <br/><br/>
+The next step is to determine what elements are used for form input and error correction/validation, add them to arrays,
+and that allows us to let the client's .NET infrastructure do validation, but allow us to "hijack" the values and put them in our code 
+(the page under test that we render) for proper presentation to the visitor.
+   
+<BR/><BR/>If you view source on this page, you will see that there are 3 arrays at the top of the code: 
+<BR/>&middot;<strong>opServerControlIds</strong> - with all the non-radio inputs' IDs
+<BR/>&middot;<strong>opServerRadioIds</strong> -  with just the radio inputs' name 
+(since each radio input has unique IDs, but a common name, I use the name for processing)
+<BR/>&middot;<strong>opServerValidatorIds</strong> - with the error correction areas' IDs.<br/><br/>
+So on the Template you are building, go through the original file, find each element that qualifies as one of these 3 
+and put it into the appropriate array, encompass the original HTML in the hidden DIV, leave it above our code, 
+then put the first half of the example code in this file - that executes opReadDotNet() - just inside our copy
+block so that it is after the original form in the hidden div BUT before our form in the template copy.
+<br/><br/>
+Then after we render the page under test (which includes the form), you place the second half of the code - that executes doDotNetInit(). 
+
+<br/><br/><strong style="color:#88FF88;"><a href="zoomerang.NET.html" style="color:#ff3333;" target="_blank">Click Here</a> 
+to go to an example that Josh worked on, the Zoomerang template, 
+to see this code implemented for real.  I added a radio button input just so we would have all types of imput elements 
+on the page, even though it did not have that originally.<br/><br/>
+You can take the code in <em><u>zoomerang.NET.html</u></em>, put it in Homesite, play around with the inputs and 
+error message areas in the hidden div and see them show up in the visible area</strong>
+</div>
+
+<script language="javascript" type="text/javascript">
+// This array is of all the input values IDs, UNLESS they are radio buttons.  Those are done next
+var opServerControlIds = [
+"PostIteration",
+"FirstName",
+"LastName",
+"Address1",
+"Address2",
+"City",
+"State",
+"Zip",
+"Country",
+"Phone",
+"Email",
+"Password",
+"ConfirmPassword",
+"Company",
+"WorkIndustry",
+"JobFunction",
+"CompanySize",
+"Source",
+"TermsOfUse",
+"PromoOptin",
+"TRUSTeHotSpot"];
+
+//This array is of all the input radio button NAME, not ID
+var opServerRadioIds = [
+"Country1:OnOff"
+];  
+
+var opForm = 'form1'; // For the radio button stuff, need the name of the form
+
+// This array contains ID of server validators visible in the template 
+//var opServerValidatorIds = ["validsummary"];
+
+var opServerValidatorIds = [
+"MissingFieldsLabel",
+"ValidFirstName",
+"ValidLastName",
+"ValidAddress",
+"ValidCity",
+"ValidState",
+"ValidZip",
+"ValidZip2",
+"ValidCountry",
+"ValidPhone",
+"ValidEmail",
+"ValidPassword",
+"ValidNotBlankConfirmPassword",
+"ValidConfirmPassword",
+"LabelFirstName",
+"LabelLastName",
+"LabelAddress",
+"LabelCity",
+"LabelState",
+"LabelZip",
+"LabelCountry",
+"LabelPhone",
+"LabelEmail",
+"LabelPassword",
+"LabelConfirmPassword",
+"LabelCompany",
+"LabelWorkIndustry",
+"LabelJobFunction",
+"LabelCompanySize",
+"LabelSource",
+"LabelTermsOfUse"];
+
+var opServerValidatorIds2 = [];
+
+var errorFree = false;
+var wasPosted = false;
+
+function complexError(el){
+	this.display = el.style.display;
+	this.visibility = el.style.visibility;
+	this.innerHTML = el.innerHTML;
+	this.color = el.style.color;
+	this.fontWeight = el.style.fontWeight;
+}	
+
+var daInputs =  new Object;
+var dacomplexErrors =  new Object;
+var daErrors =  new Object;
+
+function opReadDotNet(){
+	for(i=0;i<opServerControlIds.length;i++) {
+		if(document.getElementById(opServerControlIds[i]) != null) daInputs[opServerControlIds[i]] = document.getElementById(opServerControlIds[i]).value;
+	}
+	for(i=0;i<opServerValidatorIds.length;i++) {
+		if(document.getElementById(opServerValidatorIds[i]) != null) {
+			var el = document.getElementById(opServerValidatorIds[i]);
+			if (el != null)	{
+				dacomplexErrors[opServerValidatorIds[i]] =  new complexError(el);
+				//x = 'This is the list for ' + opServerValidatorIds[i] + '\n';
+				//for(var n in dacomplexErrors[opServerValidatorIds[i]]){x+= n + ' = ' + dacomplexErrors[opServerValidatorIds[i]][n] + '\n';}
+				//alert(x);
+			}
+		}
+	}
+	for(i=0;i<opServerRadioIds.length;i++){
+		if(document.forms[opForm] != null) {
+			if(document.forms[opForm].elements[opServerRadioIds[i]] != null){
+				for(j=0;j<document.forms[opForm].elements[opServerRadioIds[i]].length;j++){
+					if(document.forms[opForm].elements[opServerRadioIds[i]][j].checked == true) {
+						daInputs[opServerRadioIds[i]] = document.forms[opForm].elements[opServerRadioIds[i]][j].value;
+						//alert(daInputs[opServerRadioIds[i]]);
+					}			
+				}			
+			}
+		}
+	}
+	for(i=0;i<opServerValidatorIds2.length;i++) {
+		if(document.getElementById(opServerValidatorIds2[i]) != null) daErrors[opServerValidatorIds2[i]] = document.getElementById(opServerValidatorIds2[i]).innerHTML;
+	}
+	if(document.getElementById('opIndexedContent') != null) document.getElementById('opIndexedContent').innerHTML = '';
+}
+opReadDotNet();
+</script>
+
+<!--IMPLEMENT OUR CODE WITH THE FORM STUFF WE ARE TESTING HERE, AFTER THE FUNCTION opReadDotNet BUT BEFORE THE FUNCTION doDotNetInit. -->
+<!--IMPLEMENT OUR CODE WITH THE FORM STUFF WE ARE TESTING HERE, AFTER THE FUNCTION opReadDotNet BUT BEFORE THE FUNCTION doDotNetInit. -->
+<!--IMPLEMENT OUR CODE WITH THE FORM STUFF WE ARE TESTING HERE, AFTER THE FUNCTION opReadDotNet BUT BEFORE THE FUNCTION doDotNetInit. -->
+<!--IMPLEMENT OUR CODE WITH THE FORM STUFF WE ARE TESTING HERE, AFTER THE FUNCTION opReadDotNet BUT BEFORE THE FUNCTION doDotNetInit. -->
+<!--IMPLEMENT OUR CODE WITH THE FORM STUFF WE ARE TESTING HERE, AFTER THE FUNCTION opReadDotNet BUT BEFORE THE FUNCTION doDotNetInit. -->
+<!--IMPLEMENT OUR CODE WITH THE FORM STUFF WE ARE TESTING HERE, AFTER THE FUNCTION opReadDotNet BUT BEFORE THE FUNCTION doDotNetInit. -->
+<!--IMPLEMENT OUR CODE WITH THE FORM STUFF WE ARE TESTING HERE, AFTER THE FUNCTION opReadDotNet BUT BEFORE THE FUNCTION doDotNetInit. -->
+
+		
+<script language="Javascript" native="no">
+function doDotNetInit() {
+	for(i=0;i<opServerControlIds.length;i++) {
+		if(daInputs[opServerControlIds[i]] != null) if(document.getElementById(opServerControlIds[i]) != null) document.getElementById(opServerControlIds[i]).value = daInputs[opServerControlIds[i]];	
+	}
+	for(i=0;i<opServerValidatorIds.length;i++) {
+		if(dacomplexErrors[opServerValidatorIds[i]] != null) {
+			if(document.getElementById(opServerValidatorIds[i]) != null) {
+				//alert(opServerValidatorIds[i]);
+				document.getElementById(opServerValidatorIds[i]).style.display = dacomplexErrors[opServerValidatorIds[i]].display;
+				document.getElementById(opServerValidatorIds[i]).style.color = dacomplexErrors[opServerValidatorIds[i]].color;
+				document.getElementById(opServerValidatorIds[i]).style.visibility = dacomplexErrors[opServerValidatorIds[i]].visibility;
+				document.getElementById(opServerValidatorIds[i]).style.fontWeight = dacomplexErrors[opServerValidatorIds[i]].fontWeight;
+				document.getElementById(opServerValidatorIds[i]).innerHTML = dacomplexErrors[opServerValidatorIds[i]].innerHTML;
+			}
+		}
+	}
+	for(i=0;i<opServerRadioIds.length;i++){
+		if(document.forms[opForm] != null) {
+			if(document.forms[opForm].elements[opServerRadioIds[i]] != null){
+				for(j=0;j<document.forms[opForm].elements[opServerRadioIds[i]].length;j++){
+					if(document.forms[opForm].elements[opServerRadioIds[i]][j].value == daInputs[opServerRadioIds[i]]) {
+						document.forms[opForm].elements[opServerRadioIds[i]][j].checked = true;
+						//alert(daInputs[opServerRadioIds[i]]);
+					}			
+				}			
+			}
+		}
+	}
+	for(i=0;i<opServerValidatorIds2.length;i++) {
+		if(daErrors[opServerValidatorIds2[i]] != null) document.getElementById(opServerValidatorIds2[i]).innerHTML = daInputs[opServerValidatorIds2[i]];	
+	}
+}
+doDotNetInit();
+</script>
+
+
+
+

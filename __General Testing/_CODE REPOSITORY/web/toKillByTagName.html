@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<div style="width: 490px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Remove a HTML object from the DOM using the TAG name (document.getElementsByTagName).</strong><br><br>  Why would you need to do this?  
+Well, this is useful when we are reading <u>dynamic content</u> via the DOM and are re-rendering it in our code in some manner, and we would 
+like to reuse the same name or IDs. And you can cover more general things than having to know each individual ID. So say you wanted to 
+read a bunch of hidden inputs and copy them over and remove the orginals from the DOM?  Use TAG=input, and type=hidden, done.
+And thus it's very useful for form pages because the you can use their client-side correction code<br><br>
+
+	<div align="center" valign="middle" style="color: #FFFF00;" nowrap>Select which element you want to kill.</div>
+	<div width="200px"  align="center" valign="bottom">
+		<SELECT name="whatever"  id="DMT_260" onchange="doKillElement(this.value)">
+			<OPTION value="0">Choose One</OPTION>
+			<OPTION value="div">DIV</OPTION>
+			<OPTION value="span">SPAN</OPTION>
+			<OPTION value="td">TD</OPTION>
+		</SELECT>
+	</div>
+</div>
+
+<div style="border:red solid 3px;color:#black;">
+DIV is a smart and cute guy, <strong>but kill me last or your selection capability will go away :)</strong>
+</div>
+<span style="border:blue solid 3px;color:#green;">
+SPAN is a smart and cute girl
+</span>
+<table style="border:brown solid 3px;color:#336699;"><tr><td>TD<br>If you select me, the select goes away (he he)</td></tr></table>
+<script>
+function doKillElement(el){	
+	tags = document.getElementsByTagName(el);	
+	for(i=0;i<tags.length;i++){
+		alert(tags[i].innerHTML);
+		tags[i].innerHTML = '';
+		var tagElement = tags[i]; 
+		if (tagElement && tagElement.parentNode && tagElement.parentNode.removeChild) { 
+		     tagElement.parentNode.removeChild(tagElement); 
+		} 
+	}	
+}
+</script>
+
+
+
+</body>
+</html>

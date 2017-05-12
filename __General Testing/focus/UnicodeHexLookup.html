@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>slayeroffice | tools | unicode hex value lookup</title>
+<link rel="Stylesheet" type="text/css" href="unicode.css" />
+<script type="text/javascript">
+window.onload = init;
+var d = document;
+function init() {
+	d.getElementById("ok_btn").onclick = function() {
+		fieldValue = d.getElementById("character").value;
+		if(fieldValue.search(/[^0-9]/g) == -1) {
+			nCode = fieldValue;
+		} else {
+			nCode = fieldValue.charCodeAt(0);
+		}
+		alert(nCode);
+		d.getElementById("CharRep").value = String.fromCharCode(nCode);
+		d.getElementById("UnicodeEntity").value = so_asciiToUniHex(parseInt(nCode));
+		d.getElementById("HTMLEntity").value = "&#" + nCode +";"
+		
+	}
+}
+
+function so_asciiToUniHex(asciiCode) {
+	un = asciiCode.toString(16);
+	while(un.length<4) un = "0" + un;
+	return "\\u" + un;
+}
+</script>
+</head>
+<body>
+	<div id="mContainer">
+		<h1>slayeroffice | code | unicode hex value lookup</h1>
+		<form method="get" action="">
+			<label for="character">Enter the ASCII code or type/paste the character for who's Unicode Hex value you need:</label><br />
+			<table>
+				<tr><td><input class="txt" type="text" name="character" value="" id="character" /></td><td><input type="button" value="ok" id="ok_btn" /></td></tr>
+				<tr><td><label>Character: </label></td><td><input class="txt" type="text" id="CharRep" /></td></tr>
+				<tr><td><label>Unicode Entity: </label></td><td><input class="txt"  type="text" id="UnicodeEntity" /></td></tr>
+				<tr><td><label>HTML Entity: </label></td><td><input class="txt" type="text" id="HTMLEntity" /></td></tr>
+			</table>
+		</form>
+	</div>
+	
+	<div id="copy">
+	<p>
+	Use the unicode entity with createTextNode. For example, to append an ampersand, you would use \u0026 like this:
+	<pre><code>document.createTextNode("\u0026");</code></pre>
+	</p>
+	
+	<p>
+	When using innerHTML, you can use the HTML ASCII entity:
+	<pre><code>document.getElementById("myDiv").innerHTML += "&amp;#38;";</code></pre>
+	</p>
+	<p>
+	For those interested:
+	</p>
+	<ul>
+		<li><a href="unicode.js">Javascript Source</a></li>
+		<li><a href="unicode.css">CSS</a></li>
+	</ul>
+	</div>
+	
+	<div id="so_credits">	
+	<a href="http://slayeroffice.com"><img alt="slayeroffice" src="http://slayeroffice.com/gr/office_logo_green.gif" /></a>
+	Unicode Hex Value Lookup<br />
+	version 1.0<br />
+	last revision: 02.23.2006<br />
+	<a href="http://slayeroffice.com/?c=/content/contact.html">steve@slayeroffice.com</a><br />
+	<a href="http://slayeroffice.com">http://slayeroffice.com</a>
+	</div>
+</body>
+</html>
+<script>
+
+</script>

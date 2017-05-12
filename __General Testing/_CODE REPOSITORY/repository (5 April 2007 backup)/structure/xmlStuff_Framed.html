@@ -1,0 +1,1385 @@
+<html>
+<head><base href="http://order.sbs.yahoo.com/ds/" />
+<title>
+ Small Business
+</title>
+<script type='text/javascript' language='javascript' src='http://us.js1.yimg.com/us.yimg.com/lib/g/util/yg_cookie_1_2.js'></script>
+<script type="text/javascript" src="http://us.js2.yimg.com/us.js.yimg.com/lib/common/utils/2/yahoo_2.0.0-b4.js"></script>
+<script type="text/javascript" src="http://us.js2.yimg.com/us.js.yimg.com/lib/common/utils/2/dom_2.0.0-b4.js"></script>
+<script type="text/javascript" src="http://us.js2.yimg.com/us.js.yimg.com/lib/common/utils/2/event_2.0.0-b4.js"></script>
+<script type="text/javascript" src="http://us.js2.yimg.com/us.js.yimg.com/lib/common/utils/2/connection_2.0.0-b4.js"></script>
+<script type="text/javascript" src="http://us.js2.yimg.com/us.js.yimg.com/lib/common/utils/2/animation_2.0.0-b4.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script type='text/javascript' language='javascript'>
+var $D = YAHOO.util.Dom;
+var $E = YAHOO.util.Event;
+var $A = YAHOO.util.Anim;
+var $M = YAHOO.util.Motion;
+var $ = $D.get;
+function shortenStr( ostr ,limit )
+{
+    nstr = '';
+    for( i=0;i<ostr.length; i+=limit )
+    {
+      if( i!=0 )
+         nstr += '<br/>';
+      nstr += ostr.substr(i,limit);
+    }
+    return nstr;
+}
+</script>
+<script type="text/javascript" src="http://order.sbs.yahoo.com/tools/domain/CheckDomainAndRecommendations.js"></script>
+<script type="text/javascript" src="http://us.js1.yimg.com/us.yimg.com/lib//g/util/yg_browserext.js"></script>
+<script type="text/javascript" src="http://smallbusiness.yahoo.com/js/rest-request.js"></script>
+<link rel="stylesheet" type="text/css" href="../platform_common/SBSplatform_ordering_style.css" />
+</head>
+<body style="background-color: #ffffff;">
+<div id="infobox_m" style="display: none; position: absolute; left: 0px; top: 0px;">
+<table class="m3table1" style="width: 100%; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+<tr><td class="m3tl"><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="5px" height="6px"></td><td class="m3ts"></td><td class=
+"m3tr"></td></tr>
+<tr><td class="m3ml"></td><td class="m3mc" style="width: 98%">
+<div id="infobox_c" class="arial12_color1" style="padding: 3px;"></div>
+</td><td class="m3mr"></td></tr>
+<tr><td class="m3bl"></td><td class="m3bs"></td><td class="m3br"><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="6px" height
+="6px"></td></tr>
+</table>
+</div>
+<img id="infolarr" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_help_arrw_l.gif" style="display: none; position: absolute; left: 0px; top: 0px;">
+<img id="inforarr" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_help_arrw_r.gif" style="display: none; position: absolute; left: 0px; top: 0px;">
+
+<script type='text/javascript' language='javascript'>
+function SBSInfoBox ()
+{
+    var theobj = this;
+    this.contents = new Array();
+    this.widths = new Array();
+    this.sides = new Array(); 
+    this.regContent = function(side,w,id,con)
+    {
+        theobj.contents[id] = con;
+        theobj.widths[id] = w;
+        theobj.sides[id] = side;
+        YAHOO.util.Event.addListener(document.getElementById(id), 'mouseover', theobj.show);
+        YAHOO.util.Event.addListener(document.getElementById(id), 'mouseout', theobj.close); 
+    }
+    this.show = function (e)
+    {
+      document.getElementById('infobox_c').innerHTML = theobj.contents[this.id];
+      document.getElementById('infobox_m').style.width = theobj.widths[this.id]; 
+      document.getElementById('infobox_m').style.display = 'block';
+      if( theobj.sides[this.id] == 'right' )
+      {
+        document.getElementById('infolarr').style.display = 'block';
+        var xy = [YAHOO.util.Event.getPageX(e)+25, YAHOO.util.Event.getPageY(e)-50];
+        var xyarr = [YAHOO.util.Event.getPageX(e)+8, YAHOO.util.Event.getPageY(e)-20];
+      }
+      else if( theobj.sides[this.id] == 'left' )
+      {
+        document.getElementById('inforarr').style.display = 'block'; 
+        var xy = [YAHOO.util.Event.getPageX(e)-(17+theobj.widths[this.id]), YAHOO.util.Event.getPageY(e)-50];
+        var xyarr = [YAHOO.util.Event.getPageX(e)-20, YAHOO.util.Event.getPageY(e)-20];
+      }
+      YAHOO.util.Dom.setXY('infolarr', xyarr);
+      YAHOO.util.Dom.setXY('inforarr', xyarr)
+      YAHOO.util.Dom.setXY('infobox_m', xy);
+    }
+    this.close = function (e)
+    {
+       document.getElementById('infobox_m').style.display = 'none';
+       document.getElementById('infolarr').style.display = 'none';
+       document.getElementById('inforarr').style.display = 'none';
+    }
+}
+var infob = new SBSInfoBox();
+</script>
+<div id="wrapper">
+	<div id="body" style="width: 730px;">
+		<div id="col1">
+            <div style="padding-top: 10px;">
+				<table width="720" border="0" cellpadding=0 cellspacing=2>
+					<tr>
+						<td rowspan=2 valign=top width="1%" height=28><a href="http://smallbusiness.yahoo.com">
+						<img height=28 alt="Yahoo! Small Business" src=http://us.i1.yimg.com/us.yimg.com/i/us/smbiz/b/ma_smbiz_new_1.gif width=329 border="0"></a>
+						</td>
+						<td rowspan=2 width=10> <spacer type=block width=1 height=1>  </td>
+						<td valign="bottom">
+						<small><font face="Verdana, Arial, Helvetica, sans-serif" size="-2">Welcome, <b>Guest</b></font></small></td>
+						<td align=right valign=bottom><font face="Arial, Helvetica, sans-serif" size="-1">
+						<a href=http://help.yahoo.com/help/sbiz/>Help</a></font>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="ysbsMainWrapper">
+				<div id="ysbsMain" style="background-color: #eeeeee;">
+					<span class="cornerTop"><span class="cornerLeft"></span></span>
+					<div id="order_nav" >
+						<div style="padding: 3px 10px 3px 20px">
+							<img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but__arrow_blu1.gif"> <span class="nav_current">Choose Domain</span>  <img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="10px">
+							<img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but__arrow_grey1.gif"> <span class="nav_normal">Choose Plan</span> <img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="10px">
+							<img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but__arrow_grey1.gif"> <span class="nav_normal">Sign In</span> <img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="10px">
+							<img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but__arrow_grey1.gif"> <span class="nav_normal">Enter Billing Info</span> <img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="10px">
+							<img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but__arrow_grey1.gif"> <span class="nav_normal">Review & Confirm Order</span>
+						</div>
+					</div>
+					<div id="order_module">
+	                	<div id="order_body">
+							<table style="margin: 5px">
+								<tr>
+									<td id="module_left" style="width: 530px; height: 400px; vertical-align: top;">
+										<center>		 									
+<script type='text/javascript' language='javascript'>
+page_state = 'search';
+num_dhist = 5;
+no_recom = true;
+<!-- set up beacon for differnt views -->
+beacon_map = new Array();
+beacon_map['search'] = '97543941';
+beacon_map['positive'] = '97543951';
+beacon_map['negative'] = '97543955';
+beacon_map['redel'] = '97543947';
+ 
+
+function sendActionTag()
+{
+   var pm_tagname = "shopperTag.txt";
+   var pm_tagversion = "1.3";
+   window.pm_customData = new Object();
+   window.pm_customData.segment="name=shopper, transId=";
+   var pm_tagname = "universalTag.txt";
+   var pm_tagversion = "1.4";
+   var pm_accountid = "NB518CV89QPBIM2B78CVG78KJ4";
+   var pm_scripthost = "srv.perf.overture.com";
+   var pm_customargs = "";
+   var pm_querystr = "?" + "ver=" + pm_tagversion + "&aid=" + pm_accountid + pm_customargs;
+   var url = "http://" + pm_scripthost + "/collweb/ScriptServlet" + pm_querystr;
+   var jsonsr = new JSONscriptRequest(url);
+   jsonsr.buildScriptTag();
+   jsonsr.addScriptTag();
+}
+function cleanUpDomain( domain )
+{
+  var d = domain;
+  d = d.toLowerCase();
+  d = d.replace(/[\s]/g,""); 
+  d = d.replace(/^[\-\.]+/,"");
+  d = d.replace(/^www\.+/,"");
+  d = d.replace(/^http\:\/\/www\.+/,"");
+  d = d.replace(/^http\:\/\/+/,"");;
+  d = d.replace(/[\/\:]/g,"");
+  d = d.replace(/[\.\-]+$/,"");
+   return d;
+}
+function silentRediect(url)
+{
+   var dummyurl = 'http://order.sbs.yahoo.com/platform_common/SBSplatform_empty_style.css';
+   var jsonsr = new JSONscriptRequest(url+dummyurl);
+   jsonsr.buildScriptTag();
+   jsonsr.addScriptTag();
+}
+function checkExt(d)
+{
+   var idx = d.indexOf('.');
+   if( idx >= 0 )
+	return true;
+   else
+        return false;
+}
+function cleanExt()
+{
+   var d = $('d').value
+   var idx = d.indexOf('.');
+   if( idx >= 0 )
+   {
+      ext = d.substr(idx,d.length-idx);
+      if( isSupportedExt(ext) )
+      {
+        $('ext').value = ext;
+        $('d').value = d.substr(0,idx);
+	return 'OK'; 	
+      }
+      else
+	return ext;
+   }
+   return 'OK';
+}
+function shortenDomain(od)
+{
+   if(od.length > 25)
+      return od.substr(0,22)+'...';
+   else
+      return od; 
+} 
+function setPos(x,y,id,mode)
+{
+   if(mode=='a')
+     var xy = [x,y];
+   else if (mode=='r')
+     var xy = [YAHOO.util.Dom.getX(id)+x,$D.getY(id)+y];
+   YAHOO.util.Dom.setXY(id, xy);
+}
+function isSupportedExt( ext )
+{
+   return (ext == '.com' || ext == '.net' || ext == '.us'|| ext == '.info'|| ext == '.org'|| ext == '.biz' )
+}
+function checkChar(domain)
+{
+  result = domain.match(/[\~\'\!\@\#\$\%\^\&\*\(\)\_\=\+\?\,\<\>\[\]\{\}\"\;\\]/g,"");
+  if( result )
+      return false;
+  else
+      return true; 
+} 
+function createErrorMessage( message )
+{
+    msg = '<table width=\"95%\"><tr><td style=\"width:40px;text-align: center; \">';
+    msg += '<img src=\"http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_x.gif\">';
+    msg += '</td><td>';
+    msg += '<span class=\"arial14_b_color7\">'+message+'</span>';
+    msg += '</td></tr></table>';
+    return msg;
+}
+function ResizeHandler()
+{
+   var thisobj = this;
+   this.rsobj = Array();
+   this.resizeObj = function (width,height,ttime,id, sMove, fMove)
+   {
+      theobj = $(id);
+      var attributes = {
+          width: {to: width},
+          height: {to: height}
+        };
+      if( typeof(thisobj.rsobj[id]) != 'undefined' )
+      { 
+         if( thisobj.rsobj[id].isAnimated() )
+            thisobj.rsobj[id].stop();
+      }
+      thisobj.rsobj[id] = new YAHOO.util.Anim(id, attributes, ttime, YAHOO.util.Easing.easeOut);
+      if( sMove == null)
+         thisobj.rsobj[id].onStart.subscribe(thisobj.startMove);
+      else
+         thisobj.rsobj[id].onStart.subscribe(sMove);
+      if( fMove == null) 
+         thisobj.rsobj[id].onComplete.subscribe(thisobj.finishMove);
+      else
+         thisobj.rsobj[id].onComplete.subscribe(fMove);
+      thisobj.rsobj[id].animate();
+   }
+   this.startMove = function()
+   {
+       if(this.getEl().style.display == 'none')
+          this.getEl().style.display = 'block';
+   }
+   this.finishMove = function()
+   {
+       if(this.getEl().style.width == '1px' || this.getEl().style.height == '1px')
+           this.getEl().style.display = 'none';
+   }
+}
+rshandler = new ResizeHandler()
+dckNrec = new DomainCkNRec('../tools/domain/CheckDomainAndRecommendations.php');
+dckNrec.setProcessCallBack(showResult);
+dckNrec.setFailureCallBack(connError);
+var response_obj;
+function connError(o)
+{
+     showErrorResult('Sorry, we\'re hadid ving trouble connecting to our network. Please try again later.'); 
+}
+function showResult(o)
+{
+   var delayt = 100;
+   if(o.responseText != undefined )
+   { 
+    attrmap = dckNrec.parseResponseIntoArray( o.responseText );
+    domcheck = attrmap['domcheck'];
+    // domcheck = Math.floor(Math.random()*2)?'true':'false';
+   if(domcheck == 'error')
+   {
+      dckNrec.error++; 
+      showErrorResult('not albe to check domain');
+      page_state = 'negative';
+      sendBeacon( beacon_map['negative'] );
+      sendActionTag();
+   }
+   else
+   {
+     if( domcheck == 'false')
+     {
+        page_state = 'negative';
+        dckNrec.notavailable++; 
+        msg = '<table width=\"95%\"><tr><td style=\"width:40px;text-align: center; \">';
+        msg += '<img src=\"http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_x.gif\">';
+        msg += '</td><td>';
+        msg += '<span class=\"arial16_color7\">Sorry, this domain name is not available: </span><br/>';
+        msg += '<span class=\"arial20_b_color8\">'+shortenStr( $('d').value+$('ext').value, 36 )+'</span>';
+        msg += '</td></tr><tr><td></td><td style="text-align: right"><a class=\"arial12_color2\" href=\"javascript:toRedel(\'negative\')\">Already own this domain?</a></td></tr></table>';
+        $('dsresultc').innerHTML = msg;
+        $('dstitle').innerHTML = 'Search again:';
+        rshandler.resizeObj(520,395,0.5,'resultarea',null,null);
+        rshandler.resizeObj(520,130,0.5,'dsresult',null,null);
+        sendBeacon( beacon_map['negative'] );
+        sendActionTag();
+      }
+      else if( domcheck == 'true' )
+      {
+        page_state = 'positive';
+        dckNrec.available++;
+        msg = '<table width=\"95%\"><tr><td style=\"width:40px;text-align: center; \">';
+        msg += '<img src=\"http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_checkmark.gif\">';
+        msg += '</td><td>';
+        msg += '<span class=\"arial16_color6\">Congratulations, your domain name is available!</span><br/>';
+        msg += '<span class=\"arial20_b_color6\">'+shortenStr( $('d').value+$('ext').value, 36 )+'</span>';
+        msg += '</td></tr><tr><td></td><td style=\"text-align: right\"><a href=\"javascript:doSubmit(\'positive\')\"><img border="0" src=\"http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_continue_1.gif\"></a></td></tr></table>';
+  
+        $('dsresultc').innerHTML = msg;
+        $('progress').style.display='none';
+        $('searchagain').style.display='block';
+        rshandler.resizeObj(520,395,0.5,'resultarea',null,null);
+        rshandler.resizeObj(520,130,0.5,'dsresult',null,null);
+        rshandler.resizeObj(510,30,0.5,'sa_content',null,showSearchAgainFMove);
+        sendBeacon( beacon_map['positive'] );
+        sendActionTag();
+      }
+      no_recom = true;  
+      if(  typeof(attrmap['extn']) != 'undefined' )
+      {
+         no_recom = false; 
+         extn = new Array();
+         extn = attrmap['extn'].split('|');
+         od = attrmap['od'];
+         rd = new Array();
+         rd = attrmap['rd'].split(',');
+         temppair = Array();
+         normal_rec = 'block';
+         htmlstr = '<table width=\"100%\" class=\"arial12_color3\"><tr style=\"font-weight: bold; text-align: center\"><td class=\"arial16_b_color3\" style=\"width: 200px; text-align: left\">Similar Options:</td>';
+
+         for(i=0;i<extn.length;i++)
+         {
+            htmlstr += '<td style=\"width: 40px; background-color: #CCD5D9;\">.'+extn[i].toLowerCase()+'</td>';
+         }
+         htmlstr += '<td width=\"25px\"><img id=\"extsinfo\" border=\"0\" src=\"http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_helpbutton_a_bsc.gif\"></td></tr></table>'; 
+         htmlstr += '<div style=\"margin: -2px 0px 0px 0px; width: 468px; border: 2px solid #CCD5D9;\"><table width=\"468px\" class=\"arial12_color3\" cellspacing=0 cellpadding=2>';
+         temppair = new Array();
+         temppair = od.split(':');  
+         st = ''+temppair[1];
+         ds = ''+temppair[0];
+         htmlstr += '<tr style=\"text-align: center; background-color: #ffffff; \" ><td class=\"arial12_b_color3\" style=\"width: 200px; text-align: left;\">'+ds+'</td>';
+         for(j=0;j<extn.length;j++)
+         {
+             if( j != recextarray[$('ext').value] )
+             {
+               if( st.substr(j,1) != 'q' )
+                 htmlstr += '<td style=\"width: 40px;\">X</td>';
+               else
+                 htmlstr += '<td style=\"width: 40px;\"><input onclick=\"setD(\''+ds.toLowerCase()+'\',\'.'+extn[j].toLowerCase()+'\')\" type=\"radio\" name=\"drec\" value=\"O-'+j+'-'+$('d').value+'\"></td>';
+             }
+             else
+             {
+               if( domcheck == 'true' )
+               {
+                 setD($('d').value, $('ext').value); 
+                 htmlstr += '<td style=\"width: 40px;\"><input onclick=\"setD(\''+ds.toLowerCase()+'\',\'.'+extn[j].toLowerCase()+'\')\" type=\"radio\" name=\"drec\" value=\"O-'+j+'-'+$('d').value+'\" checked></td>'; 
+               }
+               else
+                 htmlstr += '<td style=\"width: 40px;\">X</td>';       
+             }   
+         }
+         htmlstr += '</tr></table></div>';
+         htmlstr += '<table width=\"100%\" class=\"arial12_color3\" >'; 
+         for(i=0;i<rd.length;i++)
+         {
+            temppair = new Array();
+            temppair = rd[i].split(':');
+            st = ''+temppair[1];
+            ds = ''+temppair[0];
+            htmlstr += '<tr style=\"text-align: center\" ><td style=\"width: 200px; text-align: left\">'+ds+'</td>';
+            for(j=0;j<extn.length;j++)
+            {
+                if( st.substr(j,1) != 'q' )
+                  htmlstr += '<td style=\"width: 40px;\">X</td>';
+                else
+                  htmlstr += '<td style=\"width: 40px;\"><input onclick=\"setD(\''+ds.toLowerCase()+'\',\'.'+extn[j].toLowerCase()+'\')\" type=\"radio\" name=\"drec\" value=\"'+i+'-'+j+'-'+$('d').value+'\"></td>';
+            }
+            htmlstr += '<td style=\"width: 25px;\"></td></tr>';
+            if( i == 4 )
+            {
+               htmlstr += '</table>';
+               firstpart = htmlstr;
+               htmlstr = '<table class=\"arial12_color3\" width=\"100%\">'; 
+            }
+         }
+         htmlstr += '</table>';
+         restpart = htmlstr;
+         if( domcheck == 'false' )
+           delayt = showDomrec(firstpart, restpart);
+      }
+      if ( domcheck != 'true' ) 
+         $('dsearchbox').style.display='block';
+   }
+   $('progress').style.display='none';
+    
+   AddDomainToDSHist( $('d').value+$('ext').value, domcheck );
+   showUpdateDSHist(1);
+   if( page_state != 'positive') 
+       window.setTimeout('closeHelp(0.5)',delayt); 
+   }
+}
+function showDomrec(firstpart, restpart)
+{
+   $('drec_first').style.display = normal_rec;
+   $('drec_rest').style.display = extra_rec;
+   $('seemore').style.display = see_more;
+   $('drec_first').innerHTML = firstpart;
+   $('drec_rest').innerHTML = restpart;
+   infob.regContent('left',450,'extsinfo',extsinfo);
+
+   if( no_recom )
+      return 0;
+
+   $('domrec').style.display = 'block';
+   if( see_more == 'block' )
+   {
+       rshandler.resizeObj(510,rcheight,0.8,'drec_content',null,null);
+       return 1000;
+   }
+   else
+   {
+       rshandler.resizeObj(510,rcmoreheight,1.3,'drec_content',null,null);
+       return 1500;
+   }
+}
+function showErrorResult(message)
+{
+   msg = createErrorMessage(message );
+   $('dsresultc').innerHTML = msg;
+   rshandler.resizeObj(520,395,0.5,'resultarea',null,null);
+   rshandler.resizeObj(520,130,0.5,'dsresult',null,null);
+   $('progress').style.display='none';
+   $('dsearchbox').style.display='block'; 
+}
+function checkRedel(rd)
+{
+   $('redeld').value = cleanUpDomain( $('redeld').value ); 
+   if( rd )
+     silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/redelsearch/redelsearch/*');
+   delayt = closeResultAndRecommendation() 
+   if ( delayt )
+      window.setTimeout('checkRedel(false)',delayt);
+   else
+   {
+      if( $('redeld').value == '' )
+         showErrorResult('Please enter a domain name.');
+      else if ( !checkExt( $('redeld').value ) )
+         showErrorResult('Sorry, you did not enter an extension. Please enter a domain name with an extension, such as learn2yoga.com, and try again.');
+      else if ( !checkChar($('redeld').value) )
+         showErrorResult('Sorry, domain names may include only letters, numbers, and hyphens. Please choose a new domain name and try again.');
+      else if ( $('redeld').value.length < 2 )
+         showErrorResult('Sorry, domain names must have at least two characters. Please choose a new domain name and try again.');
+      else if ( $('redeld').value.lastIndexOf('.') > 63 )
+         showErrorResult('Sorry, domain names may not exceed 63 characters (excluding the extension, such as .com or .net). Please choose a new domain name and try again.');
+      else
+      {
+         $('is_transfer').value = 1; 
+         $('d').value = $('redeld').value;
+         document.myform.action = 'http://us.rd.yahoo.com/smallbusiness/orderprocess/redelsearch/redelsearch/*http://order.sbs.yahoo.com/ds/show_whois_info';
+                  document.myform.submit(); 
+      }         
+   } 
+}
+function checkDomain(rd)
+{
+   $('d').value = cleanUpDomain( $('d').value ) 
+   $('searching').src = 'http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_searching_icon_1.gif';
+   $('dsearchbox').style.display='none';
+   $('progress').style.display='block';
+   var delayt = closeResultAndRecommendation();
+   if ( delayt )
+   {
+      if( rd )
+         silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/negresults/search/*'); 
+      window.setTimeout('checkDomain(false)',delayt);
+   }
+   else  ///JR JR/// I believe this will be the initial state
+   {
+      if( rd )
+         silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/search/domsearch/*');
+      selected_drec = '';
+      selected_extrec = '';
+      newext = cleanExt(); 
+      if( $('d').value == '' )
+         showErrorResult('Please enter a domain name.');
+      else if ( !checkChar($('d').value) )
+         showErrorResult('Sorry, domain names may include only letters, numbers, and hyphens. Please choose a new domain name and try again.');
+      else if ( $('d').value.length < 2 )
+         showErrorResult('Sorry, domain names must have at least two characters. Please choose a new domain name and try again.');
+      else if ( $('d').value.length > 63 )
+         showErrorResult('Sorry, domain names may not exceed 63 characters (excluding the extension, such as .com or .net). Please choose a new domain name and try again.'); 
+      else if ( newext != 'OK' )
+        showErrorResult('Sorry, we don\'t support the extension <span class=\"arial12_b_color2\">'+newext+'</span>. Please choose an extension from the pull-down menu, and try again.');
+      else
+      {
+         $('already').style.display='none';
+         $('alreadymask').style.display='block';
+         page_state = 'searching';	
+         dckNrec.checkDomainAndRecommendations($('d').value+$('ext').value,20,'COM|NET|ORG|INFO|US|BIZ','');
+      }
+   }
+}
+function seeMoreRecommendation()
+{
+   silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/negresults/morenames/*');
+   $('drec_rest').style.display = 'block';
+   extra_rec = 'block';
+   see_more = 'none';
+   $('seemore').style.display = 'none'; 
+   rshandler.resizeObj(510,rcmoreheight,1.0,'drec_content',null,null);
+}
+function setDomainAndSearch(domain)
+{
+   silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/negresults/history/*');
+   temppair = Array();
+   temppair = domain.split('.');
+   $('d').value = temppair[0];
+   $('ext').selectedIndex = extarray[temppair[1]];
+   checkDomain(false);
+}
+function AddDomainToDSHist( domain, status )
+{
+  var resultstr = status+'+'+domain;
+  var inhist = inDSHist( resultstr );
+  if(  inhist == -1  )
+  {
+     prefix = dshistcookie.get(dshistcookiename)==''?'':';';
+     if( dshistcookie.get(dshistcookiename) )
+        dshistcookie.set(dshistcookiename,dshistcookie.get(dshistcookiename)+prefix+resultstr);
+     else
+        dshistcookie.set(dshistcookiename,prefix+resultstr);
+  }
+  else
+  {
+     dshist.splice(inhist,1);
+  }
+  dshist.push(resultstr);
+}
+function inDSHist(resultstr)
+{
+  var maxnum, i;
+  maxnum = dshist.length>num_dhist?num_dhist:dshist.length
+  for (i=dshist.length-1;i>=(dshist.length-maxnum);i--)
+  {
+     if( dshist[i] == resultstr )
+        return i;
+  } 
+  return -1;
+}
+function showUpdateDSHist(mode)
+{
+  var maxnum, i;
+  temppair = Array();
+  maxnum = dshist.length>num_dhist?num_dhist:dshist.length;
+  tempstr='<span class=\"arial12_b_color3\" >&nbsp;&nbsp;Your Search History</span><br/>';
+  if( maxnum > 0 )
+     tempstr+='<span class=\"arial10_color3\" >&nbsp;&nbsp;Click a domain to see its search results:</span><br/>';
+  for (i=dshist.length-1;i>=(dshist.length-maxnum);i--)
+  {   
+      temppair = dshist[i].split('+');
+      status = temppair[0]=='true'?'<img src=\"http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_checkmark_sml.gif\">':'<img src=\"http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_x_sml.gif\">';
+      cclass = temppair[0]=='true'?'arial12_color14':'arial12_color15';
+      tempstr+='&nbsp;&nbsp;'+status+' <a class=\"'+cclass+'\" href=\"javascript:setDomainAndSearch(\''+temppair[1]+'\')\">'+shortenDomain(temppair[1])+'</a><br/>';
+  }
+  $('dshs').innerHTML = tempstr;
+}
+function initDSHist()
+{
+   dshist = Array();
+   if( dshistcookie.get(dshistcookiename) )
+      dshist = dshistcookie.get(dshistcookiename).split(';');
+   showUpdateDSHist(1);
+}
+var mobj = new Array();
+function moveObj(xdiff, ydiff, ttime, id, sMove, fMove)
+{
+   var attributes = {
+       points: {
+            by: [xdiff, ydiff]
+        }
+   };
+   if( typeof(mobj[id]) != 'undefined' )
+   {
+      if( mobj[id].isAnimated() )
+          return 0;
+   }
+   mobj[id] = new $M(id, attributes, ttime, YAHOO.util.Easing.easeOut );
+   if( sMove != null)
+      mobj[id].onStart.subscribe(sMove);
+   if( fMove != null)
+      mobj[id].onComplete.subscribe(fMove);
+   mobj[id].animate();
+}
+function searchAgain()
+{
+   silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/posresults/searchagain/*');
+   $('dsearchbox').style.display='block'; 
+   $('sa_content').style.height = '510px';
+   $('sa_link').style.display = 'none';
+   page_state = 'search';
+   var delayt = showDomrec(firstpart, restpart);
+   window.setTimeout('closeHelp(0.5)',delayt);
+}
+function toRedel(rd)
+{
+   var newext = cleanExt();
+   if( newext == 'OK' && $('d').value != "" ) 
+     $('redeld').value = $('d').value+$('ext').value;
+   else
+     $('redeld').value = $('d').value; 
+   page_state = 'redel';
+   if( rd == 'search' )
+     silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/search/redel/*');
+   else if( rd == 'negative' )
+     silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/negresults/redel/*');
+   var delayt = closeResultAndRecommendation(); 
+   if ( delayt )
+      window.setTimeout('moveObj(-520,0,1.0,\'sbmodule\',fixFireFoxStart,fixFireFoxFinish)',delayt);
+   else
+      moveObj(-520,0,1.0,'sbmodule',fixFireFoxStart,fixFireFoxFinish);
+   rshandler.resizeObj(520,264,0.5,'resultarea',null,null);
+   $('already').style.display='block';
+   $('alreadymask').style.display='none';
+   sendBeacon( beacon_map['redel'] );
+}
+function toNewSearch(rd)
+{
+   page_state = 'search';
+   if( rd == 'redel')
+     silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/redelsearch/newdom/*');
+   var delayt = closeResultAndRecommendation();
+   if (delayt)
+      window.setTimeout('moveObj(520,0,1.0,\'sbmodule\',fixFireFoxStart,fixFireFoxFinish)',delayt);
+   else
+      moveObj(520,0,1.0,'sbmodule',fixFireFoxStart,fixFireFoxFinish);
+   rshandler.resizeObj(520,264,0.5,'resultarea',null,null);
+   $('already').style.display='block';
+   $('alreadymask').style.display='none';
+   sendBeacon( beacon_map['search'] );
+}
+
+function closeResultAndRecommendation()
+{
+   needdelay = 0;
+   
+   if($('dsresult').style.display == 'block' )
+   {
+      needdelay = 700; 
+      rshandler.resizeObj(520,1,0.5,'dsresult',null,null);
+   }
+   if($('domrec').style.display == 'block' )
+   {
+      needdelay = 1000;
+      rshandler.resizeObj(510,1,0.8,'drec_content',null,closeRecomFMove);
+   }
+   return needdelay;
+}
+function closeHelpFMove()
+{
+  this.getEl().style.display = 'none';
+  $('helpqmark').style.display = 'block';
+  $('searchhist').style.display='block'; 
+}
+function showSearchAgainFMove()
+{
+  $('sa_link').style.display = 'block';
+}
+function closeRecomFMove()
+{
+  $('domrec').style.display = 'none';
+}
+function closeHelp(ttime)
+{
+    if( $('helpm').style.display == 'block')
+    {
+       moveObj( -110, -22, ttime, 'helpm', fixFireFoxStart, null );
+       rshandler.resizeObj(1,1,ttime,'helpm',null,closeHelpFMove);
+    }
+}
+function openHelp(ttime)
+{
+   if( $('helpm').style.display == 'none')
+   {
+      $('searchhist').style.display='none';
+      $('helpqmark').style.display = 'none';
+      moveObj( 110, 22, ttime, 'helpm', fixFireFoxStart, fixFireFoxFinish );
+      rshandler.resizeObj(260,155,ttime,'helpm',null,null);
+   }
+}
+function doSubmit(mode)
+{
+      $('is_transfer').value = '';
+      if( mode == 'positive')
+      {
+         document.myform.action = 'http://us.rd.yahoo.com/smallbusiness/orderprocess/posresults/continue/*'+document.myform.action
+         document.myform.submit();
+      }
+      else if( selected_drec != '')
+      {
+         document.myform.action = 'http://us.rd.yahoo.com/smallbusiness/orderprocess/negresults/continue/*'+document.myform.action
+         $('d').value = selected_drec;
+         $('ext').value = selected_extrec;
+         document.myform.submit();
+      }
+      else
+          alert("To continue, please select a domain name or search again.");
+}
+function fixFireFoxStart()
+{
+   if(navigator.appName=='Netscape')
+   {
+     $('searchtip').style.overflow = 'hidden';
+     $('redelhelp').style.overflow = 'hidden';
+   }
+}
+function fixFireFoxFinish()
+{
+   if(navigator.appName=='Netscape')
+   {
+     $('searchtip').style.overflow = 'auto';
+     $('redelhelp').style.overflow = 'auto';
+   }
+}
+
+function setD(dn, xt)
+{
+     selected_drec = dn;
+     selected_extrec = xt; 
+}
+function pressEnter()
+{
+  if ( page_state == 'negative' || page_state == 'search' )
+     checkDomain(true); 
+  else if ( page_state == 'redel' )
+     checkRedel(true);
+}
+
+selected_drec = '';
+selected_extrec = '';
+extarray = new Array();
+extarray['com'] = 0;
+extarray['net'] = 1;
+extarray['org'] = 2;
+extarray['biz'] = 3;
+extarray['info'] = 4;
+extarray['us'] = 5;
+recextarray = new Array();
+recextarray['.com'] = 0;
+recextarray['.net'] = 1;
+recextarray['.org'] = 2;
+recextarray['.info'] = 3;
+recextarray['.us'] = 4;
+recextarray['.biz'] = 5;
+
+extra_rec = 'none';
+normal_rec = 'block';
+see_more = 'block';
+firstpart = '';
+restpart = '';
+dshistcookiename = 'sbs_dshist';
+var dshistcookie = new yg_cookie();
+
+extsinfo = 'Can\'t find the right web address? Try a different extension! You\'ll get more choices, plus certain extensions can reflect your type of business or service. <ul class=\"bullet1\"> <li>Designed for Internet companies, .net is now almost as common as .com.</li> <li>Many nonprofits use .org, which was created for noncommercial sites.</li> <li>If you\'re a business, try .biz, which can help you find a more targeted audience.</li> <li>Are you providing information on your site? Consider .info!</li> <li>If you do business in the U.S., you can use the .us extension.</li> </ul> </p>'; 
+
+
+$E.addListener(window,'load',initDSHist);
+
+redelqmark = 'Already own a domain? You can use it with a Yahoo! plan! Simply tell us your domain name, then place your order. When you\'re done, notify the company currently managing your domain that you plan to use it with Yahoo! (we\'ll show you how to do this).';
+function normalInit()
+{
+   infob.regContent('left',300,'redelqmark',redelqmark);
+   if( premsg )
+   {
+      showErrorResult(premsg);
+      $('resultarea').style.height = '395px';
+   }
+   sendBeacon( beacon_map['search'] );
+}
+$E.addListener(window,'load',normalInit);
+
+premsg = false;
+
+
+
+
+function sendDSResultRD()
+{
+   silentRediect('http://us.rd.yahoo.com/smallbusiness/orderprocess/ajax/y'+dckNrec.available+'n'+dckNrec.notavailable);
+}
+
+YAHOO.util.Event.on(window, 'unload', sendDSResultRD);
+function disableTab(e)
+{
+  if (e.keyCode==9)
+  {
+     if( page_state == 'redel' )
+       $('redeld').focus();
+     else
+       $('d').focus();
+  }
+}
+$E.on(document,'keydown',disableTab);
+
+if(navigator.appName=='Netscape') 
+{
+  rcmoreheight = 510
+  rcheight = 220
+}
+else
+{
+  rcmoreheight = 600
+  rcheight = 250
+}
+
+
+</script>
+		
+										<form name="myform" action="https://order.sbs.yahoo.com/ds/ReviewOrder">
+										<input id="finished" type="hidden" name=".finished" value="1">
+										<input type="hidden" name="billingchange" value="">
+										<input type="hidden" name=".finish" value="">
+										<input type="hidden" name="YY" value="578555">
+										<input type="hidden" name="m" value="wh">
+										<input id="pr" type="hidden" name="pr" value="">
+										<input id="prod" type="hidden" name=".p" value="BMG0">
+										<input id="src" type="hidden" name=".src" value="sbs">
+										<input type=hidden name=".refer" value="other">
+										<input type=hidden name="store_id" value="">
+										<input type=hidden name=".abs" value="">
+										<input type=hidden name=".scrumb" value="">
+										<input type=hidden name="paymethod" value="">
+										<input type=hidden name="eq" value="">
+										<input type=hidden name="ql" value="">
+										<input type=hidden name="bm" value="">
+										<input type=hidden name="es" value="">
+										<input type=hidden name="nextstep" value="">
+										<input type="hidden" name=".pold" value="">
+										<input type="hidden" name="dbt" value="">
+										<input type=hidden name="e" value="">
+										<input id="is_transfer" type="hidden" name="is_transfer" value="">
+										<input id="is_migration" type="hidden" name="is_migration" value="">
+										<input id="is_migration" type="hidden" name="is_reactivation" value="">
+										<input type="hidden" name="c" value=>
+										<input type=hidden name="term" value="">
+										<input type="hidden" name=".oid" value="">
+										<input id=".promo" type="hidden" name=".promo" value="">
+										<input type="hidden" name=".upromo" value="">
+										<input type="hidden" name="spm" value="">
+										<input id="reviewwhois" type="hidden" name="reviewwhois" value="">
+										<input type="hidden" name="NexusAppPurpose" value="">
+										<input type="hidden" name="NexusCategory" value="">
+										<input type="hidden" name=".pnew" value="">
+										<table cellspacing="0" cellpadding="0" style="margin-top: 20px">
+											<tr>
+												<td id="resultarea" style="height: 264px; width: 520px; vertical-align: bottom;">
+										<!-- start domain search result -->
+													<div id="dsresult" style="font-size: 16px; display: none; overflow: hidden; height: 1px; width: 520px;">
+													<table class="m1table1" style="height: 140px; width: 100%; font-size: 16px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;" >
+														<tr>
+															<td class="m1tl"></td>
+															<td class="m1ts"></td>
+															<td class="m1tr"></td>
+														</tr>
+														<tr>
+															<td class="m1ml"></td>
+															<td class="m1mc" id="dsresultc"></td>
+															<td class="m1mr"></td>
+														</tr>
+														<tr>
+															<td class="m1ml"></td>
+															<td class="m1mc"></td>
+															<td class="m1mr"></td>
+														</tr>
+													</table>
+													</div>
+								<!-- end domain search result -->
+								<!-- Start Start Start Start -->
+								<!-- Start Start Start Start -->
+								<!-- Start Start Start Start -->
+								<!-- Start Start Start Start -->
+													<div id="dsnredel" style="overflow: hidlden; height: 264px; width: 520px;border:blue solid 1px;">
+														<div id="dsearchbox" style="width: 100%; height: 264px; font-size: 12px; overflow: hidlden;border:green solid 1px;">													
+								<!-- start search and redel mudule table -->
+														<table id="sbmodule" style="width: 1040px;display:nokne;border:3px red solid;" cellspacing="0" cellpadding="0">
+															<tr><td style="width: 520px;">
+								<!-- start new domain module -->   
+																	<table class="m1table2" style="font-size: 16px; height: 198px; width: 100%; border-width: 0px; border-spacing: 0px; border-collapse:collapse;"  >
+																		<tr>
+																			<td class="m1tl"></td><td class="m1ts"></td><td class="m1tr"></td>
+																		</tr>
+																		<tr>
+																			<td class="m1ml"></td>
+																			<td class="m1mc" style="vertical-align: top;" >
+																				<table>
+																					<tr style="width: 100%">
+																						<td style="width: 250px; vertical-align: top;" >
+																							<p id="dstitle" class="arial20_b_color3" style="padding-top: 15px" >Find a domain name:</p> 
+																							<input type="text" name="d" id="d" size="20"> 
+																							<select name="ext" id="ext">
+																							<option value=".com">.com</option> 
+																							<option value=".net">.net</option>
+																							<option value=".org">.org</option>
+																							<option value=".biz">.biz</option>
+																							<option value=".info">.info</option>
+																							<option value=".us">.us</option>
+																							</select>
+																							<p class="arial12_color3">(e.g., my-company-name or learn2yoga)</p>
+																							<table style="width: 100%">
+																								<tr><td width="160px">
+																									<input type="image" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_search_1.gif" onclick="pressEnter(); return false;"> 
+																									<!-- <a href="javascript:checkDomain(true)"><img border="0" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_search_1.gif"></a> -->
+																									</td>
+																									<td width="100px" style="text-align: left;"> 
+																									<a href="javascript:openHelp(0.5)"><img id="helpqmark" style="display: none" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_helpbutton_a_bsc.gif" border="0"></a>
+																									</td>
+																								</tr>
+																							</table>
+																						</td>
+																						<td style="width: 270px; height: 180px; vertical-align: bottom;">									
+																							<div id="helpm" style="display: block; overflow: hidden; width:260px; height:155px">
+																							<table class="m3table1" style="width: 90%; font-size: 16px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+																								<tr>
+																									<td></td>
+																									<td class="m3tl"><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="5px" height="6px"></td>
+																									<td class="m3ts"></td>
+																									<td class="m3tr"></td>
+																								</tr>
+																								<tr><td><img style="position: relative; left: 2px; top: -20px; " src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_help_arrw_l.gif" >
+																									</td>
+																									<td class="m3ml"></td>
+																									<td class="m3mc">									
+																										<div id="searchtip" style="width: 220px; height: 135px; overflow: auto;">
+																										<table width="100%">
+																											<tr><td class="arial12_b_color1">Search Tips</td>
+																												<td class="arial12_color1" align="right" width="50%">
+																													<a href="javascript:closeHelp(0.5)">close <img border="0" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds__closehelp.gif"> 
+																													</a>
+																												</td>
+																											</tr>
+																										</table>
+																										<span class="arial12_color1">
+																										<ol class="bullet1">
+																										<li>Your domain should reflect your business name, products you offer, or topics your site will cover.<br/><br/></li>
+																										<li>Use only letters, numbers, and hyphens (spaces and other symbols aren't allowed).<br/><br/></li>
+																										<li>Try .net and .org extensions &mdash; they're as well-known as .com, but you'll have more options.<br/><br/></li>
+																										<li>If your first choice isn't available, try rearranging the word order or using abbreviations.<br/><br/></li>
+																										<li>For variety, add hyphens or words such as <em>online, store, the,</em> or <em>shop</em> to your business name.<br/><br/></li>
+																										</ol>
+																										</span>
+																										</div>												
+																									</td>
+																									<td class="m3mr"></td>
+																								</tr>
+																								<tr>
+																									<td></td>
+																									<td class="m3bl"></td>
+																									<td class="m3bs"></td>
+																									<td class="m3br"><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="6px" height="6px"></td>
+																								</tr>
+																							</table>
+																							</div>
+																							<div id="searchhist" style="display: none;">
+																							<table class="m2table1" style="height: 140px; width: 220px; font-size: 16px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+																								<tr>
+																									<td class="m2tl"></td>
+																									<td class="m2ts"></td>
+																									<td class="m2tr"></td></tr>
+																								<tr>
+																									<td class="m2ml"></td>
+																									<td class="m2mc">
+																										<div id="dshs" style="width: 210px; height: 140px; overflow: hidden;"></div>
+																									</td>
+																									<td class="m2mr"></td>
+																								</tr>
+																								<tr>
+																									<td class="m2bl"></td>
+																									<td class="m2bs"></td>
+																									<td class="m2br"></td>
+																								</tr>
+																							</table>
+																							</div>
+																							<img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" height="10px">									
+																						</td>
+																					</tr>
+																				</table>
+																			</td>
+																			<td class="m1mr"></td>
+																		</tr>
+																	</table>
+														<!-- end new domain module -->
+																</td>
+																<td style="width: 520px;">	
+														<!-- start redel module -->			
+																	<table class="m1table3" style="font-size: 16px; height: 198px; width: 100%; border-width: 1px; border-spacing: 0px; border-collapse:collapse;"   >
+																		<tr>
+																			<td class="m1tl"></td>
+																			<td class="m1ts"></td>
+																			<td class="m1tr"></td>
+																		</tr>
+																		<tr>
+																			<td class="m1ml"></td>
+																			<td class="m1mc" style="vertical-align: middle; " >
+																				<table>
+																					<tr style="width: 100%">
+																						<td style="width: 270px; vertical-align: top;" >
+																							<table class="m3table1" style="height: 140px; width: 90%; font-size: 16px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+																								<tr>
+																									<td class="m3tl"><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="5px" height="6px"></td>
+																									<td class="m3ts"></td><td class="m3tr"></td>
+																									<td></td>
+																								</tr>
+																								<tr>
+																									<td class="m3ml"></td>
+																									<td class="m3mc">
+																										<div id="redelhelp" style="width: 240px; height: 130px; overflow: auto;">
+																										<span class="arial12_color1">
+																										To use your domain with a Yahoo! plan:<br/>
+																										<ol class="bullet1">
+																										<li>Enter your existing domain, then place your order.<br/><br/></li>
+																										<li>When you're done, notify the company currently managing your domain that you plan to use it with Yahoo! (we'll show you how to do this).<br/><br/></li>
+																										</ol>
+																										Keep in mind that your domain will still be registered with your current provider, not Yahoo! <a href="http://help.yahoo.com/help/us/domains/redelegation/redelegation-02.html" target="_blank" >Learn more.</a><br/>
+																										<br/>
+																										<span class="arial10_color1">Already have a domain with Yahoo!? Enter it here to change your plan.</span>
+																										</span>
+																										</div>
+																									</td>
+																									<td class="m3mr"></td>
+																									<td><img style="position: relative; left: -4px; top: -8px; " src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_help_arrw_r.gif" ></td>
+																								</tr>
+																								<tr>
+																									<td class="m3bl"></td>
+																									<td class="m3bs"></td>
+																									<td class="m3br"><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="6px" height="6px"></td>
+																									<td></td>
+																								</tr>
+																							</table>
+																						</td>
+																						<td style="width: 250px; vertical-align: top;">
+																							<p class="arial16_b_color3">Enter your current domain name:</p>
+																							<input type="text" name="redeld" id="redeld" size="30">
+																							<p class="arial12_color3">(e.g., learn2yoga.com)</p>
+																							<p>
+																							<a href="javascript:checkRedel(true)"><img border="0" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_continue_1.gif"></a>
+																							</p>
+																						</td>
+																					</tr>
+																				</table>
+																			</td>
+																			<td class="m1mr"></td>
+																		</tr>
+																	</table>
+															<!-- end redel module -->
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<div id="already" style="width: 520px">
+																	<table class="m1table1" style="height: 66px; width: 100%; font-size: 16px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;" >			
+																		<tr><td class="m1ml"></td>
+																			<td class="m1mc" style="border-top: 2px solid #acacac">				
+																				<table cellspacing="0" cellpadding="0">
+																					<tr><td><span class="arial16_b_color3" style="padding: 15px">Already have a domain name? </span></td>
+																						<td class="arial16_b_color2" ><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="5px"><a href="javascript:toRedel('search')"><img border="0" src="http://us.i1.yimg.com/us.yimg.com/i/us/smbiz/misc/ds_but_use_w_order.gif"></a> <img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="5px"> <img id="redelqmark" border="0" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_helpbutton_a_bsc.gif"></td>
+																					</tr>
+																				</table>
+																			</td>
+																			<td class="m1mr"></td>
+																		</tr>
+																		<tr>
+																			<td class="m1bl"></td>
+																			<td class="m1bs"></td>
+																			<td class="m1br"></td>
+																		</tr>
+																	</table>
+																	</div>
+																	<div id="alreadymask" style="display: none; width: 520px">
+																	<table class="m1table2" style="height: 66px; width: 100%; font-size: 16px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;"  >
+																		<tr width="100%">
+																			<td class="m1ml"></td>
+																			<td class="m1mc">
+																				<table cellspacing="0" cellpadding="0">
+																					<tr>
+																						<td></td>
+																						<td><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif"></td>
+																					</tr>
+																				</table>
+																			</td>
+																			<td class="m1mr"></td>
+																		</tr>
+																		<tr>
+																			<td class="m1bl"></td>
+																			<td class="m1bs"></td>
+																			<td class="m1br"></td>
+																		</tr>
+																	</table>
+																	</div>
+																</td>
+																<td>
+																	<table class="m1table4" style="height: 66px; width: 100%; font-size: 16px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+																		<tr>
+																			<td class="m1ml"></td>
+																			<td class="m1mc" style="border-top: 2px solid #acacac" >
+																				<table cellspacing="0" cellpadding="0">
+																					<tr>
+																						<td><span class="arial16_b_color3" style="padding: 15px">Want to find a new domain name instead? </span></td>
+																						<td><img src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_spacer1.gif" width="20px"><a href="javascript:toNewSearch('redel')"><img border="0" src="http://us.i1.yimg.com/us.yimg.com/i/us/smbiz/misc/ds_but_search_now.gif"></a></td>
+																					</tr>
+																				</table>
+																			</td>
+																			<td class="m1mr"></td>
+																		</tr>
+																		<tr><td class="m1bl"></td>
+																			<td class="m1bs"></td>
+																			<td class="m1br"></td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>
+														</table>
+														
+														<!-- end search and redel mudule table -->
+														</div>
+													
+														<div id="progress" style="display: none; width: 100%; text-align: center;">
+														<table class="m1table2" style="height: 264px; width: 100%; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+															<tr>
+																<td class="m1tl"></td>
+																<td class="m1ts"></td>
+																<td class="m1tr"></td>
+															</tr>
+															<tr>
+																<td class="m1ml"></td>
+																<td class="m1mc" style="text-align: center;">
+																	<img id="searching" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_searching_icon_1.gif">
+																	<p class="arial16_b_color5" >Searching...</p>
+																</td>
+																<td class="m1mr"></td>
+															</tr>
+															<tr>
+																<td class="m1bl"></td>
+																<td class="m1bs"></td>
+																<td class="m1br">
+															</tr>
+														</table>
+														</div>
+													
+														<div id="searchagain"  style="display: none; width: 100%; text-align: center;" >
+														<table class="m1table2" style="width: 100%; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+															<tr>
+																<td class="m1tl"></td>
+																<td class="m1ts"></td>
+																<td class="m1tr"></td>
+															</tr>
+															<tr>
+																<td class="m1ml"></td>
+																<td class="m1mc">
+																	<div id="sa_content" style="width: 510px; height: 250px;" >
+																	<table id="sa_link" style="display: none;">
+																		<tr>
+																			<td><a class="arial16_b_color9" href="javascript:searchAgain()"><img src="http://us.i1.yimg.com/us.yimg.com/i//us/wh/gr/geo_arw_1.gif" border="0"></a></td>
+																			<td><a class="arial16_b_color9" href="javascript:searchAgain()">Search again</a></td>
+																		</tr>
+																	</table>
+																	</div>
+																</td>
+																<td class="m1mr"></td>
+															</tr>
+															<tr>
+																<td class="m1bl"></td>
+																<td class="m1bs"></td>
+																<td class="m1br"></td>
+															</tr>
+														</table>
+														</div>
+													</div>
+												<!-- end hidden area -->
+												<!-- end hidden area -->
+												<!-- end hidden area -->
+												<!-- end hidden area -->
+												<!-- end hidden area -->
+												</td>
+											</tr>
+											<tr>
+												<td width="100%">
+													<div id="domrec" style="display: none; width: 520px;"> 
+														<table class="m1table1" style="width: 100%; font-size: 12px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+															<tr><td class="m1ml"></td><td class="m1mc"></td><td class="m1mr"></td></tr>
+															<tr><td class="m1ml"></td>
+																<td class="m1mc">
+																	<div id="drec_content" style="width: 510px; height: 1px; overflow: hidden; display: none">
+																	<div id="drec_first" style="width: 500px; display: none; overflow: hidden;"></div>
+																	<div id="drec_rest" style="width: 500px; display: none; overflow: hidden;"></div>
+																	<div id="seemore" style="display: none"><a style="font-family:Arial, Helvetica, sans-serif;" href="javascript:seeMoreRecommendation()">See more</a></div>
+																	<div style="padding: 10px"><a href="javascript:doSubmit('recommend')" ><img border="0" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_but_continue_1.gif"></a></div>
+																	</div>
+																</td>
+																<td class="m1mr"></td>
+															</tr>
+															<tr><td class="m1bl"></td><td class="m1bs"></td><td class="m1br"></td></tr>
+														</table>
+													</div>
+												</td>
+											</tr>
+										</table>
+										</form>
+										</center>
+									</td>
+								<!-- TRIAL CODE FOR TEST PHASE GOES HERE -->	
+								<!-- TRIAL CODE FOR TEST PHASE GOES HERE -->	
+								<!-- TRIAL CODE FOR TEST PHASE GOES HERE -->	
+								<!-- TRIAL CODE FOR TEST PHASE GOES HERE -->	
+								<!-- TRIAL CODE FOR TEST PHASE GOES HERE -->	
+								<!-- TRIAL CODE FOR TEST PHASE GOES HERE -->	
+								<!-- TRIAL CODE FOR TEST PHASE GOES HERE -->	
+									
+									<td id="module_right" style="width: 200px; vertical-align: top; padding: 2px;">
+										<center>
+<script type='text/javascript' language='javascript'>
+function printYID( yid )
+{
+   idstr = shortenStr(yid, 22);
+   document.getElementById("os_yid").innerHTML = idstr;
+}
+function printDomain(d)
+{
+   dstr = shortenStr(d, 22);
+   document.getElementById("os_domain").innerHTML = dstr;
+}
+</script>
+										<p class="arial16_b_color2" style="text-align: left; padding: 0px 4px 0px 4px; margin: 0px;">Your Order Summary</p>
+										<table style="width: 180px; border-width: 0px; border-spacing: 0px; border-collapse:collapse;">
+											<tr width="100%">
+												<td class="m2gtl"></td>
+												<td class="m2gts"></td>
+												<td class="m2gtr"></td>
+											</tr>
+											<tr>
+												<td class="m2gml"></td>
+												<td class="m2gmc">
+													<div style="padding: 5px">
+														<span class="arial14_b_color2">Yahoo! ID: <img id="yidinfo" border="0" src="http://us.i1.yimg.com/us.yimg.com/i//us/smbiz/gr/ds_helpbutton_a_bsc.gif" border="0"></a>
+														</span><br/>
+														<span class="arial12_color3">
+														Not signed in
+														</span>
+														<br/>
+														<br/>
+														</div>
+														<div  style="padding: 5px">
+														<span class="arial14_b_color2">Plan:</span><br/>
+														<span class="arial12_color3">
+														Web Hosting Starter
+														<br/>
+				                                        <span class="arial12_b_color3">$11.95/mo.</span>
+														<br/>
+														<span class="arial12_color3">$25 setup fee</span>
+														<br/>
+														<a href="http://us.rd.yahoo.com/smallbusiness/orderprocess/searchresults/changeplan/*http://order.sbs.yahoo.com/ds/ChangePlan?.finish=/ds/ChooseDomain&.p=BMG0&.src=sbs&m=wh">Change</a>
+														</span>
+														<br/><br/>
+													</div> 
+													<div style="padding: 5px">
+														<span class="arial14_b_color2">Domain name: </span><br/>
+														<span class="arial12_color3">
+														Not selected
+														</span>
+														<br/>
+														<br/>
+													</div>
+												</td>
+												<td class="m2gmr"></td>
+											</tr>
+											<tr>
+												<td class="m2gbl"></td>
+												<td class="m2gbs"></td>
+												<td class="m2gbr"></td>
+											</tr>
+										</table>
+										<div style="text-align: center; padding: 20px 5px 5px 5px">
+										<span class="arial16_b_color2" style="padding: 2px;">Ordering Assistance</span><br/>
+										<span class="arial12_color2" style="padding: 2px;">Call our sales office toll-free:</span><br/>
+										<span class="arial20_b_color2"style=" padding: 2px;">866-781-9246</span>
+										   </span>
+										</div>
+<script type='text/javascript' language='javascript'>
+infob.regContent('left',220,'yidinfo','A Yahoo! ID is your Yahoo! user name, which allows you to access all of Yahoo!\'s personalized services, such as My Yahoo! and Mail. Be sure you have signed in with the Yahoo! ID you\'d like to associate with your plan; you will not be able to change this after placing your order.');
+</script>
+									</center>
+									</td>
+								</tr>
+							</table> 
+						</div>
+					</div>	
+				</div>
+				<div class="ysbscbot"><div><div></div></div></div>
+			</div>
+			<div style="padding: 10px">
+                        
+                        </div>
+			<div style="padding: 10px">
+						</div>
+                        <div style="padding: 10px">
+                                
+<small><font color="#666666">
+
+
+
+</font></small>
+
+                        </div>
+			<div id="footer">
+				<div id="ysbsFooter">
+				    <hr size=1 width=700>
+<div align="center"><font size=-2 face="arial">Copyright &copy;2006
+ Yahoo! Inc. All rights reserved.<br>
+ <a href="http://docs.yahoo.com/info/copyright/copyright.html">Copyright Policy</a> - <a href="http://docs.yahoo.com/info/terms">Terms of Service</a>
+   
+  - <a href="http://smallbusiness.yahoo.com/tos/tos.php">Additional Terms</a>
+   - <a
+ href=http://help.yahoo.com/help/sbiz/>Help</a></font> 
+  <br><font size=-2 face=Arial>
+    <b>NOTICE: We collect personal information on this site.<br>
+    To learn more about how we use your information, see our <a href=http://privacy.yahoo.com/> Privacy Policy</a>.</b>
+</font>
+</div>
+ 
+<br/>
+<br/>
+                                </div>
+			</div>		
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<div id="beacon_only"></div>
+<script language="JavaScript" type="text/JavaScript">
+function sendBeacon(beaconid)
+{
+   if( beaconid != '' )
+   {
+      var r=Math.random();
+      document.getElementById('beacon_only').innerHTML = "<img alt=\"Yahoo Image\" width=1 height=1 border=0 src=\"http://pclick.internal.yahoo.com/p/s="+beaconid+"/lng=us/rand="+r+"\">";
+   }
+   return true;
+}
+</script>
+<!-- no initial beacon -->
+<!-- spaceid=97564918 -->
+<script type="text/javascript">
+if (window.yzq_a == null) document.write("<scr" + "ipt type=text/javascript src=http://us.js2.yimg.com/us.js.yimg.com/lib/bc/bc_1.7.3.js></scr" + "ipt>");
+</script><script type="text/javascript">
+if (window.yzq_a) yzq_a('p', 'P=PP0HWULaSdwWmDRvROMOsg32QmwExkT_kj8AAqGd&T=13t5gfmm5%2fX%3d1157599807%2fE%3d97564918%2fR%3dsmallbiz%2fK%3d5%2fV%3d1.1%2fW%3d9%2fY%3dYAHOO%2fF%3d1309256101%2fS%3d1%2fJ%3dD149DA42');
+if (window.yzq_gb && window.yzq4) yzq4();
+else if (window.yzq_eh) yzq_eh();
+</script><noscript><img width=1 height=1 alt="" src="http://us.bc.yahoo.com/b?P=PP0HWULaSdwWmDRvROMOsg32QmwExkT_kj8AAqGd&T=14200hlil%2fX%3d1157599807%2fE%3d97564918%2fR%3dsmallbiz%2fK%3d5%2fV%3d3.1%2fW%3d9%2fY%3dYAHOO%2fF%3d2885155058%2fQ%3d-1%2fS%3d1%2fJ%3dD149DA42"></noscript>
+<!-- order2.sbs.scd.yahoo.com uncompressed/chunked Wed Sep  6 20:30:07 PDT 2006 -->

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body >
+<div id="a1" class="a2"><img src="http://i.real.com/pics/real/realone/rhapsody/opt/buttons/gray_button_on.gif" height="38" width="363"></div>
+<div id="b1" class="b2"><img src="http://i.real.com/pics/real/realone/rhapsody/opt/buttons/button_on.gif" height="38" width="363"></div>
+<div id="c1" class="c2"><img id="opSubmit" class="opSubRoll" src="http://i.real.com/pics/real/realone/rhapsody/opt/buttons/button_on.gif" height="38" width="363"></div>
+<div id="d1" class="d2">ddd</div>
+<div id="e1" class="e2">eee</div>
+<div id="f1" class="f2">fff</div>
+<div id="g1" class="g2">ggg</div>
+<div id="h1" class="h2">hhh</div>
+
+<script>
+addLoadEvent( function(){
+	var imgs = document.getElementsByTagName('img');
+	for (var i = 0; i < imgs.length; i++) {
+		imgs[i].className;
+		if(imgs[i].className == "opSubRoll") {
+			imgs[i].onmouseover = function (){this.src='http://i.real.com/pics/real/realone/rhapsody/opt/buttons/button_over.gif'}
+			imgs[i].onmouseout = function (){this.src='http://i.real.com/pics/real/realone/rhapsody/opt/buttons/button_on.gif'}
+		}
+	}
+	document.body.onclick = function(){alert('hey');}
+});
+
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+</script>
+
+</body>
+</html>
+
+

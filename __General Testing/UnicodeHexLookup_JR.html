@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Unicode conversion (probably of Kanji) </title>
+<link rel="Stylesheet" type="text/css" href="unicode.css" />
+<script type="text/javascript">
+window.onload = init;
+var d = document;
+function init() {
+	d.getElementById("ok_btn").onclick = function() {
+		fieldValue = d.getElementById("character").value;
+		if(fieldValue.search(/[^0-9]/g) == -1) {
+			nCode = fieldValue;
+		} else {
+			//nCode = fieldValue.charCodeAt(0);
+			nCode='';
+			htmlCode='';
+			var temp=new Array;
+			for(var i=0;i<fieldValue.length;i++){
+				temp[i]=fieldValue.substr(i,1);
+				nCode+=(i==0?'':',')+temp[i].charCodeAt(0);	
+				htmlCode+='&#'+temp[i].charCodeAt(0)+';';
+				//alert(nCode);		
+			}
+		}
+		d.getElementById("CharRep").value = String.fromCharCode(nCode);
+		//d.getElementById("OneUnicodeEntity").value = so_asciiToUniHex(parseInt(nCode));
+		d.getElementById("UnicodeEntity").value = so_asciiToUniHexBig(nCode);
+		
+		d.getElementById("HTMLEntity").value = htmlCode;
+		d.getElementById("forMyFunc").value = nCode;	
+	}
+}
+
+function so_asciiToUniHex(asciiCode) {
+	un = asciiCode.toString(16);
+	while(un.length<4) un = "0" + un;
+	return "\\u" + un;
+}
+function so_asciiToUniHexBig(asciiCode) {
+	list='';
+	eachOne=asciiCode.split(',');
+	for(var i=0;i<eachOne.length;i++){
+		un = parseInt(eachOne[i]).toString(16);
+		while(un.length<4) un = "0" + un;
+		list+="\\u"+un;
+	}
+	return list;
+}
+</script>
+<style>
+td{white-space:nowrap}
+</style>
+</head>
+<body>
+	<div id="mContainer">
+		<h1>Unicode conversion (probably of Kanji) </h1>
+		<h2>Add the string below</h2>
+		<form method="get" action="">
+			<label for="character">Enter the ASCII code or type/paste the character for who's Unicode Hex value you need:</label><br />
+			<table>
+				<tr><td colspan="2"><input class="txt" type="text" name="character" value="" id="character" size="50" />&nbsp;<input type="button" value="ok" id="ok_btn" /></td></tr>
+				<tr><td><label>Character: </label></td><td><input class="txt" type="text" id="CharRep" /></td></tr>
+<!--				<tr><td><label>Single Unicode Entity: </label></td><td><input class="txt"  type="text" id="OneUnicodeEntity" /></td></tr> -->
+				<tr><td><label>Unicode Entity: </label></td><td><input class="txt"  type="text" id="UnicodeEntity" size="200" /></td></tr>
+				<tr><td><label>HTML Entity: </label></td><td><input class="txt" type="text" size="200" id="HTMLEntity" /></td></tr>
+				<tr><td><label>Comma-delimited<br/>for JR's Function: </label></td><td><input class="txt" type="text" size="150" id="forMyFunc" /></td></tr>
+			</table>
+		</form>
+	</div>
+	
+	<div id="copy">
+	<p>
+	Use the unicode entity with createTextNode. For example, to append an ampersand, you would use \u0026 like this:
+	<pre><code>document.createTextNode("\u0026");</code></pre>
+	</p>
+	
+	<p>
+	When using innerHTML, you can use the HTML ASCII entity:
+	<pre><code>document.getElementById("myDiv").innerHTML += "&amp;#38;";</code></pre>
+	</p>
+</body>
+</html>
+<script>
+
+</script>

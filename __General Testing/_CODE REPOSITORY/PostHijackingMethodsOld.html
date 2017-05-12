@@ -1,0 +1,22 @@
+<script language="javascript" type="text/javascript">
+// Hijacking the POST for easier debugging.
+
+if(document.getElementsByTagName('base')[0] != null){ // If we have a base statement, use that to set the root path
+	daRoot = document.getElementsByTagName('base')[0].href;
+}
+else {
+	path = document.location.pathname;  // get path of file after domain name, i.e. /fcr/default.aspx
+	appRoot = path.substring(0,path.lastIndexOf("/")+1); // parse out file name from path, i.e. /fcr/
+	daRoot = document.location.protocol + "//" + document.location.host + appRoot; // put location string together from and assign to property oporder
+}	
+</script>
+
+<!-- <form name="Form1" method="post" action="{{$clickthru.Form1.url}}" id="Form1" > </form> -->
+<script language="javascript">
+formName = 'Form1';
+daPost = '{{$clickthru.Form1.url}}' ;
+newPostLink = ((document.forms[formName].action.indexOf('http')==-1)?daRoot:'') + document.forms[formName].action;  //Check to see if the action is full path.
+																								//Firefox 1.5 and above makes them all full path.
+document.forms[formName].action = daPost + ((daPost.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(newPostLink);
+</script>
+

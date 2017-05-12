@@ -1,0 +1,10 @@
+<HTML>
+<BODY>
+<SCRIPT LANGUAGE="JavaScript">
+function opCreativeSetCookieA_X(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null) ? "" : (";domain=" + d));}
+function opCreativeGetDocumentSLD_X(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l < 2) sld = null;else if (!isNaN(dp[l-1]) && !isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+opCreativeSetCookieA_X("cookieNumberOne_session", "OM_CLICKTHRUPASSTHRU_COUNTERARGS", opCreativeGetDocumentSLD_X(), null);
+opCreativeSetCookieA_X("cookieNumberTwo_30days", "OM_CLICKTHRUPASSTHRU_COUNTERARGS", opCreativeGetDocumentSLD_X(), 2592000);
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,284 @@
+<script type="text/javascript" language="javascript">
+
+// DOM EXTENDER AND FUNCTION LIBRARY BY RWE FOR SELF AND OPTIMOST SEs
+
+//	Copy/paste everything until the _end_ [start]
+var DOMElement = null;	// this is will stay in browsers that aren't ie
+if(document.all)
+DOMElement =
+{
+	extend: function(name,fn)
+	{
+		if(!document.all)
+			eval("HTMLElement.prototype." + name + " = fn");
+		else
+		{
+			//
+			//	IE doesn't allow access to HTMLElement
+			//	so we need to override
+			//	*document.createElement
+			//	*document.getElementById
+			//	*document.getElementsByTagName
+			//
+
+			//take a copy of
+			//document.createElement
+			var _createElement = document.createElement;
+
+			//override document.createElement
+			document.createElement = function(tag)
+			{
+				var _elem = _createElement(tag);
+				eval("_elem." + name + " = fn");
+				return _elem;
+			}
+
+			//take copy of
+			//document.getElementById
+			var _getElementById = document.getElementById;
+
+			//override document.getElementById
+			document.getElementById = function(id)
+			{
+				var _elem = _getElementById(id);
+				eval("_elem." + name + " = fn");
+				return _elem;
+			}
+
+			//take copy of
+			//document.getElementsByTagName
+			var _getElementsByTagName = document.getElementsByTagName;
+
+			//override document.getElementsByTagName
+			document.getElementsByTagName = function(tag)
+			{
+				var _arr = _getElementsByTagName(tag);
+				for(var _elem=0;_elem<_arr.length;_elem++)
+					eval("_arr[_elem]." + name + " = fn");
+				return _arr;
+			}
+		}
+	}
+};
+
+// Object.prototype.
+var XXinsertAfter = function(newElem,targetElem)
+{
+ var parent = this;
+ var retObj = null;
+ if(parent.lastChild == targetElem)
+  retObj = parent.appendChild(newElem);
+ else
+  retObj = parent.insertBefore(newElem,targetElem.nextSibling);
+ return retObj;
+}
+// Object.prototype.
+var XXcreateNextSibling = function(newObj,newTagName,newId)
+{
+ if(typeof newObj == 'object' && newObj == null)
+ {
+  if(typeof newTagName != 'undefined')
+   newObj = document.createElement(newTagName);
+  else
+   return null;
+ }
+ if(typeof newObj == 'object' && newObj != null)
+ {
+  if(typeof newId != 'undefined')
+   newObj.id = newId;
+  return this.parentNode.insertAfter(newObj,this);
+ }
+ else
+  return null;
+} 
+// Object.prototype.
+var XXcreatePreviousSibling = function(newObj,newTagName,newId)
+{
+ if(typeof newObj == 'object' && newObj == null)
+ {
+  if(typeof newTagName != 'undefined')
+   newObj = document.createElement(newTagName);
+  else
+   return null;
+ }
+ if(typeof newObj == 'object' && newObj != null)
+ {
+  if(typeof newId != 'undefined')
+   newObj.id = newId;
+  return this.parentNode.insertBefore(newObj,this);
+ }
+ else
+  return null;
+}
+if(!document.all)
+{
+ Object.prototype.insertAfter = XXinsertAfter;
+ Object.prototype.createNextSibling = XXcreateNextSibling;
+ Object.prototype.createPreviousSibling = XXcreatePreviousSibling;
+}
+else
+{
+ DOMElement.extend("insertAfter",XXinsertAfter);
+ DOMElement.extend("createNextSibling",XXcreateNextSibling);
+ DOMElement.extend("createPreviousSibling",XXcreatePreviousSibling);
+}
+XXinsertAfter = null;
+XXcreateNextSibling = null;
+XXcreatePreviousSibling = null;
+
+//	Copy/paste everything until the _end_ [end]
+
+
+
+// useful tag/content function [start]
+getTagsByContent = function(myTag,myContent)
+{
+ var myElems = new Array();
+ var elems = this.getElementsByTagName(myTag);
+ for(var i=0;i < elems.length;i++)
+  if(elems[i].innerHTML == myContent)
+   myElems[myElems.length] = elems[i];
+ if(myElems.length < 1)
+  return null;
+ else
+  return myElems;
+}
+// useful tag/content function [end]
+
+// (less) useful generalized content function [start]
+document.getElementsByContent = function(myContent)
+{
+ var myElems = new Array();
+ var elems = this.getElementsByTagName("*");
+ for(var i=0;i < elems.length;i++)
+  if(elems[i].innerHTML == myContent)
+   myElems[myElems.length] = elems[i];
+ if(myElems.length < 1)
+  return null;
+ else
+  return myElems;
+}
+// (less) useful generalized content function [end]
+
+// VERY useful function to grab an element if it matches a pattern [start]
+document.getElementsByRegEx = function(pattern)
+{
+ var allTags = document.getElementsByTagName("*");
+ var myTags = new Array();
+ 
+ for(var i=0;i < allTags.length;i++)
+ {
+   if(allTags[i].innerHTML.search(pattern) != -1)
+    myTags[myTags.length] = allTags[i];
+ }
+ if(myTags.length != 0)
+  return myTags;
+ else
+  return null;
+}
+
+/* document.getElementsByRegEx(pattern)
+ *
+ * USAGE:
+ *
+ *  var myPattern = /^\$\d+\.\d{2}$/; // money alone in some tag in the document
+ *
+ *  -- will return:
+ *  --  null on fail
+ *  --  an array of HTMLElements (objects) if any are found
+ *
+ *  -- such that:
+ *
+ *  var myElems = document.getElementsByRegEx(myPattern);
+ *
+ *  -- is either null or an array of objects whose contents match _myPattern_ (regex)
+ *
+ *  -- so that:
+ *
+ *  if((typeof myElems) == object)	// null is an object, or this would be an array
+ *  {
+ *   // not found
+ *  }
+ *  else
+ *  {
+ *   // found, use as list (i.e. myElems[0], etc).
+ *  }
+ */
+
+// VERY useful function to grab an element if it matches a pattern [end]
+
+// Useful if you want to seem to alter the class after the elements are rendered [start]
+document.getElementsByClassName = function(clsName)
+{
+ var retVal = new Array();
+ var elements = document.getElementsByTagName("*");
+ for(var i = 0;i < elements.length;i++)
+ {
+  if(elements[i].className.indexOf(" ") >= 0)
+  {
+   var classes = elements[i].className.split(" ");
+   for(var j = 0;j < classes.length;j++)
+   {
+    if(classes[j] == clsName)
+     retVal.push(elements[i]);
+   }
+  }
+  else if(elements[i].className == clsName)
+   retVal.push(elements[i]);
+ }
+ return retVal;
+}
+// Useful if you want to seem to alter the class after the elements are rendered [end]
+
+/*	use this instead of _document.getElementsByName(eleName)_
+ *	because of cross-browser incompatibilities [start]
+ */
+document.getElementsByNom = function(eleName) // parlez-vous francais?
+{
+var myEle = new Array();
+var count = -1;
+var targets = document.getElementsByTagName("*");
+for(var i=0;i<targets.length;i++)
+ if(targets[i].getAttribute('name') == eleName)
+  myEle[++count] = targets[i];
+ if(count != -1)
+  return myEle;	// an array
+ return null;
+}
+/*	use this instead of _document.getElementsByName(eleName)_
+ *	because of cross-browser incompatibilities [end]
+ */
+
+// these are the 'death' functions (enjoy!) [start]
+// death function library
+
+var kill = function(victim)
+{
+ return victim.parentNode.removeChild(victim);
+}
+var murder = function(target)
+{
+ var victim = document.getElementById(target);
+ return kill(victim);
+}
+var massacre = function(elems)
+{
+ var retBoo = (elems.length < 1) ? false : true;
+ var count = 0;
+ for(var i=0;i<elems.length;i++)
+ {
+  kill(elems[i]);
+  count++;
+ }
+ if(retBoo)
+  return count;
+ else
+  return retBoo;
+}
+var tagAssassin = function(myTag)
+{
+ var myVictims = document.getElementsByTagName(myTag);
+ return massacre(myVictims);
+}
+// these are the 'death' functions (enjoy!) [end]
+</script>

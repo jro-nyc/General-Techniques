@@ -1,0 +1,128 @@
+<script language="javascript" type="text/javascript">
+var opServerControlIds = [
+"PostIteration",
+"FirstName",
+"LastName",
+"Address1",
+"Address2",
+"City",
+"State",
+"Zip",
+"Country",
+"Phone",
+"Email",
+"Password",
+"ConfirmPassword",
+"Company",
+"WorkIndustry",
+"JobFunction",
+"CompanySize",
+"Source",
+"TermsOfUse",
+"PromoOptin",
+"TRUSTeHotSpot"];
+
+// This array contains ID of server validators visible in the template 
+//var opServerValidatorIds = ["validsummary"];
+
+var opServerValidatorIds = [
+"MissingFieldsLabel",
+"ValidFirstName",
+"ValidLastName",
+"ValidAddress",
+"ValidCity",
+"ValidState",
+"ValidZip",
+"ValidZip2",
+"ValidCountry",
+"ValidPhone",
+"ValidEmail",
+"ValidPassword",
+"ValidNotBlankConfirmPassword",
+"ValidConfirmPassword",
+"LabelFirstName",
+"LabelLastName",
+"LabelAddress",
+"LabelCity",
+"LabelState",
+"LabelZip",
+"LabelCountry",
+"LabelPhone",
+"LabelEmail",
+"LabelPassword",
+"LabelConfirmPassword",
+"LabelCompany",
+"LabelWorkIndustry",
+"LabelJobFunction",
+"LabelCompanySize",
+"LabelSource",
+"LabelTermsOfUse"];
+
+var opServerValidatorIds2 = [];
+
+var errorFree = false;
+var wasPosted = false;
+
+function complexError(el){
+	this.display = el.style.display;
+	this.visibility = el.style.visibility;
+	this.innerHTML = el.innerHTML;
+	this.color = el.style.color;
+	this.fontWeight = el.style.fontWeight;
+}	
+
+var daInputs =  new Object;
+var dacomplexErrors =  new Object;
+var daErrors =  new Object;
+
+function opReadDotNet(){
+	for(i=0;i<opServerControlIds.length;i++) {
+		if(document.getElementById(opServerControlIds[i]) != null) daInputs[opServerControlIds[i]] = document.getElementById(opServerControlIds[i]).value;
+	}
+	for(i=0;i<opServerValidatorIds.length;i++) {
+		if(document.getElementById(opServerValidatorIds[i]) != null) {
+			var el = document.getElementById(opServerValidatorIds[i]);
+			if (el != null)	{
+				dacomplexErrors[opServerValidatorIds[i]] =  new complexError(el);
+				//x = 'This is the list for ' + opServerValidatorIds[i] + '\n';
+				//for(var n in dacomplexErrors[opServerValidatorIds[i]]){x+= n + ' = ' + dacomplexErrors[opServerValidatorIds[i]][n] + '\n';}
+				//alert(x);
+			}
+		}
+	}
+	for(i=0;i<opServerValidatorIds2.length;i++) {
+		if(document.getElementById(opServerValidatorIds2[i]) != null) daErrors[opServerValidatorIds2[i]] = document.getElementById(opServerValidatorIds2[i]).innerHTML;
+	}
+	if(document.getElementById('opDefault') != null) document.getElementById('opDefault').innerHTML = '';
+}
+opReadDotNet();
+</script>
+
+		
+<script language="Javascript" native="no">
+function doDotNetInit() {
+	for(i=0;i<opServerControlIds.length;i++) {
+		if(daInputs[opServerControlIds[i]] != null) if(document.getElementById(opServerControlIds[i]) != null) document.getElementById(opServerControlIds[i]).value = daInputs[opServerControlIds[i]];	
+	}
+	for(i=0;i<opServerValidatorIds.length;i++) {
+		if(dacomplexErrors[opServerValidatorIds[i]] != null) {
+			if(document.getElementById(opServerValidatorIds[i]) != null) {
+				//alert(opServerValidatorIds[i]);
+				document.getElementById(opServerValidatorIds[i]).style.display = dacomplexErrors[opServerValidatorIds[i]].display;
+				document.getElementById(opServerValidatorIds[i]).style.color = dacomplexErrors[opServerValidatorIds[i]].color;
+				document.getElementById(opServerValidatorIds[i]).style.visibility = dacomplexErrors[opServerValidatorIds[i]].visibility;
+				document.getElementById(opServerValidatorIds[i]).style.fontWeight = dacomplexErrors[opServerValidatorIds[i]].fontWeight;
+				document.getElementById(opServerValidatorIds[i]).innerHTML = dacomplexErrors[opServerValidatorIds[i]].innerHTML;
+			}
+		}
+	}
+	for(i=0;i<opServerValidatorIds2.length;i++) {
+		if(daErrors[opServerValidatorIds2[i]] != null) document.getElementById(opServerValidatorIds2[i]).innerHTML = daInputs[opServerValidatorIds2[i]];	
+	}
+}
+doDotNetInit();
+</script>
+
+
+
+

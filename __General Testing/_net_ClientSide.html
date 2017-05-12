@@ -1,0 +1,10 @@
+<SCRIPT LANGUAGE="JavaScript">
+var strValidatorUpdateDisplay = ValidatorUpdateDisplay.toString();
+strValidatorUpdateDisplay = strValidatorUpdateDisplay.substring( strValidatorUpdateDisplay.indexOf("{") + 1, strValidatorUpdateDisplay.lastIndexOf("}"));
+strInnerValidatorUpdateDisplay = "function InnerValidatorUpdateDisplay(val) { " +
+strValidatorUpdateDisplay + "}";
+ValidatorUpdateDisplay = new Function("val", strInnerValidatorUpdateDisplay + "InnerValidatorUpdateDisplay(val); TemplateValidatorUpdateDisplay(val);");
+var strValidatorOnLoad = ValidatorOnLoad.toString();
+strValidatorOnLoad = strValidatorOnLoad.substring(strValidatorOnLoad.indexOf("{") + 1, strValidatorOnLoad.lastIndexOf("}"));
+strValidatorOnLoad = strValidatorOnLoad.replace("val.controltovalidate", "'" + strTemplateControlPrefix + "' + val.controltovalidate"); ValidatorOnLoad = new Function("", strValidatorOnLoad);
+</SCRIPT>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<script>
+var g_strByDate;
+
+function dateGetter(daysInFuture){
+var today;
+var day;
+var days;
+var msecs;
+var nextOne;
+var daMonths;
+var enSeis;
+daMonths = new Array('Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.');
+daDays = new Array('1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th','14th','15th',
+	'16th','17th','18th','19th','20th','21st','22nd','23rd','24th','25th','26th','27th','28th','29th','30th','31st');
+
+	if(daysInFuture == '') days=0;
+	else days = parseInt(daysInFuture);
+	if(typeof(days) == "number") {
+		if(days< 0) daysInFuture = 0;
+	}
+	else daysInFuture = 0;
+	today = new Date();
+	msecs = today.getTime();	
+	day = today.getDay();		
+	msecs = msecs + 1000*60*60*24*daysInFuture;  
+	nextOne = new Date(today.setTime(msecs));
+	enSeis = new Date(today.setTime(msecs));
+	g_strByDate = daMonths[enSeis.getMonth()] + " " + daDays[enSeis.getDate()-1] + ", " + enSeis.getYear();
+	alert(g_strByDate);
+	return g_strByDate;
+}
+</script>
+<div>
+<input type="button" onclick="dateGetter(document.getElementById('days').value);return false;" value="how many days from today?"> <input type="text" name="days" id="days" size="5">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<div style="width: 490px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Form POST tuturial - What happens to a button/image input when it is clicked to submit a form?</strong><br><br>   
+I created this file to show that we can differentiate which image or button a user clicked on when submitting a form.<br><br>
+What's the point?  Well, I want all of us to understand what's going on with forms as well as possible.  And on some forms, there may be multiple
+mini "forms" that can be differentiated by which button is clicked.  
+<br/><br/><strong style="color:#88FF88;">Pick either one of the two "mini forms" to submit, or one of the buttons at the bottom, make sure you have "debug clickthrus" on, 
+and see what gets posted.</strong>
+</div>
+<form name="yo" action="http://by.optimost.com/post/2-194/">
+<table><tr><td>
+				<table width="200" border="2" cellspacing="0" cellpadding="2" bgcolor="#FFFFdd">
+					<tr>
+						<td class="lfthdr" colspan="2"> &#160;Search for homes </td>
+					</tr>
+					<tr>
+						<td rowspan="8"><img src="/images/t.gif" alt="" width="1" height="1" border="0" /></td>
+						<td class="small">City:&nbsp;<br />
+						<select name="dropCitiesWithHomes" id="_ctl0_ucLeftNavContainer__ctl0_dropCitiesWithHomes" style="width:140 px">
+			<option selected="selected" value="All Cities">All Cities</option>
+			<option value="Inwood">Inwood</option>
+			<option value="Manhattan">Manhattan</option>
+			<option value="New York">New York</option>
+			<option value="Ny">Ny</option>
+			<option value="Ny City">Ny City</option>
+			<option value="Nyc">Nyc</option>
+			<option value="Upper West Side">Upper West Side</option>
+
+		</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="small">Priced from:</td>
+					</tr>
+					<tr>
+						<td class="small"><select name="dropHPriceFrom" id="_ctl0_ucLeftNavContainer__ctl0_dropHPriceFrom">
+			<option value="-1">$0</option>
+			<option value="50000">$50,000</option>
+			<option selected="selected" value="100000">$100,000</option>
+			<option value="150000">$150,000</option>
+			<option value="200000">$200,000</option>
+			<option value="250000">$250,000</option>
+			<option value="300000">$300,000</option>
+			<option value="350000">$350,000</option>
+			<option value="400000">$400,000</option>
+			<option value="450000">$450,000</option>
+			<option value="500000">$500,000</option>
+			<option value="600000">$600,000</option>
+			<option value="700000">$700,000</option>
+			<option value="800000">$800,000</option>
+			<option value="900000">$900,000</option>
+			<option value="1000000">$1 mil</option>
+			<option value="3000000">$3 mil</option>
+			<option value="5000000">$5 mil</option>
+
+		</select></td>
+					</tr>
+					<tr>
+						<td class="small">Priced to:</td>
+					</tr>
+					<tr>
+						<td class="small"><select name="dropHPriceTo" id="_ctl0_ucLeftNavContainer__ctl0_dropHPriceTo">
+			<option value="100000">$100,000</option>
+			<option value="150000">$150,000</option>
+			<option value="200000">$200,000</option>
+			<option value="250000">$250,000</option>
+			<option value="300000">$300,000</option>
+			<option selected="selected" value="350000">$350,000</option>
+			<option value="400000">$400,000</option>
+			<option value="450000">$450,000</option>
+			<option value="500000">$500,000</option>
+			<option value="600000">$600,000</option>
+			<option value="700000">$700,000</option>
+			<option value="800000">$800,000</option>
+			<option value="900000">$900,000</option>
+			<option value="1000000">$1 mil</option>
+			<option value="3000000">$3 mil</option>
+			<option value="5000000">$5 mil</option>
+			<option value="10000000">$10 mil</option>
+			<option value="-1">10 mil +</option>
+
+		</select></td>
+					</tr>
+					<tr>
+						<td class="small">Bedrooms:<br />
+						<select name="dropHBedRooms" id="_ctl0_ucLeftNavContainer__ctl0_dropHBedRooms">
+			<option selected="selected" value="-1">Any</option>
+			<option value="1">at least 1</option>
+			<option value="2">at least 2</option>
+			<option value="3">at least 3</option>
+			<option value="4">at least 4</option>
+
+		</select>	
+						</td>
+					</tr>
+					<tr>
+						<td class="small">Bathrooms:<br />
+						<select name="dropHBathRooms" id="_ctl0_ucLeftNavContainer__ctl0_dropHBathRooms">
+			<option selected="selected" value="-1">Any</option>
+			<option value="1">at least 1</option>
+			<option value="2">at least 2</option>
+			<option value="3">at least 3</option>
+			<option value="4">at least 4</option>
+
+		</select>	
+						</td>
+					</tr>	
+					<tr>
+						<td class="small" align="left">
+						<input type="submit" name="btnFindHomes" value="Go" id="_ctl0_ucLeftNavContainer__ctl0_btnFindHomes" /> 
+						</td>
+					</tr>
+					</table>
+</td><td>
+				<table width="200" border="2" cellspacing="0" cellpadding="2" bgcolor="#ddFFff">
+					<tr>
+						<td class="lfthdr" colspan="2"> &#160;Search for homes 
+		<!-- begin calc form -->
+			
+            <table border="0" cellspacing="0" cellpadding="4" >
+				<tr><td colspan="3">
+		            <h1>Mortgage Payment Estimator</h1>
+		            <span class="small"> Estimate your monthly payments. Based on 30-year mortgage, not including closing costs. Actual price might be slightly higher. </span> <br />
+		            <img src="/images/t.gif" width="5" height="4" alt="" /><br />			
+				</td></tr>
+                <tr>
+                    <td nowrap="nowrap" class="small">1. ENTER ASKING PRICE</td>
+				<!-- price of property being viewed -->
+                    <td width="99%">
+                    <!--<input type="text" name="principal" size="15" value=$499,000 /><br />-->
+						<input name="txtPrincipal" type="text" value="$499,000" maxlength="15" id="_ctl0__ctl6_ctlMortgageEstimator_txtPrincipal" style="width:100px;width: 100px;" /><br />                    
+                    </td>
+                    <tr><td colspan=3 class=error>Please specify an asking price for the home.</td></tr>
+                 </tr>
+				<tr>
+                    <td nowrap="nowrap" class="small">2. ENTER DOWN PAYMENT</td>
+				<!-- 10% of home price -->
+                    <td width="99%">
+                    <!--<input type="text" name="down" size="15" runatvalue=$49,900 /><br />-->
+                    <input name="txtDown" type="text" value="$49,900" maxlength="15" id="_ctl0__ctl6_ctlMortgageEstimator_txtDown" style="width:100px;width: 100px;" /><br />                                        
+                    </td>
+                    
+                </tr>
+                <tr>
+					<td nowrap="nowrap" class="small">3. ENTER INTEREST RATE</td>
+					<td width="99%">					
+					 <input name="txtInterest" type="text" value="6.5%" maxlength="15" id="_ctl0__ctl6_ctlMortgageEstimator_txtInterest" style="width:100px;width: 100px;" /><br />                    
+					</td>
+					</td>	
+					
+                </tr>
+                
+                <tr>
+                    <td nowrap="nowrap" class="small">4. PRESS</td>
+                    <td width="99%" valign="middle"><img src="/images/t.gif" width="5" height="4" alt="" /><br />
+                    <input type="image" name="imgCalculate" id="_ctl0__ctl6_ctlMortgageEstimator_imgCalculate" src="http://www.livingchoices.com/images/mortgage_calc_button.gif" alt="" border="0" /><br />
+                    <!--<a href="javascript:computeForm();"><img src="/images/mortgage_calc_button.gif" border="0" alt="" /></a>-->
+                    <img src="/images/t.gif" width="5" height="4" alt="" /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td nowrap="nowrap" class="small"><font color="#333333"><b>ESTIMATED MONTHLY<br />
+                    PAYMENT:</b></font></td>
+                    <td width="99%">
+						<input name="txtPayment" type="text" maxlength="10" id="_ctl0__ctl6_ctlMortgageEstimator_txtPayment" style="width:100px;width: 100px;" /><br />                    
+                    </td>
+                </tr>
+            </table>					
+						</td>
+					</tr>
+					</table>
+					
+					</td></tr></table>
+<input type="hidden" name="julia" value="great" />
+<table><tr>
+<td>
+<input name="one" type="submit"  value="value1"/><br />
+</td>
+<td>
+<input name="two" type="submit" value="value2"/><br />
+
+</td>
+<td>
+<input type="image" src="https://www.fastfind.com/MortgageImages/BtnContinue-Orange-arrows-1.gif" name="toxic" id="toxic" /><br />
+
+</td>
+</tr></table>
+
+
+</form>
+
+</body>
+</html>

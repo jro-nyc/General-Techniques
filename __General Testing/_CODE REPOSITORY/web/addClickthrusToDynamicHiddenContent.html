@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>READ LINKS FROM ONE BLOCK AND COPY INTO ANOTHER AND AND CLICKTHRUS/title>
+<meta HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
+</head>
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<table width="468" bgcolor="F5F5F5" bordercolor="47668B" border="1" cellpadding="3" cellspacing="0">
+	<tr>
+		<td align="center" class="mediumbold">
+		<div id="popularSearches">Popular Searches:&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.netster.com/results/results_redirect.asp?Keywords=Gifts"  style="color: red">GIFTS</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://www.netster.com/results/results_redirect.asp?Keywords=Flowers"  style="color: red">FLOWERS</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://www.netster.com/results/results_redirect.asp?Keywords=Travel"  style="color: red">TRAVEL</a></div>
+		</td>
+	</tr>
+</table>
+
+<table width="468" bgcolor="F5F5F5" bordercolor="47668B" border="1" cellpadding="3" cellspacing="0">
+	<tr>
+		<td align="center" class="mediumbold"><div id="opPopularSearches">
+		<script>;document.write(document.getElementById('popularSearches').innerHTML);</script>
+		</div></td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+//areaElink = ['http://optimost.netster.com/go/172-570/','http://optimost.netster.com/go/172-571/','http://optimost.netster.com/go/172-572/','http://optimost.netster.com/go/172-573/','http://optimost.netster.com/go/172-574/','http://optimost.netster.com/go/172-575/'];
+areaElink = ['{{$clickthru.areaElink1.url}}','{{$clickthru.areaElink2.url}}','{{$clickthru.areaElink3.url}}','{{$clickthru.areaElink4.url}}','{{$clickthru.areaElink5.url}}','{{$clickthru.areaElink6.url}}'];
+function areaElink_anchors(){
+	var daAnchorsE = document.getElementById('opPopularSearches').getElementsByTagName('a');
+	for (var i = 0; i < daAnchorsE.length; i++) {	
+		oldAnchor = daAnchorsE[i].href;
+		daAnchorsE[i].onmouseover = new Function('window.status="' + oldAnchor +  '";return true;');
+		daAnchorsE[i].onmouseout = new Function('window.status="";return false;');			
+		daAnchorsE[i].href = areaElink[i] + ((areaElink[i].indexOf('?') == -1)?'?':'&') + 'areag=' + escape(daAnchorsE[i].href);
+	}
+}					
+
+addLoadEvent( function(){
+	areaElink_anchors();
+});
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} 
+	else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+</script>
+<!-- END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END -->
+</body>
+</html>

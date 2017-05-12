@@ -1,0 +1,174 @@
+
+<!-- saved from url=(0066)http://by.optimost.com/trial/2/p/generateips.08c/1004/content.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>IP address range Generator from IP address and Mask</title><style>.frm-w160, .frm-w300{background-color:#ffff88}</style><script>
+$opt={};
+$opt.addEvent=function(el,evt,func,bubble){
+  if(!el || typeof(func) !="function"){return false;}
+  bubble = bubble || false;
+  var evtType=(window.attachEvent)?"attach":(window.addEventListener)? "add":"none";
+  if(evtType == "attach"){el.attachEvent("on"+evt,func);}
+  else if(evtType == "add"){el.addEventListener(evt,func,bubble);}
+}
+$opt.checkIPs=function(event){
+  var evtX=(event["srcElement"]?event["srcElement"]:event["target"]);
+  do{  //The event triggered MAY NOT be our input tag, so we need to find <a> to get the attributes we are passing in
+      if(evtX.tagName.toLowerCase()!="input")evtX=evtX.parentNode;
+  }while(evtX.tagName.toLowerCase()!="input" && evtX.tagName.toLowerCase()!="body" );
+  myVal=evtX.value;
+  rx=/[^0-9|.|\/]/;
+  //alert(myVal);
+  myVal=myVal.replace(rx,'');
+  evtX.value=myVal;
+}
+$opt.createNewIPs=function(orig){
+  tmp=[];
+  var adjust=0x0;
+  if(orig<0)adjust=0x1;
+  tmp[0]=(((orig/$opt.multiples[0])&0xFF)-adjust);
+  tmp[1]=(((orig/$opt.multiples[1])&0xFF)-adjust);
+  tmp[2]=(((orig/$opt.multiples[2])&0xFF)-adjust);
+  tmp[3]=((orig&0xFF)-adjust);
+  //tmp[3]=orig&0xFF;
+  for(var i=0,len=tmp.length;i<len;i++){
+    if(tmp[i]==-1)tmp[i]=0xFF;
+  }
+  newIP=tmp[0]+'.'+tmp[1]+'.'+tmp[2]+'.'+tmp[3];
+  //alert(orig.toString(16)+'\n\n'+newIP);
+  return newIP;
+}
+$opt.generateIPs=function(event){
+  var ip=document.forms[0].ipaddress.value;
+  var mask=document.forms[0].mask.value;
+  var ipAddrMask=document.forms[0].ipaddressmask.value;
+  var rx_ip=/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/;
+  var rx_mip=/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\/[0-9]{1,2}/;
+  //$opt.multiples=[4294967296,16777216,65536,256];
+  //$opt.multiples=[16777216,65536,256,1];
+  $opt.multiples=[0x01000000,0x10000,0x100,0x1];
+  if(ipAddrMask.match(rx_mip)){//First check to see if the ip-mask combination input it filled in correctly, do regexp check
+    var m=ipAddrMask.split("/");
+    var ip=m[0];
+    var mask=m[1];
+    var digits=ip.split(".");
+    var validIP=true;
+    var validMask=true;
+    var value=0;
+    for(var i=0,len=digits.length;i<len;i++){     //Check to see if the IP is valid - between 0 and 255
+      if(digits[i]<0||digits[i]>0xFF)validIP=false;
+      value+=digits[i]*$opt.multiples[i];
+      //alert(digits[i]+' with a multiple of '+$opt.multiples[i]+' gives a value of '+value.toString(16)+' in hex');
+    }
+    if(mask<0||mask>32)validIP=false; //Check to see if mask is valid - between 0 and 32
+    if(!validIP){
+      $opt.error='Not a vaild IP';     
+    }
+    if(!validMask){
+      if($opt.error)$opt.error+=' and not a vaild Mask';    
+      else $opt.error='Not a vaild Mask';    
+    }
+    if($opt.error){  //If its an error, return
+      alert($opt.error);
+       return;
+    }
+    else{ //If it's not error, execute
+      var power=32-mask;
+      var num=1;
+      //var maskValue=0x0100000000;
+      var maskValue=0x1FFFFFFFF;
+      for(var i=0;i<power;i++){
+        maskValue-=num;
+        num*=2;
+      }
+      $opt.ipList=[];
+      $opt.ipListString='';
+      var startValue=value&maskValue;
+      if(startValue<0)startValue+=1;
+      //alert('The hex value '+value.toString(16)+' becomes the starting value is '+startValue.toString(16)+' after bitwise and with a mask of '+maskValue.toString(16));            
+      for(var i=0;i<num;i++){
+        var tmp=startValue+i;
+        var newIP=$opt.createNewIPs(tmp);
+        $opt.ipList.push(newIP);
+        $opt.ipListString+=newIP+'\n';
+      }
+      //alert('hi'+$opt.ipListString);
+      obj=document.getElementById("allips");
+      if(obj)obj.innerHTML=$opt.ipListString;      
+    }
+  }
+  else if(ip.match(rx_ip) && mask.match(rx_ip)){ //Nesxt,check to see if the ip and mask separte inputs are filled in correctly, do regexp check
+    var digits=ip.split(".");
+    var maskDigits=mask.split(".");
+    var validIP=true;
+    var validMask=true;
+    var value=0;
+    var maskValue=0;
+    for(var i=0,len=digits.length;i<len;i++){   //Check to see if the IP is valid - between 0 and 255
+      if(digits[i]<0||digits[i]>0xFF)validIP=false;
+      value+=digits[i]*$opt.multiples[i];
+      //alert(digits[i]+' with a multiple of '+$opt.multiples[i]+' gives a value of '+value.toString(16)+' in hex');
+    }
+    for(var i=0,len=maskDigits.length;i<len;i++){   //Check to see if the mask is valid - between 0 and 255
+      if(maskDigits[i]<0||maskDigits[i]>0xFF)validMask=false;
+      maskValue+=maskDigits[i]*$opt.multiples[i];      
+    }    
+    if(!validIP){
+      $opt.error='Not a vaild IP'; 
+    }
+    if(!validMask){
+      if($opt.error)$opt.error+=' and not a vaild Mask';    
+      else $opt.error='Not a valid Mask';    
+    }
+    if($opt.error){ //If its an error, return
+      alert($opt.error);
+      return;
+    }
+    else{ //If it's not error, execute
+      var num=1;
+      //alert(mask+'\n'+maskValue);
+      tmpMV=maskValue;
+      do{
+        bit=tmpMV%2;
+        tmpMV=tmpMV/2;
+        num*=2;
+      }while(bit==0)
+      num=num/2;
+      $opt.ipList=[];
+      $opt.ipListString='';
+      var startValue= value&maskValue;
+      if(startValue<0)startValue+=1;
+      //alert('The hex value '+value.toString(16)+' becomes the starting value is '+startValue.toString(16)+' after bitwise and with a mask of '+maskValue.toString(16));      
+      for(var i=0;i<num;i++){
+        var tmp=startValue+i;
+        var newIP=$opt.createNewIPs(tmp);
+        $opt.ipList.push(newIP);
+        $opt.ipListString+=newIP+'\n';
+      }
+      //alert('hi\n'+$opt.ipListString);
+      obj=document.getElementById("allips");
+      if(obj)obj.innerHTML=$opt.ipListString;
+    }
+  }
+  else {
+    alert('inavlid address/mask combination');        
+  }
+}
+$opt.doFullReset=function(){
+  obj=document.getElementById("allips");
+  if(obj)obj.innerHTML='';
+}
+</script>
+<script language="JavaScript">
+function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null) ? "" : ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null) ? "" : (";domain=" + d));}
+function opCreativeGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l < 2) sld = null;else if (!isNaN(dp[l-1]) && !isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+opCreativeSetCookieA("op2generateipsgum", "a0zq15s48e299kd0wz0063fce", opCreativeGetDocumentSLD(), 604800);
+opCreativeSetCookieA("op2generateipsliid", "a0zq15s48e299kd0wz0063fce", opCreativeGetDocumentSLD(), 86400);
+</script>
+</head><body><form onsubmit="$opt.generateIPs();return false;"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td style="text-align:right">IP address:</td><td valign="top" class="p-t-5 p-b-5"><input type="text" class="frm-w160" id="ipaddress" name="ipaddress" valuex="xxx.xxx.xxx.xxx"></td><td>Mask:&nbsp;</td><td valign="top" class="p-t-5 p-b-5"><input type="text" class="frm-w160" id="mask" name="mask" valuex="xxx.xxx.xxx.xxx"></td></tr><tr><td style="text-align:center;padding:20px;" colspan="4">OR</td></tr><tr><td>IP address with Mask</td><td valign="top" class="p-t-5 p-b-5"><input type="text" class="frm-w160" id="ipaddressmask" name="ipaddressmask" valuex="xxx.xxx.xxx.xxx/yy"></td><td valign="top" class="p-t-5 p-b-5" colspan="2">&nbsp;(ie:129.234.56.64/28)</td></tr><tr><td style="text-align:center;padding-top:15px;" colspan="4"><button type="submit" name="Generate">Generate</button></td></tr><tr><td style="text-align:center;padding-top:15px;" colspan="4"><button type="reset" name="rest" onclick="$opt.doFullReset();">Reset</button></td></tr><tr><td>&nbsp;</td><td colspan="3" style="padding-top:15px;"><div class="p-t-5">
+            List of IP addresses
+          </div><div class="p-t-5 p-b-5"><textarea rows="8" cols="30" class="frm-w300" id="allips" name="allips" value="44444"></textarea></div></td></tr></tbody></table></form><script>
+  inputs=document.getElementsByTagName('input');
+  for(var i=0,len=inputs.length;i<len;i++){
+    $opt.addEvent(inputs[i],"keyup",$opt.checkIPs,true);    
+  }
+  </script>
+</body></html>

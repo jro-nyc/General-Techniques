@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Shortcut Functions Modeled On Yahoo Library.html</title>
+</head>
+
+<body>
+<div style="width: 690px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Shortcut Functions Modeled On Yahoo Library.html</strong> - How and why do we do it?</strong><br><br>   
+&middot;<strong>If we are manipulating the DOM, and these days that is most of our templates, it would be nice to have 
+shortcut functions so we don't have to write out long statements and a bunch of loops.  
+<br/><br/>
+<strong style="color:#88FF88;"> 
+Just view the source and see what I have here.  The Yahoo library does a bunch of this, but we need not load the whole library to 
+use a few shortcuts.  Feel free to define these at the top of our code, and select ones you would need.  If you have any questions,
+feel free to ask me.</strong>
+</div>
+
+<script>
+$OP = function (){
+	return {
+		// Just a simple shortcut for getElementById:>>> $D.id('id1') == document.getElementById('id1')
+		id:function(el){ 
+			return document.getElementById(el);
+		},	
+		// Just a simple shortcut for getElementsByTagName:>>> $D.tag(document,'table') == document.getElementsByTagName('table')
+		tag:function(el,daTag){ 
+			return el.getElementsByTagName(daTag);
+		},
+		// Just a simple shortcut for getting a Form object:>>> $D.form(0) == document.forms[0]
+		form:function(el){
+			return document.forms[el];		
+		},
+		// Takes $D.tag, then finds the first element that inclues the class Name specified.  
+		className:function(el,daTag,classNm){
+			daTag=el.getElementsByTagName(daTag);
+			for(i=0;i<daTag.length;i++){
+				if(daTag[i].className.indexOf(classNm)!=-1) return daTag[i];
+			}
+			return null;
+		},
+		// Takes $D.className, then gets the inputs inside of that object, and finds the first one with the specified name.  
+		classNameAndInput:function(el,daTag,classNm,daInputNm){
+			daTag=el.getElementsByTagName(daTag);
+			for(i=0;i<daTag.length;i++){
+				if(daTag[i].className.indexOf(classNm)!=-1) {
+					daInputs=daTag[i].getElementsByTagName('input');
+					for(k=0;k<daInputs.length;k++){
+						if(daInputs[k].name==daInputNm) return daTag[i];
+					}
+				}
+			}
+			return null;
+		},
+		// Takes $D.className, then gets the parent node of that object.
+		classNameGetParent:function(el,daTag,classNm){
+			daTag=el.getElementsByTagName(daTag);
+			for(i=0;i<daTag.length;i++){
+				if(daTag[i].className.indexOf(classNm)!=-1) {
+					if (daTag[i] && daTag[i].parentNode) { 
+						return daTag[i].parentNode; 
+					} 				
+				}
+			}
+			return null;
+		},		
+		// Takes $D.tag, then gets the parent node of each one and runs $D.className on them until it gets a match
+		getTagByParentClassName:function(el,tag,classNm){
+			daTag=el.getElementsByTagName(tag);
+			for(i=0;i<daTag.length;i++){
+				if (daTag[i] && daTag[i].parentNode) { 
+					if(daTag[i].parentNode.className.indexOf(classNm)!=-1) {					
+						if(daTag[i].parentNode.className.indexOf(classNm)!=-1) return daTag[i]; 						
+					} 				
+				}
+			}
+			return null;
+		},
+		//Hides the contents of a specfic id.  In this case, el should be the document object.
+		hideContainsID:function(el,idMatch){ 
+			if(el.id.toLowerCase().indexOf(idMatch.toLowerCase())!=-1) {
+				el.style.display='none';
+				return true;
+			}
+			else return false;
+		}
+	};
+}();
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!--  START: OPEN CONTENT --><!DOCTYPE html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<BASE href="https://www.verio.com">
+<TITLE>Changing HREF URLs</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" marginheight="0" marginwidth="0" >
+<DIV id="opTestArea">
+<TABLE width="340" border="0" cellspacing="0" cellpadding="2">
+		<FORM action="https://by.essl.optimost.com/by/post/110-1361/?link=https://www.verio.com/order/index.cfm" method="post" name="CustomerInfo" id="opCustomerInfo" onSubmit="removeErrors(); return _CF_checkCustomerInfo(this)">			
+			<INPUT type="hidden" name="fuseaction" value="payment">			
+			<INPUT type="hidden" name="orderaction" value="customer.setcustomer">
+			<TR>
+				<TD class="burgandy">	Phone (Day)<SPAN class="asteriks">*</SPAN>:
+				</TD>
+				<TD>					
+					<INPUT type="text" name="phone1" size="25" maxlength="25" value=""><BR><SPAN class="text9">Needed for billing or technical communications</SPAN><BR/><SPAN id="phone1Error" style="color: red; font-weight: bold;"></SPAN>
+				</TD>
+			</TR>
+			<TR>
+				<TD>	Phone (Evening):
+				</TD>
+				<TD>					
+					<INPUT type="text" name="phone2" size="25" maxlength="25" value="">
+				</TD>
+			</TR>
+			<TR>
+				<TD>	Fax:
+				</TD>
+				<TD>					
+					<INPUT type="text" name="fax" size="25" maxlength="25" value="">
+				</TD>
+			</TR>
+			<TR>
+				<TD colspan="2"><IMG src="https://www.verio.com/images2/spacer.gif" height="10" width="1" alt="">
+				</TD>
+			</TR>
+			<TR>
+				<TD colspan="2">
+					<P class="text9">We value <A href="https://by.essl.optimost.com/by/go/110-1362/" onMouseOver="window.status='https://www.verio.com/about/legal/privacy/index.cfm'; return true;" onMouseOut="window.status='';">A link</A>.</P>
+				</TD>
+			</TR>
+			<TR valign="bottom">
+				<TD style="background-color: white;" valign="middle"><A href="https://by.essl.optimost.com/by/go/110-1354/" onMouseOver="window.status='https://www.verio.com/index.cfm'; return true;" onMouseOut="window.status='';">Another link</A>
+				</TD>
+				<TD align="right" style="background-color: white;">					
+					<INPUT type="image" src="https://www.verio.com/images2/buttons/continue.gif" value="Submit" alt="Continue" width="120" height="32" border="0">
+				</TD>
+			</TR>
+			<TR valign="bottom">
+				<TD>
+				</TD>
+				<TD align="right">					
+					<INPUT type="image" src="https://www.verio.com/images2/buttons/login.gif" value="Submit" alt="Login" width="120" height="32" border="0">
+					<BR><A href="https://by.essl.optimost.com/by/go/110-1357/" target="_blank" onMouseOver="window.status='https://www.verio.com/myverio/index.cfm?fuseaction=security.showForgotPassword'; return true;" onMouseOut="window.status='';">Yet Another Link</A>
+				</TD>
+			</TR>
+	</TABLE>
+	</div>
+</FORM>
+<SCRIPT type="text/javascript" native="no">
+function makeRelativeLinks() {
+	origBase='www.verio.com';
+	newBase = document.location.host;
+	var hrefs = document.getElementById('opTestArea').getElementsByTagName('a');
+	for (var i = 0; i < hrefs.length; i++) {
+		if(hrefs[i].onmouseover != null){
+			if(hrefs[i].href.indexOf('javascript') == -1) {
+				daLink = hrefs[i].onmouseover.toString();
+				start = daLink.indexOf('http');
+				end = daLink.indexOf(';') - 1;
+				//alert(daLink);
+				newLink = daLink.substring(start,end);
+				newLink = newLink.replace(origBase,newBase);
+				hrefs[i].href  += ((hrefs[i].href.indexOf('?') == -1)?'?':'&') + 'link=' + newLink;
+				//alert(newLink);
+			}			
+		}
+	}
+	var forms = document.getElementById('opTestArea').getElementsByTagName('form');
+	for (var i = 0; i < forms.length; i++) {
+		if(forms[i].action != null){
+			daLink = forms[i].action.toString();
+			start = daLink.indexOf('http');
+			end = daLink.length;
+			//alert(daLink);
+			newLink = daLink.substring(start,end);
+			newLink = newLink.replace(origBase,newBase);
+			forms[i].action  = newLink;
+			//alert(newLink);
+		}
+	}
+}
+makeRelativeLinks();
+</SCRIPT>
+
+</BODY>
+</HTML>

@@ -1,0 +1,508 @@
+<HTML>
+<head>
+	<title>Mortgage Refinance - Your Home Loan</title>
+		<META NAME ="DESCRIPTION" CONTENT="GetSmart - A Service of LendingTree - The Smart Way to Refinance, Consolidate Debt, Get a First Mortgage, or take advantage of your Home's Equity.">
+		<META NAME ="KEYWORDS" CONTENT="bad credit mortgages, debt consolidation loan, best mortgage rate, fixed loan, home equity loan and line, home financing, home improvement loan, home loan, new home mortgage, refinance mortgage, 2nd mortgage, sub prime lenders">
+	<link href="http://www.getsmart.com/grd/grd.css" rel="stylesheet" type="text/css">
+	<script language="JavaScript1.2" src="http://www.getsmart.com/common/JSfunctions.js" type="text/javascript"></script>
+    <link href="http://www.getsmart.com/findmortgagelenders/findmortgagelenders.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function RedirectUser() {
+  if (document.forms.form1.TYPE_CONST.value == "1") {	
+	  window.location = "https://www.getsmart.com/gs_purchase/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_PURCHASE&source=33321&esourceid=<%=GSOptimost%>&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+	} 
+	if (document.forms.form1.TYPE_CONST.value == "2") {	
+	  window.location = "https://www.getsmart.com/gs_refinance/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_REFINANCE&source=33321&esourceid=<%=GSOptimost%>&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+	} 
+	if (document.forms.form1.TYPE_CONST.value == "3") {	
+	  window.location = "https://www.getsmart.com/gs_home_equity/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_HOME_EQUITY&source=33321&esourceid=<%=GSOptimost%>&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+  } 
+	if (document.forms.form1.TYPE_CONST.value == "4") {
+	  window.location = "https://www.getsmart.com/gs_debt_consolidation/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_DEBT_CONSOLIDATION&source=33321&esourceid=<%=GSOptimost%>&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+	}
+}
+ 
+function showAspSmartTip(sPage) {
+	var sNewPage = sPage;
+	OpenWin = this.open(sNewPage,"CtrlWindow", "toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=no,dependent=no,directories=no,width=425,height=450,x=50,y=50");
+}
+function bye() {
+	if (self.mini != null)
+	if (self.mini.open != null)
+	self.mini.close()}
+
+function comparison() {
+			terms = window.open("/redirector.asp?newurl=https://www.comparisonmarket.com/lendingtree/default.asp?customersource=GetSmart", "mini", "scrollbars=yes,resizable=yes,status=yes,width=640,height=400");
+			self.mini = terms
+		}	
+		loadpage = false;
+
+function SetValueTrue() {loadpage=true;}
+
+function STMRCWindow(page) {
+OpenWin = this.open(page, "CtrlWindow", "toolbar=no,menubar=no,scrollbars=yes,width=500,height=540,x=50,y=50");
+}
+var agt=navigator.userAgent.toLowerCase();
+var is_mac = (agt.indexOf("mac")!=-1)?1:0;
+var optrial = new Object;
+optrial.ismac = is_mac;
+
+var QString = window.location.search.substring(1); 
+
+
+QueryString.keys        = new Array(); 
+QueryString.values      = new Array(); 
+
+
+function QueryString(key){ 
+        var value = null; 
+        for (var i=0;i<QueryString.keys.length;i++){ 
+                if (QueryString.keys[i]==key){ 
+                        value = QueryString.values[i]; 
+                        break; 
+                } 
+        } 
+        return value; 
+
+
+
+} 
+
+
+function QueryString_Parse(){ 
+        var query = window.location.search.substring(1); 
+        var pairs = query.split("&"); 
+        for (var i=0;i<pairs.length;i++){ 
+                var pos = pairs[i].indexOf('='); 
+                if (pos >= 0){ 
+                        var argname = pairs[i].substring(0,pos); 
+                        var value = pairs[i].substring(pos+1); 
+                        QueryString.keys[QueryString.keys.length] = argname; 
+                        QueryString.values[QueryString.values.length] = value;           
+                } 
+        } 
+
+
+} 
+
+
+QueryString_Parse(); 
+
+if (QueryString("esourceid") == null) {
+var esourceid = "394100";
+}else {
+var esourceid = QueryString("esourceid");
+}
+
+var siteid = QueryString("siteid");  
+
+function nextpage(url) { 
+    location.href = url + "&source=" + esourceid + "&siteid=" + siteid + "&bp=gsnew&esourceid=" + esourceid + "&init=1"; 
+
+}
+</script>
+</head>
+<BODY>
+
+<!-- SNIPPET SHELL START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET SHELL START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET SHELL START START START START START START START START START START START START START START START START START START START START START --->
+
+<script language="JavaScript">
+isOptimostCopyVisible =  true;
+
+function opSetValueTrue(obj) {obj.href += daQS; loadpage=true;}
+var promoFeed =[
+"<span class='echo_header'>Refinance $200,000 for $896/month<sup>&dagger;</sup></span><br/><span class='echo_subheader'>These Rates Won't Last Forever - Refinance Today and Save</span><br />",
+"<span class='echo_header'>Home Equity Lines of Credit as Low as 7.00% APR<sup>&dagger;</sup></span><br/><span class='echo_subheader'>FREE Home Equity Quotes from our Network of Over 200 Lenders<sup>&dagger;</sup></span><br />",
+"<span class='echo_header'>Get a $200,000 Mortgage for $896/month<sup>&dagger;</sup></span><br/><span class='echo_subheader'>Rates are Still Low! Compare Quotes and Find Competitive Rates!</span><br />",
+"<span class='echo_header'><strong class='topheadergreen3x'>FREE</strong><sup>&dagger;</sup> Refinance Quotes from our Network of 200+ Lenders</span><br/><span class='echo_subheader'>Compare Quotes and Possibly Save Hundreds! No SSN Required</span><br />",
+"<span class='echo_header'><strong class='topheadergreen3x'>FREE</strong><sup>&dagger;</sup> Home Equity Quotes from our Lender Network</span><br/><span class='echo_subheader'>Borrow up to 125%, Bad Credit OK, Get the Money You Need Today!</span><br />",
+"<span class='echo_header'><strong class='topheadergreen3x'>FREE</strong><sup>&dagger;</sup> Mortgage Quotes from our Network of 200+ Lenders</span><br/><span class='echo_subheader'>Rates are Still Low! Compare Quotes and Find Competitive Rates!</span><br />",
+"<span class='echo_header'>Refinance $175,000 for $784/month<sup>&dagger;</sup></span><br/><span class='echo_subheader'>These Rates Won't Last Forever - Refinance Today and Save</span><br />",
+"<span class='echo_header'>Refinance $175,000 for $784/month<sup>&dagger;</sup></span><br/><span class='echo_subheader'>Rates are Still Low! Compare Quotes and Find Competitive Rates!</span><br />",
+"<span class='echo_header'>Refinance $250,000 for $1,120/month<sup>&dagger;</sup></span><br/><span class='echo_subheader'>These Rates Won't Last Forever - Refinance Today and Save</span><br />",
+"<span class='echo_header'>Get a $250,000 Mortgage for $1,120/month<sup>&dagger;</sup></span><br/><span class='echo_subheader'>Rates are Still Low! Compare Quotes and Find Competitive Rates!</span><br />",
+"<span class='echo_header'>Home Equity Lines of Credit as Low as 7.00% APR<sup>&dagger;</sup></span><br/><span class='echo_subheader'>FREE Home Equity Quotes from our Network of Over 200 Lenders<sup>&dagger;</sup></span><br />",
+"<span class='echo_header'>Get $40,000 for $242/month<sup>&dagger;</sup></span><br/><span class='echo_subheader'>Rates are Still Low! Compare Quotes and Find Competitive Rates!</span><br />",
+"<span class='echo_header'>$145,000 for only $650/month. Refinance now.<sup>&dagger;</sup></span><br/><span class='echo_subheader'>1 Simple Form, Get Matched with up to 5 Lenders in Minutes!</span><br />",
+"<span class='echo_header'>$40,000 Home Equity Loan for $287/month Fixed for Life of Loan.<sup>&dagger;</sup></span><br/><span class='echo_subheader'>FREE Home Equity Quotes from our Network of Over 200 Lenders<sup>&dagger;</sup></span><br />",
+"<span class='echo_header'>Refinance $175,000 for only $985/month FIXED for 15 years (No Points)<sup>&dagger;</sup></span><br/><span class='echo_subheader'>Your ARM may increase by up to 60% or more! Refinance to a fixed rate now.</span><br />",
+"<span class='echo_header'>$200,000 for only $667/month.<sup>&dagger;</sup> Refinance now.</span><br/><span class='echo_subheader'>Get matched with up to 5 lenders in minutes. No social security number required.</span><br />",
+
+"<span class='echo_header'>$300,000 for only $1,000/month. Refinance now<sup>&dagger;</sup></span><br/><span class='echo_subheader'>Get matched with up to 5 lenders in minutes. No SSN required.</span><br />",
+"<span class='echo_header'>$400,000 for only $1,334/month. Refinance now<sup>&dagger;</sup></span><br/><span class='echo_subheader'>Get matched with up to 5 lenders in minutes. No SSN required.</span><br />"
+];
+
+var query  = unescape(top.location.search.substring(1)).split('&');
+promoValue = -1;
+var params = new Array();
+for (i = 0; i < query.length; i++){
+	var tmp = query[i].split('=');
+	params[tmp[0]] = tmp[1];
+}
+if(params['promo'] != null) {
+	if(parseInt(params['promo'])==params['promo']-0){
+		promoValue=parseInt(params['promo'],10);
+		alert('The value you entered, "'+params['promo']+'", is a valid integer with value '+promoValue);
+		promoValue=-1;
+	}
+	else {
+		promoValue = parseInt(params['promo'],10);
+		if(parseInt(promoValue)!=promoValue-0) {
+			alert('The value you entered, "'+params['promo']+'", was a value that COULD NOT be parsed into a valid integer, so we just set it to 0');
+			promoValue=-1; 
+		}
+		else{
+			alert('The value you entered, "'+params['promo']+'", was a value that COULD be parsed into a valid integer with value '+promoValue);
+			promoValue=-1;			
+		}
+	}
+}
+else {
+	alert('Please enter a "promo=xxxx" query string parameter, and reload the page, to test the functionality of checking for integers. Enter integers, mixed values, nothing, and see what happens.');
+}
+if((promoValue<0)||(promoValue>promoFeed.length-1)) promoValue=5;
+
+if(params['loan_type'] != null){
+	opLoanType = params['loan_type'];
+}
+else opLoanType = '2';
+</script>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="http://www.getsmart.com/images/brochureware/gs_logo.gif" alt="GetSmart a Service of LendingTree" width="198" height="77"></td>
+    <td><div align="right"><img src="http://www.getsmart.com/images/brochureware/gs_phone.gif" alt="1-800-GETSMART (1-800-438-7627)" width="211" height="77"></div></td>
+  </tr>
+  <tr><td><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="10"></td></tr>
+  
+  <tr>
+    <td colspan="2">
+		<img src="http://www.getsmart.com/images/brochureware/teal_navigation.gif" alt="Home Refinance - Home Equity - Home Purchase - Debt Consolidation Navigation" width="800" height="33" border="0" usemap="#opnavigation">
+<map name="opnavigation">
+  <area shape="rect" coords="0,3,143,27" href="http://by.optimost.com/go/138-1443/" alt="Home Refinance" title="Refinance" onclick="opSetValueTrue(this)" onMouseOver="window.status='https://www.getsmart.com/gs_refinance/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_REFINANCE&bp=gsnew&init=1'; return true;" onMouseOut="window.status='';">
+  <area shape="rect" coords="144,2,264,26" href="http://by.optimost.com/go/138-1441/" alt="Home Equity" title="Home Equity" onclick="opSetValueTrue(this)" onMouseOver="window.status='https://www.getsmart.com/gs_home_equity/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_HOME_EQUITY&bp=gsnew&init=1'; return true;" onMouseOut="window.status='';">
+  <area shape="rect" coords="265,2,406,26" href="http://by.optimost.com/go/138-1442/" alt="Home Purchase" title="Home Purchase" onclick="opSetValueTrue(this)" onMouseOver="window.status='https://www.getsmart.com/gs_purchase/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_PURCHASE&bp=gsnew&init=1'; return true;" onMouseOut="window.status='';">
+  <area shape="rect" coords="407,2,569,26" href="http://by.optimost.com/go/138-1439/" alt="Debt Consolidation" title="Debt Consolidation" onclick="opSetValueTrue(this)" onMouseOver="window.status='https://www.getsmart.com/gs_debt_consolidation/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_DEBT_CONSOLIDATION&bp=gsnew&init=1'; return true;" onMouseOut="window.status='';">
+</map>
+	</td>
+  </tr>
+  <table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr bgcolor="#999999">
+    <td width="1"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td colspan="3"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="1"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="1" rowspan="3" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="20"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="10"></td>
+    <td><div align="center"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="10"></div></td>
+    <td width="20"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="10"></td>
+    <td width="1" rowspan="3" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+  </tr>
+	<tr>
+	    <td width="20"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="20"></td>
+		<td align="left" valign="top"><script language="JavaScript">document.write(promoFeed[promoValue]);</script>
+		<!--  <span class="echo_header">FREE<sup>*</sup> Mortgage Quotes From Over 200 Trusted Lenders</span><br/>
+		  <span class="echo_subheader">These Rates Won't Last Forever - Refinance Today and Save</span><br/>
+		-->  <span class="echo_small">&nbsp;</span>
+		</td>
+	    <td width="20"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="20"></td>
+	</tr>
+  <tr>
+    <td width="20"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="10"></td>
+    <td><div align="center"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="10"></div></td>
+    <td width="20"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="20" height="10"></td>
+  </tr>
+  <tr bgcolor="#999999">
+    <td width="1"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td colspan="3"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="1"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5"><div align="center"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="7" height="7"></div></td>
+  </tr>
+</table>
+</table>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+<form name="form1" method="post" action="http://by.optimost.com/post/138-1440/" id="Form1">
+  <tr>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <!-- <td colspan="4" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td> -->
+    <td colspan="3" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="4"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="215" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="215" valign="top"><img src="http://www.getsmart.com/images/brochureware/optimost/D4_photo.jpg" width="215" height="295"></td>
+    <td width="8"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="8" height="8"></td> 
+    <td valign="top" style="padding:0 4px 0 4px;" width="99%">
+	<table width="320" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td colspan="3"><div align="center"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="18"></div></td>
+	</tr>
+	<tr>
+	  <td colspan="3"><img src="http://www.getsmart.com/images/brochureware/find_lenders_now.gif" width="320" height="29"></td>
+	</tr>
+	<tr>
+	  <td colspan="3">&nbsp;</td>
+	</tr>
+	<tr>
+	  <td width="125" valign="top" class="qf_text">Type of Loan </td>
+	  <td width="10"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="10" height="8"></td>
+	  <td width="197" valign="top"><select readonly="true" name="TYPE_CONST">
+	      <option value="1" >Purchase</option>
+	      <option value="2" selected>Refinance</option>
+	      <option value="3" >Home Equity</option>
+	      <option value="4" >Debt Consolidation</option>
+	  </select></td>
+	</tr>
+	<tr>
+	  <td colspan="3">&nbsp;</td>
+	</tr>
+	<tr>
+	  <td valign="top" class="qf_text">Home Description </td>
+	  <td width="10">&nbsp;</td>
+	  <td valign="top"><select readonly="true" name="V2PROP_CONST">
+	      <option value="30" selected>Single family home</option>
+	      <option value="31">Townhome</option>
+	      <option value="32">Condo with 4 or fewer stories</option>
+	      <option value="33">Condo with 5 or more stories</option>
+	      <option value="34">Multiple family dwelling</option>
+	      <option value="35">Modular home</option>
+	      <option value="36">Mobile home</option>
+	  </select></td>
+	</tr>
+	<tr>
+	  <td colspan="3">&nbsp;</td>
+	</tr>
+	<tr>
+	  <td valign="top" class="qf_text">Property Type </td>
+	  <td width="10">&nbsp;</td>
+	  <td valign="top"><select readonly="true" name="HME_CONST">
+	      <option selected="true" value="1">Primary residence</option>
+	      <option value="2">Second home/ vacation property</option>
+	      <option value="3">Investment Property</option>
+	  </select></td>
+	</tr>
+	<tr>
+	  <td colspan="3">&nbsp;</td>
+	</tr>
+	<tr>
+	  <td valign="top" nowrap class="qf_text">Your <a href="javascript:showAspSmartTip('/common/CreditHistorySmartTip.asp')">Credit Profile</a> </td>
+	  <td width="10">&nbsp;</td>
+	  <td valign="top"><select readonly="true" name="CREDIT_HISTORY_DESCRIPTION_BO_CONST">
+	      <option value="1">Excellent</option>
+	      <option value="2" selected="true">Good</option>
+	      <option value="3">Fair</option>
+	      <option value="4">Poor</option>
+	  </select></td>
+	</tr>
+	<tr>
+		<td colspan="3">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+<td width="10">&nbsp;</td>
+<td><a href="#" onclick="opRedirectUser();return false;">
+<div style="padding:0px 0 12px 0;"><img src="http://www.getsmart.com/images/brochureware/continue_clickHere_white.gif" alt="Click Here - Get FREE Quotes" width="150" height="24" border="0"/></div></a></td>		
+	</tr>
+	</table>
+	<img src="http://www.getsmart.com/images/brochureware/lock3.gif" alt="Safe, Secure and Confidential" width="14" height="17" vspace="0" align="left"> <span class="safe"><a href="http://by.optimost.com/go/138-1444/" target="_blank" onMouseOver="window.status='http://www.getsmart.com/grd/privacyandsecurity.asp'; return true;" onMouseOut="window.status='';">Safe, Secure and Confidential</a></span>
+	</td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="4"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="4" height="4"></td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+	<td width="215" valign="top" bgcolor="#d9f1fb">
+		<table width="215" border="0" cellpadding="0" cellspacing="0">
+		  <tr>
+		    <td colspan="5" bgcolor="#00457C"><img src="http://www.getsmart.com/images/brochureware/areaE_header.gif" width="215" height="40"></td>
+		    </tr>
+		  <tr>
+		    <td colspan="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="30"></td>
+	      </tr>
+    		<tr>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+	<td width="14"><img src="http://www.getsmart.com/images/brochureware/arrow.gif" width="14" height="12"></td>
+	<td width="6"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="6" height="8"></td>
+	<td width="165"><span class="moduleEtext">Simple 2-minute form </span></td>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+</tr>
+<tr>
+	<td width="15">&nbsp;</td>
+	<td width="14">&nbsp;</td>
+	<td width="6">&nbsp;</td>
+	<td width="165">&nbsp;</td>
+	<td width="5"></td>
+</tr>
+<tr>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+	<td width="14"><img src="http://www.getsmart.com/images/brochureware/arrow.gif" width="14" height="12"></td>
+	<td width="6"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="6" height="8"></td>
+	<td width="165"><span class="moduleEtext">No Social Security number required </span></td>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+</tr>
+<tr>
+	<td width="15">&nbsp;</td>
+	<td width="14">&nbsp;</td>
+	<td width="6">&nbsp;</td>
+	<td width="165">&nbsp;</td>
+	<td width="5"></td>
+</tr>
+<tr>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+	<td width="14"><img src="http://www.getsmart.com/images/brochureware/arrow.gif" width="14" height="12"></td>
+	<td width="6"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="6" height="8"></td>
+	<td width="165"><span class="moduleEtext">Access to over 200 lenders nationwide </span></td>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+</tr>
+<tr>
+	<td width="15">&nbsp;</td>
+	<td width="14">&nbsp;</td>
+	<td width="6">&nbsp;</td>
+	<td width="165">&nbsp;</td>
+	<td width="5"></td>
+</tr>
+<tr>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+	<td width="14"><img src="http://www.getsmart.com/images/brochureware/arrow.gif" width="14" height="12"></td>
+	<td width="6"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="6" height="8"></td>
+	<td width="165"><span class="moduleEtext">Up to 5 <strong>FREE</strong> mortgage offers<sup>&dagger;</sup></span></td>
+	<td width="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="5" height="8"></td>
+</tr>
+		  <tr>
+		    <td colspan="5"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="27"></td>
+	      </tr>
+		</table>
+	</td>	
+   <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td> 
+  </tr>
+</form>
+  <tr>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <!-- <td colspan="4" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td> -->
+    <td colspan="3" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="4"><img src="images/clear_dot.gif" width="4" height="1"></td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+    <td width="215" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="4" height="1"><img src="images/clear_dot.gif" width="1" height="1"></td>
+    <td width="1" bgcolor="#999999"><img src="http://www.getsmart.com/images/brochureware/clear_dot.gif" width="1" height="1"></td>
+  </tr>
+</table>
+  
+<script language="javascript">
+var QString = window.location.search.substring(1); 
+QueryString.keys        = new Array(); 
+QueryString.values      = new Array(); 
+
+function QueryString(key){ 
+        var value = null; 
+        for (var i=0;i<QueryString.keys.length;i++){ 
+                if (QueryString.keys[i]==key){ 
+                        value = QueryString.values[i]; 
+                        break; 
+                } 
+        } 
+        return value; 
+} 
+
+function QueryString_Parse(){ 
+        var query = window.location.search.substring(1); 
+        var pairs = query.split("&"); 
+        for (var i=0;i<pairs.length;i++){ 
+                var pos = pairs[i].indexOf('='); 
+                if (pos >= 0){ 
+                        var argname = pairs[i].substring(0,pos); 
+                        var value = pairs[i].substring(pos+1); 
+                        QueryString.keys[QueryString.keys.length] = argname; 
+                        QueryString.values[QueryString.values.length] = value;           
+                } 
+        } 
+
+} 
+
+QueryString_Parse(); 
+
+if (QueryString("esourceid") == null) { 
+var esourceid = "440130"; 
+}else { 
+var esourceid = QueryString("esourceid"); 
+} 
+
+if (QueryString("siteid") == null) { 
+var siteid = ""; 
+}else { 
+var siteid = QueryString("siteid"); 
+} 
+
+daQS = "?source=" + esourceid + "&siteid=" + siteid + "&bp=gsnew&esourceid=" + esourceid;
+daQS2 = "&source=" + esourceid + "&siteid=" + siteid + "&bp=gsnew&esourceid=" + esourceid;
+var siteid = QueryString("siteid"); 
+
+function opRedirectUser(){
+	if(document.forms.form1.V2PROP_CONST.value == "") {alert('You must select a type of home');return false;}
+	if(document.forms.form1.TYPE_CONST.value == "") {alert('You must select a loan type');return false;}
+	if(document.forms.form1.HME_CONST.value == "" && document.forms.form1.HME_CONST.type != "hidden") {alert('You must select a property type');return false;}
+	if(document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value == "") {alert('You must select a credit history');return false;}
+	var selected = false;
+	if (document.forms.form1.TYPE_CONST != "undefined") { }
+	if (document.forms.form1.TYPE_CONST.value == "1"){	
+		//window.location = "https://www.getsmart.com/gs_purchase/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_PURCHASE&source=33321&esourceid=417480&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+		daLink = "http://www.optimost.com/";
+		selected = true;
+	} 
+	if (document.forms.form1.TYPE_CONST.value == "2"){	
+		//window.location = "https://www.getsmart.com/gs_refinance/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_REFINANCE&source=33321&esourceid=417480&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+		daLink = "http://www.optimost.com/";
+		selected = true;
+	} 
+	if (document.forms.form1.TYPE_CONST.value == "3"){	
+	//window.location = "https://www.getsmart.com/gs_home_equity/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_HOME_EQUITY&source=33321&esourceid=417480&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+		daLink = "http://www.optimost.com/";
+		selected = true;
+	} 
+	if (document.forms.form1.TYPE_CONST.value == "4"){
+		//window.location = "https://www.getsmart.com/gs_debt_consolidation/ctl_Borrower.asp?page=loan_selection&verb=continue&O_loan_type=LOAN_TYPE_DEBT_CONSOLIDATION&source=417480&esourceid=33321&siteid=&bp=gsnew&init=1&V2PROP_CONST=" + document.forms.form1.V2PROP_CONST.value + "&HME_CONST=" + document.forms.form1.HME_CONST.value + "&CREDIT_HISTORY_DESCRIPTION_BO_CONST=" + document.forms.form1.CREDIT_HISTORY_DESCRIPTION_BO_CONST.value;
+		daLink = "http://www.optimost.com/";
+		selected = true;
+	}
+	if((document.forms.form1.PROP_STATE_CONST) != null) {
+		if(document.forms.form1.PROP_STATE_CONST.value == "00") {alert('You must select a state');return false;}
+		daLink += '&PROP_STATE_CONST=' + document.forms.form1.PROP_STATE_CONST.value;
+	}
+	if(selected) window.location = "http://by.optimost.com/go/138-1445/"  + "?oppost=" + escape(daLink);
+}
+</script>
+<!-- <span><a href="#" onclick="alert('N/A');return false;" style="color:#ffffff;">...</a></span> -->
+
+<!-- SNIPPET SHELL END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET SHELL END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET SHELL END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><p>&nbsp;</p>
+      <div align="center">
+      <p><span class="footer"><a href="http://www.getsmart.com/grd/default.asp">Home</a>&nbsp;|&nbsp;<a href="http://www.getsmart.com/grd/aboutus.asp">About GetSmart</a>&nbsp;|&nbsp;<a href="http://www.getsmart.com/grd/forlenders.asp">For Lenders</a>:&nbsp;<a href="http://www.getsmart.com/grd/forlenders.asp">Get <u>Internet Mortgage Leads</u> Now!</a>|&nbsp;<a href="http://www.getsmart.com/affiliate">Affiliate Program</a>|&nbsp;<a href="http://www.getsmart.com/grd/contactus.asp">Contact Us</a></span><br>
+          <span class="footer2"><a href="http://www.getsmart.com/grd/privacyandsecurity.asp">Privacy & Security</a>&nbsp;|&nbsp;<a href="http://www.getsmart.com/grd/termsofuse.asp">Terms of Use</a>&nbsp;|&nbsp;<a href="http://www.getsmart.com/grd/disclosureandlicenses.asp">Disclosures & Licenses</a>&nbsp;|&nbsp;<a href="javascript:STMRCWindow('/rate_disclosures.asp')">*Promotional Offer Terms</a> </span></p>
+      <p class="footer2">LendingTree technology and processes are patented under US Patent No. 6,385,594 and 6,611,816. &copy;1998-
+            <SCRIPT language=JavaScript1.2>var sdate; sdate = new Date(); if (navigator.appName == "Netscape") { document.write(sdate.getYear() + 1900);}else {document.write(sdate.getYear());}</SCRIPT>
+  2006 LendingTree, LLC. <BR>
+  All Rights Reserved. This site is directed at, and made available to, persons in the continental U.S., Alaska and Hawaii only.</p>
+      <a href="http://www.bbbonline.org/cks.asp?id=10508229389" target=_new border="0"><img src="http://www.getsmart.com/images/brochureware/BBBReliabilitySeal2.gif" border="0"/></a> <a href="javascript:STMRCWindow('/housing.asp')"><img src="http://www.getsmart.com/images/brochureware/eoh_image.gif" width="21" height="15" border="0" alt="Equal Housing Opportunity" /></a> <span class="eohStyles">Equal Housing Opportunity</span><span class="footer">      <script src=https://seal.verisign.com/getseal?host_name=www.getsmart.com&size=S&use_flash=NO&use_transparent=NO></script>
+      </span></div></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+</body>
+<form>
+  <input type="hidden" id="strHeader" value="FREE<sup>*</sup> Mortgage Quotes From Over 200 Trusted Lenders">
+  <input type="hidden" id="strSubHeader" value="These Rates Won't Last Forever - Refinance Today and Save">
+  <input type="hidden" id="strCopy" value="&amp;nbsp;"
+</form>
+</html>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title><!-- Insert your title here --></title>
+</head>
+<body>
+    <!-- Insert your content here -->
+</body>
+</html>
+<script>
+$opt={};
+$opt.loop=function(ar,callback,bRev){
+    var r="";
+    if(!bRev){
+        for(var i=0,l=ar.length; i<l; ++i){
+           r=callback(ar[i], i);
+           if(r==="break")break;
+        }
+    }
+    else{
+        for(var i=ar.length-1; i>=0; ++i){
+            r=callback(ar[i], i);
+            if(r==="break")break;
+        }
+    }
+}
+$opt.addEvent=function(el,sEvent,fFunction,bBubble){
+    if(!el || typeof(fFunction) !="function") return false;
+    bBubble = bBubble || false;
+    var sEvtType = (window.attachEvent) ? "attach" : (window.addEventListener) ?  "add" : "none";
+    if(sEvtType == "attach"){
+        el.attachEvent("on"+sEvent, fFunction);
+    }
+    else if(sEvtType == "add"){
+        el.addEventListener(sEvent, fFunction, bBubble);
+    }
+}
+$opt.find=function(sLookAt,sLookFor,sTag,eContext,bFindAll,sNotContain, equalCase){
+    if(typeof(eContext) == "undefined") eContext=document;
+    if(!eContext){
+        if(bFindAll){return [];}
+        else return null;
+    }sTag = sTag || "*";
+    bFindChild = false;
+    if(sTag.indexOf(">") > -1){
+        sTag = sTag.replace(/\>/, "");
+        bFindChild=true;
+    }
+    sNotContain = (!sNotContain) ? true : sNotContain;
+    var aElements=[];
+    if(typeof(eContext.length) != "undefined" && !eContext.nodeName){
+        aElements = eContext;
+    }
+    else if(!bFindChild){
+        aElements = eContext.getElementsByTagName(sTag);
+    }
+    else if(bFindChild){
+        aElements = eContext.childNodes;
+    }
+    var aFound = [], sNotTag="*";
+    var sEqual = (equalCase && equalCase.indexOf("equal") > -1) ? true  : false;
+    var sCase = (equalCase && equalCase.indexOf("case")>-1) ? true : false;
+    var noTag = "*";
+    if(typeof(sNotContain) == "string"){
+        sNotTag = sNotContain;
+        sNotContain = false;
+    }
+    for(var i=0,l=aElements.length; i<l; ++i){
+        if(aElements[i].nodeType == 1 && aElements[i][sLookAt] && aElements[i][sLookAt].toLowerCase().indexOf(sLookFor.toLowerCase()) > -1){
+            var attrib = aElements[i][sLookAt];
+            if(!sCase){
+                attrib = attrib.toLowerCase();
+                sLookFor = sLookFor.toLowerCase();
+            }
+            if(((!sEqual && attrib.indexOf(sLookFor) > -1) || (sEqual && attrib == sLookFor)) && (sNotContain || (!sNotContain && aElements[i].getElementsByTagName(sNotTag).length == 0))){
+                if(!bFindAll){return aElements[i];}
+                else{aFound.push(aElements[i]);}
+            }
+        }
+    }
+    if(bFindAll){return aFound;}
+    else{return null;}
+}
+
+
+</script>
+<script>
+obj=document.getElementById("clickthrus");
+if(obj){
+    trs=obj.getElementsByTagName("tr");
+    for(var i=0;i<trs.length;i++){
+        if((lsv=trs[i].getAttribute("listctrlvalue"))!=null){
+            newTD=document.createElement("td");
+            newTD.innerHTML=lsv;
+            newTD.style.color="#CC0000";
+            trs[i].insertBefore(newTD,trs[i].firstChild);            
+        }
+        else if(trs[i].parentNode.tagName.toLowerCase()=="thead"){
+            newTD=document.createElement("td");
+            newTD.innerHTML="Click Val";
+            newTD.className="tdbtngn";
+            //newTD.style.color="#CC0000";
+            trs[i].insertBefore(newTD,trs[i].firstChild);             
+        }
+    }
+}
+</script>
+<div>
+
+
+B=1 - LightGray issue again - color is lightGrey as per spec
+
+div of class="spacer", which is above and below this area, is separated into 3 sections, looks funny for A=1
+
+
+Equifax - note that on MAC Safari, the "see us on TV - get Started" Image leaks up into the bullets in the middle section.  We see this also for both of our values, let them know this.
+
+
+Suki,
+
+Inconsitent input search areas - if you are focused on load on the search input, the value that is supposed to be there is gone, but it appears on teh bottom search area.  If you blur off teh search input, it suddenly re-appears.  Does it on a number of creatives, #1003, #1004, 
+
+Tracking of search box and "Driectory" links is going fine.
+
+In MAC Safari, the search box area is messed up on the page.  Then, once you make changes, it just gets worse.  Since they are a traffic throttling unit, and since the page looks messed up in Safari they must not care, I suggest we segment out Safari.
+
+Jim Romero --- 29 June 2010 ---
+

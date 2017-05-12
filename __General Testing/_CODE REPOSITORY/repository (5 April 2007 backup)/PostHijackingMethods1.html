@@ -1,0 +1,38 @@
+
+<script language="javascript" type="text/javascript">
+// Get the ROOT PATH, either Base or actual location.
+if(document.getElementsByTagName('base')[0] != null){ // If we have a base statement, use that to set the root path
+	daRoot = document.getElementsByTagName('base')[0].href;
+	var orig = daRoot.split("//");
+	protocol = orig[0] + '//';
+	var dir = orig[1].split("/");
+	var dirs = "";
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':'');  	
+	}
+	daDomain = protocol + dir[0] + '/';
+	daRoot = protocol + dirs;
+	//alert('Got the root from the base statement and it is ' + daRoot + ' and the root domain is ' + daDomain)
+}
+else {
+	var sPage = window.location.pathname;
+	var dir = sPage.split("/");
+	var dirs = "";
+	var baseURL;
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':''); 	
+	}
+	daDomain = location.protocol+"//"  + location.host + '/';
+	daRoot = location.protocol+"//" + location.host + "/" + dirs;
+	//alert('Got the root from the path and it is ' + daRoot+ ' and the root domain is ' + daDomain)
+}	
+//The name of the form.  If it is the first form (hopefully one and only) 0 works.  Can be a name string.
+formName = 0;  
+//ADDED CLICK THROUGH VALUE MANUALLY HERE. Make sure to make it a POST or GET, based on form tag definition, in the Clickthru settings in the Agency
+daPost = '{{$clickthru.Form1.url}}'; 
+//Create new Post link.  If it is not full-path in their hidden div, add what needs to be added. If full path, use it as it
+newPostLink = ((document.forms[formName].action.indexOf('http')==-1)?daRoot:'') + document.forms[formName].action; 
+//Here pass this new form URL to Optimost.  Make sure to set the clickthru to use "oppost" as an override argument at run time. 
+document.forms[formName].action = daPost + ((daPost.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(newPostLink);
+</script>
+

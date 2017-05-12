@@ -1,0 +1,12 @@
+<script type="text/javascript">
+function copyFields() {
+	var numFields = document.forms[0].elements.length;
+	for (var  i=0; i<numFields; i++) {
+		var fieldName = document.forms[0].elements[i].name;
+		try {
+			document.forms[1].elements[fieldName].value = document.forms[0].elements[fieldName].value;
+		}
+		catch (e) {	}
+	}
+}
+</script>

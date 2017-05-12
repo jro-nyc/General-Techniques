@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<STYLE>
+.menu {background-color:#0066cc;width:100; color: #CCFFCC; text-align: center}
+.submenu {position:absolute;background-color:#6666cc;width:100}
+.majorNav
+{
+	font-family: Tahoma, Arial, Helvetica;
+	font-size: 11px;
+	font-weight: bold;
+	color: #CCFFCC;
+	text-decoration: none;
+}
+
+.navLinkSelected
+{
+	font-family: Tahoma, Arial, Helvetica;
+	font-size: 11px;
+	font-weight: normal;
+	color: #CCCCCC;
+	text-decoration: none;
+}
+
+</STYLE>
+
+<SCRIPT>
+var cm=null;
+document.onclick = new Function("showNav(null)")
+function getNavPos(el,sProp) {
+	var iPos = 0
+	while (el!=null) {
+		iPos+=el["offset" + sProp]
+		el = el.offsetParent
+	}
+	return iPos
+
+}
+
+function showNav(el,m) {
+	if (m) {
+		m.style.display='';
+		m.style.pixelLeft = getNavPos(el,"Left")
+		m.style.pixelTop = getNavPos(el,"Top") + el.offsetHeight
+	}
+	if ((m!=cm) && (cm)) cm.style.display='none'
+	cm=m
+}
+
+
+</SCRIPT>
+
+</head>
+<BODY>
+<TABLE CELLPADDING=0 CELLSPACING=0 BGCOLOR="#0066CC">
+	<tr>
+		<td valign="middle" bgcolor="#0066CC" align="center" width="10px"><IMG src="images/blank.gif" BORDER="0" height="30px" width="1px" style="background-color: green;" alt=""></td>
+		<TD CLASS=majorNav nowrap><DIV ID="d1" onmouseover="showNav(this,washPost);" class="menu">&nbsp;&nbsp;&nbsp;Washington Post</DIV></TD>
+		<td valign="middle" bgcolor="#0066CC" align="center" width="10px"><IMG src="images/blank.gif" BORDER="0" height="30px" width="1px" style="background-color: green;" alt=""></td>
+		<TD CLASS=majorNav nowrap><DIV ID="d2" onmouseover="showNav(this,nyTimes);" class="menu">&nbsp;&nbsp;New York Times</DIV></TD>
+		<td valign="middle" bgcolor="#0066CC" align="center" width="10px"><IMG src="images/blank.gif" BORDER="0" height="30px" width="1px" style="background-color: green;" alt=""></td>
+		<TD CLASS=majorNav nowrap><DIV ID="d3" onmouseover="showNav(this,espn);" class="menu">&nbsp;&nbsp;ESPN</DIV></TD>
+	</tr>
+</table>
+
+
+<DIV ID="washPost" CLASS="submenu" STYLE="display:none">
+	<table CELLPADDING=0 CELLSPACING=0 width="100"><!-- MEMBER CENTER INFO -->
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.washingtonpost.com/sports">Sports</A>
+		  </TD>
+		</TR>
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.washingtonpost.com/Finance">Finance</A>
+			</TD>
+		</TR>
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.washingtonpost.com/Nation">Nation</A>
+			</TD>
+		</TR>
+	</table>
+</DIV>
+
+<div id="nyTimes" CLASS="submenu" STYLE="display:none">
+	<TABLE CELLPADDING=0 CELLSPACING=0>  <!-- Referral Center -->
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.nyTimes.com/Life">Life</A>
+		  </TD>
+		</TR>
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.nyTimes.com/metro">Metro</A>
+			</TD>
+		</TR>
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://www.nyTimes.com/Local">Local</A>
+			</TD>
+		</TR>
+	</table>
+</div>
+
+<div id="espn" CLASS="submenu" STYLE="display:none">
+	<TABLE BORDER=0 WIDTH=121 CELLPADDING=0 CELLSPACING=0><!-- Phone Hog Central-->
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://espn.go.com/page2">Page 2</A>
+		  </TD>
+		</TR>
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/nba/index/">NBA</A>
+			</TD>
+		</TR>
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/nba/index/">College Ball</A>
+			</TD>
+		</TR>		
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/nfl/index/">NFL</A>
+			</TD>
+		</TR>		
+		<TR><TD CLASS=majorNav>
+			<A NAME=navPersonalPage CLASS=navLinkSelected HREF="http://sports.espn.go.com/mlb/index/">Baseballl</A>
+			</TD>
+		</TR>		
+	</TABLE>
+</div>
+
+</html>

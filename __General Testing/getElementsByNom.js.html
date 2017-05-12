@@ -1,0 +1,31 @@
+<HTML>
+ <HEAD>
+  <TITLE>document.getElementsByNom</TITLE>
+  <script type="text/javascript" language="javascript">
+document.getElementsByNom = function(eleName) // it's french
+{
+var myEle = new Array();
+var count = -1;
+var targets = document.getElementsByTagName("*");
+for(var i=0;i<targets.length;i++)
+ if(targets[i].getAttribute('name') == eleName)
+  myEle[++count] = targets[i];
+ if(count != -1)
+  return myEle;	// an array
+ return null;
+}
+  </script>
+ </HEAD>
+ <BODY>
+  <div name="myDiv">Hello?</div>
+  <form name="myForm">
+   <input type="text" name="myInput" value=7 />
+  </form>
+  <div name="myDiv" id="aDiv">Goodbye!</div>
+  <script>alert(document.getElementsByNom("myDiv")[0].innerHTML + "\n" + document.getElementsByNom("myDiv")[1].innerHTML)</script>
+  <script>alert(document.getElementsByNom("myDivi")); // will fail to find it
+  </script>
+  <script>alert(document.getElementsByNom("myDiv")); // will find an array
+  </script>
+ </BODY>
+</HTML>

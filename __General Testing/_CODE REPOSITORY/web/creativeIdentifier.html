@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body bgcolor="#3399cc" link="#0033cc" aLink="#ffcc00" vLink="#3399cc" text="#000000" topMargin="0" leftMargin="0" marginheight="0" marginwidth="0">
+<div style="width: 690px; background-color: #000000; color: #FFFF00; padding: 8px; border: 4px solid brown; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+<strong>Adding a CREATIVE IDENTIFIER at run-time and modifying it</strong> - How and why do it?</strong><br><br>  
+We do it because certain clients want to know on their end which creative resulted in a certain outcome.  
+So Lance has added the functionality to the system to add this creative identifier. It can either be 
+added as the new wave is created (and thus the creative is created) using the <strong>creative builder</strong> and 
+the box at the bottom of the creative builder dialog box, or on the Template Details 
+page through the <strong>View>Named creatives</strong> menu Item, you can add a name.<br/><br/>
+Now at this point, you can either add it to a clickthru as a passthru - there is a selection 
+for a <strong>served creative custom identifier</strong> in the passthru dialog box - or you can add
+it manually as <strong>{{$creative.creativeCustomId}}</strong>.<br><br>
+This technique was used at Trouve and we appended the custom identifier to the query string parameter "sid".
+This page is set up to simulate a real page for instructive purposes.  The code actaully used on the Trouve page
+is at the bottom, commented out so it will not be executed in the test.<br/><br/>
+Mouse over the links and see the href, initially none.  Then add sid to the query string of this page
+and refresh it, and look at the top links, which will have sid added to them, but the bottom links still
+will not.  Then click on the button and see what happens to the URL of the bottom links. <br/><br/>
+NOTE - The sid gets <strong>"_{{$creative.creativeCustomId}}"</strong> appended to it, but of course if this code was in the
+template copy, it would generate <strong>"_"</strong> followed by the actaul identifier, of course.
+</div>
+
+
+<script language=JavaScript" type="text/JavaScript">
+var query  = unescape(top.location.search.substring(1)).split('&');
+var params = new Array();
+for (i = 0; i < query.length; i++){
+	var tmp = query[i].split('=');
+	params[tmp[0]] = tmp[1]
+}
+sid='';
+opsid='{{$creative.creativeCustomId}}';
+if(params['sid']!=null) {
+	opsid=params['sid']+'_{{$creative.creativeCustomId}}';
+	sid = '?sid='+params['sid'];
+} 
+</script>
+<table width="690" bgcolor="#FFFFFF" cellpadding=0 cellspacing=0 border=0>
+   <tr>
+	    <script>
+		for(i=1;i<9;i++) document.write('<td width=120><a href="http://www.optimost.com/Link'+i+'/'+sid+'">Link'+i+'</a></td>');
+		</script>
+   </tr>
+   <tr><td colspan="8" align="center"><button style="padding: 0px; margin: 0px; width: 450px;" onclick="appendCCI()">Click  to add a Custom Creative Identifier to <strong>sid</strong>, if <strong>sid</strong> is in the query string</button></td></tr>
+   <tr>
+	    <script>
+		for(i=9;i<17;i++) document.write('<td width=120><a href="http://www.optimost.com/Link'+i+'/">Link'+i+'</a></td>');
+		</script>
+   </tr>
+</table>
+
+
+<script language=JavaScript" type="text/JavaScript" native="no">
+function appendCCI(){
+	clicks = document.getElementsByTagName('a');
+	other=0;
+	for(i=0;i<clicks.length;i++){
+		if(clicks[i].href.toLowerCase().indexOf('sid=')==-1){
+			clicks[i].href+=((clicks[i].href.indexOf('?') == -1)?'?':'&')+'sid='+opsid;
+		}
+	}	
+	//document.write('<input type="hidden" name="sid" value="'+opsid+'" />');
+}
+</script>
+
+</body>
+</html>
+
+<!-- CODE USED IN TROUVE TROUVE TROUVE TROUVE TROUVE TROUVE -->
+<!-- CODE USED IN TROUVE TROUVE TROUVE TROUVE TROUVE TROUVE -->
+<!-- CODE USED IN TROUVE TROUVE TROUVE TROUVE TROUVE TROUVE -->
+<!--  Remove this open comment tag to see it....
+<script language=JavaScript" type="text/JavaScript">
+//This code goes at the very TOP of the page, just below the isOptimostCopyVisible=true definintion
+var query  = unescape(top.location.search.substring(1)).split('&');
+var params = new Array();
+for (i = 0; i < query.length; i++){
+	var tmp = query[i].split('=');
+	params[tmp[0]] = tmp[1]
+}
+
+opsid='{{$creative.creativeCustomId}}';
+if(params['sid']!=null) opsid=params['sid']+'_{{$creative.creativeCustomId}}';
+document.write('<input type="hidden" name="sid" value="'+opsid+'" />');
+</script>
+.................
+.................
+
+<script language=JavaScript" type="text/JavaScript" native="no">
+//native="no" means this will not be executed until the Optimost code is loaded.
+//This code goes at the very BOTTOM of the page
+clicks = document.getElementsByTagName('a');
+other=0;
+for(i=0;i<clicks.length;i++){
+	if(clicks[i].href.toLowerCase().indexOf('optimost.')!=-1){
+		clicks[i].href+=((clicks[i].href.indexOf('?') == -1)?'?':'&')+'sid='+opsid;
+	}
+}	
+</script>
+
+-->

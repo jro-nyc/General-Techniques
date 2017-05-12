@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+<script>
+var phoneIssue = '';
+function checkEmail(emailStr) {
+
+	if ((typeof(emailStr) == "string") && emailStr!="") {
+		emailStr = emailStr.toLowerCase();
+		var checkTLD=1;
+		var knownDomsPat=/^(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum)$/;
+		var emailPat=/^(.+)@(.+)$/;
+		var specialChars="\\(\\)><@,;:\\\\\\\"\\.\\[\\]";
+		var validChars="\[^\\s" + specialChars + "\]";
+		var quotedUser="(\"[^\"]*\")";
+		var atom=validChars + '+';
+		var word="(" + atom + "|" + quotedUser + ")";
+		var userPat=new RegExp("^" + word + "(\\." + word + ")*$");
+		var matchArray=emailStr.match(emailPat);
+		if (matchArray==null) { // Too many/few @'s or something; - doesn't fit valid e-mail address pattern
+			return false;
+		}
+		var user=matchArray[1];
+		var domain=matchArray[2];
+		for (i=0; i<user.length; i++) {// Start by checking that only basic ASCII characters are in the strings (0-127).
+				if (user.charCodeAt(i)>127) {
+					return false;
+			   }
+			}
+			for (i=0; i<domain.length; i++) {//Again
+				if (domain.charCodeAt(i)>127) {
+					return false;
+			   }
+			}
+			if (user.match(userPat)==null) {// See if "user" is valid 
+				return false;					// user is not valid
+		}
+
+	 	var atomPat=new RegExp("^" + atom + "$");  // Domain - Check if it's valid.
+		var domArr=domain.split(".");
+		var len=domArr.length;
+		for (i=0;i<len;i++) {
+			if (domArr[i].search(atomPat)==-1) {
+				return false;
+	   		}
+		}
+
+/* domain name seems valid, but now make sure that it ends in a
+known top-level domain (like com, edu, gov) or a two-letter word,
+representing country (uk, nl), and that there's a hostname preceding 
+the domain or country. */
+
+		if (checkTLD && domArr[domArr.length-1].length!=2 && domArr[domArr.length-1].search(knownDomsPat)==-1) {
+			return false;
+		}
+		if (len<2) {// Make sure there's a host name preceding the domain.
+			return false;
+		}
+	}
+	else {//Empty String, invalid
+		return false;
+	}
+	return true;  // If we've gotten this far, everything's valid!
+
+}
+
+	
+function cnFinal(userName){
+var valid = "abcdefghijklmnopqrstuvwxyz '!-"
+var ok = "yes";
+var temp;
+
+	if(userName != ""){
+		userName = userName.toLowerCase();
+		for (var i=0; i<userName.length; i++) {
+			temp = "" + userName.substring(i, i+1);//Parse the number string, one character at a time
+			if (valid.indexOf(temp) == "-1") ok = "no";		//check to see if the value is a "valid" value
+		}
+		if (ok == "no") 
+			return false;
+		else
+			return true;
+	}
+	else
+		return false;
+}
+
+function checkPhone(phoneNum){
+
+var valid = "0123456789-(). "
+var valid2 = "0123456789"
+var ok = "yes";
+var temp;
+var ok2 = "yes";
+var temp2;
+var temp3="";
+
+	phoneIssue = '';
+	if(phoneNum!= ""){
+		for (var i=0; i<phoneNum.length; i++) {
+			temp = "" + phoneNum.substring(i, i+1);//Parse the number string, one character at a time
+			if (valid.indexOf(temp) == "-1") ok = "no";		//check to see if the value is a "valid" value
+		}
+		if (ok == "yes"){
+			for (var i=0; i<phoneNum.length; i++) {	//Having determined validity, now we remove
+				temp2 = "" + phoneNum.substring(i, i+1);//".", "-", "(", and ")" from the number
+				if (valid2.indexOf(temp2) != "-1") 
+				 temp3=temp3+temp2;
+			}
+			if ((temp3.length !=10)) {	//Now, we check to make sure the number of ....
+				phoneIssue = 'Invalid Phone Number - Must include area code.';
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+	
+}
+	
+function chkAll(idName){
+	var tdIndex = new Array();
+	var stringPrefix='<table cellspacing=0 cellpadding=0 border=0><tr><td height=8></td></tr>'+
+				'<tr><td valign=top nowrap><img src="https://www.gotomypc.com/images/error_icon.gif" width=16 height=16>'+
+				'<font face="Verdana,Arial,Helvetica" size=1>&nbsp;</font></td>'+
+				'<td width=100%><font face="Verdana,Arial,Helvetica" size=1><font color=#ff0000 size=2>'+
+				'<b>Please correct the fields marked in red.<br></b></font></font></td></tr><tr><td height=4></td></tr>'+
+				'<tr><td colspan=2><font face="Verdana,Arial,Helvetica" size=1><font color=#ff0000>';
+
+	var stringsuffix='</font></td></tr><tr><td height=8></td></tr></table>';
+	var list = '';
+	var invalidFields = '';
+	var index=0;
+	var errorExist=0;
+	var tds = ['tdFname','tdLname','tdEmail','tdEmail2','tdPhone'];
+	
+	if(cnFinal(document.register.Name_First.value))
+		var gop_strErrorName_First = '0';
+	if(cnFinal(document.register.Name_Last.value))
+		var gop_strErrorName_Last= '0';
+	if(checkEmail(document.register.Email.value))
+		var gop_strErrorEmail = '0';
+	if(checkEmail(document.register.Email2.value))
+		var gop_strErrorEmail2 = '0';
+	if(document.register.Email.value == document.register.Email2.value) 
+		var gop_strErrorEmailMatch = '0';
+	if(checkPhone(document.register.phone.value))
+		var gop_strErrorPhone = '0';
+
+	if(typeof(gop_strErrorName_First) != "string"){
+		invalidFields = invalidFields + 'You did not enter a valid First Name<br>';
+		tdIndex[index++] = 'tdFname';
+		errorExist=1;
+	}
+	if(typeof(gop_strErrorName_Last) != "string"){
+		invalidFields = invalidFields + 'You did not enter a valid Last Name<br>';
+		tdIndex[index++] = 'tdLname';
+		errorExist=1;
+	}
+	if(typeof(gop_strErrorEmail) != "string"){
+		invalidFields = invalidFields + 'You did not enter a valid Email<br>';
+		tdIndex[index++] = 'tdEmail';
+		errorExist=1;
+	}
+	if(typeof(gop_strErrorEmail2) != "string"){
+		invalidFields = invalidFields + 'You did not re-enter a valid Email<br>';
+		tdIndex[index++] = 'tdEmail2';
+		errorExist=1;
+	}
+	if(typeof(gop_strErrorEmailMatch) != "string"){
+		invalidFields = invalidFields + 'You Emails do not match<br>';
+		errorExist=1;
+	}
+	if(typeof(gop_strErrorPhone) != "string"){
+		if(phoneIssue == '')
+			invalidFields = invalidFields + 'You did not enter a valid Phone Number<br>';
+		else
+			invalidFields = invalidFields + phoneIssue + '<br>';		
+		tdIndex[index++] = 'tdPhone';
+		errorExist=1;
+	}
+	if(errorExist == 0) stringPrefix = '';
+	if (!document.all){
+		document.getElementById(idName).innerHTML = stringPrefix + invalidFields + stringsuffix;
+		for(i=0;i<5;i++)	document.all[tds[i]].style.color = '#000000';		
+		for(i=0;i<tdIndex.length;i++)	document.getElementById(tdIndex[i]).style.color = '#ff0000';		
+	}
+	else {
+		document.all[idName].innerHTML = stringPrefix + invalidFields + stringsuffix;	
+		for(i=0;i<5;i++)	document.all[tds[i]].style.color = '#000000';		
+		for(i=0;i<tdIndex.length;i++)	document.all[tdIndex[i]].style.color = '#ff0000';		
+	
+	}
+	if(errorExist == 0) 
+		return true;
+	else
+		return false;
+
+}
+
+
+</script>
+</head>
+
+<body>
+<form action="http://www.optimost.com" method="post" name="register" onsubmit="return chkAll('msgArea');">
+		<table cellpadding=0 cellspacing=0 border=0 width=400 bgcolor=#f4f4f4>
+			<tr>
+				<td height=10 bgcolor=#f4f4f4 colspan=3 id="msgArea" name="msgArea">
+
+				</td>
+			</tr>
+			<tr>
+				<td valign=top id="tdFname" name="tdFname"><font face='Verdana,Arial,Helvetica' size=1><b>First Name:</b></font><br>
+					<input type=text name=Name_First value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+				</td>
+				<td valign=top id="tdLname" name="tdLname"><font face='Verdana,Arial,Helvetica' size=1><b>Last Name:</b></font><br>						
+					<input type=text name=Name_Last value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+				</td>		
+				</tr>
+				<tr>
+					<td height=5></td>
+				</tr>
+				<tr>					
+				<td valign=top id="tdEmail" name="tdEmail"><font face='Verdana,Arial,Helvetica' size=1><b>Email:</b></font><br>													
+					<input type=text name=Email value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+				</td>
+				<td valign=top id="tdEmail2" name="tdEmail2"><font face='Verdana,Arial,Helvetica' size=1><b>Re-enter Email:</b></font><br>													
+					<input type=text name=Email2 value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+				</td>
+			</tr>
+				<tr>
+					<td height=5></td>
+				</tr>
+			<tr>
+				<td height=5></td>
+				<td valign=top id="tdPhone" name="tdPhone"><font face='Verdana,Arial,Helvetica' size=1><b>Phone Number:</b></font><br>													
+					<input type=text name=phone value="" size=13 style="font: normal 9 verdana,arial,helvetica;width:135;height:18;">
+				</td>
+
+			</tr>
+			<tr>
+
+				<td valign=top rowspan=2 colspan=3 align=left><img src="https://www.gotomypc.com/images/ad/1x1.gif" width=1 height=10></td>
+			</tr>
+			<tr>
+				<td>
+					<input type=image src="https://www.gotomypc.com/images/ad/g25lpContinue.gif" border=0>
+				</td>
+			</tr>
+			
+		</table></td>
+
+</form>
+
+</body>
+</html>

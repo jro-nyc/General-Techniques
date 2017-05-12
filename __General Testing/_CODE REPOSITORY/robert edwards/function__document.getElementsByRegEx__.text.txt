@@ -1,0 +1,27 @@
+document.getElementsByRegEx = function(pattern)
+{
+ var allTags = document.getElementsByTagName("*");
+ var myTags = new Array();
+ 
+ for(var i=0;i < allTags.length;i++)
+ {
+   if(allTags[i].innerHTML.search(pattern) != -1)
+    myTags[myTags.length] = allTags[i];
+ }
+ if(myTags.length != 0)
+  return myTags;
+ else
+  return null;
+}
+
+/* document.getElementsByRegEx(pattern)
+ *
+ * USAGE:
+ *
+ *  var myPattern = /^\$\d+\.\d{2}$/; // money alone in some tag in the document
+ *  var myElems = document.getElementsByRegEx(myPattern);
+ *
+ *  // will return:
+ *  //  null on fail
+ *  //  an array of HTMLElements (objects) if any are found
+ */

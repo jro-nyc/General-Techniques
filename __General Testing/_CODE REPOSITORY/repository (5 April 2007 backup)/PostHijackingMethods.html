@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Hijacking Post methodology</title>
+</head>
+
+<body>
+<div style="width: 690px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Hijacking a Form Post</strong> - How and why do we do it?</strong><br><br>   
+Why would you need to do this?  Well there are a number of reasons
+<BR/>&middot;<strong>The form is outside of our code, and we cannot track the click inside our code.</strong> -  
+This is always the context on .NET forms and sometimes on other forms.  Often, the form will have bunch of hidden
+values, and we would rather they populate those and us not have to read them (which we would have to if the form was in 
+the hidden content, opened and closed, and thus had to be replicated in our copy/snippet).
+<BR/>&middot;<strong>Can track this click but want to change the post action based on path changes</strong> - 
+In QA and we want to have it work transparently, this is always the way we want to work it.
+<br/><br/>
+<strong style="color:#88FF88;"> 
+In this example, we just have a form, and we want to hijack the form action so we can track it.   <br/><br/>
+It's a multi-step process.  First we figure out what the base URL is.  This can be either from a base statement or
+more likely from just figuring out the base from the Domain using javascript.<br/><br/>
+Next, we create a dummy POST click-thru.  Just define one, adding it to  the variable <u><em>daPost</em></u> (done in the code below), then run
+it through the Template Wizard, then make sure that in the clickthru, under Advanced, you set it to a POST, not GET. I have examples of the before
+and after for this code, just view source and see.
+<br/><br>When you do this, remember to add the "oppost" parameter to the clickthru.
+</strong><br/><br/><strong style="color:FF0000;"><u>22 Feb 2007</u><br/>MOD - Found another quirky instance, we had a client who decided to name a hidden input "action"... nice ...
+ so now accessing document.formName.action gets the hidden input, NOT the form action. Had to access the form action using the <u>attributes</u> 
+ property instead</strong>
+
+</div><form name="Form1" action="postTheInfo.asp" >
+<script language="javascript" type="text/javascript">
+// Hijacking the POST for easier debugging.
+if(document.getElementsByTagName('base')[0] != null){ // If we have a base statement, use that to set the root path
+	daRoot = document.getElementsByTagName('base')[0].href;
+	var orig = daRoot.split("//");
+	protocol = orig[0] + '//';
+	var dir = orig[1].split("/");
+	var dirs = "";
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':'');  
+	
+	}
+	daBaseDomain = protocol + dir[0];
+	daDomain = protocol + dir[0] + '/';
+	daRoot = protocol + dirs;
+	//alert('Got the root from the base statement and it is ' + daRoot + ' and the root domain is ' + daDomain)
+}
+else {
+	var sPage = window.location.pathname;
+	var dir = sPage.split("/");
+	var dirs = "";
+	var baseURL;
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':''); 
+	
+	}
+	daBaseDomain = location.protocol+"//"  + location.host;
+	daDomain = location.protocol+"//"  + location.host + '/';
+	daRoot = location.protocol+"//" + location.host + "/" + dirs;
+	//alert('Got the root from the path and it is ' + daRoot+ ' and the root domain is ' + daDomain)
+}	
+</script>
+
+<!-- // Code BEFORE at the top of the Template Copy, before we create our content BEFORE BEFORE -->
+<!-- // Code BEFORE at the top of the Template Copy, before we create our content BEFORE BEFORE -->
+<!-- // Code BEFORE at the top of the Template Copy, before we create our content BEFORE BEFORE -->
+
+<script language="javascript">
+formName = 'Form1';
+origAction=document.forms[formName].action;  // This is the old method, works unless they have input named action.
+//This is the new code to account for that possibility
+formObj = document.forms[formName];
+actObj=null;
+for(i=0;i<formObj.attributes.length;i++){
+	if(formObj.attributes[i].name.toLowerCase()=='action'){
+		actObj=formObj.attributes[i];
+	}
+}
+if(actObj!=null)origAction=actObj.value;
+else origAction='';
+
+
+daUrlNoQS = origAction.split('?')[0]; // for the case when http is a Query string paramter
+daUrlNoQS = daUrlNoQS.substr(0,9);
+if(daUrlNoQS.substr(0,1)=='/') 	daRoot=daBaseDomain; //If the action has a "/" as the first character
+if(origAction=='') {
+	newPostLink= document.location;
+}	
+else {
+	newPostLink = ((daUrlNoQS.indexOf('http')==-1)?daRoot:'') + origAction; 
+} 
+</script>
+
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+
+<!-- // Code AFTER  we create the content, at the bottom of the Template Copy AFTER AFTER AFTER AFTER -->
+<!-- // Code AFTER  we create the content, at the bottom of the Template Copy AFTER AFTER AFTER AFTER -->
+<!-- // Code AFTER  we create the content, at the bottom of the Template Copy AFTER AFTER AFTER AFTER -->
+
+<script language="javascript" native="no">
+//The name of the form.  If it is the first form (hopefully one and only) 0 works.  Here it is the name of the form as a string.
+formName = 'Form1';
+//ADDED CLICK THROUGH VALUE HERE, MANUALLY OR COPY OVER THE AUTOMATICALLY GENERATED VALUE. 
+//If you created it Manually, make sure to make it a POST or GET, based on form tag definition, in the Clickthru settings in the Agency
+daPost = '{{$clickthru.Form1.url}}';  
+
+//Here pass this new form URL to Optimost.  Make sure to set the clickthru to use "oppost" as an override argument at run time. 
+/*// This is the old method, works unless they have input named action.
+document.forms[formName].action = daPost + ((daPost.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(newPostLink);
+*/
+if(origAction!=''){
+	formObj=document.forms[formName];
+	daPost = '{{$clickthru.Form1.url}}';  
+	actObj=null;
+	for(i=0;i<formObj.attributes.length;i++){
+		if(formObj.attributes[i].name.toLowerCase()=='action'){
+			actObj=formObj.attributes[i];
+		}
+	}
+	if(actObj!=null) actObj.value = daPost + ((daPost.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(newPostLink);
+}
+</script>
+
+</form>
+		
+			
+</body>
+</html>

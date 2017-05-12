@@ -1,0 +1,69 @@
+<link rel="stylesheet" type="text/css" href="https://www.snapfish.com/default/jsp/include/styles/global.css" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<base href="https://qa.snapfish.com/" />
+	</head>
+<!-- BEGIN HumanTag Monitor. DO NOT MOVE! MUST BE PLACED JUST BEFORE THE /BODY TAG -->
+	<body bgcolor="#3399cc" link="#0033cc" aLink="#ffcc00" vLink="#3399cc" text="#000000" topMargin="0" leftMargin="0" marginheight="0" marginwidth="0">
+
+		<table width="290" bgcolor="#FFFFFF" cellpadding=0 cellspacing=0 border=2>
+			  <tr>
+				    <td width=12 bgcolor="#ff00ff"><a href="https://by.essl.optimost.com/by/go/155-665/"><img border="0" src="https://images1.snapfish.com//default/images/spacer.gif" width=120 height=19 alt="this is an image"></a></td>
+				    <td width=88 align="center"><a href="https://by.essl.optimost.com/by/go/155-666/" title="this is a title tag" target="view_window" onmouseover="window.status='http://www.bbbonline.org/cks.asp?id=1010213125553';alert('bbo'); return true;" onmouseout="window.status='';">here</a></td>
+				    <td width=148><a href="https://by.essl.optimost.com/by/go/155-667/"  target="view_window" onmouseover="window.status='http://www.bbbonline.org/cks.asp?id=1010213125553';alert('text'); return true;" onmouseout="window.status='';">This is a text link</a></td>
+			 </tr>
+		</table>
+
+
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<script language="javascript" type="text/javascript" native="no">
+//Changes to the WINDOW.STATUS for IE browsers for BofA
+function doWindowStatusChange(){
+	if(navigator.userAgent.toLowerCase().indexOf('msie')!=-1) {
+		var hrefs = document.getElementsByTagName('a');
+		//alert(hrefs.length);
+		for (var i = 0; i < hrefs.length; i++) {
+			if(hrefs[i].href.toLowerCase().indexOf('optimost.')!=-1){
+				daStatus=daTitle=daLink=daAlt=daOldOut=daOldOver='';
+				imgs = hrefs[i].getElementsByTagName('img');
+				if(hrefs[i].getAttribute('title')!=null){
+					daTitle = hrefs[i].getAttribute('title');
+				}
+				if(imgs.length>0){
+					if(imgs[imgs.length-1].getAttribute('alt')!=null) daAlt = imgs[imgs.length-1].getAttribute('alt');
+				} 
+				else daLink=hrefs[i].innerHTML;	
+				if(daTitle!='')daStatus=daTitle;
+				else if(daAlt!='')daStatus=daAlt;
+				else daStatus=daLink;
+				if(hrefs[i].onmouseover != null){	
+					daOldOver = hrefs[i].onmouseover.toString();
+					daOldOver = daOldOver.substring(daOldOver.indexOf("{") + 1, daOldOver.lastIndexOf("}"));
+					daOldOver = daOldOver.replace('return true;','');
+					//alert(daOldOver+'-'+daOldOver2);
+				}
+				if(hrefs[i].onmouseout != null){	
+					daOldOut = hrefs[i].onmouseout.toString();
+					daOldOut = daOldOut.substring(daOldOut.indexOf("{") + 1, daOldOut.lastIndexOf("}"));
+				}
+				//alert(daStatus);
+				if(daStatus!=''){
+					hrefs[i].onmouseover = new Function(daOldOver+';window.status="' + daStatus +  '";return true;');
+					alert(hrefs[i].onmouseover.toString());
+					hrefs[i].onmouseout = new Function(daOldOut+';window.status="";');			
+				}
+			}
+		}
+	}
+}
+doWindowStatusChange();
+</script>
+
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+	</body>
+</html>

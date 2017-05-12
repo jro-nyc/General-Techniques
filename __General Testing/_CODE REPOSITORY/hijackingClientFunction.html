@@ -1,0 +1,260 @@
+<html>
+<head>
+<base href="http://www.smileycentral.com/downloads" />
+<title>Hijacking a client function and modifying it on the fly</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="author" content="smileys">
+<META name="description" content="Choose from over 1,000 eCards and online greeting cards for every occasion at MyFunCards -- all completely FREE! (Send as many as you want!) Holiday e Cards, birthday e-Cards and everyday eCards for every greeting, event and occasion are just one click away!">
+<META name="keywords" content="greeting, greeting cards, greetings, online greeting, online greeting cards, greeting card, cards online, printable greeting cards, electronic greeting cards, free printable greeting cards, myfuncards.com, My Fun Cards, WWW.myfuncards.com, printable greeting cards, e cards, free greeting, free greeting cards, ecards, free e cards, free ecards, free cards, free online greeting cards, email cards, birthday cards, free email cards, e mail cards, online cards, email greeting cards, greetings cards, free e mail cards, free email greeting cards, greeting cards to print, free greeting cards to print, free cards to print, e greetings, free greetings, online greetings, e mail greeting cards, americangreetings com, find free greeting cards, where can i find free greeting cards, find free e cards, free e mail greeting cards, email greetings, where can i find free e cards, free e greetings, free greeting cards online, e greeting cards, e card, free online greetings, animated greeting cards, free greeting card, free email greetings, electronic cards, sites for free cards, egreetings, free online cards, free electronic greeting cards, find greeting cards, internet greeting cards, where can i find greeting cards, ecard, free e greeting cards, find free ecards, free egreetings, free e card, where can i find free ecards, thank you cards, free internet greeting cards, animated ecards, print greeting cards, greetings com, free animated greeting cards, on line greeting cards, create a card, free greetings cards, funny greeting cards, where can i find e cards, free animated ecards, free email greetings cards, free american greetings, printable birthday cards, internet cards, free ecard, egreeting, holidays, aniversary, thank you, get well, graduation, nature, birthday cards, electronic greeting cards, romance, love, sympathy, travel, birthday, get well, pets, holiday, postcards, Christmas, printable, Halloween, New years, online, congratulations, Thanks Giving, Thank you, birthday, Sorry, missing you, love, loneliness, lonely, teddy bear, nature, wildlife, newborn, baby, announcement.">
+<script>
+
+	
+	
+	
+		var latestVersionRedirect = "http://gallery.myfuncardsdev.com";
+		var olderVersionRedirect = "http://myfuncards.smileycentraldev.com/download/upgrade.jhtml";
+		var toolbarCurrVersion = "2,1,50,3";
+	
+	
+	
+	
+
+
+	if (top != self) top.location = location;
+	
+	var dlURL = 'install_ie.jhtml';
+	var dlURLUtmVal='/clicks/splash/dlurl_install_ie';	
+	
+	var bInstalledMWS = false;
+	var bInstalledMTS = false;
+	var bInstalledFWB = false;
+	
+	try {
+		new ActiveXObject('MyTotalSearchToolBar.SettingsPlugin');
+		bInstalledMTS = true;
+	} catch(e) {
+		
+	}
+	
+	try {
+		new ActiveXObject('MyWebSearchToolBar.SettingsPlugin');
+		document.write("<object id='ToolbarCtlMWS' classid='clsid:07B18EAB-A523-4961-B6BB-170DE4475CCA' width=1 height=1>&nbsp;</object>");
+		bInstalledMWS = true;
+	} catch(e) {
+		
+	}
+		
+	try {
+		if (bInstalledMWS) {
+			if (ToolbarCtlMWS.Type != 1) {
+				bInstalledFWB = true;
+			}
+		}
+	} catch(e) {
+		
+	}
+	
+	if (false) {
+		if (typeof(disableAbandonPopup) == 'function') disableAbandonPopup();
+	}
+	
+	function submitForm() {
+	 	/* if not installed, determine dlURL */
+	 	if (!bInstalledMWS && !bInstalledMTS && !bInstalledFWB) {
+			var agt=navigator.userAgent.toLowerCase();
+			
+			if (agt.indexOf("mac")!=-1) {
+				dlURL="error.jhtml?errorType=browser&errorCode=mac";
+			 	dlURLUtmVal='/clicks/splash/dlurl_error_mac';
+			
+			} else if (agt.indexOf("firefox") != -1) {
+				dlURL="firefox_install.jhtml";
+			 	dlURLUtmVal='/clicks/splash/dlurl_firefox_install';
+			
+			} else if (agt.indexOf("opera") != -1) {
+				dlURL="manual_install.jhtml";
+			 	dlURLUtmVal='/clicks/splash/dlurl_manual_install_op';
+				
+			} else if (navigator.appName.lastIndexOf("Netscape") != -1) {
+				dlURL="manual_install.jhtml";
+			 	dlURLUtmVal='/clicks/splash/dlurl_manual_install_ns';
+			
+			} else if ((navigator.appVersion.lastIndexOf("MSIE") != -1 && agt.indexOf("sv1") != -1) || (agt.indexOf("MSIE 7.0") != -1)) {
+				dlURL="install_ie_sp2.jhtml";
+			 	dlURLUtmVal='/clicks/splash/dlurl_install_ie_sp2';
+				document.splashSubmit.method="get";
+				
+			} else if (navigator.appVersion.lastIndexOf("MSIE") != -1) {
+				dlURL="install_ie.jhtml";
+			 	dlURLUtmVal='/clicks/splash/dlurl_install_ie';
+				document.splashSubmit.method="get";
+				
+			} else {
+				dlURL="manual_install.jhtml";
+			 	dlURLUtmVal='/clicks/splash/dlurl_manual_install';
+			
+			}
+		}
+
+		if (typeof(urchinTracker) == 'function') {
+			urchinTracker(dlURLUtmVal);
+		}
+		//dlURL = 'http://www.optimost.com/' + dlURL;
+
+		document.splashSubmit.action=dlURL;
+		if (typeof(disableAbandonPopup) == 'function'){ disableAbandonPopup();}
+		document.splashSubmit.submit();
+	}
+	
+	if (bInstalledMWS || bInstalledMTS || bInstalledFWB) {
+		dlURL = "thanks_installed.jhtml";
+	 	dlURLUtmVal='/clicks/splash/dlurl_thanks_installed';
+		
+		
+		
+		var reqVersionMWS = toolbarCurrVersion;
+		
+		toolbarVersionMWS = ToolbarCtlMWS.GetVersion('');
+		
+		var aToolbarVersion = toolbarVersionMWS.split(".");
+		var aCurrVersion = reqVersionMWS.split(',');
+		
+		for ( i=0; i < aToolbarVersion.length; i++ ){
+			if (aToolbarVersion[i].length == 1) aToolbarVersion[i] = "0" + aToolbarVersion[i];
+			if (aCurrVersion[i].length == 1) aCurrVersion[i] = "0" + aCurrVersion[i];
+		}
+		
+		toolbarVersionMWS = aToolbarVersion.join("");
+		reqVersionMWS = aCurrVersion.join("");
+		toolbarVersionMWS = toolbarVersionMWS - 0;
+		reqVersionMWS = reqVersionMWS - 0;
+		
+		if (toolbarVersionMWS < reqVersionMWS) {		
+			
+			window.location.replace(olderVersionRedirect);
+		} else {
+			
+			window.location.replace(latestVersionRedirect);
+		}
+	} else {
+		
+		
+	}
+</script>
+</head>
+
+
+	
+
+
+
+	<script src='http://utm.myfuncards.com/__utm.js' type='text/javascript'></script>
+
+
+
+
+<script language="javascript">
+function disableAbandonPopup(){;}
+dlURL = "http://myfuncards.smileycentraldev.com/download/" + dlURL;
+var _qs = top.location.search;
+//document.write('<'+'script type="text/javascript" src="' + "http://by.optimost.com/serve.php/24/p/mfclanding.541/86/trial.js" + _qs + ((_qs != "") ? "&" : "?") + "docref=" + escape(document.referrer) +  "&dlurl=" + escape(dlURL) + '"></scr'+'ipt>');
+</script>
+
+
+<script language="javascript">
+if(typeof(submitForm) == "function"){
+	laFunc = submitForm.toString();	//convert the function to a string.
+	//alert(laFunc);
+	laFunc = laFunc.substring(laFunc.indexOf("{") + 1, laFunc.lastIndexOf("}"));  //remove everthing before the first "{" and after the last "}"
+	//alert(laFunc);
+	laFunc = laFunc.replace('document.splashSubmit.submit();','opSubmitForm();');  //Replace the submit with a call to our custom function
+	submitForm = new Function(laFunc);	//Create a function with the same name, overwriting the old one.
+}
+function doFormInput(name, value, type, formName){
+	var f=document.forms[formName];
+	var newInput=document.createElement('input');
+	newInput.setAttribute('type',type);
+	newInput.setAttribute('name',name);
+	newInput.setAttribute('value',value);
+	f.appendChild(newInput);
+}
+
+function opSubmitForm(){
+	postClick = 'http://by.optimost.com/post/2-194/';
+	getClick = 'https://by.essl.optimost.com/by/go/2-497/';
+	laMethod = document.splashSubmit.method;
+	if(dlURL.indexOf('http') == -1){  //If dlRUL is not full path, make it so, kimosabee
+		// Hijacking the POST for easier debugging.		
+		if(document.getElementsByTagName('base')[0] != null){ // If we have a base statement, use that to set the root path
+			daRoot = document.getElementsByTagName('base')[0].href;
+			if (daRoot.substr(daRoot.length-1,1) != '/') daRoot += '/';
+			temp = daRoot.substr(10);
+			loc = temp.indexOf('/');
+			daDomain = daRoot.substr(0,10+loc);
+			//alert(daDomain);
+		}
+		else {
+			daDomain = document.location.protocol + "//" + document.location.host;
+			path = document.location.pathname;  // get path of file after domain name, i.e. /fcr/default.aspx
+			appRoot = path.substring(0,path.lastIndexOf("/")+1); // parse out file name from path, i.e. /fcr/
+			daRoot =  daDomain + appRoot; // put location string together from and assign to property oporder
+		}	
+		if(dlURL.substr(0,1) == '/') dlURL = daDomain + dlURL;
+		else dlURL = daRoot + dlURL;
+	}
+	if(laMethod == 'get'){
+		doFormInput('opclick', dlURL, 'hidden', 'splashSubmit');
+		document.splashSubmit.action = getClick;
+		//document.splashSubmit.action = getClick + ((getClick.indexOf('?') != -1)?'&':'?') + 'opclick=' + escape(dlURL);
+	}
+	else {
+		doFormInput('oppost', dlURL, 'hidden', 'splashSubmit');
+		document.splashSubmit.action = postClick;
+		//document.splashSubmit.action = postClick + ((postClick.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(dlURL);
+	}		
+	document.splashSubmit.submit();
+}	
+</script>
+<a href="javascript:submitForm();" >test here</a>
+
+<form action="" method="post" name="splashSubmit" id="splashSubmit">
+
+<input type="hidden" name="product" value="myfuncards">
+
+<input type="hidden" name="subdir" value="mfc">
+
+<input type="hidden" name="bOrganic" value="true">
+
+<input type="hidden" name="utmCall" value="&lt;script src=&#039;http://utm.myfuncards.com/__utm.js&#039; type=&#039;text/javascript&#039;&gt;&lt;/script&gt;">
+
+<input type="hidden" name="w" value="u">
+
+<input type="hidden" name="bucket" value="YY">
+
+<input type="hidden" name="countryCode" value="US">
+
+<input type="hidden" name="vpartner" value="ZUYYYYYYYYUS">
+
+<input type="hidden" name="bPartnerShowPoindexterPixel" value="false">
+
+<input type="hidden" name="partner" value="ZU">
+
+<input type="hidden" name="ref" value="null">
+
+<input type="hidden" name="akamaiUrl" value="http://imgfarm.com">
+
+<input type="hidden" name="coreProduct" value="myfuncards">
+
+<input type="hidden" name="abandonUrl" value="http://www.funwebproducts.com/popunder.html">
+
+<input type="hidden" name="spu" value="false">
+
+<input type="hidden" name="spk" value="hUcLa5qMawlGfvs81QDYXhPQqt8YrycaIPyrz81QDYUwm2TRST6jtJ0QDYJ4XGI9yrWCJnca2mXGbBjVJ03rwRBPvzSibM8q3XmgjP-DZFStxxA81ARafwwZ6lSTribbdJ0xAxvssW7pEVXWCCHuvM8TtxxA81DYFqXXGibI9RDYYMge7x">
+</form>
+
+</body>
+
+</html>
+
+

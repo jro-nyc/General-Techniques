@@ -1,0 +1,65 @@
+<!-- BEGIN OPTIMOST COUNTER CODE V2.1
+Copyright 2004 Optimost LLC. All Rights Reserved.
+Campaign: Registration
+Counter: IBD Address Page - Offers
+The counter was last modified 2005-02-12 2:18 GMT.
+This script should not be included in a secure (https) page.
+-->
+<script language="JavaScript">
+var _opUrl="http://by.optimost.com/action.php/58/-/6/";
+var _opdoc=document;
+var _oploc=_opdoc.location;
+var _opsrh=_oploc.search;
+var _opdt=new Date;
+var _opqsv=new Object;
+var _opckv=new Object;
+var _oparg=new Object;
+
+function _opPQS(){
+	if(_opsrh.length>3){
+		for(var a=_opsrh.substring(1).split("&"),i=0,l=a.length;i<l;i++){
+			var p=a[i].indexOf("=");
+			if(p>0)_opqsv[unescape(a[i].substring(0,p))]=unescape(a[i].substring(p+1));
+		}
+	}
+}
+function _opPCK(){
+	var _ck=_opdoc.cookie;
+	if(_ck.length>3){
+		for(var a=_ck.split(";"),i=0,_cl=a.length;i<_cl;i++){
+			var _cv=a[i].split("=");
+			while(_cv[0].substring(0,1)==" ")_cv[0]=_cv[0].substring(1,_cv[0].length);
+			if(_cv.length==2)_opckv[unescape(_cv[0])]=unescape(_cv[1]);
+		}
+	}
+}
+function _opSrc(){
+	var qs="";
+	for(var _n in _oparg){
+		var _v=_oparg[_n];
+		if(_v!=null)qs+=(qs.length>0?"&":(_opUrl.indexOf("?")>0?"&":"?"))+_n+"="+_v;
+	}
+	return _opUrl+qs;
+}
+function opArgV(n,v){
+	_oparg[escape(n)]=(v!=null)?escape(v):"";
+}
+function opArgQ(n,q){
+	opArgV(n,_opqsv[q]);
+}
+function opArgC(n,c){
+	opArgV(n,_opckv[c]);
+}
+_opPQS(); 														//Gets all the query string parameters and puts them in array _opqsv
+_opPCK();														//Gets all the cookies and puts them in array _opckv
+for(var _n in _opckv)if(_n.substring(0,2)=="op")opArgC(_n,_n);  	//Having seperated cookies above, now we look for all cookies begining with "op"
+opArgC("op58offerspageliid","op58offerspageliid");				//This is a specific cookie associated with the campaign
+opArgV("DOC_cklen",_opdoc.cookie.length);						//Length of cookie
+opArgV("DOC_loc",_oploc.hostname+_oploc.pathname);				//Full path of this page
+opArgV("DOC_ref",_opdoc.referrer);								//Referring document
+opArgV("DOC_tzo",_opdt.getTimezoneOffset());					//Number of minutes to add to our Time Zone to get to ZULU time (EST=300)
+//document.write('<'+'script type="text/javascript" src="'+_opSrc()+'"><\/script>');  //write out all the parameters, commented out in this testing document
+if(_opckv["op58offerspageliid"] != null) 						//FILTERING....If a certain cookie exists, then write out all the parameters and trigger the counter.
+	alert('<'+'script type="text/javascript" src="'+_opSrc()+'"><\/script>');	//For testing, just an Alert, turn into a document.write for real use
+</script>
+<!-- END OPTIMOST COUNTER CODE -->

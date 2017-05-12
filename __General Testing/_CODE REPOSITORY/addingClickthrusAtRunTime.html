@@ -1,0 +1,123 @@
+<script type="text/javascript">
+
+areaURL = ['{{$clickthru.areaG_link1.url}}', '{{$clickthru.areaG_link2.url}}', '{{$clickthru.areaG_link3.url}}', '{{$clickthru.areaG_link4.url}}', 
+			'{{$clickthru.areaG_link5.url}}', '{{$clickthru.areaG_link6.url}}', '{{$clickthru.areaG_link7.url}}', '{{$clickthru.areaG_link8.url}}', 
+			'{{$clickthru.areaG_link9.url}}', '{{$clickthru.areaG_link10.url}}', '{{$clickthru.areaG_link11.url}}', '{{$clickthru.areaG_link12.url}}',
+			'{{$clickthru.areaG_link13.url}}', '{{$clickthru.areaG_link14.url}}', '{{$clickthru.areaG_link15.url}}', '{{$clickthru.areaG_link16.url}}', 
+			'{{$clickthru.areaG_link17.url}}', '{{$clickthru.areaG_link18.url}}', '{{$clickthru.areaG_link19.url}}', '{{$clickthru.areaG_link20.url}}', 
+			'{{$clickthru.areaG_link21.url}}', '{{$clickthru.areaG_link22.url}}', '{{$clickthru.areaG_link23.url}}', '{{$clickthru.areaG_link24.url}}'];
+
+function addClicks(){
+	var daAnchors =  document.getElementById('opAreaG').getElementsByTagName('a');
+	
+	for (var i = 0; i < daAnchors.length; i++) {
+		//if(daAnchors[i].href.indexOf('#') == -1){
+			daAnchors[i].href = areaURL[i] + ((areaURL[i].indexOf('?') == -1)?'?':'&') + 'link=' + escape(daAnchors[i].href);
+		//}
+	}
+}
+function readHREFS(){
+	list = '';
+	var daAnchors =  document.getElementById('opAreaG').getElementsByTagName('a');
+	for (var i = 0; i < daAnchors.length; i++) {
+		//if(daAnchors[i].href.indexOf('#') == -1) {
+			list += daAnchors[i].href + '\n';
+		//}
+	}
+	alert(list)
+}
+
+
+function addLoadEvent(func) {
+	
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} 
+	else {
+			window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+addLoadEvent( function(){
+//addClicks();  
+});
+</script>
+
+<div id="opAreaG" style="border:red 2px solid;width:400px;"> <!-- Special Hidden DIV START START -->
+<table width="520" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link1.html" target="_blank">Hola Joven</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link2.html" target="_blank">&iquest;Como est&aacute;s?</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link3.html" target="_blank">Here is an example of how to add clickthrus at run time</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link4.html" target="_blank">This is done with javascript and pre-generated clickthrus</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link5.html" target="_blank">Click below, as marked, to see all the href values</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link6.html" target="_blank">And Click below, as marked, to add the clicks</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link7.html" target="_blank">And Click again to see the hrefs after changes are made</a>
+		</td>
+	</tr>
+</table>
+</div> 
+<div id="opAreaH" style="padding:20px 0 0;">
+<table width="520" border="0" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td valign="top" class="base">		
+			<button onclick="readHREFS();return false;">CLICK HERE TO VIEW HREF VALUES</button>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">		
+			<button onclick="addClicks();return false;">CLICK HERE TO ADD THE CLICKS</button>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link10.html" target="_blank">Notice that these links are ignored </a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link11.html" target="_blank">since I'm only looking for links inside DIV with ID="opAreaG"</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base" style="border:3px solid red;background:black;color:yellow;padding:2px;">		
+			Also note that I have a onload function hijacker that would add this code at run time, but it is commented out.
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<script>
+var daStyle = 'reg';
+function doComputeStyle(){
+	var ballsFact = 1.0;
+	var correctFact = 1.0;
+	var ballsMinusCorrectFact = 1.0;
+	if (document.calc.balls.value != '') balls = document.calc.balls.value;
+	else {alert('you need to enter the number of balls in the experiment');return false;}
+	if (document.calc.correct.value != '') correct = document.calc.correct.value;
+	else {alert('you need to enter the number of balls correctly selected in the experiment');return false;}
+	//alert(daStyle);
+	if(daStyle == 'reg'){	
+		for(i=0;i<balls;i++) ballsFact *= (i+1);
+		for(i=0;i<correct;i++) correctFact *= (i+1);
+		for(i=0;i<balls-correct;i++) ballsMinusCorrectFact *= (i+1);
+		//alert(ballsFact + ' - ' + correctFact  + ' - ' + ballsMinusCorrectFact);
+		var result = parseInt(ballsFact / (correctFact * ballsMinusCorrectFact)) ;
+	}
+	else {
+		for(i=0;i<balls;i++) ballsFact *= (i+1);
+		for(i=0;i<correct-1;i++) correctFact *= (i+1);
+		for(i=0;i<balls-correct+1;i++) ballsMinusCorrectFact *= (i+1);
+		//alert(ballsFact + ' - ' + correctFact  + ' - ' + ballsMinusCorrectFact);
+		var result = parseInt(ballsFact*balls / (correctFact * ballsMinusCorrectFact));		
+		if (correct == 1) result = balls;
+	}
+	msg = 'The odds of winning are 1 in ' + newAddCommas(result) + '<br>';
+	if (result > 1000000000) {
+		days = result / 10000000;
+		if(days > 1000) {
+			years = parseInt(days/250);
+			totTime = ' over ' + newAddCommas(parseInt(days/250)) + ' years of drawings';
+		}
+		else totTime = ' over ' + newAddCommas(parseInt(days)) + ' drawings';
+		msg += '<br>This means that if you ran this lottery 5 days a week all year round and 10 million people played each day, it would take on average' + totTime + ' for someone to win';
+	}
+	document.getElementById("results").innerHTML = msg; 
+}
+function doCompute(){
+	var ballsFact = 1.0;
+	var correctFact = 1.0;
+	var ballsMinusCorrectFact = 1.0;
+	if (document.calc.balls.value != '') balls = document.calc.balls.value;
+	else {alert('you need to enter the number of balls in the experiment');return false;}
+	if (document.calc.correct.value != '') correct = document.calc.correct.value;
+	else {alert('you need to enter the number of balls correctly selected in the experiment');return false;}
+	for(i=0;i<balls;i++) ballsFact *= (i+1);
+	for(i=0;i<correct;i++) correctFact *= (i+1);
+	for(i=0;i<balls-correct;i++) ballsMinusCorrectFact *= (i+1);
+	//document.getElementById("results").innerHTML = ballsFact + '-' + correctFact + '-' + ballsMinusCorrectFact + '-'; 
+	var result = parseInt(ballsFact / (correctFact * ballsMinusCorrectFact)) ;
+	//alert(result + '-<br>-' + newAddCommas(result));	
+	//msg = 'The odds of winning are 1 in ' + result + '<br>';
+	msg = 'The odds of winning are 1 in ' + newAddCommas(result) + '<br>';
+	if (result > 1000000000) {
+		days = result / 10000000;
+		if(days > 1000) {
+			years = parseInt(days/250);
+			totTime = ' over ' + newAddCommas(parseInt(days/250)) + ' years of drawings';
+		}
+		else totTime = ' over ' + newAddCommas(parseInt(days)) + ' drawings';
+		msg += '<br>This means that if you ran this lottery 5 days a week all year round and 10 million people played each day, it would take on average' + totTime + ' for someone to win';
+	}
+		document.getElementById("results").innerHTML = msg; 
+
+}
+function addCommas(val){
+if(val.length>6) res =  val.substring(0, val.length-6)  + ','  + val.substring(val.length-3, val.length-6) + ',' + val.substring(val.length, val.length-3);
+else if(val.length>3) res =  val.substring(0, val.length-3)  + ','  + val.substring(val.length, val.length-3);
+else return val;
+return res;
+}
+
+function newAddCommas(value){
+	val =  value.toString();
+	bits = new Array();
+	index = val.length;
+	newVal = '';
+	//alert(val);
+	if(val.length>3){
+		for(i=0;i<val.length; i+=3){
+			index = i/3;
+			bits[index] = val.substring(val.length-i, val.length-i-3);
+			tmp = i;
+		}
+		for(j=index;j>0;j--) newVal += bits[j] + ',';
+		newVal += bits[0];
+		return newVal;
+	}
+	else return val;
+}
+</script>
+<form name="calc" id="calc">
+<table border="2" width="400">
+<tr><td>Number of balls in mix:</td><td><input type="Text" name="balls" size="5" value="100"></td></tr>
+<tr><td>Number of correctly selected balls:</td><td><input type="Text" name="correct" size="3" value="10"></td></tr>
+<tr><td colspan="2">STYLE:&nbsp;&nbsp;&nbsp;Poweball<input type="radio" name="drawStyle" value="pb" onclick="javascript:daStyle='pb';">&nbsp;&nbsp;&nbsp;Regular<input type="radio" name="drawStyle" value="reg" checked onclick="javascript:daStyle='reg';"></td></tr>
+<tr><td></td><td><input type="submit" name="submit" value="Compute" onclick="doComputeStyle();return false;"></td></tr>
+<tr><td colspan="2" id="results"></td></tr>
+</table>
+</form>
+
+</body>
+</html>

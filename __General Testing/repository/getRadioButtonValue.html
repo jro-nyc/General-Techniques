@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Reading Radio Button or Checkbox values</title>
+</head>
+
+<body>
+<div style="width: 490px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Get the Radio Button or CheckboxValue</strong> - How do we get them?</strong><br><br>   
+Getting the value of text boxes, selects, text areas, etc is easy.  Just read the value directly.
+But checkboxes and radio buttons are a little more work.<br/><br/>
+You actually need to iterate through each value and see if the button is checked.  
+Then if so, save that button's value as the answer to the question.<br/><br/>
+For a checkbox, there is only one button, so you iterate through its one value.
+</div>
+<div>
+<form name="form1" method="post">
+<div>
+<div class="selection_pg4_div"><input type="radio" name="OPTIN_CONST" value="yes" class="inputRadio_pg4">
+<span class="body"> <strong>YES, I want my FREE SuperDuperSmart Guide.</strong> By making this selection, I authorize<br>
+								SuperDuperSmart, and the financial institutions to which SuperDuperSmart provides my<br>
+								information, to check my credit.</span></div><br/><br/>
+<div class="selection_pg4_div"><input type="radio" name="OPTIN_CONST" value="no" class="inputRadio_pg4">
+<span class="body"> <strong>NO, I do not want my FREE SuperDuperSmart Guide.</strong> Please match me with lenders,<br>
+								but do not access my credit information.</span></div><br/><br/>
+<div class="selection_pg4_div"><input type="radio" name="OPTIN_CONST" value="maybe" class="inputRadio_pg4">
+<span class="body"> <strong>MAYBE, I MIGHT want my FREE SuperDuperSmart Guide.</strong><br/>I really don't like the idea of participating in fascist giveaways
+								that are only intended to subvert<br>the class struggle against corporate hegomony, but I really like free stuff, <br/>
+								so do check back with me after my meditation and consciousness-raising meeting.</span></div><br/>
+<div style="color:006600;font-weight:bold;"><input type="checkbox" name="checkIt" value="yessir" class="inputRadio_pg4">&nbsp;
+I agree to yadda yadda yadda and my check in the box is my way of saying I'm down with that.</div><br/><br/>
+<div id="section_i"><a href="javascript:getRadioValue();" style="font-size:28px;"><strong>Click Read the Radio Button</strong></a></div>
+<div id="section_i"><a href="javascript:getCheckboxValue();" style="font-size:28px;"><strong>Click Read the CheckBox</strong></a></div>
+</div>
+
+</form>
+<script>
+function getRadioValue(){
+	btn=document.forms['form1'].OPTIN_CONST;
+	val='';
+	for(var i=0;i<btn.length;i++){
+		valid = btn[i].checked;
+		if (valid) {val=btn[i].value;break;}
+	}
+	alert(val!=''?'The value for the radio button is '+val+'':'If don\'t check on of the radio buttons, there is no value');
+}
+function getCheckboxValue(){
+	btn=document.forms['form1'].checkIt;
+	val='';
+	valid = btn.checked;
+	if (valid) val=btn.value;
+	alert(val!=''?'The value for the checkbox is '+val+'':'If you don\'t check the box, there is no value');
+}
+</script>
+</body>
+</html>

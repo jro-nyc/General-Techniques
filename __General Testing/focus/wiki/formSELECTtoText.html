@@ -1,0 +1,886 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+
+	<title>Form modification- replacing SELECT with a text field, but keeping default SELECT value for Form POST </title>
+<style>
+span {
+color:black;
+font-size:9.5pt;
+}
+body, p, td, th, tr, ol, dl, dd, dt, blockquote, center, br {
+color:#333333;
+font-family:"Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+font-size:12px;
+}
+</style>
+</head>
+
+<body>
+<div style="width:800px;">
+One of the values the customer wanted to test was making the deductible the only thing that could be varied within their existing form.  
+This code takes default value for each SELECT and creates a span with that value in it, then sets the SELECT dispaly to 'none'.  
+When the form posts, the default value is posted, so all is good.<br>
+I have put a post click in to a fake URL on kidwww, so you can posts it with the selects visible and not visible, and if you pause
+clickthrus, you will see the values posted are the same in both cases.<br/>
+<button onclick="doSelectChange(this);return false;">CLICK HERE TO CHANGE THE SELECTS TO TEXT FIELDS</button>
+</div>
+		<form name="Form1" method="post" action="PlanOptions.aspx" id="Form1">
+						<table style="BORDER-RIGHT: #ccffcc thin solid; BORDER-TOP: #ccffcc thin solid; BORDER-LEFT: #ccffcc thin solid; BORDER-BOTTOM: #ccffcc thin solid"
+							cellpadding="0" cellspacing="0">
+							<tr>
+								<td valign="top">
+									<table width="177" cellpadding="0" cellspacing="0">
+										<tr id="PlanRepeater__ctl0_ChoosePlanRow" height="66">
+<td style="BORDER-Right: #999999 1px dotted; " bgcolor="#E7F7EF">&nbsp;</td>
+</tr>
+
+										
+										<tr id="PlanRepeater__ctl0_PlanDescHeader" style="height:108px;">
+<td align="left" valign="top" style="FONT-SIZE: 9.5pt; COLOR: black; BORDER-Right: #999999 1px dotted">
+
+												<b>
+													<span id="PlanRepeater__ctl0_ChoosePlan">Choose Plan Options</span></b>
+											</td>
+</tr>
+
+										<tr height="30" bgcolor="efefef">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<a id="PlanRepeater__ctl0_Deductible" href="javascript: OpenHelp('HelpPage.aspx?Topic=Deductible','Help','400','200');">Deductible</a>
+											</td>
+
+										</tr>
+										<tr height="30">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<a id="PlanRepeater__ctl0_Copay" href="javascript: OpenHelp('HelpPage.aspx?Topic=OfficeCopay','Help','400','200');">Office Copay</a>
+											</td>
+										</tr>
+										<tr height="30" bgcolor="efefef">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+
+												<a id="PlanRepeater__ctl0_Coinsurance" href="javascript: OpenHelp('HelpPage.aspx?Topic=Coinsurance','Help','400','200');">Coinsurance Percentage</a>
+											</td>
+										</tr>
+										<tr height="30">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<a id="PlanRepeater__ctl0_IndividualOOP" href="javascript: OpenHelp('HelpPage.aspx?Topic=IndividualOOP','Help','400','200');">Total Out-of-Pocket</a>
+											</td>
+										</tr>
+
+										<tr height="30" bgcolor="efefef">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<a id="PlanRepeater__ctl0_LifetimeMaximum" href="javascript: OpenHelp('HelpPage.aspx?Topic=LifetimeMaximum','Help','500','500');">Lifetime Maximum</a>
+											</td>
+										</tr>
+										<tr height="30">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<a id="PlanRepeater__ctl0_Maternity" href="javascript: OpenHelp('HelpPage.aspx?Topic=Maternity','Help','500','500');">Maternity Coverage</a>
+
+											</td>
+										</tr>
+										<tr height="30" bgcolor="efefef">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<a id="PlanRepeater__ctl0_OutpatientMax" href="javascript: OpenHelp('HelpPage.aspx?Topic=OutpatientMaximum','Help','500','500');">Outpatient Maximum</a>
+											</td>
+										</tr>
+										<tr height="30">
+
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<a id="PlanRepeater__ctl0_AnnualMaximum" href="javascript: OpenHelp('HelpPage.aspx?Topic=annualMaximum','Help','500','500');">Annual Maximum</a>
+											</td>
+										</tr>
+										<tr height="25" bgcolor="#efefef">
+											<td align="left" style="BORDER-RIGHT: #999999 1px dotted; FONT-WEIGHT: bold ; FONT-SIZE: 10pt">
+												<span id="PlanRepeater__ctl0_MonthlyPremium">Monthly Premium</span>
+											</td>
+
+										</tr>
+										<tr height="29" bgcolor="#efefef">
+											<td align="right" style="BORDER-Right: #999999 1px dotted; padding-right: 5px">
+												<img id="PlanRepeater__ctl0_RateGuarantee" src="Images/rate-guarantee.gif" alt="" border="0" style="border-color:#33CCFF;" /></td>
+										</tr>
+										<tr height="75">
+											<td align="left" style="BORDER-Right: #999999 1px dotted">
+												<span id="PlanRepeater__ctl0_SelectYourPlan">Select your preferred plan to review additional coverage options and obtain a quote.</span></td>
+
+										</tr>
+										<tr height="40">
+											<td bgcolor="efefef">
+												<input type="image" name="PlanRepeater:_ctl0:CompareButton" onclick="if (typeof(Page_ClientValidate) == 'function') Page_ClientValidate(); " language="javascript" id="PlanRepeater__ctl0_CompareButton" OnKeyPress="ButtonEnterKey('PlanRepeater:_ctl0:CompareButton');" src="Images/buttons/compare-plans.gif" alt="" border="0" /></td>
+										</tr>
+									</table>
+								</td>
+					
+						<td valign="top">
+							<table width="120" cellpadding="0" cellspacing="0">
+
+								<tr height="26">
+									<td id="PlanRepeater__ctl1_Td1" style="BORDER-Right: #999999 1px dotted" bgcolor="#E7F7EF">
+										<span id="PlanRepeater__ctl1_PopularPlan" style="color:Red;font-size:8px;font-weight:bold;font-style:italic;">POPULAR</span>
+										
+										
+										&nbsp
+									</td>
+
+								</tr>
+								<tr height="40">
+									<td Align="center" valign="top" class="smalltextpad" colspan="3" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="#E7F7EF">
+
+										<a id="PlanRepeater__ctl1_PlanName" href="javascript:{if (typeof(Page_ClientValidate) != 'function' ||  Page_ClientValidate()) __doPostBack('PlanRepeater$_ctl1$PlanName','')} ">Plan A</a>
+										
+										
+									</td>
+								</tr>
+								
+								<tr id="PlanRepeater__ctl1_PlanDescItemTemp" valign="top" style="height:108px;">
+<td valign="top" style="BORDER-Right: #999999 1px dotted" align="left">
+										<span id="PlanRepeater__ctl1_PlanContent">Broad, cost-effective coverage for everyday and catastrophic needs.</span>
+										&nbsp;
+									</td>
+
+</tr>
+
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl1:DeductibleDropDown" onchange="DisableSelectButton('PlanRepeater__ctl1_Select');__doPostBack('PlanRepeater$_ctl1$DeductibleDropDown','')" language="javascript" id="PlanRepeater__ctl1_DeductibleDropDown" style="width:95px;">
+<option value="$500">$500</option>
+<option value="$1000">$1000</option>
+<option selected="selected" value="$1500">$1500</option>
+
+<option value="$2000">$2000</option>
+<option value="$3500">$3500</option>
+<option value="$5000">$5000</option>
+<option value="$10000">$10000</option>
+
+</select>
+									</td>
+								</tr>
+
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl1:CopayDropDown" onchange="DisableSelectButton('PlanRepeater__ctl1_Select');__doPostBack('PlanRepeater$_ctl1$CopayDropDown','')" language="javascript" id="PlanRepeater__ctl1_CopayDropDown" style="width:95px;">
+<option value="$35">$35</option>
+<option selected="selected" value="No">No</option>
+
+</select>
+										
+									</td>
+								</tr>
+
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl1:CoinsurancePercentageDropDown" onchange="DisableSelectButton('PlanRepeater__ctl1_Select');__doPostBack('PlanRepeater$_ctl1$CoinsurancePercentageDropDown','')" language="javascript" id="PlanRepeater__ctl1_CoinsurancePercentageDropDown" style="width:95px;">
+<option selected="selected" value="50">50%</option>
+<option value="70">70%</option>
+<option value="80">80%</option>
+
+</select>
+
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl1:CoinsuranceOOPDropDown" onchange="DisableSelectButton('PlanRepeater__ctl1_Select');__doPostBack('PlanRepeater$_ctl1$CoinsuranceOOPDropDown','')" language="javascript" id="PlanRepeater__ctl1_CoinsuranceOOPDropDown" style="width:95px;">
+<option value="2000">$2000</option>
+<option value="3500">$3500</option>
+<option value="5000">$5000</option>
+
+<option selected="selected" value="7500">$7500</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl1:LifeTimeMaxDropDown" onchange="DisableSelectButton('PlanRepeater__ctl1_Select');__doPostBack('PlanRepeater$_ctl1$LifeTimeMaxDropDown','')" language="javascript" id="PlanRepeater__ctl1_LifeTimeMaxDropDown" style="width:95px;">
+<option selected="selected" value="6Mil">6Mil</option>
+
+<option value="2Mil">2Mil</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl1_MaternityNA">N/A</span>
+										
+									</td>
+
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="efefef">
+										
+										<span id="PlanRepeater__ctl1_NoOutpatient">N/A</span>
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+
+										
+										<span id="PlanRepeater__ctl1_NoAnnualmax">N/A</span>
+									</td>
+								</tr>
+								<tr height="25" bgcolor="efefef">
+									<td Align="Center" valign="middle" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted">
+										<span id="PlanRepeater__ctl1_MonthlyRate">$120.17</span>
+									</td>
+								</tr>
+
+								<tr height="29" bgcolor="efefef">
+									<td Align="center" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted"
+										valign="center">
+										<table cellpadding="0" cellspacing="0">
+											<tr>
+												<td></td>
+												<td><span id="PlanRepeater__ctl1_RateGuaranteeMonths">12 months</span></td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+								<tr height="75">
+									<td Align="Center" class="smalltextpad" valign="Center" style="BORDER-Right: #999999 1px dotted">
+										<input type="image" name="PlanRepeater:_ctl1:Select" id="PlanRepeater__ctl1_Select" src="Images/buttons/select_blue.gif" alt="" border="0" />
+									</td>
+								</tr>
+								<tr height="40" bgcolor="efefef">
+									<td align="center">
+
+										<input id="PlanRepeater__ctl1_CompareChkBox" type="checkbox" name="PlanRepeater:_ctl1:CompareChkBox" /></td>
+								</tr>
+							</table>
+						</td>
+					
+						<td valign="top">
+							<table width="120" cellpadding="0" cellspacing="0">
+								<tr height="26">
+									<td style="BORDER-Right: #999999 1px dotted" bgcolor="#E7F7EF">
+										
+										&nbsp
+
+									</td>
+								</tr>
+								<tr height="40">
+									<td Align="center" valign="top" class="smalltextpad" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="#E7F7EF">
+										<a id="PlanRepeater__ctl2_PlanNameAlt" href="javascript:{if (typeof(Page_ClientValidate) != 'function' ||  Page_ClientValidate()) __doPostBack('PlanRepeater$_ctl2$PlanNameAlt','')} ">Plan B</a>
+										
+										</td>
+								</tr>
+								
+								<tr id="PlanRepeater__ctl2_PlanDescAltItemTemp" style="height:108px;">
+
+<td style="BORDER-Right: #999999 1px dotted" valign="top">
+										<span id="PlanRepeater__ctl2_PlanContentAlt">Essential benefits at the most affordable price.</span>
+										&nbsp;
+									</td>
+</tr>
+
+								<tr height="30" bgcolor="efefef" style="BORDER-LEFT: #efefef thin solid">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl2:DeductibleDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl2_SelectAlt');__doPostBack('PlanRepeater$_ctl2$DeductibleDropDownAlt','')" language="javascript" id="PlanRepeater__ctl2_DeductibleDropDownAlt" style="width:95px;">
+
+<option value="$500">$500</option>
+<option selected="selected" value="$1000">$1000</option>
+<option value="$2000">$2000</option>
+<option value="$3000">$3000</option>
+
+</select>
+									</td>
+								</tr>
+
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl2:CopayDropdownAlt" onchange="DisableSelectButton('PlanRepeater__ctl2_SelectAlt');__doPostBack('PlanRepeater$_ctl2$CopayDropdownAlt','')" language="javascript" id="PlanRepeater__ctl2_CopayDropdownAlt" style="width:95px;">
+<option value="$25">$25</option>
+<option selected="selected" value="No">No</option>
+
+</select>
+										
+									</td>
+								</tr>
+
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl2:CoinsurancePercentageDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl2_SelectAlt');__doPostBack('PlanRepeater$_ctl2$CoinsurancePercentageDropDownAlt','')" language="javascript" id="PlanRepeater__ctl2_CoinsurancePercentageDropDownAlt" style="width:95px;">
+<option selected="selected" value="50">50%</option>
+<option value="75">75%</option>
+
+</select>
+									</td>
+								</tr>
+
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl2:CoinsuranceOOPDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl2_SelectAlt');__doPostBack('PlanRepeater$_ctl2$CoinsuranceOOPDropDownAlt','')" language="javascript" id="PlanRepeater__ctl2_CoinsuranceOOPDropDownAlt" style="width:95px;">
+<option selected="selected" value="2500">$2500</option>
+<option value="4500">$4500</option>
+
+</select>
+									</td>
+								</tr>
+
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl2:LifeTimeMaxDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl2_SelectAlt');__doPostBack('PlanRepeater$_ctl2$LifeTimeMaxDropDownAlt','')" language="javascript" id="PlanRepeater__ctl2_LifeTimeMaxDropDownAlt" style="width:95px;">
+<option selected="selected" value="2Mil">2Mil</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl2_MaternityNAAlt">N/A</span>
+										
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="efefef">
+										<select name="PlanRepeater:_ctl2:OutpatientDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl2_SelectAlt');__doPostBack('PlanRepeater$_ctl2$OutpatientDropDownAlt','')" language="javascript" id="PlanRepeater__ctl2_OutpatientDropDownAlt" style="width:95px;">
+<option selected="selected" value="$2,500">$2,500</option>
+
+<option value="$5,000">$5,000</option>
+
+</select>
+										
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl2:AnnualMaxDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl2_SelectAlt');__doPostBack('PlanRepeater$_ctl2$AnnualMaxDropDownAlt','')" language="javascript" id="PlanRepeater__ctl2_AnnualMaxDropDownAlt" style="width:95px;">
+<option value="$50,000">$50,000</option>
+
+<option selected="selected" value="$100,000">$100,000</option>
+
+</select>
+										
+									</td>
+								</tr>
+								<tr height="25">
+									<td Align="Center" valign="middle" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted">
+										<span id="PlanRepeater__ctl2_MonthlyRateAlt">$95.68</span>
+									</td>
+
+								</tr>
+								<tr height="29" bgcolor="efefef">
+									<td Align="center" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted"
+										valign="middle">
+										<table cellpadding="0" cellspacing="0">
+											<tr>
+												<td></td>
+												<td><span id="PlanRepeater__ctl2_RateGuaranteeMonthsAlt">12 months</span></td>
+											</tr>
+
+										</table>
+									</td>
+								</tr>
+								<tr height="30" style="BORDER-RIGHT: #ccffcc thin solid; BORDER-TOP: #ccffcc thin solid; BORDER-LEFT: #ccffcc thin solid; BORDER-BOTTOM: #ccffcc thin solid">
+									<td Align="Center" valign="Center" class="smalltextpad" height="75" style="BORDER-Right: #999999 1px dotted">
+										<input type="image" name="PlanRepeater:_ctl2:SelectAlt" id="PlanRepeater__ctl2_SelectAlt" src="Images/buttons/select_blue.gif" alt="" border="0" />
+									</td>
+								</tr>
+								<tr height="40">
+
+									<td bgcolor="efefef" align="center">
+										<input id="PlanRepeater__ctl2_CompareChkBoxAlt" type="checkbox" name="PlanRepeater:_ctl2:CompareChkBoxAlt" /></td>
+								</tr>
+							</table>
+						</td>
+					
+						<td valign="top">
+							<table width="120" cellpadding="0" cellspacing="0">
+								<tr height="26">
+									<td id="PlanRepeater__ctl3_Td1" style="BORDER-Right: #999999 1px dotted" bgcolor="#E7F7EF">
+
+										
+										
+										
+										&nbsp
+									</td>
+
+								</tr>
+								<tr height="40">
+									<td Align="center" valign="top" class="smalltextpad" colspan="3" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="#E7F7EF">
+										<a id="PlanRepeater__ctl3_PlanName" href="javascript:{if (typeof(Page_ClientValidate) != 'function' ||  Page_ClientValidate()) __doPostBack('PlanRepeater$_ctl3$PlanName','')} ">Plan C</a>
+										<a id="PlanRepeater__ctl3_HSA" class="smalltextpad" href="javascript: OpenHelp('HelpPage.aspx?Topic=HSA','Help','500','500');">
+											</a>
+
+										
+									</td>
+								</tr>
+								
+								<tr id="PlanRepeater__ctl3_PlanDescItemTemp" valign="top" style="height:108px;">
+<td valign="top" style="BORDER-Right: #999999 1px dotted" align="left">
+										<span id="PlanRepeater__ctl3_PlanContent">Affordable protection against large medical bills plus a tax-sheltered Health Savings Account</span>
+										&nbsp;
+									</td>
+</tr>
+
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl3:DeductibleDropDown" onchange="DisableSelectButton('PlanRepeater__ctl3_Select');__doPostBack('PlanRepeater$_ctl3$DeductibleDropDown','')" language="javascript" id="PlanRepeater__ctl3_DeductibleDropDown" style="width:95px;">
+<option selected="selected" value="$2200">$2200</option>
+<option value="$3000">$3000</option>
+<option value="$5100">$5100</option>
+
+</select>
+
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl3_CopayNA">N/A</span>
+									</td>
+								</tr>
+								<tr height="30" bgcolor="efefef">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl3:CoinsurancePercentageDropDown" onchange="DisableSelectButton('PlanRepeater__ctl3_Select');__doPostBack('PlanRepeater$_ctl3$CoinsurancePercentageDropDown','')" language="javascript" id="PlanRepeater__ctl3_CoinsurancePercentageDropDown" style="width:95px;">
+<option selected="selected" value="50">50%</option>
+<option value="75">75%</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl3:CoinsuranceOOPDropDown" onchange="DisableSelectButton('PlanRepeater__ctl3_Select');__doPostBack('PlanRepeater$_ctl3$CoinsuranceOOPDropDown','')" language="javascript" id="PlanRepeater__ctl3_CoinsuranceOOPDropDown" style="width:95px;">
+<option selected="selected" value="2000">$2000</option>
+<option value="3000">$3000</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30" bgcolor="efefef">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl3:LifeTimeMaxDropDown" onchange="DisableSelectButton('PlanRepeater__ctl3_Select');__doPostBack('PlanRepeater$_ctl3$LifeTimeMaxDropDown','')" language="javascript" id="PlanRepeater__ctl3_LifeTimeMaxDropDown" style="width:95px;">
+<option selected="selected" value="2Mil">2Mil</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+
+										
+										<span id="PlanRepeater__ctl3_MaternityNA">N/A</span>
+										
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="efefef">
+										<select name="PlanRepeater:_ctl3:OutpatientDropDown" onchange="DisableSelectButton('PlanRepeater__ctl3_Select');__doPostBack('PlanRepeater$_ctl3$OutpatientDropDown','')" language="javascript" id="PlanRepeater__ctl3_OutpatientDropDown" style="width:95px;">
+<option selected="selected" value="$15,000">$15,000</option>
+<option value="$25,000">$25,000</option>
+
+</select>
+										
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl3_NoAnnualmax">N/A</span>
+									</td>
+								</tr>
+
+								<tr height="25" bgcolor="efefef">
+									<td Align="Center" valign="middle" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted">
+										<span id="PlanRepeater__ctl3_MonthlyRate">$110.39</span>
+									</td>
+								</tr>
+								<tr height="29" bgcolor="efefef">
+									<td Align="center" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted"
+										valign="center">
+										<table cellpadding="0" cellspacing="0">
+
+											<tr>
+												<td></td>
+												<td><span id="PlanRepeater__ctl3_RateGuaranteeMonths">12 months</span></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr height="75">
+
+									<td Align="Center" class="smalltextpad" valign="Center" style="BORDER-Right: #999999 1px dotted">
+										<input type="image" name="PlanRepeater:_ctl3:Select" id="PlanRepeater__ctl3_Select" src="Images/buttons/select_blue.gif" alt="" border="0" />
+									</td>
+								</tr>
+								<tr height="40" bgcolor="efefef">
+									<td align="center">
+										<input id="PlanRepeater__ctl3_CompareChkBox" type="checkbox" name="PlanRepeater:_ctl3:CompareChkBox" /></td>
+								</tr>
+							</table>
+
+						</td>
+					
+						<td valign="top">
+							<table width="120" cellpadding="0" cellspacing="0">
+								<tr height="26">
+									<td style="BORDER-Right: #999999 1px dotted" bgcolor="#E7F7EF">
+										
+										&nbsp
+									</td>
+								</tr>
+								<tr height="40">
+
+									<td Align="center" valign="top" class="smalltextpad" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="#E7F7EF">
+										<a id="PlanRepeater__ctl4_PlanNameAlt" href="javascript:{if (typeof(Page_ClientValidate) != 'function' ||  Page_ClientValidate()) __doPostBack('PlanRepeater$_ctl4$PlanNameAlt','')} ">Plan D</a>
+										
+										</td>
+								</tr>
+								
+								<tr id="PlanRepeater__ctl4_PlanDescAltItemTemp" style="height:108px;">
+<td style="BORDER-Right: #999999 1px dotted" valign="top">
+										<span id="PlanRepeater__ctl4_PlanContentAlt">The plan with the most extensive protection and the most choice.</span>
+										&nbsp;
+
+									</td>
+</tr>
+
+								<tr height="30" bgcolor="efefef" style="BORDER-LEFT: #efefef thin solid">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl4:DeductibleDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl4_SelectAlt');__doPostBack('PlanRepeater$_ctl4$DeductibleDropDownAlt','')" language="javascript" id="PlanRepeater__ctl4_DeductibleDropDownAlt" style="width:95px;">
+<option value="$500">$500</option>
+<option value="$1000">$1000</option>
+<option value="$1500">$1500</option>
+
+<option selected="selected" value="$2500">$2500</option>
+<option value="$3500">$3500</option>
+<option value="$5000">$5000</option>
+<option value="$10000">$10000</option>
+<option value="$15000">$15000</option>
+<option value="$25000">$25000</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl4:CopayDropdownAlt" onchange="DisableSelectButton('PlanRepeater__ctl4_SelectAlt');__doPostBack('PlanRepeater$_ctl4$CopayDropdownAlt','')" language="javascript" id="PlanRepeater__ctl4_CopayDropdownAlt" style="width:95px;">
+<option value="$35">$35</option>
+<option selected="selected" value="No">No</option>
+
+</select>
+										
+									</td>
+								</tr>
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl4:CoinsurancePercentageDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl4_SelectAlt');__doPostBack('PlanRepeater$_ctl4$CoinsurancePercentageDropDownAlt','')" language="javascript" id="PlanRepeater__ctl4_CoinsurancePercentageDropDownAlt" style="width:95px;">
+<option value="50">50%</option>
+<option value="70">70%</option>
+
+<option selected="selected" value="80">80%</option>
+<option value="100">100%</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl4:CoinsuranceOOPDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl4_SelectAlt');__doPostBack('PlanRepeater$_ctl4$CoinsuranceOOPDropDownAlt','')" language="javascript" id="PlanRepeater__ctl4_CoinsuranceOOPDropDownAlt" style="width:95px;">
+
+<option value="0">$0</option>
+<option value="1500">$1500</option>
+<option value="2000">$2000</option>
+<option value="2500">$2500</option>
+<option value="3500">$3500</option>
+<option selected="selected" value="4000">$4000</option>
+
+<option value="5000">$5000</option>
+<option value="7500">$7500</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl4:LifeTimeMaxDropDownAlt" onchange="DisableSelectButton('PlanRepeater__ctl4_SelectAlt');__doPostBack('PlanRepeater$_ctl4$LifeTimeMaxDropDownAlt','')" language="javascript" id="PlanRepeater__ctl4_LifeTimeMaxDropDownAlt" style="width:95px;">
+
+<option selected="selected" value="8Mil">8Mil</option>
+<option value="3Mil">3Mil</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl4_MaternityNAAlt">N/A</span>
+
+										
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="efefef">
+										
+										<span id="PlanRepeater__ctl4_NoOutpatientAlt">N/A</span>
+									</td>
+								</tr>
+								<tr height="30">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl4_NoAnnualmaxAlt">N/A</span>
+									</td>
+								</tr>
+								<tr height="25">
+									<td Align="Center" valign="middle" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted">
+										<span id="PlanRepeater__ctl4_MonthlyRateAlt">$170.56</span>
+									</td>
+
+								</tr>
+								<tr height="29" bgcolor="efefef">
+									<td Align="center" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted"
+										valign="middle">
+										<table cellpadding="0" cellspacing="0">
+											<tr>
+												<td></td>
+												<td><span id="PlanRepeater__ctl4_RateGuaranteeMonthsAlt">12 months</span></td>
+											</tr>
+
+										</table>
+									</td>
+								</tr>
+								<tr height="30" style="BORDER-RIGHT: #ccffcc thin solid; BORDER-TOP: #ccffcc thin solid; BORDER-LEFT: #ccffcc thin solid; BORDER-BOTTOM: #ccffcc thin solid">
+									<td Align="Center" valign="Center" class="smalltextpad" height="75" style="BORDER-Right: #999999 1px dotted">
+										<input type="image" name="PlanRepeater:_ctl4:SelectAlt" id="PlanRepeater__ctl4_SelectAlt" src="Images/buttons/select_blue.gif" alt="" border="0" />
+									</td>
+								</tr>
+								<tr height="40">
+
+									<td bgcolor="efefef" align="center">
+										<input id="PlanRepeater__ctl4_CompareChkBoxAlt" type="checkbox" name="PlanRepeater:_ctl4:CompareChkBoxAlt" /></td>
+								</tr>
+							</table>
+						</td>
+					
+						<td valign="top">
+							<table width="120" cellpadding="0" cellspacing="0">
+								<tr height="26">
+									<td id="PlanRepeater__ctl5_Td1" style="BORDER-Right: #999999 1px dotted" bgcolor="#E7F7EF">
+
+										<span id="PlanRepeater__ctl5_PopularPlan" style="color:Red;font-size:8px;font-weight:bold;font-style:italic;">POPULAR</span>
+										
+										
+										&nbsp
+									</td>
+
+								</tr>
+								<tr height="40">
+									<td Align="center" valign="top" class="smalltextpad" colspan="3" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="#E7F7EF">
+										<a id="PlanRepeater__ctl5_PlanName" href="javascript:{if (typeof(Page_ClientValidate) != 'function' ||  Page_ClientValidate()) __doPostBack('PlanRepeater$_ctl5$PlanName','')} ">Plan E</a>
+
+										<a id="PlanRepeater__ctl5_HSA" class="smalltextpad" href="javascript: OpenHelp('HelpPage.aspx?Topic=HSA','Help','500','500');">
+											</a>
+										
+									</td>
+								</tr>
+								
+								<tr id="PlanRepeater__ctl5_PlanDescItemTemp" valign="top" style="height:108px;">
+<td valign="top" style="BORDER-Right: #999999 1px dotted" align="left">
+										<span id="PlanRepeater__ctl5_PlanContent">The high deductible health plan with a single deductible for the whole family</span>
+										&nbsp;
+
+									</td>
+</tr>
+
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl5:DeductibleDropDown" onchange="DisableSelectButton('PlanRepeater__ctl5_Select');__doPostBack('PlanRepeater$_ctl5$DeductibleDropDown','')" language="javascript" id="PlanRepeater__ctl5_DeductibleDropDown" style="width:95px;">
+<option value="$1100">$1100</option>
+<option value="$1600">$1600</option>
+<option selected="selected" value="$2100">$2100</option>
+
+<option value="$2850">$2850</option>
+<option value="$3750">$3750</option>
+<option value="$5000">$5000</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl5_CopayNA">N/A</span>
+									</td>
+								</tr>
+								<tr height="30" bgcolor="efefef">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl5:CoinsurancePercentageDropDown" onchange="DisableSelectButton('PlanRepeater__ctl5_Select');__doPostBack('PlanRepeater$_ctl5$CoinsurancePercentageDropDown','')" language="javascript" id="PlanRepeater__ctl5_CoinsurancePercentageDropDown" style="width:95px;">
+<option value="50">50%</option>
+
+<option value="80">80%</option>
+<option selected="selected" value="100">100%</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl5:CoinsuranceOOPDropDown" onchange="DisableSelectButton('PlanRepeater__ctl5_Select');__doPostBack('PlanRepeater$_ctl5$CoinsuranceOOPDropDown','')" language="javascript" id="PlanRepeater__ctl5_CoinsuranceOOPDropDown" style="width:95px;">
+
+<option selected="selected" value="0">$0</option>
+<option value="2000">$2000</option>
+<option value="2500">$2500</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30" bgcolor="efefef">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										<select name="PlanRepeater:_ctl5:LifeTimeMaxDropDown" onchange="DisableSelectButton('PlanRepeater__ctl5_Select');__doPostBack('PlanRepeater$_ctl5$LifeTimeMaxDropDown','')" language="javascript" id="PlanRepeater__ctl5_LifeTimeMaxDropDown" style="width:95px;">
+<option selected="selected" value="8Mil">8Mil</option>
+<option value="3Mil">3Mil</option>
+
+</select>
+									</td>
+								</tr>
+								<tr height="30">
+
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl5_MaternityNA">N/A</span>
+										
+									</td>
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted"
+										bgcolor="efefef">
+										
+										<span id="PlanRepeater__ctl5_NoOutpatient">N/A</span>
+									</td>
+
+								</tr>
+								<tr height="30">
+									<td Align="center" valign="middle" class="smalltextpad" style="BORDER-Right: #999999 1px dotted">
+										
+										<span id="PlanRepeater__ctl5_NoAnnualmax">N/A</span>
+									</td>
+								</tr>
+								<tr height="25" bgcolor="efefef">
+									<td Align="Center" valign="middle" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted">
+
+										<span id="PlanRepeater__ctl5_MonthlyRate">$211.38</span>
+									</td>
+								</tr>
+								<tr height="29" bgcolor="efefef">
+									<td Align="center" class="smalltextpad" bgcolor="#efefef" style="BORDER-Right: #999999 1px dotted"
+										valign="center">
+										<table cellpadding="0" cellspacing="0">
+											<tr>
+												<td></td>
+
+												<td><span id="PlanRepeater__ctl5_RateGuaranteeMonths">12 months</span></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr height="75">
+									<td Align="Center" class="smalltextpad" valign="Center" style="BORDER-Right: #999999 1px dotted">
+										<input type="image" name="PlanRepeater:_ctl5:Select" id="PlanRepeater__ctl5_Select" src="Images/buttons/select_blue.gif" alt="" border="0" />
+
+									</td>
+								</tr>
+								<tr height="40" bgcolor="efefef">
+									<td align="center">
+										<input id="PlanRepeater__ctl5_CompareChkBox" type="checkbox" name="PlanRepeater:_ctl5:CompareChkBox" /></td>
+								</tr>
+							</table>
+						</td>
+					
+		</tr>
+
+</TABLE>
+</TD></TR>
+
+</TBODY></TABLE>
+</form>
+
+<script>
+
+postClick='http://by.optimost.com/post/2-194/a00m00n0wn244si1721z1f3d3/';
+
+
+//Code to get the full-path URL, both the domain and root..
+//For example, http://www.acme.com/optimost/, that is the root, the domain (domn) is http://www.acme.com
+if(document.getElementsByTagName('base')[0] != null){
+	var base = document.getElementsByTagName('base')[0];
+	var tempLink = document.createElement('a');
+	tempLink.href = base.href	
+	var path=tempLink.pathname.substr(0,tempLink.pathname.lastIndexOf('/')+1);
+	domn = tempLink.protocol + "//" + tempLink.host + "/";
+	root = tempLink.protocol+"//" + tempLink.host + "/" + path;
+}
+else {
+	var path=location.pathname.substr(0,location.pathname.lastIndexOf('/')+1);
+	domn = location.protocol+"//" + location.host;
+	root = location.protocol+"//" + location.host +  path;
+}
+
+formObj=document.forms[0];  //I'll assume it's the first form for this test
+var formActionObj= formObj.attributes.getNamedItem('action'); //Get the form action attribute the smart way
+clickVal=postClick; //The Optimost clickthru for this form
+
+//Second half, append it to the action.
+if(formActionObj!=null) { 
+	origAction=formActionObj.nodeValue;
+	if(origAction.substr(0,4).toLowerCase()=='http') newPostLink=origAction;
+	else if(origAction.substr(0,1)=='/') newPostLink=domn+origAction.substr(1,origAction.length); 
+	else newPostLink=root+origAction; 
+	formActionObj.nodeValue = clickVal + ((clickVal.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(newPostLink);
+}
+else{
+	newPostLink= document.location;
+	tmp = clickVal + ((clickVal.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(newPostLink);
+	tmp2 = formObj.setAttribute('action',tmp);
+}
+//alert(formObj.attributes.getNamedItem('action').nodeValue);  //Just for test purposes
+</script>
+<script>
+function doSelectChange(obj){
+	selects=document.getElementsByTagName('select');
+	for(i=0;i<selects.length;i++){
+		if(selects[i].id.indexOf('DeductibleDropDown')==-1){
+			spanV = document.createElement("span");
+			spanV.innerHTML=selects[i].value;
+			selects[i].parentNode.insertBefore(spanV,null);
+			selects[i].style.display='none';		
+		}
+	}
+	obj.style.display='none';
+}
+inputs=document.getElementsByTagName('input');
+myBase=document.location.toString();
+myBase=myBase.substring(0,myBase.lastIndexOf('/')+1);  //Find the base pat
+for(i=0;i<inputs.length;i++){
+	if(inputs[i].type=='image'){
+		inputs[i].src='https://consumer.eassuranthealth.com/IM/Consumer/ease/'+inputs[i].src.replace(myBase,'');;
+
+	}
+}
+</script>
+
+
+
+</body>
+</html>

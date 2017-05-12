@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Dec to Hex converter</title>
+</head>
+
+<body>
+<table cellspacing="0" cellpadding="0" style="width: 180px; border: 2px groove brown;"><form id="Hex" name="Hex">
+	<tr>
+		<td colspan="3">Enter RGB colors below:</td>
+	</tr>
+	<tr>
+		<td width="1%"><span style="text-decoration:underline;color:red;font-weight:bold;">R</span>ed:</td><td><input name="red" type="text" size="3" maxlength="3" onblur="toHex(this.value,'redH');"></td><td><input name="redH" id="redH" type="text" size="3" maxlength="3"></td>
+	</tr>
+	<tr>
+		<td width="1%"><span style="text-decoration:underline;color:green;font-weight:bold;">G</span>reen:</td><td><input name="green" type="text" size="3" maxlength="3" onblur="toHex(this.value,'greenH');"></td><td><input name="greenH" type="text" size="3" maxlength="3"></td>
+	</tr>
+	<tr>
+		<td width="1%"><span style="text-decoration:underline;color:blue;font-weight:bold;">B</span>lue:</td><td><input name="blue" type="text" size="3" maxlength="3" onblur="toHex(this.value,'blueH');"></td><td><input name="blueH" type="text" size="3" maxlength="3"></td>
+	</tr>
+</table>
+</form>
+<script>
+function toHex(val, daInput){
+	var hexToDec="0123456789ABCDEF";
+	val = val % 256;
+	hexVal = Math.floor(val/16);
+	hexVal = hexToDec.substring(hexVal,hexVal+1);
+	hexValRound = val % 16;
+	hexValRound = hexToDec.substring(hexValRound,hexValRound+1);	
+	document.getElementById(daInput).value = hexVal + hexValRound;
+}
+</script>
+
+
+</body>
+</html>

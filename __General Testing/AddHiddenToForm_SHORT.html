@@ -1,0 +1,63 @@
+<!-- This first block does the following:-->
+<!-- It first gets all the hidden variables, which would be in the form above our code -->
+<!-- Then it creates an array of all the hidden input names and values -->
+<!-- Then later writes those out to another form. -->
+
+<script language="javascript" type="text/javascript">
+function doFormInput(name, value, type, formName){
+	var f=document.forms[formName];
+	var newInput=document.createElement('input');
+	newInput.setAttribute('type',type);
+	newInput.setAttribute('name',name);
+	newInput.setAttribute('value',value);
+	f.appendChild(newInput);
+}
+
+function FormInput(name, value) {
+  this.name = name;
+  this.value = value;
+}
+FormInput.prototype.getName = function () {return this.name;}
+FormInput.prototype.getValue = function () {return this.value;}
+
+var forminputs = new Object();
+var daInputs = document.getElementsByTagName('input');
+hiddenList = '';
+
+var origLength = daInputs.length;
+for (var i = 0; i < origLength; i++) {
+	if(daInputs[i].type == 'hidden') {
+		//hiddenList += daInputs[i].name + ' is a HIDDEN input and has a value of ' + daInputs[i].value + '\n';		
+		forminputs[i] = new FormInput(daInputs[i].name, daInputs[i].value);	
+	}
+}
+
+//......................... HTML would go here.............................
+
+for (var i = 0; i < forminputs.length; i++) {
+		doFormInput(forminputs[i].name, forminputs[i].value, 'hidden', 'DealixVehicleSelector');	
+}
+
+</script>
+
+
+
+<!-- This Second block does the following:-->
+<!-- It first gets all the hidden variables, which would be in the form above our code -->
+<!-- Then it creates an array of HTML inputs with the names and values -->
+<!-- Then later document.writes those out in between the form tags of a form. -->
+<script language="javascript" type="text/javascript">
+var hiddenInputs = new Array();
+var daInputs = document.getElementsByTagName('input');
+var origLength = daInputs.length;
+var j=0;
+for (var i = 0; i < origLength; i++) {
+	if(daInputs[i].type == 'hidden') {
+		hiddenInputs[j++] = '<input type="hidden" name="' + daInputs[i].name + '" value="' + daInputs[i].value + '" />';
+	}
+}
+</script>
+<!-- ......................... HTML would go here............................. -->
+<!-- then an open form tag <form ....> -->
+<script language="javascript" type="text/javascript">for (var i = 0; i < hiddenInputs.length; i++) document.write(hiddenInputs[i]);</script>
+

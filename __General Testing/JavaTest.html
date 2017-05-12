@@ -1,0 +1,572 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+
+<script language="javascript" src="http://www.bankrate.com/brm/updates/format/survey.js"></script>
+<script language="JavaScript">
+<!--hide from ancient browsers
+var g_strExpertImageURL = '';
+var str_DietChoice = 'Atkins';
+var daPic = new Image;
+var imageExpert = new Image;     
+var daDate = '';
+var daDate2 = '';
+var g_strByDate = '';
+var g_strHoy = '';
+var g_strEnSeis = '';
+
+imageExpert ="images/bundle_photoC.jpg";
+
+function currentExpert(str_DietChoice){
+	
+	switch(str_DietChoice) {
+		case  'Atkins':
+			return '<img src="images/bundle_photoA.jpg" width="162" height="179" alt="" border="0">';
+			break;
+		case  'DrPhil':
+			return '<img src="images/bundle_photoB.jpg" width="162" height="179" alt="" border="0">';
+			break;
+		case  'Zone':
+			return '<img src="images/bundle_photoC.jpg" width="162" height="179" alt="" border="0">';
+			break;
+		default:
+			return '<img src="images/bundle_photoD.jpg" width="162" height="179" alt="" border="0">';
+			break;
+			
+	}
+
+}
+
+function currentExpert2(str_DietChoice){
+	
+	switch(str_DietChoice) {
+		case  'Atkins':
+			return 'images/bundle_photoA.jpg';
+			break;
+		case  'DrPhil':
+			return 'images/bundle_photoB.jpg';
+			break;
+		case  'Zone':
+			return 'images/bundle_photoC.jpg';
+			break;
+		default:
+			return 'images/bundle_photoD.jpg';
+			break;
+			
+	}
+}
+
+function currentExpert3(str_DietChoice){
+	
+	switch(str_DietChoice) {
+		case  'Atkins':
+			daPic.src = 'images/bundle_photoA.jpg';
+			document.expert.src='images/bundle_photoA.jpg';
+			return;
+			break;
+		case  'DrPhil':
+			daPic.src = 'images/bundle_photoB.jpg';
+			document.expert.src='images/bundle_photoB.jpg';
+			return;
+			break;
+		case  'Zone':
+			daPic.scr = 'images/bundle_photoC.jpg';
+			document.expert.src='images/bundle_photoC.jpg';
+			return;
+			break;
+		default:
+			daPic.src = 'images/bundle_photoD.jpg';
+			document.expert.src='images/bundle_photoD.jpg';
+			return;
+			break;
+			
+	}
+
+}
+
+function currentExpert4(str_DietChoice){
+	
+	switch(str_DietChoice) {
+		case  'Atkins':
+			document.expert2.src='images/bundle_photoA.jpg';
+			return;
+			break;
+		case  'DrPhil':
+			document.expert2.src='images/bundle_photoB.jpg';
+			return;
+			break;
+		case  'Zone':
+			document.expert2.src='images/bundle_photoC.jpg';
+			return;
+			break;
+		default:
+			document.expert2.src='images/bundle_photoD.jpg';
+			return;
+			break;
+			
+	}
+
+}
+
+function currentExpert5(str_DietChoice){
+	
+	switch(str_DietChoice) {
+		case  'Atkins':
+			g_strExpertImageURL = 'images/bundle_photoA.jpg';
+			g_strExpertSignatureImageURL ='images/bundle_photoA.jpg';
+			return;
+			break;
+		case  'DrPhil':
+			g_strExpertImageURL = 'https://www.ediets.com/dietprofile/images/offer_Btest1_shapeup.jpg';
+			g_strExpertSignatureImageURL ='images/bundle_photoB.jpg';
+			return;
+			break;
+		case  'Zone':
+			g_strExpertImageURL = 'images/bundle_photoC.jpg';
+			g_strExpertSignatureImageURL ='images/bundle_photoC.jpg';
+			return;
+			break;
+		default:
+			g_strExpertImageURL = 'images/bundle_photoD.jpg';
+			g_strExpertSignatureImageURL ='images/bundle_photoD.jpg';
+			return;
+			break;
+			
+	}
+
+}
+
+function dateGetterOld(){
+var today;
+var day;
+var month;
+
+	today = new Date();
+	day = today.getDate();
+	month = today.getMonth();
+	switch(month) {
+		case  9:
+			if(day <5) {
+				g_strByDate = 'Nov. 5';
+			}
+			else if(day <12) {
+				g_strByDate = 'Nov. 12';
+			}
+			else if(day <19) {
+				g_strByDate = 'Nov. 19';
+			}
+			else if(day <26) {
+				g_strByDate = 'Nov. 26';
+			}
+			else {
+				g_strByDate = 'Dec. 3';
+			}
+			return;
+			break;
+
+		case  10:
+			if(day <2) {
+				g_strByDate = 'Dec. 3';
+			}
+			else if(day <9) {
+				g_strByDate = 'Dec. 10';
+			}
+			else if(day <16) {
+				g_strByDate = 'Dec. 17';
+			}
+			else if(day <23) {
+				g_strByDate = 'Dec. 24';
+			}
+			else if(day <30) {
+				g_strByDate = 'Dec. 31';
+			}
+			else {
+				g_strByDate = 'Jan. 7';
+			}
+			return;
+			break;
+
+		case  11:
+			if(day <7) {
+				g_strByDate = 'Jan. 7';
+			}
+			else if(day <14) {
+				g_strByDate = 'Jan. 14';
+			}
+			else if(day <21) {
+				g_strByDate = 'Jan. 21';
+			}
+			else if(day <28) {
+				g_strByDate = 'Jan. 28';
+			}
+			else {
+				g_strByDate = 'Feb. 4';
+			}
+			return;
+			break;
+
+		default:
+				g_strByDate = 'Nov. 26';
+			
+	}
+}
+
+function dateSetterTest(){  // Takes us from today to the 'Lose weight by date'
+var today;					// which is the next Wednesday in a one month window
+var day;
+var month;
+var msecs;
+var nextOne;
+var daMonths;
+daMonths = new Array('Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.');
+
+	today = new Date();			//Date object for this very moment
+	msecs = today.getTime();	//get absolute time, in Milliseconds
+	day = today.getDay();		//get today's day, 0=Sunday, 6=Saturday
+	msecs = msecs + 1000*60*60*24*32;  //32 days in milliseconds
+	document.write(today)
+	document.write("-----")
+	nextOne = new Date(today.setTime(msecs)); //Add 32 days to the Date
+	document.write(nextOne);
+	document.write("-----")
+	document.write(day);
+	document.write("-----")
+	msecs = msecs + (6-day)*1000*60*60*24;	//Add a variable number of days, 
+											//depending on the day of the week.
+											//The day changes Sat/Sun.
+	g_strEnSeis = new Date(today.setTime(msecs));//Date object for that Wednesday
+	document.write(g_strEnSeis);				//next month.....
+	document.write("-----")
+	g_strByDate = daMonths[g_strEnSeis.getMonth()] + " " + g_strEnSeis.getDate();
+							// Turn it into a Month-Day format string, say 'Nov. 26'
+	document.write(g_strByDate);
+
+}
+function dateGetter(){
+var today;
+var day;
+var msecs;
+var nextOne;
+var daMonths;
+var enSeis;
+daMonths = new Array('Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.');
+
+	today = new Date();
+	msecs = today.getTime();	
+	day = today.getDay();		
+	msecs = msecs + 1000*60*60*24*32;  
+	nextOne = new Date(today.setTime(msecs));
+	msecs = msecs + (6-day)*1000*60*60*24;
+	enSeis = new Date(today.setTime(msecs));
+	g_strByDate = daMonths[enSeis.getMonth()] + " " + enSeis.getDate();
+
+}
+
+function BrowserType()
+   {
+   var browser = navigator.appName;
+   var version = parseInt(navigator.appVersion);
+   var rev     = parseFloat(navigator.appVersion); 
+   
+    
+    if(browser=="Netscape"){
+		if(version >= 5) {
+//			alert("Netscaper 6 browser, user IE web pages");
+		}
+		else if(version >= 4) {
+//			alert("Netscaper 4 or higher browser, user Netscaper web pages");
+			window.location="WebSiteNetscape/HomePage.htm"      
+		}
+		else {
+			alert("We don't support Netscaper version below 4.  Load a newer browser from the Netscape site.");
+		}
+    
+    }
+    else if(browser=="Microsoft Internet Explorer"){
+		if(version >= 4) {
+//			alert("Internet explore browser, user IE web pages");
+		}
+		else {
+			alert("We don't support IE versions below 4.  Load a newer browser from the Microsoft site.");
+		}
+
+    }
+    else {
+	    alert("Unknown, unsupported browser. Load Netscape or Microsoft browser");
+    
+    }
+	currentExpert3('Zone');
+}
+
+function spawnNewWindow(daURL,name,params) {
+        var version = parseInt(navigator.appVersion);
+        if (version >= 4)
+	        var termsWindow = window.open(daURL,name,params);
+}
+
+//-->	
+</script>
+</head>
+<BODY onload=BrowserType() >
+<script language="JavaScript1.1">
+
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+
+	<tr>
+		<td style="padding-right: 2px; text-decoration: underline; color: Blue; font-size: x-small;">Search the Web</td>
+	</tr>
+	<tr>
+		<td class="f3">
+			<ol>
+			<li>Select <strong>6</strong> numbers per game then click <strong>Add</strong><br>
+			<span class="f4" style="COLOR: #696969">
+			<strong>Tip:</strong> For automatic selection use <strong>QuickPick</strong></span><br><br class="hb">
+			<li>When done picking your games click <strong>Continue</strong><br>
+			<span class="f4" style="COLOR: #696969"><strong>Tip:</strong> More games increases your odds of winning</span></li></ol>
+		</td>
+	</tr>	
+	<tr>
+		<td>
+		 	<script language="JavaScript1.1">
+				document.write("<A HREF=\"http://adsrv.bankrate.com/adclick/CID=00004b3dd4be940b00000000/site=nytmkt/parent=brm/aamsz=sponsor/position=0/area=mtg/subprod=/page=story/state=US/city=000/Keyword=/scuid="+ survey +"/acc_random=2003-10-17-5:29:26PM_1870\" TARGET=\"_top\">");
+				document.write("<IMG SRC=\"http://adimage.bankrate.com/mortgage_expo/bankrate-sm-gr_082203.gif\" ALT=\"\"");
+				document.write("border=\"0\"></A>");
+		</td>
+	</tr>	
+	<tr>
+		<td>
+		 	<script language="JavaScript1.1">
+				document.write("<A HREF=\"http://adsrv.bankrate.com/adclick/CID=00004b3dd4be940b00000000/site=nytmkt/parent=brm/aamsz=sponsor/position=0/area=mtg/subprod=/page=story/state=US/city=000/Keyword=/scuid=/acc_random=2003-10-17-5:29:26PM_1870\" TARGET=\"_top\">");
+				document.write("<IMG SRC=\"http://adimage.bankrate.com/mortgage_expo/bankrate-sm-gr_082203.gif\" ALT=\"\"");
+				document.write("border=\"0\"></A>");
+		 	</script>
+		</td>
+	</tr>	
+	<tr>
+		<td><!-- Begin Buttons-->
+			<table  align=left width=530px>
+				<tr><td width=10%>&nbsp;</td><td width=15%><font size=1>Yahoo Mail</font></td><td>&nbsp;</td><td width=20%><font size=1>Hotmail/MSN</font></td><td width=40%>&nbsp;</td></tr>
+				<tr><td>&nbsp;</td><td><font size=1>Mail.com</font></td><td>&nbsp;</td><td><font size=1>Lycos Mail</font></td></tr>
+				<tr><td>&nbsp;</td><td><font size=1>Excite Mail</font></td><td>&nbsp;</td><td><font size=1>Earthlink Webmail</font></td></tr>
+				<tr><td>&nbsp;</td><td><font size=1>iWon Mail</font></td><td>&nbsp;</td><td><font size=1>My Way Mail</font></td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td><td align=center><font size=2>And more!</font></td><td>&nbsp;</td>
+			</table>
+		</td>
+		</tr>
+		<tr><td>
+			<table>
+				<tr><td>
+					<ul style="margin-left:17;padding-left: 17px;">
+					<li>Customizable buttons and links!	<br><font size=1><br></font></li>
+					<li>Search results from Google and more!<br><font size=1><br></font></li>
+					<li>Personalized news, sports & more<br><font size=1><br></font></li>
+					</ul>
+				</td>
+				<td>
+					<ul style="margin-left:17;padding-left: 17px;">
+					<li>3,000 smileys and 1,000 cursors<br><font size=1><br></font></li>
+					<li>300 email backgrounds<br><font size=1><br></font></li>
+					<li>Soon: Smileys for your IM!<br><font size=1><br></font></li>
+					</ul>	
+				</td></tr>
+			<table>
+		</td>
+	</tr>
+
+	<tr>
+		<td><!-- Begin Buttons-->
+			<table width=80% align=center>
+				<tr>
+					<td align={{$pageButton.leftAlign}} width={{$pageButton.leftWidth}}>
+						<{{$page1ProceedType.open}} style="font-size:15px;" tabindex=2>{{$page1ProceedCopy}}{{$page1ProceedType.close}}
+						</td><td align={{$pageButton.rightAlign}}>
+						<{{$page1CancelType.open}} style="font-size:15px color:{{$page1CancelColor.txt}}; background-color:{{$page1CancelColor.bkg}}" tabindex=1>{{$page1CancelCopy}}{{$page1CancelType.close}}
+					</td>
+				<tr>
+			</table><!-- End Buttons-->
+
+		</td>
+	</tr>
+	<tr>
+		<td><!-- Begin Buttons-->
+			<table width=80% align=center>
+				<tr>
+					<td align=left width=1%>
+						<button name=proceed type=button onclick='Next();return false;' accesskey=p style="font-size:15px; color:blue; background-color:grey" tabindex=2><u>P</u>roceed</button>
+						</td><td align=right>
+						<button name=cancel type=reset onclick='Cancel();return false;' accesskey=c style="font-size:15px; color:red; background-color:grey" tabindex=1><u>C</u>ANCEL</button>
+					</td>
+				<tr>
+			</table><!-- End Buttons-->
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table align=right>
+				<tr>
+					<td>
+						<button name=proceed type=button onclick='Next();return false;' accesskey=p style="font-size:15px; color:red; background-color:blue" tabindex=2>{{$page1ProceedBtnSize}}{{$page1ProceedButtonCopy}}{{$page1ProceedBtnSize}}</button>
+						&nbsp;
+						<button name=cancel type=reset onclick='Cancel();return false;' accesskey=c style="font-size:15px" tabindex=1>{{$page1CancelBtnSize}}{{$page1CancelButtonCopy}}{{$page1CancelBtnSize}}</button>
+					</td>
+				<tr>
+			</table>
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table align=center>
+				<tr>
+					<td>
+						<button name=proceed type=button onclick='Next();return false;' accesskey=p style="font-size:15px; color:{{$page1BtnBkgColor}}; background-color:{{$page1BtnBkgColor}}" tabindex=2><u>P</u>roceed</button>
+						&nbsp;
+						<button name=cancel type=reset onclick='Cancel();return false;' accesskey=c style="font-size:15px; color:{{$page1BtnBkgColor}}; background-color:{{$page1BtnBkgColor}}" tabindex=1><u>C</u>ANCEL</button>
+					</td>
+				<tr>
+			</table>
+
+		</td>
+	</tr>
+	<tr><td>
+			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="360" height="68">  
+			<param name="movie" value="http://promos.smileycentral.com/optimost/logo_test02a.swf">
+			<param name="quality" value="high">
+			<embed src="http://promos.smileycentral.com/optimost/logo_test02a.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>
+			</object>
+		</td>
+	</tr>
+	<tr><td>
+			<embed src="http://promos.smileycentral.com/optimost/logo_test02a.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"  width="180" height="34"></embed>
+		</td>
+	</tr>
+	<tr>
+		<td><img src="http://www.ediets.com/profile/images/graphic_member_sign.gif" width="246" height="37" alt="" border="0"></td>
+	</tr>
+	<tr><td>
+		<script>var g_strDietChoice = 'Atkins';if(g_strDietChoice == 'Atkins') document.write(" after 4 weeks");</script>
+	</td></tr>
+	<tr><td>
+		<font class="sansblacksml"><b><script>dateGetter();document.write(g_strByDate)</script></b></font>
+	</td></tr>
+	<tr><td>
+		<font class="sansblacksml"><b><script>dateSetterTest();</script></b></font>
+	</td></tr>
+	<tr>
+		<td background="http://www.ediets.com/profile/images/dash_horizontal.gif"></td>
+	</tr>
+	<tr>
+		<td><img src="http://www.ediets.com/profile/images/clearpix.gif" width="1" height="2" alt="" border="0"></td>
+	</tr>
+	<tr>
+			<td valign="top"><img src="http://www.ediets.com/profile/images/lifescript_box2.jpg" alt="" width="147" height="200" hspace="10" border="0"></td>
+	</tr>
+	<tr>
+		<td align="right" valign="bottom" width="203"><img src="http://www.ediets.com/dietprofile/images/dietprofile25_head_zone_phone.gif" width="203" height="61" alt="" border="0"></td>
+	</tr>
+	<tr>
+		<td><img name="expert" src="images/bundle_photoA.jpg" width="162" height="179" alt="" border="0"></td>
+	</tr>
+	<tr>
+		<td><img name="expert2" src="images/bundle_photoA.jpg" width="162" height="179" alt="" border="0"></td>
+	</tr>
+	<tr>
+		<td><script>currentExpert3('Zone');</script></td>
+	</tr>
+	<tr>
+		<td><script>document.write('<img src="images/bundle_photoA.jpg" width="162" height="179" alt="" border="0">')</script></td>
+	</tr>
+	<tr>
+		<td><script>document.write('<img src="'+imageExpert+'" width="162" height="179" alt="" border="0">')</script></td>
+	</tr>
+	
+		<tr>
+		<td valign="top" width="162" class="sansblacksml"><script>currentExpert5('DrPhil');document.write('<img src="'+g_strExpertImageURL+'" width="162" height="179" alt="" border="0">')</script><br>
+
+		</td></tr>
+
+
+<script language="JavaScript">
+<!--hide from ancient browsers
+	var g_strFname = '';	
+	var g_strDietChoice = '';	
+	var g_strExpertImageURL = '';
+	var g_strExpertNameAndTitle = '';
+	
+	function currentExpert(str_DC){
+		
+		switch(str_DC) {
+			case  'Atkins':
+				g_strExpertImageURL = 'https://www.ediets.com/dietprofile/images/offer_Btest1_atkins.jpg';
+				g_strExpertNameAndTitle = 'Collette<br>Director of Nutrition Services';
+				return;
+				break;
+			case  'DrPhil':
+				g_strExpertImageURL = 'https://www.ediets.com/dietprofile/images/offer_Btest1_shapeup.jpg';
+				g_strExpertNameAndTitle = 'Phil McCaw, Associates from Lubbock CC<br>Director of Smacking Yankees';
+				return;
+				break;
+			case  'Zone':
+				g_strExpertImageURL = 'https://www.ediets.com/dietprofile/images/offer_Btest1_zone.jpg';
+				g_strExpertNameAndTitle = 'Barry Sears, whatever<br>Director of Weight Loss';
+				return;
+				break;
+			default:
+				g_strExpertImageURL = 'https://www.ediets.com/dietprofile/images/bundle_photo2.jpg';
+				g_strExpertNameAndTitle = 'Susan L. Burke, MS, RD/LD, CDE<br>Director of Nutrition Services';
+				return;
+				break;	
+		}
+	}
+	//-->
+	</script>
+
+	<tr>
+		<td valign="top" width="162" class="sansblacksml"><script>currentExpert(g_strDietChoice);document.write('<img src="'+g_strExpertImageURL+'" width="162" height="179" alt="" border="0">')</script><br>
+		</td>
+		<td width="597" valign="top" class="a12_grey">
+			
+			<table width="100%" cellpadding="1" cellspacing="0" border="0">
+				
+				<tr><td colspan="3"><b><font size="+1">Dear <script>document.write(g_strFname);</script>:</font></b></td></tr>
+				
+				<tr><td colspan="3" class="sansblack">I will create a custom diet just for you based on your personal profile. Each week you will receive...</font></td></tr>
+				<tr>
+					<td class="sansblack">
+						<ul>
+							<li>A new set of meal plans based on your progress</li>
+							<li>A personal shopping list to take to the supermarket</li>
+							<li>24/7 professional support</li>
+							<li>Automatic enrollment in eDiets U online seminar</li>
+						</ul>
+					</td>
+				<tr><td colspan="3">
+				<a href="javascript:void(0)" onClick="window.open('http://www.ediets.com/dietprofile/dietprofile25_results_tour.cfm?article=1','Tour','scrollbars=yes,width=360,height=450')"><img src="http://www.ediets.com/dietprofile/images/results25_tour.gif" alt="" width="135" height="39" border="0" align="right"></a>
+				
+				<font class="sansblacksml"><b><script>document.write(g_strExpertNameAndTitle)</script></b></font>
+				</td></tr>
+				<tr><td>aa
+					<font class="sansblacksml"><b><script>dateGetter();document.write(daDate)</script></b></font>
+				</td></tr>
+				<tr><td>zz
+					<font class="sansblacksml"><b><script>dateGetter();document.write(daDate2)</script></b></font>
+				</td></tr>
+			</table>						
+		</td>
+	</tr>
+</table>
+
+
+<div id="ToTop" style="POSITION: absolute; TOP: 700px; left:600px; VISIBILITY: visible"><a href="#top"><IMG height="12" alt="Back To Top" src="images/backToTop.gif" width="80" border="0"></a></div>
+
+
+</body>
+</html>
+
+<button name=proceed type=button onclick='Next();return false;' accesskey=p style="font-size:15px; width=500px; color:blue; background-color:grey" tabindex=2><u>P</u>roceed</button>
+<img name="proceed" src="http://promos.smileycentral.com/optimost/uninstall/proceedbutdesign_test02.gif" alt="" border="0">
+<a href="" onClick="Next();return false;"><u>P</u>roceed</a>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<a href="">This is the first</a><br/>
+<a href="">This is the second</a><br/>
+<a href="">This is the third</a><br/>
+<a href="">This is the fourth</a><br/>
+<a href="">This is the fifth</a><br/>
+
+
+<script>
+document.onclick = function(e){
+	alert('document.onclick function definition');
+	return false;
+}
+
+
+var links = document.getElementsByTagName('a');
+for(var i=0; i<links.length; i++){
+	this.links[i].onclick = function(){alert(this.innerHTML);return false;}
+}
+
+</script>
+
+
+</body>
+</html>

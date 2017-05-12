@@ -1,0 +1,125 @@
+<script type="text/javascript">
+areaURL = ['https://asp.optimost.com/creative-preview-click.php/262-7703/', 'https://asp.optimost.com/creative-preview-click.php/262-7714/', 'https://asp.optimost.com/creative-preview-click.php/262-7716/', 'https://asp.optimost.com/creative-preview-click.php/262-7717/',
+'https://asp.optimost.com/creative-preview-click.php/262-7718/', 'https://asp.optimost.com/creative-preview-click.php/262-7719/', 'https://asp.optimost.com/creative-preview-click.php/262-7720/', 'https://asp.optimost.com/creative-preview-click.php/262-7721/',
+'https://asp.optimost.com/creative-preview-click.php/262-7722/', 'https://asp.optimost.com/creative-preview-click.php/262-7704/', 'https://asp.optimost.com/creative-preview-click.php/262-7705/', 'https://asp.optimost.com/creative-preview-click.php/262-7706/', 'https://asp.optimost.com/creative-preview-click.php/262-7707/', 'https://asp.optimost.com/creative-preview-click.php/262-7708/',
+'https://asp.optimost.com/creative-preview-click.php/262-7709/', 'https://asp.optimost.com/creative-preview-click.php/262-7710/', 'https://asp.optimost.com/creative-preview-click.php/262-7711/', 'https://asp.optimost.com/creative-preview-click.php/262-7712/', 'https://asp.optimost.com/creative-preview-click.php/262-7713/', 'https://asp.optimost.com/creative-preview-click.php/262-7715/'];
+
+function opAddDynamicClicks(anchorObj, clickthru, overrideArg){
+	newLink=clickthru + ((clickthru.indexOf('?') == -1)?'?':'&') + overrideArg+'=' + escape(anchorObj.href);
+	if(typeof(anchorObj.onclick)!="function"){
+		anchorObj.onclick = new Function('window.location="' + newLink +  '";return false;');
+	}
+	else {
+		laFunc = anchorObj.onclick.toString();	//convert the function to a string.
+		laFunc = laFunc.substring(laFunc.indexOf("{") + 1, laFunc.lastIndexOf("}"));
+		if(laFunc.toLowerCase().indexOf('.optimost')==-1){//doesn't already have an optimost clickthru in it
+			laFunc.replace('return true;','');
+			laFunc.replace('return false;','');
+			laFunc=laFunc+'window.location="' + newLink +  '";return false;'
+			anchorObj.onclick = new Function(laFunc);
+		}
+	}
+}				
+			
+function addClicks(){
+	var daAnchors =  document.getElementById('opAreaG').getElementsByTagName('a');
+	
+	for (var i = 0; i < daAnchors.length; i++) {
+		opAddDynamicClicks(daAnchors[i], areaURL[i], 'link')
+	}
+	alert(document.getElementById('opAreaG').innerHTML);
+}
+function readHREFS(){
+	list = '';
+	var daAnchors =  document.getElementById('opAreaG').getElementsByTagName('a');
+	for (var i = 0; i < daAnchors.length; i++) {
+		daOnclick='there is no onclick';
+		if(daAnchors[i].onclick!=null) {
+			daOnclick=daAnchors[i].onclick.toString();
+			daOnclick=daOnclick.substring(daOnclick.indexOf("{") + 1, daOnclick.lastIndexOf("}"))+' is the onclick\n';
+		}
+		list += daAnchors[i].href + ' is the href and '+daOnclick+'\n';
+	}
+	alert(list);
+}
+
+</script>
+<div id="opAreaT" style="border:blue 2px solid;width:520px;color:green;">
+<b>***********************************************************<br/>
+Changed on 20 March 2007 to accomodate IE 7's blocking of spoofstatus, and using an onclick instead</b>
+<br/>***********************************************************</div>
+<div id="opAreaG" style="border:red 2px solid;width:520px;"> <!-- Special Hidden DIV START START -->
+
+<table width="520" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link1.html" target="_blank">Hola Joven</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link2.html" target="_blank">&iquest;Como est&aacute;s?</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link3.html" target="_blank">Here is an example of how to add clickthrus at run time</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link4.html" target="_blank">This is done with javascript and pre-generated clickthrus</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link5.html" target="_blank">Click below, as marked, to see all the href values</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link6.html" target="_blank">And Click below, as marked, to add the clicks</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">>></td>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link7.html" target="_blank">And Click again to see the hrefs after changes are made</a>
+		</td>
+	</tr>
+</table>
+</div> 
+<div id="opAreaH" style="padding:20px 0 0;">
+<table width="520" border="0" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td valign="top" class="base">		
+			<button onclick="readHREFS();return false;">CLICK HERE TO VIEW HREF VALUES</button>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">		
+			<button onclick="addClicks();return false;">CLICK HERE TO ADD THE CLICKS</button>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link10.html" target="_blank">Notice that these links are ignored </a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base">		
+			<a href="http://www.optimost.com/test/Link11.html" target="_blank">since I'm only looking for links inside DIV with ID="opAreaG"</a>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="base" style="border:3px solid red;background:black;color:yellow;padding:2px;">		
+			Also note that I have a onload function hijacker that would add this code at run time, but it is commented out.
+		</td>
+	</tr>
+</table>

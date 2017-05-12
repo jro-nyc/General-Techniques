@@ -1,0 +1,17 @@
+<script type="text/javascript">
+var agt=navigator.userAgent.toLowerCase();
+var is_mac = (agt.indexOf("mac")!=-1)?1:0;
+var is_ff = (agt.indexOf("firefox")!=-1)?1:0;
+var is_ie = (agt.indexOf("msie")!=-1)?1:0;
+var is_nts = (agt.indexOf("netscape")!=-1)?1:0;
+var is_mo = (agt.indexOf("mozilla")!=-1)?1:0;
+var optrial = new Object;
+optrial.ismac = is_mac;
+optrial.isie = is_ie;
+optrial.isff = is_ff;
+optrial.ismo = is_mo;
+optrial.isnts = is_nts;
+
+alert(agt);
+for(var n in optrial) if(optrial[n]) alert(n);
+</script>

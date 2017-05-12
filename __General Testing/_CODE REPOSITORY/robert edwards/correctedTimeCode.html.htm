@@ -1,0 +1,46 @@
+<script>
+// GMT ISSUES
+Date.prototype.GMT = function()	// makes a function associated with the Date class (js calls them prototypes)
+{	// try to test this at various times of the day to make sure.  [On the West Coast, it should be -7 while in daylight savings time]
+ var myDtePattern = /\d{4}.(.*?$)/;
+ var result = myDtePattern.exec(this.toLocaleString());
+ var myDteLOCALtime = result[1];
+ var result = myDtePattern.exec(this.toUTCString());
+ var myDteGMTtime = result[1];
+ // don't alert(myDteLOCALtime + "\n\t" + myDteGMTtime);	// toGMTString() == toUTCString() [except toGMTString() is debrecated by ECMAv3]
+ var myMpattern = /.*?([ap]m)$/i;
+ result = myMpattern.exec(myDteLOCALtime);
+ var myDteNooner = result[1].toLowerCase();
+ // don't alert(myDteLOCALtime + "\n\t" + myDteNooner);
+ // don't alert(myDteNooner);
+ var myDteOFFSET = 0;
+ if(myDteNooner == 'pm')
+  myDteOFFSET = 12;
+ // don't alert(myDteLOCALtime + "\n" + myDteOFFSET);
+ var myHrPattern = /(^\d+):.*?$/;
+ result = myHrPattern.exec(myDteLOCALtime);
+ var myDteHOUR = parseInt(result[1]);
+ if(myDteHOUR == '12')
+  myDteHOUR = 0;
+
+ var myDteHOUR = myDteHOUR + myDteOFFSET;
+ // don't alert(myDteHOUR + "\n" + myDteHOUR);
+
+ var GMThrPattern = /(\d{2})\:/i;
+ result = GMThrPattern.exec(myDteGMTtime);
+ var myDteGMThr = result[1];
+ // don't alert(myDteGMThr);
+ var diff = (myDteGMThr - myDteHOUR) * -1;
+ // var GMTx = "GMT(" + diff + ")";
+ return diff;
+ }
+var con1 = new Date();
+alert(con1.GMT());
+Date.prototype.getLocalTime = function()	// This works on the prototype object (an instance of this class -- see implementation below)
+{
+ var pattern = /^.*?(\d{2}\:\d{2}\:\d{2}).*?$/i;
+ var result = pattern.exec(this);
+ return result[1];
+}
+alert(con1.getLocalTime());
+</script>

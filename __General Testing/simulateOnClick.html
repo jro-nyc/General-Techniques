@@ -1,0 +1,124 @@
+<html>
+<head>
+	<title>Code that simulates an onclick event via javascript</title>
+<script>
+$opt={};
+$v={};
+$opt.doEventDispatch=function (elm) { 
+	if(!$v.beenHere && elm){
+		$v.beenHere=true;
+		var evt = null; 
+		if(document.createEvent) { 
+			//alert('createEvent exists');
+			evt = document.createEvent('MouseEvents'); 
+			if(elm && elm.dispatchEvent && evt && evt.initMouseEvent) { 
+				evt.initMouseEvent('click',true,true,document.defaultView,1, 0, 
+					0,0,0,false,false,false,	false,0,null);    			
+				elm.dispatchEvent(evt); 
+			}
+ 		} 
+		else{
+			//alert('createEvent DOES NOT exist');
+			elm.click();			
+		}
+	}
+	$opt.opAddCSS('.disclaimersContainer','display','block');
+	$opt.opAddCSS('.footer_container','display','block');
+
+} 
+$opt.opAddCSS=function(theClass,element,value){
+	for (var S = 0; S < document.styleSheets.length; S++){
+		if (document.styleSheets[S]['rules']) {
+			cssRules = 'rules';
+		} else if (document.styleSheets[S]['cssRules']) {
+			cssRules = 'cssRules';
+		} else {
+			//no rules found... browser unknown
+		}
+		if(document.styleSheets[S].insertRule){
+			document.styleSheets[S].insertRule(theClass+' { '+element+': '+value+'; }',document.styleSheets[S][cssRules].length);
+		} 
+		else if (document.styleSheets[S].addRule) {
+			document.styleSheets[S].addRule(theClass,element+': '+value+';');
+		}
+	}
+}
+
+$opt.showHidden=function(){
+	//document.title='o_sH-'+document.title;
+
+
+	if(typeof(showMoreMinuteBundles) == "function")
+	{
+		showMoreMinuteBundles();
+		//document.title='sMMB-'+document.title;
+	}
+
+
+	$v.a_tog2 = $opt.id("toggle2");
+	if($v.a_tog2 && $v.a_tog2.innerHTML.toLowerCase().indexOf("show") > -1)
+	{
+		$v.d_nb2 = $opt.id("nb2");
+		if($v.d_nb2 && typeof(showHide) == "function")
+		{
+			showHide('nb2', 'h2', 'toggle2');
+			//document.title='sH2-'+document.title;
+			$v.d_nb2.className="btl-navBox btl-navBox-open";
+		}
+		if($v.a_tog2){
+			$v.delayX= setTimeout(function(){$opt.doEventDispatch($v.a_tog2);}, 300);
+		}
+	}
+
+}
+$opt.clickthruRedirect=function(href, clickthru, clickthruUrlArg, extraParams) {
+	/*
+	This function handles clickthru redirects. Arguments are:
+		href			 = original href from link
+		clickthru		= url of clickthru which was setup in OT
+		clickthruUrlArg  = parameter of destination url that OT redirects to
+		extraParams	  = any extra params that you want to pass through OT ('&name1=value1&name2=value2')
+
+	Example usage:
+		HTML: <a id="myLink" href="http://mydomain.com/foo/bar.html">My link</a>
+
+		jQuery example:
+		var ct = '{{$clickthru.myClick.url}}';
+		$('#myLink').click(function (e) {
+			e.preventDefault();
+			clickthruRedirect($(this).attr('href'), ct, 'url', null)
+		});
+	*/
+
+	var hrefParams = '', // query string params of href
+		hrefPrefix = '', // prepended to href to handle relative href's or if it does not include a domain or host
+		loc		= location.href;
+
+		extraParams = (typeof(extraParams) === 'undefined') ? '' : extraParams;
+		loc		= loc.substring(0, loc.lastIndexOf('/'));
+
+	if (href.indexOf('//') === 0) { // absolute link with domain
+		hrefPrefix = location.protocol;
+	} else if (href.indexOf('/') === 0) { // absolute link without domain
+		hrefPrefix = location.protocol + '//' + location.hostname;
+	} else if (href.substring(0, 4) !== 'http' && href.substring(0, 5) !== 'https') { // relative link
+		while (/^\.\./.test(href)) {
+			loc  = loc.substring(0, loc.lastIndexOf('/'));
+			href = href.substring(3);
+		}
+		href = loc + '/' + href;
+	}
+
+	if (href.indexOf('?') !== -1) { // collect query string params
+		hrefParams = '&' + href.split('?')[1];
+		href = escape(href.split('?')[0]);
+	}
+
+	href = clickthru + '?' + clickthruUrlArg + '=' + hrefPrefix + href + hrefParams + extraParams;
+
+}
+</script>
+</head>
+<body>
+</body>
+</html>

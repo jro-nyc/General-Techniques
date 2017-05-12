@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<table style="border: 2px solid Green;">
+<tr><td id="opQS">
+
+
+</td></tr>
+</table>
+
+<script language="javascript">
+var query  = unescape(top.location.search.substring(1)).split('&');
+var params = new Array();
+var cells = '<table cellspacing="0" cellpadding="0">'
+for (i = 0; i < query.length; i++){
+	var tmp = query[i].split('=');
+	params[tmp[0]] = tmp[1];
+	if(tmp[1] == '') tmp[1] = '&nbsp';
+	cells += '<tr><td style="border: 2px solid Blue;">' + tmp[0] + '</td><td style="border: 2px solid Blue;">' + tmp[1] +  '</td></tr>';
+	//eval('if(document.df.'+ tmp[0] + ' != null) document.df.'+ tmp[0] + '.value ="' + tmp[1] + '";');
+}
+cells += '</table>';
+document.getElementById('opQS').innerHTML = cells;
+</script>
+
+
+
+</body>
+</html>

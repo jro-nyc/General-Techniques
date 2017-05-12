@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<div id="a1" class="a2">aaa</div>
+<div id="b1" class="b2">bbb</div>
+<div id="c1" class="c2">ccc</div>
+<div id="d1" class="d2">ddd</div>
+<div id="e1" class="e2">eee</div>
+<div id="f1" class="f2">fff</div>
+<div id="g1" class="g2">ggg</div>
+<div id="h1" class="h2">hhh</div>
+
+<script>
+function getTags(t, el){
+	return (el ? el:document).getElementsByTagName(t);
+}
+addLoadEvent( function(){
+	var divs = getTags('div');
+	for (var i = 0; i < divs.length; i++) {
+		divs[i].onmouseover = function () {this.style.backgroundColor='#cc0000'}
+		divs[i].onmouseout  = function ()  {this.style.backgroundColor='#ffffff'}
+		//alert(divs[i].id);
+		//alert(divs[i].className);
+		var clsNames = divs[i].className;
+		var ids = divs[i].id;
+		//var clsNames = divs[i].className.split(" ");
+		for (var j = 0; j < clsNames.length; j++){
+			//alert(clsNames[j]);
+		}
+		for (var j = 0; j < ids.length; j++){
+			//alert(ids[j]);
+		}
+	}
+	document.body.onclick = function(){alert('hey, you clicked');}
+});
+
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+function test(){
+	if (document.getElementsByTagName)
+		var x = document.getElementsByTagName('DIV');
+	else if (document.all)
+		var x = document.all.tags('DIV');
+	else return;
+	for (var i=0;i<x.length;i++)
+	{
+		x[i].onmouseover = function ()
+{this.style.backgroundColor='#cc0000'}
+		x[i].onmouseout = function ()
+{this.style.backgroundColor='#ffffff'}
+	}
+}
+
+
+</script>
+
+</body>
+</html>
+
+

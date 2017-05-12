@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<script>
+areaH = 'c';
+order =  new Array();
+list = [1,2,3,4,5];
+num = 0;
+if(areaH == 'c') {
+	for(k=0;k<3;k++) {
+		rand = (Math.floor(Math.random()*list.length));
+		order[num++] = list[rand];
+		newList =  new Array();
+		newNum = 0;
+		for(j=0;j<list.length;j++){
+			if(list[j] != list[rand]) newList[newNum++] = list[j];
+		}
+		list = newList;
+	}	
+} 
+//alert(rand + ' led to ' + list);
+alert(order);
+</script>
+
+
+</body>
+</html>

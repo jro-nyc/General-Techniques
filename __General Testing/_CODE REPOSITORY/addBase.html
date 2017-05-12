@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+<script>
+function changeBase(){
+	heads=document.getElementsByTagName('head');
+	var newBase=document.createElement("base");
+	heads[0].appendChild(newBase);
+	bases=document.getElementsByTagName('base');
+	alert(bases[0].href=document.forms[0].newBase.value);
+	for(i=0;i<bases.length;i++) alert(bases[i].href+ ' is the new base, click on a relative link and see...');
+}
+</script>
+</head>
+
+<body>
+<form onsubmit="changeBase();return false">
+<table>
+	<tr><td><input name="newBase" value="" size="50"></td></tr>
+	<tr><td><button value="" type="submit">Press to Change the base</button></td></tr>
+</table>
+<table>
+	<tr><td><a href="index1.html">index1</a></td></tr>
+	<tr><td><a href="index2.html">index2</a></td></tr>
+</table>
+</form>
+
+</body>
+</html>

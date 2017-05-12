@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<div style="width: 690px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Creating an Image counter</strong> - How and why do we do it?</strong><br><br>   
+Why would you need to do this?  Well there are a number of reasons
+<BR/>&middot;<strong>Want to count some state when a button is clicked, and view as counters are viewed in Wave reports</strong> -  
+this is in fact the exact context in which this one was created.  
+<BR/>&middot;<strong>Can't track this click but want stats</strong> - client may not want us to do a 302 redirect for some reason, 
+but still want info.
+<BR/>&middot;<strong>Can't insert counters in flow</strong> - valid reason, of course you could use a click to track it, but whatever.
+<br/><br/>
+<strong style="color:#88FF88;"> 
+Here, they wanted to know which of the two radio buttons was selected when the visitor clicked
+on either the "click here to join" button or the "Try us free for 30 days" link.<br/><br/>
+You can take the code and view soirce, you will see that the function <em><u>doOptInCheck()</u></em>
+pulls the value of the selected radio button and sets a tag accordingly.  The tag already contains the 
+URL of the image counter, and the creative ID.  We then add these attributes (host and testrun) to
+give us full reporting info. <br/><br/>
+Right now, we have are triggering an alert with the info.  Notice that the {{$creative.sessionId}} is appearing as escaped content, 
+in the template it would be given a session identifier.  And for the real application, comment out the alert tags and 
+uncomment the<br/><u style="color:#cc9988;"><em style="color:#cc9988;">img.src = tag;</em></u><br/>statements.
+</strong>
+
+</div>
+<!-- <img src="http://by.optimost.com/counter/2/-/2/event.gif?host=&testrun=&op2testaliid=" width="1" height="1" border="0"> -->
+<script language="javascript">
+function doSubmitFunction(a,b,c){document.theForm.submit();}
+
+var tag = 'http://by.optimost.com/counter/2/-/2/event.gif?op2testaliid=' + escape("{{$creative.sessionId}}") + '&';
+var img = new Image;
+function doOptInCheck(val,btn){
+	if(btn=='signup') join=true;
+	else join=false;	
+	if(val==12) {
+		if(join) tag += 'host=securityPlus&testrun=signup';
+		else tag += 'host=securityPlus&testrun=free';
+		alert(tag);
+		//img.src = tag;
+	}
+	else if(val==1) {		
+		if(join) tag += 'host=unlimited&testrun=signup';
+		else tag += 'host=unlimited&testrun=free';
+		alert(tag);
+		//img.src = tag;
+	}
+}
+notPosting = true;
+</script>
+<form name="theForm" action="" onsubmit="alert('now submiting...... ok, not really...');return false;">
+<input type="hidden" name="packageid" value="1" />
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td valign="bottom" style="padding:0px 13px 20px 19px;"><img src="http://www.peoplepc.com/opt/i/p9/stick.gif" width="246" height="324" border="0"/></td>
+		<td width="100%" valign="top" height="362" valign="bottom">
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr><td style="padding-top:11px;">				
+						<div id="getstarted_promo" style="position:absolute;width:200px;height:200px;visibility:hidden;">
+						<table border="0" bgcolor="#0033cc" cellspacing="1" cellpadding="4" width="200">
+							<tr><td bgcolor="#ffffff" height="40px;"><span id="getstarted_promo_text"></span></td></tr>
+						</table>
+						</div>
+						<table width="459" cellpadding="0" cellspacing="0" border="0">
+							<tr bgcolor="#0066CC" valign="top">
+								<td colspan="2"><img src="http://www.peoplepc.com/i/landing/lft_crnr.gif" width="8" height="8" alt="" border="0"></td>
+								<td valign="middle" width="447" height="30" style="color:white;padding-left:10px;"><span style="font-size:18px;font-weight:bold;">Get started today!</span><span style="font-size:12px;padding-left:10px;">(select your service below)*</span></td>
+								<td colspan="2"><img src="http://www.peoplepc.com/i/landing/rt_crnr.gif" width="8" height="8" alt="" border="0"></td>
+							</tr>
+							<!--begin:bullets-->
+							<tr bgcolor="#FFFFFF">
+								<td bgcolor="#0066CC"><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="1" border="0"></td>
+								<td><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="7" height="1" border="0"></td>
+								<td align="left" valign="top" style="padding-top:10px;">
+									<table width="100%" cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td>&#160;</td>
+											<td valign="top">
+												<table width="100%" cellpadding="2" cellspacing="0" border="0">							
+													<tr>
+														<td colspan="2" valign="top">
+															<table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:5px 0px;">
+																<tr>
+																	<td valign="top" width="25px">
+																	<input type="radio" name="pkid1" alt="pkid1" value="1" checked onclick="document.theForm.packageid.value=1"/> 
+																	</td>
+																	<td width="*" style="line-height:150%;"><span id="promo1101"><b><u>Optimost Unlimited</u></b><br/> $15.47/mo. for 3 months, then only $30.95/mo.</span></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+																							<tr>
+														<td colspan="2" valign="top">							
+															<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F2F2F2;border:1px solid #B4B4B4;padding:8px 0px;">
+																<tr>
+																	<td valign="top" width="25px">
+																		<input type="radio" name="pkid1" alt="pkid1" value="12"  onclick="document.theForm.packageid.value=12"/>
+																	</td>
+																	<td width="*" style="line-height:150%"><span id="promo12101"><b><u>Optimost Security Plus</u></b>&nbsp;<img src="http://www.peoplepc.com/i/securityPack/landing_page_arrow_ppcsp.gif" width="233" height="16" border="0" align="absmiddle"/></span></td>
+																</tr>
+															</table>
+														</td>
+													</tr>																	
+												</table>
+											</td>
+										</tr>			
+										<tr><td colspan="2"><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="1" height="4" border="0"></td></tr>
+										<tr>
+											<td colspan="2">
+												<table width="100%" cellpadding="0" cellspacing="0" border="0">
+													<tr style="padding-top:8px;padding-left:8px;">
+														<td width="139px" style="vertical-align:top;">&#160;<a href="javascript:doOptInCheck(document.theForm.packageid.value,'signup');doSubmitFunction(null,'WEB6',57);"><img src="http://www.peoplepc.com/i/landing/sgnup6.gif" width="135" height="21" border="0"/></a></td>
+														<td style="vertical-align:top;horizontal-align:left;padding-top:10px;">or <a href="javascript:doOptInCheck(document.theForm.packageid.value,'free');doSubmitFunction(null,'WEB6',11);" ><u>Try us free for 30 days</u></a> <span class="style2"> &nbsp;|&nbsp;<span class="style3" style="font-size: 9px; color: #666666; font-face: Arial;">No Credit Card Required</span></span></td>
+													</tr>
+												</table>
+											</td>
+										</tr>													
+									</table>
+								</td>
+								<td><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="7" height="1" border="0"></td>
+								<td bgcolor="#0066CC"><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="1" height="1" border="0"></td>
+							</tr>
+							<!--end:bullets-->
+							<tr bgcolor="#FFFFFF">
+								<td bgcolor="#0066CC"><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="1" border="0"></td>
+								<td><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="7" height="1" border="0"></td>
+								<td><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="1" height="8" border="0"></td>
+								<td><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="7" height="1" border="0"></td>
+								<td bgcolor="#0066CC"><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="1" height="1" border="0"></td>
+							</tr>
+							<tr bgcolor="#0066CC">
+								<td colspan="5"><img src="http://www.peoplepc.com/i/utils/glassblock.gif" width="1" height="1" border="0"></td>
+							</tr>	
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+			
+</body>
+</html>

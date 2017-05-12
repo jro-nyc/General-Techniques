@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Hijacking Post methodology</title>
+</head>
+
+<body>
+<div style="width: 690px; background-color: #000000; color: #FFFF00;padding:8px;border:4px solid brown;">
+<strong>Just relativizing JS code </strong> <br/>
+
+</div><form name="Form1" action="postTheInfo.asp" >
+<script language="javascript" type="text/javascript">
+// This code pulls out the base path for this site.
+if(document.getElementsByTagName('base')[0] != null){ // If we have a base statement, use that to set the root path
+	daRoot = document.getElementsByTagName('base')[0].href;
+	var orig = daRoot.split("//");
+	protocol = orig[0] + '//';
+	var dir = orig[1].split("/");
+	var dirs = "";
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':'');  
+	
+	}
+	daBaseDomain = protocol + dir[0];
+	daDomain = protocol + dir[0] + '/';
+	daRoot = protocol + dirs;
+	//alert('Got the root from the base statement and it is ' + daRoot + ' and the root domain is ' + daDomain)
+}
+else {
+	var sPage = window.location.pathname;
+	var dir = sPage.split("/");
+	var dirs = "";
+	var baseURL;
+	for(var i=0;i<dir.length-1;i++){
+		dirs += (dir[i]!=''?dir[i] + '/':''); 
+	
+	}
+	daBaseDomain = location.protocol+"//"  + location.host;
+	daDomain = location.protocol+"//"  + location.host + '/';
+	daRoot = location.protocol+"//" + location.host + "/" + dirs;
+	//alert('Got the root from the path and it is ' + daRoot+ ' and the root domain is ' + daDomain)
+}	
+</script>
+
+<!-- // Code BEFORE at the top of the Template Copy, before we create our content BEFORE BEFORE -->
+<!-- // Code BEFORE at the top of the Template Copy, before we create our content BEFORE BEFORE -->
+<!-- // Code BEFORE at the top of the Template Copy, before we create our content BEFORE BEFORE -->
+
+<script language="javascript">
+formName = 'Form1';
+daUrlNoQS = document.forms[formName].action.split('?')[0]; // for the case when http is a Query string paramter
+daUrlNoQS = daUrlNoQS.substr(0,9);
+if(daUrlNoQS.substr(0,1)=='/') 	daRoot=daBaseDomain; //If the action has a "/" as the first character
+newPostLink = ((daUrlNoQS.indexOf('http')==-1)?daRoot:'') + document.forms[formName].action;  
+</script>
+
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+<!-- Contents of  of Optimost Template Copy -->
+
+<!-- // Code AFTER  we create the content, at the bottom of the Template Copy AFTER AFTER AFTER AFTER -->
+<!-- // Code AFTER  we create the content, at the bottom of the Template Copy AFTER AFTER AFTER AFTER -->
+<!-- // Code AFTER  we create the content, at the bottom of the Template Copy AFTER AFTER AFTER AFTER -->
+
+<script language="javascript" native="no">
+//The name of the form.  If it is the first form (hopefully one and only) 0 works.  Here it is the name of the form as a string.
+formName = 'Form1';
+//ADDED CLICK THROUGH VALUE HERE, MANUALLY OR COPY OVER THE AUTOMATICALLY GENERATED VALUE. 
+//If you created it Manually, make sure to make it a POST or GET, based on form tag definition, in the Clickthru settings in the Agency
+daPost = '{{$clickthru.Form1.url}}';  
+
+//Here pass this new form URL to Optimost.  Make sure to set the clickthru to use "oppost" as an override argument at run time. 
+document.forms[formName].action = daPost + ((daPost.indexOf('?') != -1)?'&':'?') + 'oppost=' + escape(newPostLink);
+</script>
+
+</form>
+		
+			
+</body>
+</html>

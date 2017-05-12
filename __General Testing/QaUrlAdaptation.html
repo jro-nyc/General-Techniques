@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+
+<span style="display:none;" id="opDummy"><a href="c"></a></span>
+<SCRIPT language="JavaScript">
+var isOptimostCopyVisible = true;
+</script>
+
+
+
+<script language="javascript" type="text/javascript">
+origBase = 'http://microsite.coupons.com/gmsa/';
+origAction = 'http://microsite.coupons.com/gmsa/sigHub.asp';
+
+ra = document.getElementById('opDummy').getElementsByTagName('a')[0].toString(); //here, I have set a dummy div to pull out the base URL.
+newBase = ra.substring(0,ra.length-1);				//Gecko/IE issues necessitate this trick (Get base URL fine in IE, not in Gecko.
+
+newAction =origAction.replace(origBase,newBase);
+
+function doAnchors(){
+	newLink = newBase;
+	var hrefs = document.getElementsByTagName('a');
+	for (var i = 0; i < hrefs.length; i++) {
+		if(hrefs[i].onmouseover != null){
+			daLink = hrefs[i].onmouseover.toString();
+			start = daLink.indexOf('http');
+			end = daLink.indexOf(';') - 1;
+			//alert(daLink);
+			newLink = daLink.substring(start,end);
+			newLink = newLink.replace(origBase,newBase);
+			//alert(newLink);
+			hrefs[i].href  += ((hrefs[i].href.indexOf('?') == -1)?'?':'&') + 'link=' + newLink;	
+			//hrefs[i].href  += "?link=" + newLink;	
+			//alert(hrefs[i].href);
+		}
+	}
+}
+newLink = newBase;
+//alert(newLink);
+daLink = document.opform1.onmouseover.toString();
+//alert(daLink);
+start = daLink.indexOf('http');
+end = daLink.indexOf(';') - 1;
+newLink = daLink.substring(start,end);
+newLink = newLink.replace(origBase,newBase);
+document.opform1.action  += ((document.opform1.action.indexOf('?') == -1)?'?':'&') + 'link=' + newLink;	
+//alert(document.opform1.action);
+
+if(navigator.userAgent.toLowerCase().indexOf('msie') != -1) doAnchors();
+
+
+function doSpan(daID){
+	str = document.getElementById(daID).innerHTML;
+	str = str.substring(0,str.length-6);
+	document.getElementById(daID).innerHTML = str + '*&nbsp;';
+	document.getElementById(daID).className = 'error';
+}
+
+function doErrorStuff(){ 
+	var spans = document.getElementById('opDefault').getElementsByTagName('span');
+	for (var i = 0; i < spans.length; i++) {
+		if(spans[i].className.toLowerCase() == 'error'){
+			if(spans[i].innerHTML.toLowerCase().indexOf('first name') != -1) doSpan('opFn');
+			else if(spans[i].innerHTML.toLowerCase().indexOf('last name') != -1) doSpan('opLn');
+			else if(spans[i].innerHTML.toLowerCase().indexOf('re-type password') != -1) doSpan('opRePwd');
+			else if(spans[i].innerHTML.toLowerCase().indexOf('password') == 0) doSpan('opPwd');
+			else if(spans[i].innerHTML.toLowerCase().indexOf('email') != -1) doSpan('opEmail');
+			else if(spans[i].innerHTML.toLowerCase().indexOf('oops') != -1) {
+				document.getElementById('opError').innerHTML = '<p>' + spans[i].innerHTML;
+				document.getElementById('opError').className = 'error';
+			}
+		}
+	}
+	document.opform1.firstname.value = document.form1.firstname.value;
+	document.opform1.lastname.value = document.form1.lastname.value;
+	document.opform1.emailaddress.value = document.form1.emailaddress.value;
+	document.opform1.password.value = document.form1.password.value;
+	document.opform1.password2.value = document.form1.password2.value;
+}
+
+addLoadEvent( function(){
+	if(navigator.userAgent.toLowerCase().indexOf('msie') == -1) doAnchors();
+	doErrorStuff();
+});
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} 
+	else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Code Repository - List of javascript goodies</title>
+<script>
+function filterBy(state){
+	cls='';
+	switch(state) {
+	case 'form':
+		cls='opform';
+		break;
+
+	case 'clicks':
+		cls='opclicks';
+		break;
+
+	case 'net':
+		cls='opnet';
+		break;
+
+	case 'qs':
+		cls='opqs';
+		break;
+
+	case 'cookies':
+		cls='opcookies';
+		break;
+
+	case 'special':
+		cls='opspecial';
+		break;
+
+	case 'dom':
+		cls='opdom';
+		break;
+
+	case 'func':
+		cls='opfunc';
+		break;
+
+	case 'other':
+		cls='opother';
+		break;
+
+	case 'net':
+		cls='opnet';
+		break;
+
+	case 'dyn':
+		cls='opdyn';
+		break;
+
+	case 'opt':
+		cls='opopt';
+		break;
+
+	case 'all':
+		cls='op';
+		break;
+
+	default:
+		break;
+	}
+	if(cls!=''){
+		tds=document.getElementsByTagName('td');
+		for(i=0;i<tds.length;i++){
+			if(tds[i].className.indexOf(cls)!=-1) 
+				tds[i].style.display='block'; //tds[i].style.visibility='visible';
+			else if(tds[i].className!='')
+				tds[i].style.display='none';//tds[i].style.visibility='hidden';
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<style>
+table td{vertical-align:top;}
+</style>
+<table style="border:4px #CC0033 solid;" border="2" bordercolor="#000000" width="900" cellspacing="1" cellpadding="6">
+	<tr>
+		<td width="33%" style="background-color:#FFFFc0;"><a href="debugGlossary.html" target="_blank"><strong>A list of potential issues</strong><br/><br/>If I see the following, what mistake am I making/what principle am I missing</a></td>
+		<td width="33%" style="background-color:#FFFFc0;"><a href="cssVsTables.html" target="_blank"><strong>CSS versus Tables</strong><br/><br/>How can I tell what type of page I am dealing with?</a></td>
+		<td width="33%" style="background-color:#FFFFc0;"><a href="" target="_blank">TBA</a></td>
+	</tr>
+	<tr>
+		<td width="33%" colspan="3">
+			<table style="0" border="2" width="900" cellspacing="1" cellpadding="0">
+				<tr><td colspan="12" align="center" style="font-size:18px;color:#blue;"><strong>Examples related to:</strong></td></tr>
+				<tr>
+					<td style="background-color:#FFFFaa;"><a href="#" onclick="filterBy('all');"><strong>ALL</strong></a></td>
+					<td><a href="#" onclick="filterBy('form');"><strong>Form</strong></a></td>
+					<td><a href="#" onclick="filterBy('clicks');"><strong>Click-thru</strong></a></td>
+					<td><a href="#" onclick="filterBy('net');"><strong>.NET</strong></a></td>
+					<td><a href="#" onclick="filterBy('qs');"><strong>Query String</strong></a></td>
+					<td><a href="#" onclick="filterBy('cookies');"><strong>Cookies</strong></a></td>
+					<td><a href="#" onclick="filterBy('special');"><strong>Special routine</strong></a></td>
+					<td><a href="#" onclick="filterBy('dom');"><strong>DOM</strong></a></td>
+					<td><a href="#" onclick="filterBy('dyn');"><strong>Dynamic content</strong></a></td>
+					<td><a href="#" onclick="filterBy('func');"><strong>Function</strong></a></td>
+					<td><a href="#" onclick="filterBy('opt');"><strong>Optimost entities</strong></a></td>
+					<td><a href="#" onclick="filterBy('other');"><strong>Other</strong></a></td>
+				</tr>
+			</table>
+	</tr>
+	<tr>
+		<td width="33%" class="opcookies opqs "><a href="getQueryStringParametersAndCookies.html" target="_blank"><strong>Query String Parameters And Cookies</strong><br/><br/>How to get Query String parameters and Cookies.</a></td>
+		<td width="33%" class="opform "><a href="_Form_Posting_tutorial.html" target="_blank"><strong>Behavior of button/images in forms</strong><br/><br/>Learn what happens on a form post when you click on an image or submit</a></td>
+		<td width="33%" class="opdom opfunc opspecial"><a href="removeScriptTagsFromInnerHTML.html" target="_blank"><strong>Characteristics of a cell with a script tag</strong><br/><br/>What do I need to know if I'm reading the innerHTML of a code rendered by a script tag</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opdom "><a href="toKillByID.html" target="_blank"><strong>ID Behavior&mdash;re-using IDs</strong><br/><br/>What do I do if I want to reuse ids?  Kill the old ones, by ID.</a></td>
+		<td width="33%" class="opdom "><a href="toKillByTagName.html" target="_blank"><strong>Behavior by Tag&mdash;re-using Tags</strong><br/>What do I do if I want to reuse some elements that have a common tag?  Kill the old ones, by TAGNAME.</a></td>
+		<td width="33%" class="opform "><a href="remove_Form_Code.html" target="_blank"><strong>Form Behavior&mdash;re-using names/values</strong><br/>What do I do if I want to reuse a form name and value in order to use the existing client side error correction? Kill the old ones...</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opopt "><a href="imageCounter.html" target="_blank"><strong>Tracking "actions" in template<br/>(page under test)</strong><br/><br/>The Hows and Whys of image counters.</a></td>
+		<td width="33%" class="opform opdyn"><a href="PostHijackingMethods.html" target="_blank"><strong>FORM&mdash;Tracking clicks outside template</strong><br/><br/>How to hijack the form post so we can track it</a></td>
+		<td width="33%" class="opform opnet "><a href="_net_clientSide_June2006.html" target="_blank"><strong>*****Latest .NET code******</strong></a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opfunc "><a href="hijackingClientFunction.html" target="_blank"><strong>Modifying a client's function</strong><br/><br/>Need to modify a user function?  Here's what I did for Ask.</a></td>
+		<td width="33%" class="opclicks opdyn"><a href="addingClickthrusAtRunTime.html" target="_blank"><strong>Adding clicks dynamically</strong><br/><br/>Adding clickthrus to page at run-time (for dynamic content OR testing areas outside of the copy)</a></td>
+		<td width="33%" class="opform "><a href="AddHiddenDynamicForm.html" target="_blank"><strong>Dynamic Content&mdash;Product Details/Form</strong><br/><br/>Copies product details and all elements in a form and recreates it.<br/>(In this form, just selects and hidden inputs)</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opspecial "><a href="sortRoutine.html" target="_blank"><strong>Sort Routine</strong><br/><br/>Sort Routine, returns a second array as an index to the first</a></td>
+		<td width="33%" class="opclicks "><a href="doRelativizingAtRunTime.html" target="_blank"><strong>Relativizing Links</strong><br/><br/>Make links relative, change the URL at run-time</a></td>
+		<td width="33%" class="opopt "><a href="creativeIdentifier.html" target="_blank"><strong>Creative Identifier useage</strong><br>How to pull a query string parameter, add append a creative identifier to it, and add it to all hrefs.</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opspecial "><a href="colorTest.html" target="_blank"><strong>Color Testing</strong><br/><br/>Want to know how a text and background color combo looks?</a></td>
+		<td width="33%" class="opform "><a href="getRadioButtonValue.html" target="_blank"><strong>Get Radio button and Checkbox values</strong><br/><br/>It takes a little bit of work to get these, here's how to do it.</a></td>
+		<td width="33%" class="opdom "><a href="addBase.html" target="_blank"><strong>Adding a Base statement via DOM</strong><br/><br/>Adding a Base statement from our copy for funky relativizing of pages</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opspecial "><a href="windowStatus.html" target="_blank"><strong>Change Status bar</strong><br/>For client that did not want spoofstatus but was fine with other status(alt tag, title, or link). (Code preserves previous onmouseover/onmouseout functionality)</a></td>
+		<td width="33%" class="opform opspecial"><a href="focusFirstElement.html" target="_blank"><strong>Focus on First Element in a Form</strong><br/>Iterate through a form
+			object by elements - ie sequential order - and put focus on the first non-hidden input</a></td>
+		<td width="33%" class="opspecial "><a href="addCommasToNumber.html" target="_blank"><strong>Adding Commas to numbers</strong><br/><br/>Usually for doing dollar amounts</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opdom opfunc "><a href="genericTagName_ID_accessor.html" target="_blank"><strong>Generic function to access cell contents</strong><br/><br/>This pulls out content by ID OR by class Name. Check it out.</a></td>
+		<td width="33%" class="opqs "><a href="checkForNonInteger.html" target="_blank"><strong>Check For Non-Integer in QS parameter</strong><br/>A case of invalid QS parameters. Expecting values for promo in the range 00001-00018, but other values misteriously occur.</a></td>
+		<td width="33%" class="opform "><a href="removeVerifyEmailField.html" target="_blank"><strong>Removing Form fields but preserving Server-side validation</strong><br/>We removed the verify email field for testing, but continue to pass it for client validation.</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opdom opfunc"><a href="libraryObject.html" target="_blank"><strong>ADVANCED - Library Object, a shortcut</strong><br/><br/>I got tired of writing out the same long statements over and over, so I created some shortcut functions. This list will be increasing over time.</a></td>
+		<td width="33%" class="opform "><a href="formValueExtractor.html" target="_blank"><strong>Form Value Extractor</strong></a></td>
+		<td width="33%" class="opspecial "><a href="bp.html" target="_blank"><strong>Get Browser Properties</strong><br/><br/>From the Navigator Object</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opdom "><a href="switchSides_usingDOM_frameCorrectly.html" target="_blank"><strong>Dyanmic DOM Framing issue solved</strong><br/>This was for Instawares.  I read table from DOM and switched sides of two cells, but cells were designed to be side specific so that they look imbalanced..<strong>solved</strong></a></td>
+		<td width="33%" class="opdom "><a href="findElementByClassName.html" target="_blank"><strong>Find an Element in Order By Class Name</strong><br/>One of our clients used different tags for dynamic text but the same class name to identify them.  Inconvenient, so here is the workaround.</a></td>
+		<td width="33%" class="opcookies "><a href="setCookiesUsingTrialCodeFunc.html" target="_blank"><strong>Set cookie using Trial Code functions</strong></a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opform opdyn"><a href="readHiddenInputsOnlyAndAddToNewForm.html" target="_blank"><strong>Read just hidden inputs</strong><br/><br/>Then add them to our new form</a></td>
+		<td width="33%" class="opclicks opdyn"><a href="dynamicClickthruAreaSpecific.html" target="_blank"><strong>Dynamic ClickThrus</strong><br/><br/>Here, we have up to 25 dynamic areas with company info. How best to track the click?</a></td>
+		<td width="33%" class="opform "><a href="AddHiddenInputsAndFormValueshtml.html" target="_blank"><strong>Read  hidden inputs and Form values</strong></a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opopt "><a href="optimostCreativeVariables.html" target="_blank"><strong>Optimost Creative Variables</strong><br/><br/>List of things you may need in your Template creation</a></td>
+		<td width="33%" class="opclicks opdom opdyn" style="background-color:#FFaaaa;"><a href="justJSforRelativizing.html" target="_blank"><strong>Pull out the Path and relativize clicks</strong><br/><br/>For Click relativizing - LATEST</a></td>
+		<td width="33%" class="opdom opspecial"><a href="addingAnOnloadEvent.html" target="_blank"><strong>Adding an Onload event</strong><br/><br/>Here we tack it on to the existing onload event chain</a></td>
+	</tr>
+	<tr>
+		<td width="33%" class="opfunc "><a href="functionToPlaceContentInPopup.html" target="_blank"><strong>Popup content</strong><br/><br/>Created for when you want to read the content of something that's too long for an alert.</a></td>
+		<td width="33%"><a href="" target="_blank"></a></td>
+		<td width="33%"><a href="" target="_blank"></a></td>
+	</tr>
+	<tr>
+		<td width="33%"><a href="" target="_blank"></a></td>
+		<td width="33%"><a href="" target="_blank"></a></td>
+		<td width="33%"><a href="" target="_blank"></a></td>
+	</tr>
+</table>
+
+
+
+
+</body>
+</html>

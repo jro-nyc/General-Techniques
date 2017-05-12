@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Color testing - how does a text and background color combo look?</title>
+<style>
+.class1{background-color: #ffffff;color:000000;}
+body td{text-align:center;margin:0;padding:0;margin: 0 auto;line-height: 20px; font-family:Arial, Helvetica, sans-serif; font-size: 14px; }
+</style>
+<script>
+textList=['Mr Mean Is a really mean boss, working for a mean company called Optimost, the company likes to exploit their employees all the way till the grave, there\'s a secret optimost employee cemetery in the building\'s basement: &dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;&dagger;&nbsp;, we\'re probably all going to end up there.',
+'Jennie and Julia are a very sneaky couple of girls that like talking about girly stuff and exchanging cuddies. Their boss thinks it\'s all about him, we just don\'t know how to share him right.',
+'A man goes into a pet shop to buy a parrot. The shop owner points to three identical looking parrots on a perch and says: "The parrot on the left costs 500 dollars".<p>"Why, does the parrot cost so much?" asks the man. The owner says, "Well the parrot knows how to use a computer".<p>The man then asks about the next parrot and is told that this one costs 1,000 dollars because it can do everything the first parrot can do plus it knows how to use the UNIX operating system. <p>Naturally, the increasingly startled man asks about the third parrot and  told that it costs 2,000 dollars. Needless to say this begs the question, "What can it do?" To which the owner replies, "To be honest I have never seen it do a thing but the other two call him boss!"',
+'Julia has a needle sticking out of her chair so she can\'t sit straight and keeps tossing and turning and bugging everybody around her, but at home she sleeps like a baby.',
+'A man goes into a pet shop to buy a parrot. The shop owner points to three identical looking parrots on a perch and says: "The parrot on the left costs 500 dollars".<p>"Why, does the parrot cost so much?" asks the man. The owner says, "Well the parrot knows how to use a computer".<p>The man then asks about the next parrot and is told that this one costs 1,000 dollars because it can do everything the first parrot can do plus it knows how to use the UNIX operating system. <p>Naturally, the increasingly startled man asks about the third parrot and  told that it costs 2,000 dollars. Needless to say this begs the question, "What can it do?" To which the owner replies, "To be honest I have never seen it do a thing but the other two call him boss!"']
+
+function doNewColors(tID){
+	mask="000000";
+	valid="0123456789ABCDEF";
+	bkg = document.forms[0].bkg.value;
+	for(i=0;i<6-document.forms[0].bkg.value.length;i++) bkg="0"+bkg;
+	bkg=bkg.toUpperCase();
+	for (var i=0; i<bkg.length; i++) {
+		temp = "" + bkg.substring(i, i+1);		//Parse the number string, one character at a time
+		if (valid.indexOf(temp) == "-1") {		//check to see if the value is a "valid" value
+			alert('The Background color is not valid, only use valid hexadecimal digits');
+			document.forms[0].bkg.value = '';
+			return false;
+		}		
+	}
+	bkg="#"+bkg;
+	//alert(bkg);
+	color = document.forms[0].color.value;
+	color=color.toUpperCase();
+	for (var i=0; i<color.length; i++) {
+		temp = "" + color.substring(i, i+1);		//Parse the number string, one character at a time
+		if (valid.indexOf(temp) == "-1") {		//check to see if the value is a "valid" value
+			alert('The Text color is not valid, only use valid hexadecimal digits');
+			document.forms[0].color.value = '';
+			return false;
+		}		
+	}
+	for(i=0;i<6-document.forms[0].color.value.length;i++) color="0"+color;
+	color="#"+color;
+	//alert(color);
+	document.getElementById(tID).style.backgroundColor = bkg;
+	document.getElementById(tID).style.color = color;
+	index = parseInt(Math.random()*4);
+	document.getElementById(tID).innerHTML=textList[index];
+}
+</script>
+</head>
+
+<body>
+<form>
+<table>
+<tr><td colspan="2" >Test Colors - Input background and text colors see what they look like.<br/><strong>Make sure you enter ALL 6 Hex digits for each color</strong></td></tr>
+<tr><td>Background Color in hex&nbsp;<input type="text" name="bkg" size="6" maxsize="6" value="000000" onfocus="this.value='';"></td><td>Text Color in hex&nbsp;<input type="text" name="color" size="6"  maxsize="6" value="ffffff"  onfocus="this.value='';"></td></tr>
+<tr><td colspan="2" ><button onclick="doNewColors('testArea1');">See It!</button></td></tr>
+<tr><td colspan="2" id="testArea1" class="class1" style="background-color: #ffffff;color:000000;text-align:center;vertical-align:middle;border:2px solid #000000;height:100px;width:600px;">Here is the color combo, what do you think?<br/>Does it make my browser look fat? - <b>No, Its two 19 inch flat monitors that make your browser look fat!</b></td></tr>
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,1749 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for Windows (vers 12 April 2005), see www.w3.org">
+  <!-- don't make paths relative yet  (prevent prepending named tags with the base tag)
+  <base href="http://promotions.newegg.com/optimost/checkout/">
+     -->
+  <title>Newegg.com - Once You Know, You Newegg</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="keywords" content="Newegg.com - Once You Know, You Newegg">
+  <meta name="description" content="">
+  <meta name="copyright" content="? 2000-2006 Newegg Inc.">
+  <link rel="shortcut icon" href="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/Newegg.ico">
+  <link rel="stylesheet" type="text/css" href="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/NewVersion/CSS/4/Newegg_4.css">
+  <style type="text/css">
+                .centerTd img#ImgExpend2{display:block;width:980px;height:0px;} 
+                #centerArea2{clear:both;float:left;background-color:#fff;width:100%;min-width:980px;
+                        voice-family: "\"}\"";
+                        voice-family:inherit;
+                }
+  </style>
+  <link rel="stylesheet" type="text/css" href="http://promotions.newegg.com/optimost/checkout/checkout.css">
+  
+<!-- Added in this CSS to correct for display in IE -->
+<style>
+legend {position:absolute;top:-.65em;left:.5em;}
+fieldset{margin-top:1em;padding-top:1.75em;} 
+</style>
+
+  <!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="checkout_IE.css" />
+        <![endif]-->
+<script type="text/javascript" language="JavaScript">
+function openAddrCheckwin(){
+        var shippingState,ShippingCity,ShippingAddress1;
+        var ShippingAddress2,ShippingZipCode,CompanyName;
+        var AddressType;
+        
+                shippingState = document.customer.SState.value;                                
+                ShippingCity = document.customer.SCity.value;
+                ShippingAddress1 = document.customer.SAddress1.value;
+                ShippingAddress2 = document.customer.SAddress2.value;
+                ShippingZipCode = document.customer.SZip.value;
+                CompanyName = document.customer.SCompanyName.value;
+                
+        
+        if ( shippingState.length >= 2 ){
+                shippingState = shippingState.substring(shippingState.length-2,shippingState.length);
+        }else{
+            shippingState = "";
+        }       
+        //CompanyName = document.customer.CompanyName.value;
+        //CompanyName = "";         
+                         
+        window.open ("/NewVersion/Application/FedexAddressChecker/FedexAddressCheck.asp?ShippingState=" + escape(shippingState.replace("'","\'")) + "&ShippingCity=" + escape(ShippingCity.replace("'","\'")) + "&ShippingAddress1=" + escape(ShippingAddress1.replace("'","\'")) + "&ShippingAddress2="  + escape(ShippingAddress2.replace("'","\'")) + "&ShippingZipCode=" + (ShippingZipCode.replace("'","\'")) + "&CompanyName=" + escape(CompanyName.replace("'","\'")), "newwindow", "height=650, width=550, left=10,top=10,toolbar =no, menubar=no, scrollbars=yes, resizable=no, location=no, status=no") 
+}
+
+</script>
+<script type="text/javascript">(function(){Page={Parameters:{DEBUG_MODE:false,DOMAIN_NAME:'.newegg.com',FRAMEALLOWED:false,SITEPATH:'/NewVersion',WEBSITE:'http://www.newegg.com/',SECUITYSITE:'https://secure.newegg.com/NewVersion/',SHOPPERSITE:'http://secure.newegg.com/NewVersion/',CACHE_IMAGESITE:'https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/',CSS:{}}}})();window.onerror=function(){return true;}</script>
+<script type="text/javascript" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/NewVersion/Scripts/CommonCommonLib_v5.js"></script>
+<script type="text/javascript">(function(){Page.Display={Parameters:{LAST_SIZE:0,PRODUCT_CELL_ID:'0',CLIENT_BROWSER_ID:'2',IFRAME_SUPPORT:false,ID_ROLLOVER_MENU:null}}})();</script>
+<script type="text/javascript" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/NewVersion/Scripts/CommonPageDisplayLib_v3.js"></script>
+<script type="text/javascript">Page.Display.Initialize();</script>
+<script type="text/javascript" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/NewVersion/Scripts/CommonAjaxFramework_v3.js"></script>
+<script type="text/javascript" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/NewVersion/Scripts/Commoncheckout.js"></script>
+<script type="text/javascript" type="text/javascript" src="http://promotions.newegg.com/optimost/checkout/checkout.js"></script>	
+
+
+<script type="text/javascript" id="clientEventHandlersJS" language="javascript">
+<!--
+function verify(f)
+{
+    var msg;
+    var empty_fields = "";
+    var error_msg = "";
+    var sign1 ;
+    var sign2;
+
+        
+        
+    for(var i = 0; i < f.length; i++) {
+        var e = f.elements[i];
+                sign1=((e.name == "SFirstName")||(e.name == "SLastName")||(e.name == "SAddress1")) 
+                sign2=((e.name == "SCity")||(e.name == "SZip") ||(e.name == "ShippingPhone_tel1")||(e.name == "ShippingPhone_tel2")||(e.name == "ShippingPhone_tel3"))
+         if  (sign1||sign2) {
+            if ((e.value == null) || (e.value == "") || isblank(e.value)) {
+                  if (e.name == "SFirstName") {
+                                error_msg = "- Your First Name is empty";
+                  }else if (e.name == "SLastName") {
+                                error_msg = "- Your Last Name is empty";
+                  }else if (e.name == "SAddress1") {
+                                error_msg = "- Your Address field is empty";
+                                  }else if (e.name == "SCity") {
+                                error_msg = "- Your City field is empty";               
+                  }else if (e.name == "SZip") {
+                                error_msg = "- Your ZIP field is empty";
+                  }else if (e.name == "ShippingPhone_tel1") {
+                                error_msg = "- Your Shipping phone tel1 is empty";
+                                  }else if (e.name == "ShippingPhone_tel2") {
+                                error_msg = "- Your Shipping phone tel2 is empty";
+                                  }else if (e.name == "ShippingPhone_tel3") {
+                                error_msg = "- Your Shipping phone tel3 is empty";
+                                  }
+                empty_fields += "\n      " + error_msg;                         
+                continue;
+            }
+        }
+    }
+
+        
+        var strContactWith;
+        strContactWith = "";
+        if (document.customer.SMI.value == "")
+                strContactWith =  trim(document.customer.SFirstName.value) + " " + trim(document.customer.SLastName.value);
+        else
+                strContactWith = document.customer.SMI.value + " " + trim(document.customer.SFirstName.value) + " " + trim(document.customer.SLastName.value);
+
+        if (strContactWith.length > 30) 
+                {
+                        alert("The combined length of the Shipping MI, First Name and Last name may not exceed 30 characters.");
+                        return;
+                }
+                
+
+         if (!empty_fields)
+         {
+                var strzipcode = document.customer.SZip.value;
+                 strzipcode = ftrimStr(strzipcode);
+                 //Zip code length
+                if(strzipcode.length<5)
+                {
+                        //alert("- Your shipping ZIP codes should be a minimum of 5 digits");
+                        alert("- Please enter a valid zip code."); // -- leon.zhang 2005/10/25
+                        return;
+                }
+                else
+                {
+                        if (strzipcode.search(/[^0-9|^-]/) != -1)
+                        {
+                                //alert("- Your shipping ZIP codes should be a minimum of 5 digits");
+                                alert("- Please enter a valid zip code."); // -- leon.zhang 2005/10/25
+                                return;
+                        }
+                }
+                //
+                //******************Check Phone*************************
+                var phone1,phone2,phone3,phone4
+                phone1 = document.customer.ShippingPhone_tel1.value;
+                phone2 = document.customer.ShippingPhone_tel2.value;
+                phone3 = document.customer.ShippingPhone_tel3.value;
+                phone4 = document.customer.ShippingPhone_Ext1.value;
+
+                if(!CheckPhone(phone1,phone2,phone3,phone4,"Shipping"))
+                {
+                        return;
+                }
+                                
+                document.customer.ShippingPhone.value = phone1 + "-" + phone2 + "-" + phone3; 
+                if(!isblank(phone4) ){
+                        if (parseInt(document.customer.AddressCount.value) < 3)
+                        {
+                                if (document.customer.IsBilling[0].checked)
+                                {
+                                        if(phone4.length > 3)
+                                        {
+                                                alert("-  Shipping phone tel4 must be a maximum of 3 digits \n");
+                                                return;
+                                                
+                                        }
+                                }
+                        }
+                        document.customer.ShippingPhone.value += "EXT" + phone4;                                
+                }
+                //******************End Check Phone*************************            
+         }
+                 
+     if (empty_fields) {
+                msg  = "______________________________________________________\n\n"
+                msg += "Your request cannot continue because of the following error(s).\n";
+                msg += "Please correct these error(s) and re-submit:\n";
+                msg += "______________________________________________________\n";
+        msg += empty_fields + "\n";
+                alert(msg);       
+    }
+    else
+    {
+                document.customer.Operation.value = "Add";
+                
+                        if(!f.IsSave.checked)
+                        {
+                                document.customer.action="addressPlus.asp?IsAdd=true&LoginID1=68076&LoginID2=1053174410&LoginID3=1053174410&CartNo=64841435";
+                                document.customer.submit(); 
+                        }
+                        else
+                        {
+                                document.customer.action="AddrssOperation.asp?LoginID1=68076&LoginID2=1053174410&LoginID3=1053174410&CartNo=64841435";          
+                                document.customer.submit();                     
+                        }
+                
+                
+        }
+    //return false;
+    
+}
+function ftrimStr(str)
+{
+        var pos;
+        pos = str.indexOf(" ");
+        while (str.charAt(0)  == " ")
+                str = str.substr(1);
+        while (str.charAt(str.length - 1) == " ")
+                str = str.substr(0,str.length - 1);
+        return str;
+}
+
+function IsInteger(sString ) 
+{  
+    if( isblank(sString) ) return false;
+        
+        for(var i = 0; i < sString.length; i++) {
+                var c = sString.charAt(i);
+                if (c < '0' || c > '9') return false;
+        }
+        return true;
+} 
+//modificator:  leon.zhang 2005/10/25
+//modification: error_msg
+function CheckPhone(phone1,phone2,phone3,phone4,phoneType)
+{
+        var hasV1,hasV2,hasV3
+        var error_msg
+        error_msg = ""
+        phoneType = phoneType.toLowerCase(); //--leon zhang
+        if( !isblank(phone1)){
+                if((!IsInteger(phone1))||(phone1.length<3)) {
+                        error_msg = "Please enter a valid " + phoneType +" phone number." + "\n";
+                        //error_msg = error_msg + "-  " + phoneType + " phone tel1 must be 3 digit" + "\n";
+                }
+                hasV1 = true;
+        }
+        else
+           hasV1 = false;
+
+        if(!isblank(phone2)){
+                if(( !IsInteger(phone2))||(phone2.length<3)) {
+                        error_msg = "Please enter a valid " + phoneType +" phone number." + "\n";
+                        //error_msg = error_msg + "-  " + phoneType + " phone tel2 must be 3 digit" + "\n";
+                }
+                hasV2 = true;
+        }
+        else
+                 hasV2 = false;
+
+        if(!isblank(phone3)){
+                if(( !IsInteger(phone3))||(phone3.length<4)) {
+                        error_msg = "Please enter a valid " + phoneType +" phone number." + "\n";
+                        //error_msg = error_msg + "-  " + phoneType + " phone tel3 must be 4 digit" + "\n";
+                }
+                hasV3 = true;
+         }
+         else
+                hasV3 = false;
+        if ( !((hasV1 == hasV2) && (hasV3 == hasV1))){
+                //error_msg = error_msg + "-  " + phoneType + " phone is  a  wrong phone number" + "\n";  
+                error_msg = "Please enter a valid " + phoneType +" phone number." + "\n"; //leonzhang 2005/11/4
+        }
+                          
+        if(! isblank(phone4)){
+                if( !IsInteger(phone4)) {
+                error_msg = "Please enter a valid " + phoneType +" phone number." + "\n";
+                //error_msg = error_msg +  "-  " + phoneType + " phone tel4 must be a digit" + "\n";  
+                }
+        }
+        
+        if(!isblank(error_msg)){
+                alert(error_msg);
+                return false;
+        }       
+        
+        return true;
+}
+function AddressPlus()
+{
+        var AddressNumber
+        var strURL
+        var i;
+        i =  0;
+        AddressNumber = "";
+        strURL = "";
+        if (document.customer.AddressNo[0])
+        {
+                for(i=0; i<document.customer.AddressNo.length; i++) 
+                {    
+                        if (document.customer.AddressNo[i].checked)
+                        {
+                                AddressNumber = document.customer.AddressNo[i].value;
+                        }                       
+                }
+                //for Opera browser
+                if(i==0)
+                {
+                        AddressNumber = document.customer.AddressNo.value;
+                }
+        }
+        else
+        {
+                AddressNumber = document.customer.AddressNo.value;
+        }
+                
+        if (AddressNumber=="")
+        {
+                alert("please choose a shipping address which has been saved!");
+                return;
+        }
+        else
+        {
+                strURL = "AddressPlus.asp?LoginID1=68076&LoginID2=1053174410&LoginID3=1053174410&CartNo=64841435&Number=" + AddressNumber +"&IsAdd=True"
+        }
+        
+        //document.customer.Operation.value = "";        
+        document.customer.action = strURL;
+        document.customer.submit();     
+}
+function ChgShpState(v){
+/*
+        if (v=="NJ")
+                document.customer.STax.value="167";
+        else if (v=="TN")
+            document.customer.STax.value="168";
+        else if (v=="PR")
+            document.customer.STax.value="169";
+        else
+                document.customer.STax.value="0";
+*/
+}
+/*
+*description: trim left space
+*author:DreamerXiao
+*Date:2004-03-20 3:00AM
+*/
+
+function lTrim(str)
+{
+//If the first left char of the string is a blank space
+if (str.charAt(0) == " "){
+//Remove the blank space of the string from left
+str = str.substring(1, str.length);
+str = lTrim(str); //self invoke
+}
+return str;
+}
+
+/*
+*description:trim right space
+*author:DreamerXiao
+*Date:2004-03-20 3:10AM
+*/
+function rTrim(str)
+{
+var iLength;
+iLength = str.length;
+//If the first right char of the string is a blank space
+if (str.charAt(iLength - 1) == " "){
+//Remove the blank space of the string from right
+str = str.substring(0, iLength - 1);
+str = rTrim(str); 
+}
+return str;
+}
+
+/*
+*description:trim both sides space
+*author:DreamerXiao
+*Date:2004-03-20 3:15AM
+*/
+
+//remove the blank space of the string from both sides
+function trim(str)
+{
+return lTrim(rTrim(str));
+}
+
+function RemoveAddress(lngNumber,iCount){
+        if((lngNumber.toString()=="-1")||(parseInt(iCount)==1))
+        {
+                alert("This address currently cannot be deleted. You may delete this address once you've saved at least one other shipping address.");
+                return;
+        }       
+        if (window.confirm("Are you sure you want to delete this address?"))
+        {
+                document.customer.Operation.value = "Remove";
+                document.customer.Number.value = lngNumber;
+                document.customer.action="AddrssOperation.asp?LoginID1=68076&LoginID2=1053174410&LoginID3=1053174410&CartNo=64841435";
+                document.customer.submit();
+        }
+}
+
+//-->
+</script>
+
+<script type="text/javascript">
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	}
+	else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+</script>
+
+
+</head>
+<body>
+	<p id="hideBrowser">
+		Newegg.com - A great place to buy computers, computer parts, electronics, software, accessories, and DVDs online.  With great prices, fast shipping, and top-rated customer service - once you know, you Newegg.
+		<br ><br >
+		If you are seeing this it is possible that your browser is not fully compatible with our website or one or more page objects have not finished loading. <b>Please <a href="/NewVersion/myaccount/ManageAddress.asp?cartNo=64841435&LoginID1=68076&LoginID2=1053174410&LoginID3=1053174410&Local=y">click here</a> to refresh this page.</b> If you still see this message, we recommend that you upgrade to the latest version of your browser. Please <a href="mailto:webmaster@newegg.com">let us know</a> if you're running the latest version of your browser and you still see this message.
+		<br ><br >
+
+		<a href="/NewVersion/myaccount/ManageAddress.asp?cartNo=64841435&LoginID1=68076&LoginID2=1053174410&LoginID3=1053174410&PageStyle=%23">Click here for the lite version</a>
+		<br ><br >
+		<a href="http://www.newegg.com/">Newegg.com - Computers, Computer Parts and Electronics</a>
+	</p>
+	<div id="container">
+			
+	<a name="top"><!--Top of Page--></a>	
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" id="headingArea" align="center">
+		<tbody>
+
+		<tr>
+			<td height="78" valign="bottom" width="235"><div style="z-index:1000;" id="logo"><a href="http://www.newegg.com/" class="noLine"><img src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/LOGO.gif" alt="Newegg.com - Computers, Computer Parts and Electronics" title="Newegg.com - Computers, Computer Parts and Electronics" border="0" ></a></div>
+			
+			</td>
+			<td valign="top">
+							
+			</td>
+		</tr>		
+		<tr>
+			<td colspan="2" style="text-align:right;"></td>
+		</tr>
+
+				
+		<tr bgcolor="#ffffff" id="stripeTr">
+			<td colspan="2"><div id="stripe"><img src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/none.gif" border="0" height="10" width="984" ></div></td>
+		</tr>
+	</tbody>
+	</table>
+
+<!-- **************** START START START START -  OPEN DIV TO SET DEFAULT CODE DISPLAY=NONE **************** -->
+<script language="javascript">
+document.write('<div style="display: none;" id="opIndexedContent">');
+</script>
+<!-- **************** START START START START -  OPEN DIV TO SET DEFAULT CODE DISPLAY=NONE **************** -->
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tbody>
+	
+	<tr valign="top" bgcolor="#fffFFF">
+
+			<td id="leftArea"  style="display:none;">
+<!--Left Side BEGIN-->
+				<div id="leftCol">
+			
+				</div>
+<!--Left Side END-->			
+			</td>
+	
+		<td class="centerTd" id="dBodyCenter" valign="top"><img src="http://images10.newegg.com/Nest/none.gif" id="ImgExpend2" border="0" height="0" ><div id="centerArea2">				
+
+<!--Center BEGIN-->	
+		
+<div id="cartTitle"><h5>SECURE CHECKOUT - Step <img alt="1" src="COstep1on.gif" align="absmiddle"> <img alt="2" src="COstep2off.gif" align="absmiddle"></h5></div>
+<form id="checkout" class="wideForm">
+<p class="subHead">Please enter your address and payment information. Fields with an asterisk(*) are required.</p>
+<p style="border:1px solid #E1E1D7;background:#f2f2e8;padding:10px;margin:10px;text-align:center;"><img alt="" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/logoBML.gif" style="width:43px;height:22px;vertical-align:middle;padding:0 5px;">Choose <a href="#nogo" onclick="showPanel(document.getElementById('BMLtab'),3)"><strong>Bill Me Later</strong></a><sup>&reg;</sup> as your payment option to make <strong>no payments for 90 days</strong>.</p>
+<div style="float:left;padding:0;margin:0;">
+<fieldset class="min">
+<legend>Shipping Address</legend>
+<table class="COform" cellpadding="0" cellspacing="0">	
+<tr>
+	<td>Choose Location</td>
+	<td><select onchange="switchAddr(this,this.value);"><option value="1">home</option><option value="2">work</option><option value="0">new address</option></select></td>
+
+</tr>
+
+<tr>          
+<td>Save As</td>
+<td><input type="text" class="stdText" maxlength="30" id="SLabel" name="SLabel" value=""></td>
+</tr>
+
+<tr>          
+<td>First Name*</td>
+<td><input type="text" class="stdText" maxlength="30" id="SFirstName" name="SFirstName" value=""></td>
+</tr>
+<tr>
+<td>MI</td>
+<td><input type="text" size="2" maxlength="2" id="SMI" name="SMI" value="" style="width:36px;"></td>
+
+</tr>
+<tr> 
+<td>Last Name*</td>
+<td><input id="SLastName" name="SLastName" type="text" class="stdText" maxlength="30" value=""></td>
+</tr>
+
+<tr> 
+<td>Company Name</td>
+<td><input id="SCompanyName" name="SCompanyName" type="text" class="stdText" maxlength="50"  value="" ></td>
+</tr>	  	
+<tr> 
+<td>Address*</td>
+
+<td><input id="SAddress1" name="SAddress1" type="text" class="stdText" maxlength="40"  value="" ></td>
+</tr>
+<tr> 
+<td>Address 2</td>
+<td><input id="SAddress2" name="SAddress2" type="text" class="stdText" maxlength="40"  value="" ></td>
+</tr>
+<tr> 
+<td>City*</td>
+<td><input id="SCity" name="SCity" type="text" class="stdText" maxlength="20"  value="" ></td>
+
+</tr>
+<tr> 
+<td>State*</td>
+<td>
+<select size="1" id="SState" name="SState" onchange="ChgShpState(this.value)">
+	<option value='AA' >AA</option>
+<option value='AP' >AP</option>
+<option value='AE' >AE</option>
+
+<option value='AK' >ALASKA</option>
+<option value='AL' >ALABAMA</option>
+<option value='AR' >ARKANSAS</option>
+<option value='AZ' >ARIZONA</option>
+<option value='CA' >CALIFORNIA</option>
+<option value='CO' >COLORADO</option>
+<option value='CT' >CONNECTICUT</option>
+<option value='DC' >DISTRICT OF COLUMBIA</option>
+<option value='DE' >DELAWARE</option>
+
+<option value='FL' >FLORIDA</option>
+<option value='GA' >GEORGIA</option>
+<option value='HI' >HAWAII</option>
+<option value='IA' >IOWA</option>
+<option value='ID' >IDAHO</option>
+<option value='IL' >ILLINOIS</option>
+<option value='IN' >INDIANA</option>
+<option value='KS' >KANSAS</option>
+<option value='KY' >KENTUCKY</option>
+
+<option value='LA' >LOUISIANA</option>
+<option value='MA' >MASSACHUSETTS</option>
+<option value='MD' >MARYLAND</option>
+<option value='ME' >MAINE</option>
+<option value='MI' >MICHIGAN</option>
+<option value='MN' >MINNESOTA</option>
+<option value='MO' >MISSOURI</option>
+<option value='MS' >MISSISSIPPI</option>
+<option value='MT' >MONTANA</option>
+
+<option value='NC' >NORTH CAROLINA</option>
+<option value='ND' >NORTH DAKOTA</option>
+<option value='NE' >NEBRASKA</option>
+<option value='NH' >NEW HAMPSHIRE</option>
+<option value='NJ' >NEW JERSEY</option>
+<option value='NM' >NEW MEXICO</option>
+<option value='NV' >NEVADA</option>
+<option value='NY' selected>NEW YORK</option>
+<option value='OH' >OHIO</option>
+
+<option value='OK' >OKLAHOMA</option>
+<option value='OR' >OREGON</option>
+<option value='PA' >PENNSYLVANIA</option>
+<option value='PR' >PUERTO RICO</option>
+<option value='RI' >RHODE ISLAND</option>
+<option value='SC' >SOUTH CAROLINA</option>
+<option value='SD' >SOUTH DAKOTA</option>
+<option value='TN' >TENNESSEE</option>
+<option value='TX' >TEXAS</option>
+
+<option value='UT' >UTAH</option>
+<option value='VA' >VIRGINIA</option>
+<option value='VT' >VERMONT</option>
+<option value='WA' >WASHINGTON</option>
+<option value='WI' >WISCONSIN</option>
+<option value='WV' >WEST VIRGINIA</option>
+<option value='WY' >WYOMING</option>
+
+</select>
+
+</td>
+</tr>
+<tr> 
+<td>Zip Code*</td>
+<td><input id="SZip" name="SZip" type="text" size="12" maxlength="10"  value="" ></td>
+</tr>
+<tr> 
+<td>Phone*</td>
+<td> 
+
+(<input id="ShippingPhone_tel1" name="ShippingPhone_tel1" size="2" maxlength="3"  value="" style="width:30px;" >) <input id="ShippingPhone_tel2" name="ShippingPhone_tel2" size="3" maxlength="2"  value="" style="width:30px;" >-<input id="ShippingPhone_tel3" name="ShippingPhone_tel3" size="3" maxlength="4"  value="" style="width:38px;" > Ext.<input type="text" id="ShippingPhone_Ext1" name="ShippingPhone_Ext1" size="3" maxlength="4"  value="" style="width:38px;" >
+<input name="ShippingPhone" type="hidden" value>
+</td>
+</tr>
+<tfoot>
+<tr><td colspan="2"><input type="checkbox" checked>Save Changes</td></tr>
+</tfoot>
+</table>
+<script type="text/javascript"  type="text/javascript">
+switchAddr(0,1);
+</script>
+<blockquote><a href="#nogo">Newegg Address Checker</a><br>
+Verify your address to avoid shipping delays.</blockquote> 
+</fieldset>
+</div>
+
+<div style="float:left;padding:0;margin:0;">
+<fieldset class="max">
+<legend>Payment Options</legend>
+<table class="COtabs" cellpadding="0" cellspacing="0"><tr>
+<td class="current"><b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,1)">Credit Card</a></td>
+<td><b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,2)">Preferred Account</a></td>
+<td><b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a id="BMLtab" href="#nogo" onclick="showPanel(this,3)">Bill Me Later<sup style="font-size:.5em;">&reg;</sup></a></td>
+<td><b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,4)">Paypal</a></td>
+<td><b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,5)">Mail Payment</a></td>
+<td style="width:100%;border-bottom:1px solid #3a3a3a;">&nbsp;</td>
+</tr><table>
+
+<!--
+Your card may be eligible or enrolled in the Verified by Visa payer authentication program. After clicking the submit button, your Card Issuer may prompt you for your payer authentication password to complete your purchase.
+Your card may be eligible or enrolled in the MasterCard SecureCode payer authentication program. After clicking the submit button, your Card Issuer may prompt you for your payer authentication password to complete your purchase.
+-->
+
+
+
+<table id="panel2" class="COtabBox" style="display:none;" cellpadding="0" cellspacing="5">	
+<thead>
+<tr><td><img alt="Newegg Preferred Account" title="Newegg Preferred Account" src="nPrefAcct200.gif"></td></tr>
+</thead>
+<tr><td><br><strong>Choose your offer:</strong><br>
+<input type="radio" name="preferred" checked>1.1% discount on purchase total<sup class="red" style="font-size:9px;">NEW!</sup><br>
+<input type="radio" name="preferred">No Payments for 6 months (orders over $500)</td></tr>
+<tfoot>
+<tr><td>&nbsp;<br><br><br><br></td></tr>
+</tfoot>
+</table>
+
+<table id="panel3" class="COtabBox" style="display:none;" cellpadding="0" cellspacing="5">	
+<thead>
+<tr><td><img alt="Bill Me Later" title="Bill Me Later" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/logoBML.gif"></td>
+<td width="100%"><strong>Buy Fast. Feel Secure.</strong><sup style="font-size:.5em;">&reg;</sup><br><a href="#nogo">How to request credit</a></td></tr>
+</thead>
+<tr><td colspan="2"><br><input type="checkbox" checked>YES, I'd like No Payments for 90 days on purchases over $250!</td></tr>
+<tfoot>
+<tr><td colspan="2">&nbsp;<br><br><br><br></td></tr>
+</tfoot>
+</table>
+<script type="text/javascript"  type="text/javascript">
+switchCard(0,1);
+</script>
+
+<table id="panel4" class="COtabBox" style="display:none;" cellpadding="0" cellspacing="5">
+<thead>
+<tr><td><img alt="PayPal" title="PayPal" src="nPayPal.gif"></td></tr>
+</thead>
+<tr><td><strong>Email Address:</strong> yourname@yourdomain.com</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><strong>Important:</strong> Your order will not be processed if your shipping address does not match your PayPal confirmed address.</td></tr>
+<tfoot>
+<tr><td colspan="2">&nbsp;<br><br><br><br></td></tr>
+</tfoot>
+</table>
+
+<table id="panel5" class="COtabBox" style="display:none;" cellpadding="0" cellspacing="5">
+<tr><td><img alt="" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/checkMoL.gif" align="absmiddle"><strong>Check or Money Order</strong></td></tr>
+<tr><td>
+<ol>
+<li>Print your Order Confirmation</li>
+<li>Please fill out your check/money order properly (refer to sample image below)
+<ol type="A" style="margin:3px 14px;padding:0 8px;">
+<li>Make payable to Newegg.com</li>
+<li>Date the check is filled out. Post-dated checks will not be accepted.
+<li>Write your Sales Order number on the memo line. (RMA # or Customer # may be used when a Sales Order # is not available.)</li>
+<li>Signature required.</li>
+</ol></li>
+<li>Mail pre-paid payment to: <br>16839 E. Gale Ave.<br>City of Industry, CA 91745</li>
+<li>Please include a printed copy of your Sales Order or Confirmation</li>
+<li>Payments must be received within 7-days of placing an order</li>
+</ol>
+
+</td></tr>
+<tfoot>
+<tr><td colspan="2" style="text-align:center;"><img alt="sample check" src="samplecheck.gif"></td></tr>
+</tfoot>
+</table>
+
+</fieldset>
+<script type="text/javascript">
+function nextStep(){
+	t=document.getElementById('submitArea').getElementsByTagName('span');
+	if(t[1].style.display!='none'){
+		location.href='preferredAccount.htm';
+		return false;
+	}
+	if(t[2].style.display!='none'){
+		location.href='billMeLater.htm';
+		return false;
+	}
+	return true;
+}
+</script>
+<p id="submitArea">
+<span>Credit Card payment selected</span> 
+<span style="display:none;">Preferred Account selected</span> 
+<span style="display:none;">Bill Me Later selected</span> 
+<span style="display:none;">PayPal payment selected</span> 
+<span style="display:none;">Mail Payment selected</span> 
+<a href="checkout_step2.htm" onclick="return nextStep();" class="btnOn" onmousedown="javascript:this.className='btnDown'" onmouseover="javascript:this.className='btnOn'" onmouseout="javascript:this.className='btnOn'">Continue</a></p>
+</div>
+
+<p class="footnote">*These fields are required for processing.</p>
+
+</form>
+<!--Center END-->				
+				</div>				
+		</td>				
+	</tr>	
+</tbody>
+</table>	
+<!-- **************** END END END END END END-  CLOSE DIV TO SET DEFAULT CODE DISPLAY=NONE **************** -->
+<script language="javascript" type="text/javascript">
+document.write('</div>');
+</script>
+<!-- **************** END END END END -  CLOSE DIV TO SET DEFAULT CODE DISPLAY=NONE **************** -->
+
+
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+<!-- SNIPPET START START START START START START START START START START START START START START START START START START START START START --->
+
+<script language="javascript" type="text/javascript">
+isOptimostCopyVisible = true;
+</script>
+<script language="javascript" type="text/javascript">
+//Get the form values for default stuff
+var daFormElements =  new Object;
+function formInputs(frm,el){
+	this.name = el.name;
+	this.value = el.value;
+	this.type = el.type;
+	this.formName = frm.name;
+}	
+function formCheckInputs(frm,el,check){
+	this.name = el.name;
+	this.value = check;
+	this.type = el.type;
+	this.formName = frm.name;
+}	
+function doFormStuff(){
+	var formProps =  new Object;
+	formObj = document.forms[0];	
+	opFormName='checkout';
+	daFormElements[opFormName] = new Object;
+	list='';
+	for (i=0;i<formObj.length;i++) {
+		if(typeof(formObj.elements[i].type)!="undefined"){	
+			//alert(formObj.elements[i].type);
+			if(formObj.elements[i].type.toLowerCase().indexOf('radio')== -1 && formObj.elements[i].type.toLowerCase().indexOf('checkbox')== -1) {
+				daFormElements[opFormName][i] = new formInputs(formObj,formObj.elements[i]);
+				list += 'The name is ' + formObj.elements[i].name + ' which has a type of ' + formObj.elements[i].type + ' and a value of ' + formObj.elements[i].value+ '\n';
+			}
+			else if(formObj.elements[i].type.toLowerCase().indexOf('checkbox')== -1){
+				if(formObj.elements[i].checked == true) {
+					daFormElements[opFormName][i] = new formInputs(formObj,formObj.elements[i],formObj.elements[i].value);
+					list += 'The name is ' + formObj.elements[i].name + ' which has a type of ' + formObj.elements[i].type + ' and a value of ' + formObj.elements[i].value + '\n';
+				}
+			}
+			else {
+				if(formObj.elements[i].checked == true){
+					daFormElements[opFormName][i] = new formCheckInputs(formObj,formObj.elements[i],true);
+					list += 'The name is ' + formObj.elements[i].name + ' which has a type of ' + formObj.elements[i].type + ' and a value of ' + formObj.elements[i].checked+ '\n';
+				}
+				else{
+					daFormElements[opFormName][i] = new formCheckInputs(formObj,formObj.elements[i],false);
+					list += 'The name is ' + formObj.elements[i].name + ' which has a type of ' + formObj.elements[i].type + ' and a value of ' + formObj.elements[i].checked+ '\n';
+				}
+			}			
+		}
+	}
+	//alert(list);
+	list='';
+	//for (i=0;i<daFormElements[opFormName].length;i++) {
+	for(var i in daFormElements[opFormName]){
+		list+=daFormElements[opFormName][i].name+'='+daFormElements[opFormName][i].value+'\n';
+	}
+	//alert(list);
+}
+doFormStuff();
+el='opIndexedContent';
+if(document.getElementById(el) != null) {
+	tagElement = document.getElementById(el);
+	if (tagElement && tagElement.parentNode && tagElement.parentNode.removeChild) { 
+	     tagElement.parentNode.removeChild(tagElement); 
+	}	
+}
+</script>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr bgcolor="#FFFFFF" valign="top">
+          <td id="leftArea" style="display: none;">
+            <div id="leftCol"></div>
+          </td>
+
+          <td class="centerTd" id="dBodyCenter" valign="top">
+            <img src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/none.gif" id="ImgExpend2" border="0" height="0">
+
+            <div id="centerArea2">
+	<div id="cartTitle">
+                <h5>SECURE CHECKOUT - Step <img alt="1" src="http://promotions.newegg.com/optimost/checkout/COstep1on.gif" align="absmiddle"> <img alt=
+                "2" src="http://promotions.newegg.com/optimost/checkout/COstep2off.gif" align="absmiddle"></h5>
+              </div>
+
+              <form id="checkout" class="wideForm">
+	<p class="subHead">
+Please enter your address and payment information. Fields with an asterisk(*) are required.
+</p>
+
+                <p style="border: 1px solid rgb(225, 225, 215); margin: 10px; padding: 10px; background: rgb(242, 242, 232) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; text-align: center;">
+                <img alt="" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/logoBML.gif" style=
+                "padding: 0pt 5px; width: 43px; height: 22px; vertical-align: middle;">Choose
+
+                <a href="#nogo" onclick="showPanel(document.getElementById('BMLtab'),3)">
+                <strong>Bill Me Later</strong>
+	</a>
+
+	<sup>&reg;</sup> as your payment option to make <strong>no payments for 90 days</strong>.
+	</p>
+
+<!--
+
+-->
+
+	<div style="margin: 0pt; padding: 0pt; float: left;">
+                  <fieldset class="min">
+                    <!-- <legend>Shipping Address</legend> -->
+                    <legend>Shipping Address</legend>
+
+                    <table class="COform" cellpadding="0" cellspacing="0">
+                      <tbody>
+					  
+                        <tr>
+                          <td>Choose Location</td>
+                          <td><select onchange="switchAddr(this,this.value);">
+                            <option value="1">
+                              home
+                            </option>
+                            <option value="2">
+                              work
+                            </option>
+                            <option value="0">
+                              new address
+                            </option>
+                          </select></td>
+                        </tr>
+
+                        <tr>
+                          <td>Save As</td>
+                          <td><input class="stdText" maxlength="30" id=
+                          "SLabel" name="SLabel" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>First Name*</td>
+                          <td><input class="stdText" maxlength="30" id=
+                          "SFirstName" name="SFirstName" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>MI</td>
+                          <td><input size="2" maxlength="2" id="SMI"
+                          name="SMI" value="" style="width: 36px;"
+                          type="text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Last Name*</td>
+                          <td><input id="SLastName" name="SLastName"
+                          class="stdText" maxlength="30" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Company Name</td>
+                          <td><input id="SCompanyName" name=
+                          "SCompanyName" class="stdText" maxlength="50"
+                          value="" type="text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Address*</td>
+                          <td><input id="SAddress1" name="SAddress1"
+                          class="stdText" maxlength="40" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Address 2</td>
+                          <td><input id="SAddress2" name="SAddress2"
+                          class="stdText" maxlength="40" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>City*</td>
+                          <td><input id="SCity" name="SCity" class=
+                          "stdText" maxlength="20" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>State*</td>
+
+                          <td><select size="1" id="SState" name=
+                          "SState" onchange="ChgShpState(this.value)">
+                            <option value="AA">
+                              AA
+                            </option>
+                            <option value="AP">
+                              AP
+                            </option>
+                            <option value="AE">
+                              AE
+                            </option>
+                            <option value="AK">
+                              ALASKA
+                            </option>
+                            <option value="AL">
+                              ALABAMA
+                            </option>
+                            <option value="AR">
+                              ARKANSAS
+                            </option>
+                            <option value="AZ">
+                              ARIZONA
+                            </option>
+                            <option value="CA">
+                              CALIFORNIA
+                            </option>
+                            <option value="CO">
+                              COLORADO
+                            </option>
+                            <option value="CT">
+                              CONNECTICUT
+                            </option>
+                            <option value="DC">
+                              DISTRICT OF COLUMBIA
+                            </option>
+                            <option value="DE">
+                              DELAWARE
+                            </option>
+                            <option value="FL">
+                              FLORIDA
+                            </option>
+                            <option value="GA">
+                              GEORGIA
+                            </option>
+                            <option value="HI">
+                              HAWAII
+                            </option>
+                            <option value="IA">
+                              IOWA
+                            </option>
+                            <option value="ID">
+                              IDAHO
+                            </option>
+                            <option value="IL">
+                              ILLINOIS
+                            </option>
+                            <option value="IN">
+                              INDIANA
+                            </option>
+                            <option value="KS">
+                              KANSAS
+                            </option>
+                            <option value="KY">
+                              KENTUCKY
+                            </option>
+                            <option value="LA">
+                              LOUISIANA
+                            </option>
+                            <option value="MA">
+                              MASSACHUSETTS
+                            </option>
+                            <option value="MD">
+                              MARYLAND
+                            </option>
+                            <option value="ME">
+                              MAINE
+                            </option>
+                            <option value="MI">
+                              MICHIGAN
+                            </option>
+                            <option value="MN">
+                              MINNESOTA
+                            </option>
+                            <option value="MO">
+                              MISSOURI
+                            </option>
+                            <option value="MS">
+                              MISSISSIPPI
+                            </option>
+                            <option value="MT">
+                              MONTANA
+                            </option>
+                            <option value="NC">
+                              NORTH CAROLINA
+                            </option>
+                            <option value="ND">
+                              NORTH DAKOTA
+                            </option>
+                            <option value="NE">
+                              NEBRASKA
+                            </option>
+                            <option value="NH">
+                              NEW HAMPSHIRE
+                            </option>
+                            <option value="NJ">
+                              NEW JERSEY
+                            </option>
+                            <option value="NM">
+                              NEW MEXICO
+                            </option>
+                            <option value="NV">
+                              NEVADA
+                            </option>
+                            <option value="NY" selected="selected">
+                              NEW YORK
+                            </option>
+                            <option value="OH">
+                              OHIO
+                            </option>
+                            <option value="OK">
+                              OKLAHOMA
+                            </option>
+                            <option value="OR">
+                              OREGON
+                            </option>
+                            <option value="PA">
+                              PENNSYLVANIA
+                            </option>
+                            <option value="PR">
+                              PUERTO RICO
+                            </option>
+                            <option value="RI">
+                              RHODE ISLAND
+                            </option>
+                            <option value="SC">
+                              SOUTH CAROLINA
+                            </option>
+                            <option value="SD">
+                              SOUTH DAKOTA
+                            </option>
+                            <option value="TN">
+                              TENNESSEE
+                            </option>
+                            <option value="TX">
+                              TEXAS
+                            </option>
+                            <option value="UT">
+                              UTAH
+                            </option>
+                            <option value="VA">
+                              VIRGINIA
+                            </option>
+                            <option value="VT">
+                              VERMONT
+                            </option>
+                            <option value="WA">
+                              WASHINGTON
+                            </option>
+                            <option value="WI">
+                              WISCONSIN
+                            </option>
+                            <option value="WV">
+                              WEST VIRGINIA
+                            </option>
+                            <option value="WY">
+                              WYOMING
+                            </option>
+                          </select></td>
+                        </tr>
+
+                        <tr>
+                          <td>Zip Code*</td>
+                          <td><input id="SZip" name="SZip" size="12"
+                          maxlength="10" value="" type="text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Phone*</td>
+                          <td>(<input id="ShippingPhone_tel1" name=
+                          "ShippingPhone_tel1" size="2" maxlength="3"
+                          value="" style="width: 30px;">) <input id=
+                          "ShippingPhone_tel2" name=
+                          "ShippingPhone_tel2" size="3" maxlength="2"
+                          value="" style="width: 30px;">-<input id=
+                          "ShippingPhone_tel3" name=
+                          "ShippingPhone_tel3" size="3" maxlength="4"
+                          value="" style="width: 38px;"> Ext.<input id=
+                          "ShippingPhone_Ext1" name=
+                          "ShippingPhone_Ext1" size="3" maxlength="4"
+                          value="" style="width: 38px;" type="text">
+                          <input name="ShippingPhone" value="" type="hidden">
+	          </td>
+                        </tr>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="2"><input checked="checked"
+                          type="checkbox">Save Changes</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+					
+	<script type="text/javascript">
+	//switchAddr(0,1);
+	</script>
+
+                    <blockquote>
+                  <a href="#nogo">Newegg Address Checker</a><br>
+                  Verify your address to avoid shipping delays.
+</blockquote>
+                  </fieldset>
+                </div>
+
+                <div style="margin: 0pt; padding: 0pt; float: left;">
+                  <fieldset class="max">
+                    <!-- <legend>Payment Options</legend> -->
+                    <legend>Payment Options</legend>
+
+                    <table class="COtabs" cellpadding="0" cellspacing="0">
+                      <tbody>
+		<tr>
+
+<td class="current">
+<b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,1)">Credit Card</a>
+</td>
+
+<td>
+<b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,2)">Preferred Account</a>
+</td>
+
+<td>
+<b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a id="BMLtab" href="#nogo" onclick="showPanel(this,3)">Bill Me Later<sup style="font-size:.5em;">&reg;</sup></a>
+</td>
+
+<td>
+<b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,4)">Paypal</a>
+</td>
+
+<td>
+<b class="tabTop"><b class="tt1"></b><b class="tt2"></b><b class="tt3"></b><b class="tt4"></b></b>
+<a href="#nogo" onclick="showPanel(this,5)">Mail Payment</a>
+</td>
+
+<td style="width:100%;border-bottom:1px solid #3a3a3a;">&nbsp;</td>
+
+</tr>					  
+                      </tbody>
+                    </table>
+
+                    <table>
+<!--
+Your card may be eligible or enrolled in the Verified by Visa payer authentication program. After clicking the submit button, your Card Issuer may prompt you for your payer authentication password to complete your purchase.
+Your card may be eligible or enrolled in the MasterCard SecureCode payer authentication program. After clicking the submit button, your Card Issuer may prompt you for your payer authentication password to complete your purchase.
+-->
+                    </table>
+
+                    <table id="panel1" class="COform COtabBox" cellpadding="0" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <td colspan="3" style="padding-bottom: 5px;">
+                          <img alt="" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/cards.gif" align=
+                          "middle"> <a href="#nogo" class=
+                          "noLine"><img alt="What&#39;s this?" title=
+                          "What&#39;s this?" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/policyQuote.gif" align=
+                          "middle"></a> <img alt="" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/securecode.gif" align="middle">
+                          <a href="#nogo" class="noLine"><img alt=
+                          "What&#39;s this?" title="What&#39;s this?"
+                          src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/policyQuote.gif" align=
+                          "middle"></a>
+                          </td>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+		<div style="margin: 0pt; padding: 0pt; float: left;">
+                  <fieldset class="min">
+                    <!-- <legend>Shipping Address</legend> -->
+                    <legend>Shipping Address</legend>
+
+                    <table class="COform" cellpadding="0" cellspacing="0">
+                      <tbody>
+					  
+                        <tr>
+                          <td>Choose Location</td>
+                          <td><select onchange="switchAddr(this,this.value);">
+                            <option value="1">
+                              home
+                            </option>
+                            <option value="2">
+                              work
+                            </option>
+                            <option value="0">
+                              new address
+                            </option>
+                          </select></td>
+                        </tr>
+
+                        <tr>
+                          <td>Save As</td>
+                          <td><input class="stdText" maxlength="30" id=
+                          "SLabel" name="SLabel" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>First Name*</td>
+                          <td><input class="stdText" maxlength="30" id=
+                          "SFirstName" name="SFirstName" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>MI</td>
+                          <td><input size="2" maxlength="2" id="SMI"
+                          name="SMI" value="" style="width: 36px;"
+                          type="text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Last Name*</td>
+                          <td><input id="SLastName" name="SLastName"
+                          class="stdText" maxlength="30" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Company Name</td>
+                          <td><input id="SCompanyName" name=
+                          "SCompanyName" class="stdText" maxlength="50"
+                          value="" type="text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Address*</td>
+                          <td><input id="SAddress1" name="SAddress1"
+                          class="stdText" maxlength="40" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Address 2</td>
+                          <td><input id="SAddress2" name="SAddress2"
+                          class="stdText" maxlength="40" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>City*</td>
+                          <td><input id="SCity" name="SCity" class=
+                          "stdText" maxlength="20" value="" type=
+                          "text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>State*</td>
+
+                          <td><select size="1" id="SState" name=
+                          "SState" onchange="ChgShpState(this.value)">
+                            <option value="AA">
+                              AA
+                            </option>
+                            <option value="AP">
+                              AP
+                            </option>
+                            <option value="AE">
+                              AE
+                            </option>
+                            <option value="AK">
+                              ALASKA
+                            </option>
+                            <option value="AL">
+                              ALABAMA
+                            </option>
+                            <option value="AR">
+                              ARKANSAS
+                            </option>
+                            <option value="AZ">
+                              ARIZONA
+                            </option>
+                            <option value="CA">
+                              CALIFORNIA
+                            </option>
+                            <option value="CO">
+                              COLORADO
+                            </option>
+                            <option value="CT">
+                              CONNECTICUT
+                            </option>
+                            <option value="DC">
+                              DISTRICT OF COLUMBIA
+                            </option>
+                            <option value="DE">
+                              DELAWARE
+                            </option>
+                            <option value="FL">
+                              FLORIDA
+                            </option>
+                            <option value="GA">
+                              GEORGIA
+                            </option>
+                            <option value="HI">
+                              HAWAII
+                            </option>
+                            <option value="IA">
+                              IOWA
+                            </option>
+                            <option value="ID">
+                              IDAHO
+                            </option>
+                            <option value="IL">
+                              ILLINOIS
+                            </option>
+                            <option value="IN">
+                              INDIANA
+                            </option>
+                            <option value="KS">
+                              KANSAS
+                            </option>
+                            <option value="KY">
+                              KENTUCKY
+                            </option>
+                            <option value="LA">
+                              LOUISIANA
+                            </option>
+                            <option value="MA">
+                              MASSACHUSETTS
+                            </option>
+                            <option value="MD">
+                              MARYLAND
+                            </option>
+                            <option value="ME">
+                              MAINE
+                            </option>
+                            <option value="MI">
+                              MICHIGAN
+                            </option>
+                            <option value="MN">
+                              MINNESOTA
+                            </option>
+                            <option value="MO">
+                              MISSOURI
+                            </option>
+                            <option value="MS">
+                              MISSISSIPPI
+                            </option>
+                            <option value="MT">
+                              MONTANA
+                            </option>
+                            <option value="NC">
+                              NORTH CAROLINA
+                            </option>
+                            <option value="ND">
+                              NORTH DAKOTA
+                            </option>
+                            <option value="NE">
+                              NEBRASKA
+                            </option>
+                            <option value="NH">
+                              NEW HAMPSHIRE
+                            </option>
+                            <option value="NJ">
+                              NEW JERSEY
+                            </option>
+                            <option value="NM">
+                              NEW MEXICO
+                            </option>
+                            <option value="NV">
+                              NEVADA
+                            </option>
+                            <option value="NY" selected="selected">
+                              NEW YORK
+                            </option>
+                            <option value="OH">
+                              OHIO
+                            </option>
+                            <option value="OK">
+                              OKLAHOMA
+                            </option>
+                            <option value="OR">
+                              OREGON
+                            </option>
+                            <option value="PA">
+                              PENNSYLVANIA
+                            </option>
+                            <option value="PR">
+                              PUERTO RICO
+                            </option>
+                            <option value="RI">
+                              RHODE ISLAND
+                            </option>
+                            <option value="SC">
+                              SOUTH CAROLINA
+                            </option>
+                            <option value="SD">
+                              SOUTH DAKOTA
+                            </option>
+                            <option value="TN">
+                              TENNESSEE
+                            </option>
+                            <option value="TX">
+                              TEXAS
+                            </option>
+                            <option value="UT">
+                              UTAH
+                            </option>
+                            <option value="VA">
+                              VIRGINIA
+                            </option>
+                            <option value="VT">
+                              VERMONT
+                            </option>
+                            <option value="WA">
+                              WASHINGTON
+                            </option>
+                            <option value="WI">
+                              WISCONSIN
+                            </option>
+                            <option value="WV">
+                              WEST VIRGINIA
+                            </option>
+                            <option value="WY">
+                              WYOMING
+                            </option>
+                          </select></td>
+                        </tr>
+
+                        <tr>
+                          <td>Zip Code*</td>
+                          <td><input id="SZip" name="SZip" size="12"
+                          maxlength="10" value="" type="text"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Phone*</td>
+                          <td>(<input id="ShippingPhone_tel1" name=
+                          "ShippingPhone_tel1" size="2" maxlength="3"
+                          value="" style="width: 30px;">) <input id=
+                          "ShippingPhone_tel2" name=
+                          "ShippingPhone_tel2" size="3" maxlength="2"
+                          value="" style="width: 30px;">-<input id=
+                          "ShippingPhone_tel3" name=
+                          "ShippingPhone_tel3" size="3" maxlength="4"
+                          value="" style="width: 38px;"> Ext.<input id=
+                          "ShippingPhone_Ext1" name=
+                          "ShippingPhone_Ext1" size="3" maxlength="4"
+                          value="" style="width: 38px;" type="text">
+                          <input name="ShippingPhone" value="" type="hidden">
+	          </td>
+                        </tr>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="2"><input checked="checked"
+                          type="checkbox">Save Changes</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+					
+	<script type="text/javascript">
+	//switchAddr(0,1);
+	</script>
+
+                    <blockquote>
+                  <a href="#nogo">Newegg Address Checker</a><br>
+                  Verify your address to avoid shipping delays.
+</blockquote>
+                  </fieldset>
+                </div>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="2"><input checked="checked" type="checkbox">Save Changes</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+
+
+
+
+                    <table id="panel2" class="COtabBox" style="display: none;" cellpadding="0" cellspacing="5">
+                      <thead>
+                        <tr>
+                          <td>
+                            <img alt="Newegg Preferred Account" title="Newegg Preferred Account" src="http://promotions.newegg.com/optimost/checkout/nPrefAcct200.gif">
+                          </td>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td><br>
+                          <strong>Choose your offer:</strong><br>
+                          <input name="preferred" checked="checked"
+                          type="radio">1.1% discount on purchase
+                          total<sup class="red" style=
+                          "font-size: 9px;">NEW!</sup><br>
+                          <input name="preferred" type="radio">No
+                          Payments for 6 months (orders over $500)
+                          </td>
+                        </tr>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td>&#160;<br>
+                          <br>
+                          <br>
+                          <br>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+
+
+
+
+                    <table id="panel3" class="COtabBox" style="display: none;" cellpadding="0" cellspacing="5">
+                      <thead>
+                        <tr>
+                          <td><img alt="Bill Me Later" title="Bill Me Later" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/logoBML.gif"></td>
+                          <td width="100%"><strong>Buy Fast. Feel Secure.</strong>
+                          <sup style="font-size: 0.5em;">&reg;</sup><br>
+                          <a href="#nogo">How to request credit</a>
+                          </td>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td colspan="2"><br>
+                          <input checked="checked" type="checkbox">YES,
+                          I&#39;d like No Payments for 90 days on
+                          purchases over $250!</td>
+                        </tr>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="2">&#160;<br>
+                          <br>
+                          <br>
+                          <br></td>
+                        </tr>
+                      </tfoot>
+                    </table>
+		
+<script type="text/javascript">
+//switchCard(0,1);
+</script>
+
+                    <table id="panel4" class="COtabBox" style="display: none;" cellpadding="0" cellspacing="5">
+                      <thead>
+                        <tr>
+                          <td><img alt="PayPal" title="PayPal" src="http://promotions.newegg.com/optimost/checkout/nPayPal.gif"></td>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td><strong>Email Address:</strong>
+                          yourname@yourdomain.com</td>
+                        </tr>
+
+                        <tr>
+                          <td>&#160;</td>
+                        </tr>
+
+                        <tr>
+                          <td><strong>Important:</strong> Your order
+                          will not be processed if your shipping
+                          address does not match your PayPal confirmed
+                          address.</td>
+                        </tr>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="2">&#160;<br>
+                          <br>
+                          <br>
+                          <br></td>
+                        </tr>
+                      </tfoot>
+
+                    </table>
+
+
+                    <table id="panel5" class="COtabBox" style="display: none;" cellpadding="0" cellspacing="5">
+                      <tbody>
+                        <tr>
+                          <td><img alt="" src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/checkMoL.gif"
+                          align="absmiddle"><strong>Check or Money Order</strong></td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <ol>
+                              <li>Print your Order Confirmation</li>
+                              <li>Please fill out your check/money
+                              order properly (refer to sample image
+                              below)
+
+                                <ol style="margin: 3px 14px; padding: 0pt 8px;" type="A">
+                                  <li>Make payable to Newegg.com</li>
+
+                                  <li>Date the check is filled out.
+                                  Post-dated checks will not be
+                                  accepted.</li>
+
+                                  <li>Write your Sales Order number on
+                                  the memo line. (RMA # or Customer #
+                                  may be used when a Sales Order # is
+                                  not available.)</li>
+
+                                  <li>Signature required.</li>
+                                </ol>
+                              </li>
+
+                              <li>Mail pre-paid payment to:<br>
+                              16839 E. Gale Ave.<br>
+                              City of Industry, CA 91745</li>
+
+                              <li>Please include a printed copy of your
+                              Sales Order or Confirmation</li>
+
+                              <li>Payments must be received within
+                              7-days of placing an order</li>
+                            </ol>
+                          </td>
+                        </tr>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="2" style="text-align: center;">
+                          <img alt="sample check" src="http://promotions.newegg.com/optimost/checkout/samplecheck.gif"></td>
+                        </tr>
+                      </tfoot>
+
+                    </table>
+                  </fieldset>
+				  
+<script type="text/javascript">
+function nextStep(){
+        t=document.getElementById('submitArea').getElementsByTagName('span');
+        if(t[1].style.display!='none'){
+                location.href='preferredAccount.htm';
+                return false;
+        }
+        if(t[2].style.display!='none'){
+                location.href='billMeLater.htm';
+                return false;
+        }
+        return true;
+}
+</script>
+
+                  <p id="submitArea">
+	    <span>Credit Card payment selected</span>&nbsp;<span style="display:none;">Preferred Account selected</span>&nbsp;<span style="display:none;">Bill Me Later selected</span>&nbsp;<span style="display:none;">PayPal payment selected</span>&nbsp;<span style="display:none;">Mail Payment selected</span>&nbsp;
+	    <a href="http://promotions.newegg.com/optimost/checkout/checkout_step2.htm" onclick="return nextStep();" class="btnOn" onmousedown="javascript:this.className=&#39;btnDown&#39;" onmouseover="javascript:this.className=&#39;btnOn&#39;" onmouseout="javascript:this.className=&#39;btnOn&#39;">Continue</a>
+	  </p>
+	 
+                  </div>
+                *These fields are required for processing.
+              </form>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<script native="no">
+formObj = document.forms[0];
+for(var i in daFormElements[opFormName]){
+	if(daFormElements[opFormName][i].name!=''){
+		num=0;done=false;
+		do{
+			if(formObj.elements[num].name == daFormElements[opFormName][i].name){
+				formObj.elements[num].value = daFormElements[opFormName][i].value;
+				done=true;
+			}
+			num++;
+			if(num>=formObj.length) done=true;
+		}while (!done);
+	}
+}
+</script>
+
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+<!-- SNIPPET END END END END END END END END END END END END END END END END END END END END END END END END END END END END END END  END ---->
+
+<!-- **************** START START START START -  CODE TO DISPLAY DEFAULT CODE IF NO OPTIMOST **************** -->
+<script language="javascript" type="text/javascript">
+if ("boolean" != typeof(isOptimostCopyVisible)) document.getElementById('opIndexedContent').style.display = 'block';
+</script>
+<!-- **************** END END END END END END -  CODE TO DISPLAY DEFAULT CODE IF NO OPTIMOST **************** -->
+
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" id="footerArea">
+	<tbody>
+		<tr><td colspan="5" id="footerAreaPadding"><div id="stripe1"><img src="https://a248.e.akamai.net/f/248/9241/30d/secure.newegg.com/Nest/none.gif" border="0" height="1" width="984" ></div></td></tr>		
+		<tr><td colspan="5" id="disclaim"><a href="http://www.newegg.com/CustomerService/PolicyAgreement.asp">Policy &amp; Agreement</a> | <a href="http://www.newegg.com/CustomerService/PrivacySecurity.asp">Privacy Policy</a> | &copy; 2000-2006 Newegg Inc. All rights reserved.</td></tr>
+	</tbody>
+	</table>
+	
+  </div>
+</body>
+</html>

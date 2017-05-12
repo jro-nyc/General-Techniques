@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<script type="text/javascript" language="javascript1.2">
+//	this function is global, too, but it isn't a 'typical' global::it is specific to this application
+function nextFocus(myself, max, n1) {	// this is necessary because hitting 'tab' is just such a pain
+    var tS = myself.value.toString();
+    if (tS.length == max) {	// if these are text boxes that expect numbers and have a maxlength...
+        var tst = "1" + tS;
+        var abc = "";
+        var xyz = "2";
+        for (aToZ = 0; aToZ < max; aToZ++) {
+            abc += "9";
+            xyz += "0";
+        }
+        abc = parseInt(abc.valueOf());
+        xyz = parseInt(xyz.valueOf());
+        tst = parseInt(tst.valueOf());
+        if (tst > abc && tst < xyz) {
+            n1.focus();
+        } else {
+            myself.value = "";	// clear it!
+        }
+    }
+}
+// these variables are 'global' [start]
+var echo = function(something)	// Because I like php (or DOS)
+{
+ document.write(something);	// or because 'echo' is easier to type and less likely subject to typo.
+}	// this function is also a good way to demonstrate 'function literals'
+
+var homie = "<BR />\n";	// This is a client-side version of a favorite server-side variable
+var divide = " &nbsp; | &nbsp; ";	// A typical vertical line between page elements
+var theTab = " &nbsp; &nbsp; ";	// a fake html tab
+// these variables are 'global' [end]
+</script>
+	<title>Example code&#0133; Phone number inputs &#0151; validated 3-part</title>
+<style type="text/css">
+ body{background-color:#EEEED0;}
+ label{font-weight:bolder; color:#CD5C5C;}
+#myForm input,checkbox{background-color:#FFFFE0;}
+ form submit{color:#00001F;}
+</style>
+</head>
+
+<body onload="javascript:
+var lm=document.forms[0];
+lm.onsubmit=function()
+{
+ var ll = document.forms[0];
+ ll.myReset.value = 'reset';
+ ll.mySubmit.value = 'true';
+ ll.d_phone0.value = '';
+ ll.d_phone1.value = '';
+ ll.d_phone2.value = '';
+ ll.d_phone2.disabled=true;
+ ll.d_phone1.disabled=true;
+ ll.d_phone0.disabled=true;
+}
+/*
+ * The above is necessary so you don't accidentally submit unnecessary name,value pairs (the 3 parts of the phone number)
+ */
+">
+<script>echo("<form name=\"myForm\" id=\"myForm\">");</script>
+<h1 align="center"><script>echo(document.title.charAt(0).toUpperCase() + document.title.substr(1).toLowerCase());</script></h1>
+<label for="name_myName">Please enter your name: <input id="name_myName" name="myName" type="text" size="12" /></label><script>echo(homie);</script>
+<label for="d_phone0">Please enter your Phone #: ( <input id="d_phone0" type="text" maxlength="3" size="3" onkeyup="javascript:var n = document.getElementById('d_phone1');           var max=(this.maxLength > 0 && this.maxLength < 11) ? this.maxLength : 3; nextFocus(this,max,n);" accesskey="q" name="d_phone0" onblur="javascript:var p1 = document.getElementById('d_phone1'); var p2 = document.getElementById('d_phone2'); var et = document.getElementById('home_phone'); et.value = this.value.toString() + p1.value.toString() + p2.value.toString();" /> )&nbsp; </label>
+<label for="d_phone1">   <input id="d_phone1" type="text" maxlength="3" size="3" onkeyup="javascript:var n = document.getElementById('d_phone2');           var max=(this.maxLength > 0 && this.maxLength < 11) ? this.maxLength : 3; nextFocus(this,max,n);"                       name="d_phone1" onblur="javascript:var p0 = document.getElementById('d_phone0'); var p2 = document.getElementById('d_phone2'); var et = document.getElementById('home_phone'); et.value = p0.value.toString() + this.value.toString() + p2.value.toString();" /></label>
+<label for="d_phone2"> - <input id="d_phone2" type="text" maxlength="4" size="4" onkeyup="javascript:var n = document.getElementById('wants_magazine'); var max=(this.maxLength > 0 && this.maxLength < 11) ? this.maxLength : 4; nextFocus(this,max,n);"                       name="d_phone2" onblur="javascript:var p0 = document.getElementById('d_phone0'); var p1 = document.getElementById('d_phone1'); var et = document.getElementById('home_phone'); et.value = p0.value.toString() + p1.value.toString() + this.value.toString();" /></label>
+							 <INPUT type="hidden" name="home_phone" id="home_phone" size="25" maxlength="255" value="" /><script>echo(homie);</script>
+<label for="wants_magazine"><input name="custCheck" type="checkbox" id="wants_magazine" /> &lt;&lt;&lt; a checkbox.</label><script>echo(homie);</script>
+<label for="mySubmit">Submit: <input type="submit" id="mySubmit" name="submittal" value="Continue &gt;&gt;&gt;" /></label><script>echo(divide);</script>
+<label for="myReset">Reset: <input type="reset" id="myReset" name="resetMe" value="I don't like these&#133;" onclick="javascript:alert('Your phone number is: ' + this.form.home_phone.value);" /></label>
+<script>echo("</form>");echo(homie);echo('Click reset button to see the current phone number&#133;');echo(homie);echo("Of course, it'll clear the phone number to do so!");</script>
+<div align="center"><a href="http://r.wesley.edwards.net/forms/">More code examples by <i>rwe</i></a></div>
+<div align="right">
+ <div style="font-size:10.5pt;color:#CD5C5C; width:65%;" align="left">
+  <script>echo(theTab);</script>The <i>phone number in three sections</i> code actually constitutes more than one example.  There's the 'ready-tab' (because pressing 'tab' is such a big pain), there's validating the numbers (000 has to be allowed), there's dealing with the max - phone numbers are 3x3x4 -> 10 digits.  If you set a maxlength attribute, my code uses it (it should be 3) some browsers (firefox) set the maxlength to a really large default.  What we did here is we made it check if the maxlength is set to 'something bigger than 0 and less than 11' if not, we set it to our own default, 3 then 3 again then 4 respectively.<script>echo(homie);</script>
+   -r<script>echo(homie);</script>
+   -=-
+ </div>
+</div>
+</body>
+</html>

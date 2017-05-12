@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>CSS style sheet changing properties test</title>
+	<!--
+	<link rel="stylesheet" type="text/css" href="http://i.cdn.turner.com/cnn/.element/css/3.0/common.css">
+	<link rel="stylesheet" type="text/css" href="http://i.cdn.turner.com/cnn/.element/css/3.0/main.css">
+	<link rel="stylesheet" type="text/css" href="http://i.cdn.turner.com/cnn/.element/css/3.0/connect/overlay.css">
+	-->
+</head>
+
+<body>
+<style>.bodyXYZ, .body123, .bodyABC{font-size:30px !important}</style>
+<script>
+$opt={}
+$opt.opChangeCSS=function(theClass,element,value){
+	for (var S = 0; S < document.styleSheets.length; S++){
+		//try{
+			if(document.styleSheets[S]['rules']) {
+				cssRules = 'rules';
+			} else if (document.styleSheets[S]['cssRules']) {
+				cssRules = 'cssRules';
+			} else {
+				cssrules='none';//no rules found... browser unknown
+				return;
+			}
+			var thisCSS=document.styleSheets[S][cssRules];
+			for (var R = 0; R < thisCSS.length; R++) {//alert(R);
+				if (thisCSS[R].selectorText.indexOf(theClass)!=-1) {alert('match-'+thisCSS[R].selectorText+'\n'+thisCSS[R].style.cssText+'\n'+element);
+					if((loc=thisCSS[R].style.cssText.toLowerCase().indexOf(element))!=-1){//alert('in');
+						var cssT=thisCSS[R].style.cssText;
+						temp=cssT.substring(loc,cssT.indexOf(';'));
+						cssT=cssT.replace(temp,element+':'+value);
+						thisCSS[R].style.cssText=cssT;
+						added=true;
+						//break;
+					}
+				}
+			}
+		//}
+		//catch(err){
+		//}
+	}
+}
+
+$opt.opChangeCSS('.bodyXYZ','font-size','10px');
+//$opt.opChangeCSS('.btl-bevel-top-bottom','display','block');
+//$opt.opChangeCSS('.btl-navBox-body','display','block');
+//$opt.opChangeCSS('.btl-navBox-body','display','block');
+
+</script>
+
+<div class="bodyXYZ">hi hi hui</div>
+<div class="bodyABC">hi hi hui</div>
+<div class="body123">hi hi hui</div>
+
+</body>
+</html>

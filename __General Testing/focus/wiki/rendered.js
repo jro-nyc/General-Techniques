@@ -1,0 +1,3 @@
+document.write('<div id="jaime" style="text-align:center;width:400px;">My name is Jaime<\/div><div id="live" style="text-align:center;width:400px;">I live in Nueva York<\/div><div id="formArea" style="text-align:center;width:400px;"><form name="myForm"><input type="text" name="fname" /><br/><input type="text" name="lname" /><br/><input type="submit" name="continue" value="continue" /><\/form><\/div>\n');
+obj=document.getElementById("live");
+if(obj!=null)obj.innerHTML="I live in Astoria";
