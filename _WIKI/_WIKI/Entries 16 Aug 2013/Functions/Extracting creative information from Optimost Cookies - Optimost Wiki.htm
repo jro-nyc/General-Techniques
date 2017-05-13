@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Extracting creative information from Optimost Cookies,Cookie Formats">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Extracting creative information from Optimost Cookies - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Extracting%20creative%20information%20from%20Optimost%20Cookies%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Extracting_creative_information_from_Optimost_Cookies";
+var wgTitle = "Extracting creative information from Optimost Cookies";
+var wgAction = "view";
+var wgArticleId = "1157";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6859";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Extracting%20creative%20information%20from%20Optimost%20Cookies%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Extracting%20creative%20information%20from%20Optimost%20Cookies%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Extracting%20creative%20information%20from%20Optimost%20Cookies%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Extracting%20creative%20information%20from%20Optimost%20Cookies%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Extracting_creative_information_from_Optimost_Cookies">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Extracting creative information from Optimost Cookies</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<a name="Description"></a><h2> <span class="mw-headline">Description</span></h2>
+<p>The two Optimost cookies we drop - sticky and activity tracking - 
+contain information that can be extracted for other purposes.  The 
+dropped value is called the "Session Identifier"
+</p><p>The 3 most relevant pieces of information can be extracted we can get are:
+</p>
+<ol><li>Creative ID
+</li><li>Wave ID
+</li><li>Segment ID
+</li></ol>
+<p>You can go to <a href="http://wiki.interwoven.com/optimost/Cookie_Formats" title="Cookie Formats">Cookie Formats</a> for more information on the session identifier.
+</p>
+<a name="Code_example"></a><h3> <span class="mw-headline">Code example</span></h3>
+<p>The code below pulls out the Creative, Wave, and Segment IDs and passes them into SiteCatalyst as evars:
+</p>
+<pre>optimost=(typeof(optimost)=="object"?optimost:{});
+optimost.base36conv=function(val){
+	var base36={"0":0,"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,
+	"a":10,"b":11,"c":12,"d":13,"e":14,"f":15,"g":16,"h":17,"i":18,"j":19,"k":20,"l":21,"m":22,"n":23,
+	"o":24,"p":25,"q":26,"r":27,"s":28,"t":29,"u":30,"v":31,"w":32,"x":33,"y":34,"z":35};
+	return parseInt(base36[val.substring(2,3)])+parseInt(36*parseInt(base36[val.substring(1,2)]))+parseInt(36*36*parseInt(base36[val.substring(0,1)]))	
+}
+optimost.getC=function(cname){
+	var tempList="";
+        var $cooks={};
+	var c=document.cookie;
+	if(c.length&gt;3){
+		for(var a=c.split(";"),i=0,b=a.length;i&lt;b;i++){
+			var v=a[i].split("=");
+			while(v[0].substring(0,1)==" ")v[0]=v[0].substring(1,v[0].length);
+			if(v.length==2)$cooks[v[0]]=unescape(v[1]);
+		}
+	}
+	if($cooks[cname]!=null &amp;&amp; ($cooks[cname].length==25 || $cooks[cname].length==37)){
+		var sgNum=optimost.base36conv($cooks[cname].substring(1,4).toLowerCase());
+		var wvNum=optimost.base36conv($cooks[cname].substring(4,7).toLowerCase());
+		var crNum=optimost.base36conv($cooks[cname].substring(7,10).toLowerCase());	
+		window.s_brm = (typeof(s_brm)&nbsp;!= "undefined")&nbsp;? s_brm&nbsp;: {};
+		s_brm.eVar19 = $cooks[cname];
+		s_brm.eVar20 = crNum;
+		s_brm.eVar21 = wvNum;
+		s_brm.eVar22 = sgNum;
+	}
+}
+optimost.getC("op466allstatecomhomepageliid");   //The activity tracking cookie for the subject we are tracking has the name "op466allstatecomhomepageliid"
+
+
+//Code to use alert to show results, not needed for real example, not part of the customer code.
+if(window.s_brm!=null){
+	var list='';
+	for(var n in window.s_brm)list+=n+"="+window.s_brm[n]+'\n';
+	alert(list);
+}
+</pre>
+<p>You define the function <b>optimost.getC</b> to get the values for a specific cookie, and we tell it to look for the cookie named "op466allstatecomhomepageliid"
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 6/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1157-0!1!0!!en!2!edit=0 and timestamp 20130816143428 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Extracting_creative_information_from_Optimost_Cookies">http://wiki.interwoven.com/optimost/Extracting_creative_information_from_Optimost_Cookies</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Extracting_creative_information_from_Optimost_Cookies" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Extracting_creative_information_from_Optimost_Cookies&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Extracting_creative_information_from_Optimost_Cookies&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Extracting_creative_information_from_Optimost_Cookies&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Extracting_creative_information_from_Optimost_Cookies" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Extracting_creative_information_from_Optimost_Cookies" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Extracting_creative_information_from_Optimost_Cookies" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Extracting_creative_information_from_Optimost_Cookies&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Extracting_creative_information_from_Optimost_Cookies&amp;oldid=6859" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Extracting%20creative%20information%20from%20Optimost%20Cookies%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 14 November 2012, at 22:43.</li>
+				<li id="viewcount">This page has been accessed 5 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.173 secs. -->
+</body></html>

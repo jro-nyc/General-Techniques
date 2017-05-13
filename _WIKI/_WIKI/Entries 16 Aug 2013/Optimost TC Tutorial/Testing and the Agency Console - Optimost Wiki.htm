@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Testing and the Agency Console,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples,Multi-page experiments">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Testing and the Agency Console - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Testing_and_the_Agency_Console";
+var wgTitle = "Testing and the Agency Console";
+var wgAction = "view";
+var wgArticleId = "1017";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5743";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Testing_and_the_Agency_Console">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Testing and the Agency Console</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<strong class="selflink">Testing and the Agency Console</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>We will cover setting up experiments in the Agency Console and things you need to consider/look for when setting them up.
+</p>
+<a name="Agency_Structure"></a><h2> <span class="mw-headline">Agency Structure</span></h2>
+<p>First, let's look at the structure of the Console from a Hierarchical perspective.  
+</p>
+<a name="Top_to_Bottom"></a><h3> <span class="mw-headline">Top to Bottom</span></h3>
+<p>The diagram below shows the complete Hierarchy of the Console.  
+</p><p><a href="http://wiki.interwoven.com/optimost/Image:ConsoleStructure.gif" class="image" title="image:consoleStructure.gif"><img alt="image:consoleStructure.gif" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/ConsoleStructure.gif" height="499" border="0" width="889"></a>
+</p>
+<ol><li><b>Agency</b> - The <b>Agency</b> level is where you (the TCs) normally login.  This contains all Customer <b>Accounts</b>
+ serviced by Optimost.  When Optimost was formed, there was only one 
+Agency - the Optimost Agency, the one you will be using normally - but 
+since we developed a self-service offering, we have also created other 
+Agency Consoles for our larger Digital Agency partners, such as Digital 
+River.  Optimost/Autonomomy user credentials are added and controlled at
+ this level.
+</li><li><b>Account</b> - Next come the <b>Accounts</b>, which are our 
+Customers or any Optimost-created test environments. You, the TC, will 
+be assigned specific Accounts to service.  For Customer access to their 
+own Account, their user credentials are controlled at this level.
+</li><li><b>Portfolio</b> - Below the Account level,you can associate your experiments into <b>Portfolios</b> based on some common association that you, the Account manager, deem relevant.  This can be:
+<ul><li><b>A single Portfolio for all our experiments</b> -  Some customers see no need for further separation of their experiments
+</li><li><b>A Portfolio for every brand</b> - Some customers have 
+different websites/brands they are testing - whether they are Digital 
+Agencies or single companies with multiple websites/brands -  and they 
+use Portfolios to group their experiments.
+</li><li><b>A Portfolio for different types of test</b> - Some customers like to separate Landing Page test from Product Page tests
+</li></ul>
+</li><li><b>Subject</b> - The "Page" or "Common Area" you are testing.  
+At this level and below is where a TC does the majority of their work.  
+From an Optimost Perspective, a subject can be:
+<ul><li>A standard single-page experiment (about 90%+ of our experiments)
+</li><li>A site-wide element test, like a header, footer, left navigation, etc
+</li><li>An element test over a subset of pages - say testing a common upsell on Product Pages.
+</li><li>A multi-page funnel/flow test, a test spanning multiple pages that you deem must be run as one experiment.
+</li><li>Go to <a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a> for more information<br><br><a href="http://wiki.interwoven.com/optimost/Image:ConsoleStructure2.gif" class="image" title="image:consoleStructure2.gif"><img alt="image:consoleStructure2.gif" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/ConsoleStructure2.gif" height="459" border="0" width="887"></a><br>
+</li></ul>
+</li><li><b>Template</b> - The Actual Code the TC adds to create the 
+different variables and values for the experiment.  For the TC, this is 
+the most important part of the Optimization process.   
+<ul><li>Normally, a subject has two templates in it:
+<ul><li>A Template with all the variables and values, usually named <b>ver 1.0</b>
+ (or version, v, no matter).  This template will be used for all the 
+waves in the experiment, normally by doing DOM modification.
+</li><li>A second <b>blank</b> template for showing the customer's default content on the test page.
+</li><li>Over time, the TC may create modified version of the <b>ver 1.0</b>
+ template for any number of reasons - customer changes to the STP or 
+changes to their website, and may use a newer one for testing. 
+</li></ul>
+</li><li>In some cases, you may have 2 different template for testing two very different page, normally in two different Personas.  
+</li></ul>
+</li><li><b>Trial</b> - Expermients are run at the <b>Trial</b> level.  A
+ trial is a test of a subject against a group of visitors (referred to 
+as an audience). The audience can be tested as a whole or you can divide
+ your audience into <b>Personas</b> if you want to optimize based on some common trait. <br><br><a href="http://wiki.interwoven.com/optimost/Image:ConsoleStructure3.gif" class="image" title="image:consoleStructure3.gif"><img alt="image:consoleStructure3.gif" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/ConsoleStructure3.gif" height="503" border="0" width="891"></a><br>
+</li><li><b>Personas</b> - A persona is a group of visitors with common 
+traits participating in a trial.  A trial can have any number of 
+Personas. Each trial is created with a default persona named "All 
+Visitors", and other Personas can be added subsequently. Personas 
+(except for the trial default persona) can be assigned a criteria that 
+determines which visitors become a member of that persona. A few things 
+about Personas:
+<ul><li>Our Best Practice dictate that we get an STP for testing:
+<ul><li>We create a QA Persona for testing.
+</li><li>We create a Blank Wave based the Blank Template - one creative only - and make it the <b>current wave</b> om the All Other Visitors Persona.
+</li><li>We then test the Template using the QA Persona, then push the 
+content of Wave 1 to the All Other Visitors Persona when we are ready to
+ push the test to live customers.
+</li></ul>
+</li><li>When you set up multiple Personas, know that if the criteria are NOT mutually exclusive, you will need to set a <b>priority</b> in the Persona to decide which one has higher priority if both are selected as true.  Be wary of this possible collision.
+</li></ul>
+</li><li><b>Wave</b> - A wave is a test of a specified set of creatives 
+run against a persona of visitors within a trial. The creatives tested 
+are chosen based on an Optimal Experimental Design given the variables 
+and the values being tested. 
+</li><li><b>Sector</b> - A sector is a group of creatives within a wave.
+  Each wave must have at least one sector. Often, each wave has two 
+sectors. One sector is named "Control" and contains the control creative
+ for the subject. The second sector is named "Challengers" and contains 
+creatives selected by an Optimal Design. The response rates of these 
+creatives will be compared to the control. After the first wave is 
+complete a third sector named "Winners from Wave X" is added that 
+contains the best creatives from the previous wave. It's important that 
+you establish these baselines so you can take into consideration changes
+ in your visitor base that may influence results. 
+</li></ol>
+<a name="Testing_and_QA_-_things_to_think_about"></a><h3> <span class="mw-headline">Testing and QA - things to think about</span></h3>
+<ol><li>Anytime you make changes to a template, you must Refresh 
+Creatives to see the changes on the served content (the Creatives going 
+out to Customers).  
+<ul><li>When you create a new Wave and you activate it, at that moment it takes a snapshot of the template.
+<ul><li>The creatives you defined will be saved to our Optimost Creative Servers with the template's code as it stands at that moment.
+</li><li>The creatives will be served as such going forward, with only the session identifier changing on new page views.
+</li></ul>
+</li><li><b>If you make subsequent changes to that Template, those 
+changes will not be reflected in the current Creatives unless you 
+Refresh Creatives.</b>
+</li><li>You can Refresh at the Template OR Wave level, depending on what you are doing. For example:
+<ul><li>If you have a template in different waves in multiple Personas,
+<ul><li>If you are testing something in QA and don't want to effect the template in another Persona, refresh at the wave level.
+</li><li>If you want changes to be reflected in all waves, then Refresh at the Template level.
+</li></ul>
+</li><li>If you have a template in a wave in only 1 Persona, it does not matter, you can Refresh at the Wave or Template level.<br><br>
+</li></ul>
+</li></ul>
+</li><li>More generally, many changes at the Subject level require you to Refresh Creatives.  Examples include (<span style="color:red">circled in red</span> in the diagram below):<br><br><a href="http://wiki.interwoven.com/optimost/Image:ChangesToSubject.gif" class="image" title="image:changesToSubject.gif"><img alt="image:changesToSubject.gif" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/ChangesToSubject.gif" height="618" border="0" width="705"></a><br><br>
+<ol><li>Changes to the Template, as noted in #1.
+</li><li>Any changes to the Activity Tracking OR Stickiness Cookie settings
+<ul><li>These are saved as part of the creative
+</li></ul>
+</li><li>Changes to the clickthru domains (at the Subject OR Portfolio level)
+</li><li>Changes to the Page View Attributes
+</li><li>Changes to Modules
+<ul><li>A new one is added
+</li><li>The name of an existing module is changed.<br><br>
+</li></ul>
+</li></ol>
+</li><li>Examples of Changes you DO NOT need to Refresh Creatives for (<span style="color:blue">circled in blue</span> in the diagrams above and below):<br><br><a href="http://wiki.interwoven.com/optimost/Image:ChangesToTrial.gif" class="image" title="image:changesToTrial.gif"><img alt="image:changesToTrial.gif" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/ChangesToTrial.gif" height="411" border="0" width="702"></a><br><br>
+<ol><li>Changes to Failover Copy
+</li><li>Trial Level changes such as:
+<ul><li>Adding or removing Personas
+</li><li>Changes to the Persona Criteria
+</li><li>Changing the Current Wave.<br><br>
+</li></ul>
+</li></ol>
+</li><li>When you are creating a Wave, if it is an experimental design 
+on an MVT, you must check the box "Sector is supported by an 
+experimental design".<br><br><a href="http://wiki.interwoven.com/optimost/Image:CreateSector.gif" class="image" title="image:createSector.gif"><img alt="image:createSector.gif" src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/CreateSector.gif" height="377" border="0" width="729"></a><br><br>
+<ul><li>Without this being checked, you cannot see the Sector variable 
+report, which for an MVT is bad not to have, and you will likely have to
+ rerun the wave if you want it to appear in the reporting.  <b>Very</b> bad, make sure to check it if need be.
+</li><li>And if it is not an MVT but an A/B/n test, the box should be 
+unchecked because than you would have a sector variable report available
+ (that should not be looked at for an A/B/n test) that may confuse 
+someone looking at the Wave.<br><br>
+</li></ul>
+</li><li>The different Stages of a Trial
+<ol><li><b>Design</b> - You have at least one Portfolio that does not have a <b>"current wave"</b>.
+<ul><li>All new Trials start this way.
+</li><li>Content is served to any Personas with a <b>current wave</b>.
+</li></ul>
+</li><li><b>QA</b> - Each Portfolio has a <b>"Current Wave"</b>, but you have not <b>"Launched"</b> the Trial to make it <b>"Live"</b>.
+<ul><li><b>QA</b> and <b>Live</b> Trials both serve content and collect data in each Persona in the exact same manner.
+</li><li>A QA Trial can still have Personas added or removed.
+</li></ul>
+</li><li><b>Live</b> - Each Portfolio has a <b>"Current Wave"</b>, and you have <b>"Launched"</b> the Trial to make it <b>"Live"</b>.
+<ul><li><b>Live</b> in Optimost speak means <span style="color:red;font-weight:bold;">we have an experiment that will not change in terms of Personas</span>, and has been sufficiently vetted to ensure we are ready to run the experiment.
+</li><li>Best practices tells us to wait until the experiment has been running a bit to launch the Trial to <b>Live</b>.  Once you do that, you can't make Persona changes.  I cannot stress how important this is.
+</li></ul>
+</li><li><b>Fallback</b> - When we progress from one Trial to the next - this is done by <b>launching</b> the new Trial - the previous Trial become <b>Fallback</b>.
+</li></ol>
+</li><li>How to handle going from Trial n to Trial n+1
+<ol><li>Trial n must be "Live", and Trial n+1 must be in "QA".
+</li><li>Now that each Trial will have its own <b>placement</b>, which is the Trial code URL.
+<ul><li>This means you can serve both Trials at once if the customer deploys the different URLs in different environments
+</li><li>We originally intended to do this with Live and QA Trials, but customers generally don't like doing that.
+</li></ul>
+</li><li>To progress to Trial n+1, you hit "Launch Trial", and it will 
+ask you if you want to use the placement from this Trial or Trial n.
+<ul><li>In most cases, we want to continue to use the placement that exists on the customer's page, which is the placement for Trial n.
+</li></ul>
+</li></ol>
+</li></ol>
+<p><br>
+</p><p><br>
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<strong class="selflink">Testing and the Agency Console</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 42/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1017-0!1!0!!en!2!edit=0 and timestamp 20130816142409 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console">http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Testing_and_the_Agency_Console&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Testing_and_the_Agency_Console&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Testing_and_the_Agency_Console&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Testing_and_the_Agency_Console" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Testing_and_the_Agency_Console" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Testing_and_the_Agency_Console" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Testing_and_the_Agency_Console&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Testing_and_the_Agency_Console&amp;oldid=5743" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Testing%20and%20the%20Agency%20Console%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 24 March 2011, at 20:48.</li>
+				<li id="viewcount">This page has been accessed 65 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.265 secs. -->
+</body></html>

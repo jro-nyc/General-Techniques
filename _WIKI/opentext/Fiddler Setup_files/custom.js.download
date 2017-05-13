@@ -1,0 +1,110 @@
+function isMSIE() {
+		var a = navigator.appName + "|" + navigator.appVersion;
+		if (a.indexOf("MSIE") >= 0) {
+				return true;
+		} else {
+				return false;
+		}
+}
+function $get(a) {
+		return document.getElementById(a);
+}
+function getRight(b) {
+		var a = b.offsetWidth;
+		while (b !== null) {
+				a += b.offsetLeft;
+				b = b.offsetParent;
+		}
+		return a;
+}
+function getTopLeft(b) {
+		if (isMSIE()) {
+				var c = 0,
+						a = 0;
+				b = b.parentNode;
+				while (b.id !== "appearances-header") {
+						a += 1;
+						if ((b.className === "appearances-submenu") || (b.id === "appearances-menu")) {
+								c += b.offsetLeft;
+						}
+						b = b.parentNode;
+				}
+				if (a <= 2) {
+						return c - 1;
+				} else {
+						return -1;
+				}
+		} else {
+				return -1;
+		}
+}
+function addEvent(d, c, a) {
+		if (d.addEventListener) {
+				d.addEventListener(c, a, false);
+				return true;
+		} else {
+				if (d.attachEvent) {
+						var b = d.attachEvent("on" + c, a);
+						return b;
+				} else {
+						return false;
+				}
+		}
+}
+function expose(a) {
+		var b = 0;
+		for (b = 0; b < a.childNodes.length; b += 1) {
+				if (a.childNodes[b].nodeType === 1) {
+						if (a.childNodes[b].tagName === "DIV") {
+								a.childNodes[b].style.left = getTopLeft(a.childNodes[b]) + "px";
+								a.childNodes[b].style.display = "inline";
+								if (getRight(a.childNodes[b]) > getRight($get("appearances-header"))) {
+										if (isMSIE()) {
+												a.childNodes[b].style.left = (getRight($get("appearances-header")) - (a.childNodes[b].offsetWidth + 20)) + "px";
+										} else {
+												a.childNodes[b].style.left = (getRight($get("appearances-header")) - (getRight(a.childNodes[b]) + 10)) + "px";
+										}
+								}
+						}
+				}
+		}
+}
+function hide(a) {
+		var b = 0;
+		for (b = 0; b < a.childNodes.length; b += 1) {
+				if (a.childNodes[b].nodeType === 1) {
+						if (a.childNodes[b].tagName === "DIV") {
+								a.childNodes[b].style.display = "none";
+						}
+				}
+		}
+}
+function loadSubItems(d) {
+		var c = 0,
+				b = function () {
+						expose(this);
+				},
+				a = function () {
+						hide(this);
+				};
+		for (c = 0; c < d.childNodes.length; c++) {
+				if (d.childNodes[c].nodeType === 1) {
+						if (d.childNodes[c].tagName === "LI") {
+								d.childNodes[c].onmouseover = b;
+								if (isMSIE()) {
+										d.childNodes[c].onmouseleave = a;
+								} else {
+										d.childNodes[c].onmouseout = a;
+								}
+						}
+						loadSubItems(d.childNodes[c]);
+				}
+		}
+}
+function loaded() {
+		var a = $get("appearances-menu");
+		if( null !== a ) {
+			loadSubItems(a);
+		}
+}
+addEvent(window, "load", loaded);

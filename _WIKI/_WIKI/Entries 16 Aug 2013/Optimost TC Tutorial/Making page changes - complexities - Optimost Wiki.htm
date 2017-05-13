@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Making page changes - complexities,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Get Next Sibling,How to add Level 2 events,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - examples">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Making page changes - complexities - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Making%20page%20changes%20-%20complexities%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Making_page_changes_-_complexities";
+var wgTitle = "Making page changes - complexities";
+var wgAction = "view";
+var wgArticleId = "988";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6081";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Making%20page%20changes%20-%20complexities%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Making%20page%20changes%20-%20complexities%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Making%20page%20changes%20-%20complexities%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Making%20page%20changes%20-%20complexities%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Making_page_changes_-_complexities">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Making page changes - complexities</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<strong class="selflink">Making page changes - complexities</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>Here are some considerations/issues you will have to ponder when making changes to the content of a page.
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#DOM_Node_manipulation_issues"><span class="tocnumber">1</span> <span class="toctext">DOM Node manipulation issues</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Basic_Scenarios"><span class="tocnumber">1.1</span> <span class="toctext">Basic Scenarios</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Adding_text_-_editing_Text_nodes_vs_editing_innerHTML_of_element_node"><span class="tocnumber">1.1.1</span> <span class="toctext">Adding text - editing Text nodes vs editing innerHTML of element node</span></a></li>
+<li class="toclevel-3"><a href="#Testing_a_non-CSS_image_-_replace_the_node_or_change_the_src_URL"><span class="tocnumber">1.1.2</span> <span class="toctext">Testing a non-CSS image - replace the node or change the src URL</span></a></li>
+<li class="toclevel-3"><a href="#CSS-defined_page_elements"><span class="tocnumber">1.1.3</span> <span class="toctext">CSS-defined page elements</span></a></li>
+<li class="toclevel-3"><a href="#Layout_changes_-_moving_Nodes_around"><span class="tocnumber">1.1.4</span> <span class="toctext">Layout changes - moving Nodes around</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Complicated_Scenarios"><span class="tocnumber">1.2</span> <span class="toctext">Complicated Scenarios</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Finding_children_and_siblings_-_cross-browser_issues"><span class="tocnumber">1.2.1</span> <span class="toctext">Finding children and siblings - cross-browser issues</span></a></li>
+<li class="toclevel-3"><a href="#Out_of_Spec_pages_-_BAD_HTML"><span class="tocnumber">1.2.2</span> <span class="toctext">Out of Spec pages - BAD HTML</span></a></li>
+<li class="toclevel-3"><a href="#Pages_with_JavaScript_Frameworks_.28libraries.29"><span class="tocnumber">1.2.3</span> <span class="toctext">Pages with JavaScript Frameworks (libraries)</span></a>
+<ul>
+<li class="toclevel-4"><a href="#What_to_look_for"><span class="tocnumber">1.2.3.1</span> <span class="toctext">What to look for</span></a></li>
+<li class="toclevel-4"><a href="#Look_for_a_JS_call_to_a_Library"><span class="tocnumber">1.2.3.2</span> <span class="toctext">Look for a JS call to a Library</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="DOM_Node_manipulation_issues"></a><h1> <span class="mw-headline">DOM Node manipulation issues</span></h1>
+<p>Here are some scenarios/decisions that you will run into, and some recommendations on how to address them.
+</p>
+<a name="Basic_Scenarios"></a><h2> <span class="mw-headline">Basic Scenarios</span></h2>
+<p>First we look at the basic changes and decisions you will have to make.
+</p>
+<a name="Adding_text_-_editing_Text_nodes_vs_editing_innerHTML_of_element_node"></a><h3> <span class="mw-headline">Adding text - editing Text nodes vs editing innerHTML of element node</span></h3>
+<p>Any time you want to make text changes, you can either:
+</p>
+<ul><li>Edit the text node itself
+</li><li>Edit the <b>innerHTML</b> of the container element node.
+</li></ul>
+<p>Either will work, and there are pros and cons to doing either way.  
+You can do a search and finds lots of comments on this subject.  Here is
+ my approach:
+</p>
+<ol><li>If I am editing an <b>existing</b> DOM node, I change the node 
+value of the text node. I have had strange behavior on pages with add-on
+ libraries when changing the innerHTML of nodes - both triggering 
+unexpected events AND expected events no longer triggering - so I stay 
+away from innerHTML in this scenario.
+</li><li>If I am adding a new element node to the DOM, I will add the text using <b>innerHTML</b>, althoug its safe to do either one.
+</li></ol>
+<p>In the example on the previous page, I did not recommend changing the <b>innerHTML</b> of the H1 node since that was an existing DOM node.
+</p>
+<a name="Testing_a_non-CSS_image_-_replace_the_node_or_change_the_src_URL"></a><h3> <span class="mw-headline">Testing a non-CSS image - replace the node or change the src URL</span></h3>
+<p>We also did this on the previous page, and as a reminder, you have two options, each with advantages and disadvantages:
+</p>
+<ol><li>Replace the src URL of the existing input
+<ul><li> + All events are preserved.
+</li><li> – You may see the flicker of the old button being replaced by the new one if the new one takes some time to upload. 
+</li></ul>
+</li><li>Replace the image with a new one
+<ul><li> + You don't have to worry about image flicker.
+</li><li> – If there are level-2 events associated with the input, you 
+MAY lose them if you do not rerun the code that added them after you 
+make your changes. 
+</li></ul>
+</li></ol>
+<p>Decide what is best for your circumstance.
+</p>
+<a name="CSS-defined_page_elements"></a><h3> <span class="mw-headline">CSS-defined page elements</span></h3>
+<p>You will run into pages with CSS that controls much of the page's non-text content, things such as:
+</p>
+<ul><li>Background images for container nodes, buttons, form elements, etc
+</li><li>Page element position
+</li><li>Padding, borders, and other style properties of page elements
+</li></ul>
+<p>If these elements are in the Subject Test Plan (STP) as variables, 
+they can be changed by either changing the CSS or changing the style of 
+the underlying DOM elements.  When deciding how to do it consider that:
+</p>
+<ol><li>If the CSS/style include is called/defined before the Trial Code
+ call to Optimost - and if our code is deployed using best practices, it
+ will be - then you can make CSS changes in the module OR in the Setup 
+block.  Normally this is done in the module, but having the option to do
+ it in the Setup block may be advantageous.
+</li><li>Changes to the CSS can be added one of two ways
+<ul><li>By adding a style block to the Optimost Template - this results in <b>document.write</b> with the style definition inside
+</li><li>By creating a style element and adding the style as text - this means adding it directly to the DOM.  
+</li><li>Know that if your code needs to account for AJAX changes after page load, a <b>document.write</b> after page load will blank out the page, so if you wanted to change the CSS, you have to add it directly to the DOM.
+</li></ul>
+</li><li>If you make CSS changes, you may have to use the <b>!important</b> modifier in order to overwrite a duplicate CSS setting.
+</li><li>DOM changes that manipulate nodes can result in javascript 
+errors that "break" the page if there are unexpected changes, but CSS 
+changes cannot result in javascript errors.
+</li></ol>
+<a name="Layout_changes_-_moving_Nodes_around"></a><h3> <span class="mw-headline">Layout changes - moving Nodes around</span></h3>
+<p>Layout changes are the most radical changes we can do on an MVT<sup><b>1</b></sup>.  There are two ways to make the changes:
+</p>
+<ol><li>If you have a page with CSS-defined layout, you may be able to make the changes stricly in CSS.  Maybe.
+</li><li>Otherwise, you will have to move nodes around using the <b>appendChild</b> or <b>insertBefore</b> commands.  Note that <b>appendChild</b> adds nodes to the end of the container, and <b>insertBefore</b> can put it in any position in the container, so you will generally be using <b>insertBefore</b> in most instances.  Syntax for the two is:
+<ul><li><b>containerNode.appendChild(node);</b>
+</li><li><b>containerNode.insertBefore(node,nodeToInsertBefore);</b>
+<ul><li>If the <b>nodeToInsertBefore</b> = null, then <b>insertBefore</b> is the same as <b>appendChild</b>. 
+</li></ul>
+</li><li>The <b>containerNode</b> is usually the <b>parentNode</b> of the <b>node</b> you are moving, so you usually use the syntax <b>node.parentNode.insertBefore(node,nodeToInsertBefore);</b>
+</li></ul>
+</li></ol>
+<p>Assuming you use method #2, here are some considerations:
+</p>
+<ol><li>If you are moving content within a &lt;table&gt;, you are free 
+to move a &lt;tr&gt;s above and below each other, a &lt;td&gt;s to the 
+left and right of each other.  But make sure the &lt;tr&gt; and 
+&lt;td&gt; elements do not have elements with <b>rowspan</b> or <b>colspan</b> attribute set since that could effect moving things around.  Just something to look for.
+</li><li>If you are moving contents in &lt;div&gt; or &lt;span&gt; 
+elements side by side or on top of each other, remember that style 
+issues are much more likely to cause cross-browser inconsistencies than 
+when using &lt;table&gt;s.  So make sure to look for certain style 
+setting that may interfere with moving elements around.  Such as:
+<ul><li>Containers with "float:left" or "float:right".
+</li><li>Container with or height set, say "width:600px", "height:300px".
+</li><li>Containers suddenly needing to set "white-space:nowrap" as things suddenly wrap to the next line that did not before.
+</li></ul>
+</li></ol>
+<p><sup><b>1</b></sup>For MVTs only. Remember that we can have more radical changes on A/B/n tests if you have completely different challengers.
+</p><p><br>
+</p>
+<a name="Complicated_Scenarios"></a><h2> <span class="mw-headline">Complicated Scenarios</span></h2>
+<p>Next we look at the more complex or non-spec scenarios and how to deal with them.
+</p>
+<a name="Finding_children_and_siblings_-_cross-browser_issues"></a><h3> <span class="mw-headline">Finding children and siblings - cross-browser issues</span></h3>
+<p>In your templates, you may notice a wide variation in the amount of 
+white space in the customer's HTML.  Generally not a big deal, but when 
+you are traversing the DOM looking at children or siblings nodes, then 
+you need to understand how to account for the cross-browser differences.
+ <br>
+Basically, IE ignore whitespace between sibling nodes, whereas the other
+ browsers generally do not.  So this means that when traversing through 
+the children in a container, IE could see n nodes, and 
+Firefox/Safari/Chrome/Opera could see up to 2n+1 nodes.  Here is a 
+simple example:<br>
+</p><p><a href="http://asp.optimost.com/webtest/jim/IEvsFF_children.html" class="external free" title="http://asp.optimost.com/webtest/jim/IEvsFF_children.html" rel="nofollow">http://asp.optimost.com/webtest/jim/IEvsFF_children.html</a>
+</p><p><br>
+So what this means is you have to be careful when you look at children.  Here is the guideline I use:
+</p>
+<ol><li>You can always use <b>node.firstChild</b>, <b>node.lastChild</b>, <b>node.nextSibling</b> or <b>node.previousSibling</b> to find locations when changing layout/moving content, say you are using '<b>insertBefore</b>, and you have something like:
+<ul><li><b>node.parentNode.insertBefore(newNode,node.parentNode.firstChild);</b> - This is fine, whether it sees an element or white-space text node, the content gets added in the same spot in the DOM.
+</li></ul>
+</li><li>If I am operating on the actual node, I avoid <b>firstChild</b> and <b>lastChild</b>
+ and instead parse through the children to find the appropriate node - 
+check the type of node and/or content to verify we have found what we 
+are looking for.
+</li><li>If I am operating on the actual node, I use <b>nextSibling</b> and <b>previousSibling</b>
+ and account for the behavior. For example, if I am parsing through 
+sibling element nodes that may have superflous whitespace text nodes, I 
+write a function to account for this.  For example, <a href="http://wiki.interwoven.com/optimost/Get_Next_Sibling" title="Get Next Sibling">Get Next Sibling</a>.
+</li></ol>
+<a name="Out_of_Spec_pages_-_BAD_HTML"></a><h3> <span class="mw-headline">Out of Spec pages - BAD HTML</span></h3>
+<p>Since the DOM is based on the HTML, if the HTML is poorly written, it
+ can cause cross-browser headaches.  Why? Well, if its bad html, then 
+the browser, as it interprets the HTML, has to make a "decision" as to 
+how to produce a well-structured DOM Tree/nodes, and since the bad HTML 
+is not well-structured,  different browsers may "guess" differently on 
+how to add it to the DOM tree.  Let's look at this page with a simple 
+form as an example:
+</p>
+<pre>&lt;table border="0" cellpadding="0" cellspacing="0"&gt;
+    &lt;tr&gt;
+	&lt;form name="myForm" method="post" action="blah.php"&gt;&lt;input type="hidden" name="zipcode" value="20724" /&gt; 		
+	&lt;td style="padding:10px 0 0 10px;"&gt;&lt;h1&gt;Please Enter your Zip Code&lt;/h1&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;table&gt;
+		&lt;tr&gt;
+			&lt;td valign="top"&gt;                                                                                                                                           
+			&nbsp;&nbsp;&lt;input name="txtZipCode" type="text" maxlength="5" id="txtZipCode" size="5"/&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td valign="top"&gt;
+			&lt;input type="image" name="btnGoZip" src="http://es.optimost.com/es/2/c/836/u/quote.jpg" /&gt;                                  
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td valign="top"&gt;
+				&lt;a href="get_your_quote_today.php"&gt;View saved quote&lt;/a&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/td&gt;
+	&lt;/form&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+<p>Unfortunately, I have seen this WAY too many times.  The HTML coder 
+decides to put the &lt;form ... &gt; tag just inside the first 
+&lt;tr&gt;, then closes just before the last &lt;/tr&gt;  Now, if you 
+are not doing any DOM manipulation, this <b>form</b> will work fine.  
+But if we are trying to make changes, some browsers may open and close 
+the form inside the first &lt;tr&gt; and thinks that the form elements 
+are not children of the &lt;form&gt; node.  Simple operations like:
+</p>
+<ol><li>Moving the content around
+</li><li>Adding new content
+</li><li>Making changes to existing content
+</li></ol>
+<p>may not work because the nodes may or may not be seen as being inside
+ the form, table, etc.  Always look for bad HTML on your pages because 
+this may cause all kinds of problems as you manipulate the DOM.
+</p>
+<a name="Pages_with_JavaScript_Frameworks_.28libraries.29"></a><h3> <span class="mw-headline">Pages with JavaScript Frameworks (libraries)</span></h3>
+<p>You are likely to work on pages that have external Frameworks 
+(libraries) that make adding javascript-based functionality easier.  You
+ will mainly see pages using jQuery, but you will also run into 
+Prototype, MooTools, or some of the others.  On some pages, in addition 
+to the libraries, there will be additional code that uses the libraries 
+to create dynamic functionality that <b>must be preserved after Optimost makes changes to the page</b>.
+  In some cases - like when customers decide to run an A/B/n test on a 
+page with this functionality - they may expect us to incorporate the 
+functionality into  their challenger B/n versions work as the A version 
+(Customers are not supposed to do this, but sometimes they do and we 
+have get it working).  Here is how you identify such a page and code it 
+to work as expected.
+</p>
+<a name="What_to_look_for"></a><h4> <span class="mw-headline">What to look for</span></h4>
+<p>If you are desperate, you can ask the customer.  But you should first
+ look at the page and attempt to figure out what is going on so that, if
+ you do have to ask questions, you can ask intelligent questions based 
+on some general understanding of their code.  It's always best to figure
+ it out since a real TC should be able to figure it out 
+themselves&nbsp;:)
+</p>
+<a name="Look_for_a_JS_call_to_a_Library"></a><h4> <span class="mw-headline">Look for a JS call to a Library</span></h4>
+<p>I use Firebug and its NET tab to look at all the calls associated 
+with a web page load.  So, if I am testing a web page that has some 
+built-in functionality - usually form pages, but it can also be other 
+types of pages - I first I look for the library, so if you see:
+</p>
+<ol><li>jquery.js - That is jQuery
+</li><li>mootoool.js - That's Mootools
+</li><li>prototype.js - That's Prototype
+</li></ol>
+<p>I think you get the idea.  So once you see that, you know look for 
+either an external or inline javascript that uses that library to add 
+dynamic functionality to the page. Here is an example of jQuery-based 
+code.
+</p>
+<pre>...................
+...................
+    $("#zip").click(function () {
+        Common.showBlockUI();
+        var zipCode = $("input[name='menuPostalCode']").val();
+        var defaultZipCode = $("#defaultZipTextHeader").val();
+        if (null&nbsp;!= zipCode &amp;&amp; $.trim(zipCode)&nbsp;!= "" &amp;&amp; zipCode&nbsp;!= defaultZipCode &amp;&amp; $.trim(zipCode).length == 5) {
+            $("#homeForm").attr("action", contextRoot + "/home.do?method=saveHome&amp;postalCode=" + zipCode);
+            $("#homeForm").submit();
+        } else {
+            Common.unBlockUI();
+            $("#quickZipError").show();
+        }
+    });
+    $("#quote-start").click(function () {
+        doQuoteStart();
+    });
+....................
+.....................
+</pre>
+<p>The first function does the following:
+</p>
+<ol><li>Find the element with id="zip", and add an <b>onclick</b> event<sup><b>2</b></sup> to do the following:
+<ul><li>Set a variable <b>zipCode</b> with the value of the input whose name="menuPostalCode".
+</li><li>Set a variable <b>defaultZipCode</b> with the value of the element with id="defaultZipTextHeader" (probably in input since it has a value attribute)
+</li><li>IF(<b>zipCode</b> is a valid zipCode and does not equal the <b>defaultZipCode</b>) THEN set the <b>action</b> attribute of the element with id="homeForm" and submit it (assume that element is a form)
+</li><li>ELSE execute the function <b>Common.unBlockUI()</b> and show the contents of the element with id="quickZipError"
+</li></ul>
+</li></ol>
+<p>The second does the following:
+</p>
+<ol><li>Find the element with id="quote-start", and add an <b>onclick</b> event<sup><b>2</b></sup> - when focus goes off the element - to do the following:
+<ul><li>Executue the function <b>doQuoteStart();</b>
+</li></ul>
+</li></ol>
+<p>With this information, you know the following:
+</p>
+<ol><li>The elements with id="zip" and id="quote-start" have onclick events<sup><b>2</b></sup> associated with them.
+</li><li>If you remove and replace the nodes:
+<ul><li>Make sure the nodes have the same IDs
+</li><li>AND that the code that sets up this dynamic functionality code runs after you make your changes.
+<ul><li>If the customer's dynamic functionality code runs <b>after</b> 
+the module code - not the library definition JS, but the JS code that 
+sets up the functionality - you may be OK since the events are not added
+ until after we have made our changes, and thus added to our new nodes.
+</li><li>If it runs <b>before</b> the module code, you will have to 
+rerun the code the add the dynamic functionality since replacing the 
+nodes removed the events.
+</li></ul>
+</li></ul>
+</li></ol>
+<p><sup><b>2</b></sup>These are Level 2 events, for more on them, go to <a href="http://wiki.interwoven.com/optimost/How_to_add_Level_2_events" title="How to add Level 2 events">How to add Level 2 events</a>
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<strong class="selflink">Making page changes - complexities</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 37/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:988-0!1!0!!en!2!edit=0 and timestamp 20130816142122 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities">http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Making_page_changes_-_complexities&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_complexities&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_complexities&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Making_page_changes_-_complexities" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Making_page_changes_-_complexities" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Making_page_changes_-_complexities" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_complexities&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_complexities&amp;oldid=6081" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Making%20page%20changes%20-%20complexities%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 27 September 2011, at 18:01.</li>
+				<li id="viewcount">This page has been accessed 80 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.259 secs. -->
+</body></html>

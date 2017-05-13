@@ -1,0 +1,208 @@
+.firstHeading {
+	MARGIN-BOTTOM: 0.1em;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #aaa;
+	font-family: Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.box
+{
+	padding-right: 2px;
+	padding-left: 2px;
+	z-index: 1;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	border: thin solid #CCCCCC;
+}
+
+.autoresult
+{
+	cursor: pointer;
+}
+
+#wikiComparisonContent{
+	width:90%;
+	padding-left: 5px;
+}
+
+.wikiComparison{
+	margin: 5px;
+	padding: 5px;
+	border: thin solid #999999;
+	background-color: #FFFFFF;
+	overflow: hidden;
+	width: 100%;
+}
+
+.newWikiName A:link {COLOR: #009900;}
+.newWikiName A:visited {COLOR: #009900;}
+.newWikiName A:active {COLOR: #009900;}
+.newWikiName A:hover {COLOR: #009900;}
+
+.errorWikiName A:link {COLOR: #990000;}
+.errorWikiName A:visited {COLOR: #990000;}
+.errorWikiName A:active {COLOR: #990000;}
+.errorWikiName A:hover {COLOR: #990000;}
+
+#wikiContent{
+	padding-left: 5px;
+}
+
+#wikiBody{
+	background: #FFFFFF;
+	border:1px solid #999999;
+	padding-top: 0px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#wikiEdit{
+	padding-top: 0px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#wikiMessage{
+	text-align: left;
+	padding-right: 5px;
+	padding-left: 15px;
+	margin-top: 30px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+#wikiFooter{	
+	width:100%;
+	text-align: left;
+	margin: 0px;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+
+#wikiLinkBrowser{
+	margin: 0px;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+#llObjectLinkBrowser{
+	margin: 0px;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+.remark{
+	font-size: 9px;
+	color: #666666;
+	padding: 2px;
+}
+
+.wikiLabel {
+	font-weight: bold;
+	text-align: center;
+	font-size: 12px;
+	color: #666666;
+	padding: 2px;
+}
+    
+#toc {
+	border: thin solid #999999;
+	padding: 5px;
+	margin-top: 5px;
+}
+#toc .tocTitle {
+	font-weight: bold;
+	text-align: right;
+	font-size: 12px;
+	color: #666666;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #666666;
+	padding: 3px;
+	margin-bottom: 5px;	
+}
+#toc .tocLinkH1 {
+	margin-left: 0px;
+}
+#toc .tocLinkH2 {
+	margin-left: 15px;
+}
+#toc .tocLinkH3 {
+	margin-left: 30px;
+}
+#toc .tocLinkH4 {
+	margin-left: 45px;
+}
+#toc .tocLinkH5 {
+	margin-left: 60px;
+}
+
+#searchresultslabel {
+	font-weight:bold;
+	text-align: left;
+	font-size: 14px;
+	padding-left:20px; 
+}
+
+#searchresults ul {
+	list-style:none; 
+	padding-left:20px; 
+	margin-left:0px;
+}
+
+#searchresults li {
+	padding-left : 25px;
+	background:url("wikipage.gif") no-repeat 0 0;
+	vertical-align:top;
+	margin-bottom:10px;
+	font-weight:bold;
+}
+
+#searchresult {
+	vertical-align:top;
+}
+
+#nosearchresults{
+	margin-top:20px;
+	font-weight:normal;
+	text-align: center;
+	font-size: 12px;	
+}
+
+.summary {
+	font-weight:normal;
+}
+
+.modifiedLabel {
+	color:#666666;
+	font-weight:normal;
+}
+
+.modifiedLabel a {
+	color:#666666;
+	font-style:normal;
+	text-decoration:underline;
+}
+
+.highlightLabel {
+	vertical-align:-3px;
+	text-align:left;
+	padding:0px;
+	margin:0px;
+}

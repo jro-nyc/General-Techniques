@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Parsing nodes recursively and changing color of all numbers,Functions,Regular expressions">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Parsing nodes recursively and changing color of all numbers - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Parsing%20nodes%20recursively%20and%20changing%20color%20of%20all%20numbers%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Parsing_nodes_recursively_and_changing_color_of_all_numbers";
+var wgTitle = "Parsing nodes recursively and changing color of all numbers";
+var wgAction = "view";
+var wgArticleId = "727";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6145";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Parsing%20nodes%20recursively%20and%20changing%20color%20of%20all%20numbers%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Parsing%20nodes%20recursively%20and%20changing%20color%20of%20all%20numbers%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Parsing%20nodes%20recursively%20and%20changing%20color%20of%20all%20numbers%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Parsing%20nodes%20recursively%20and%20changing%20color%20of%20all%20numbers%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Parsing_nodes_recursively_and_changing_color_of_all_numbers">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Parsing nodes recursively and changing color of all numbers</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Parsing_through_the_node_in_a_containter"><span class="tocnumber">1</span> <span class="toctext">Parsing through the node in a containter</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Our_Scenario"><span class="tocnumber">1.1</span> <span class="toctext">Our Scenario</span></a></li>
+<li class="toclevel-2"><a href="#walkTheDOM.28startRegexp.2CendRegexp.2Ccontainer.2CstyleChange.29"><span class="tocnumber">1.2</span> <span class="toctext">walkTheDOM(startRegexp,endRegexp,container,styleChange)</span></a></li>
+<li class="toclevel-2"><a href="#changePatternTextNode.28startRegexp.2CendRegexp.2Ccontainer.2CstyleChange.29.7B"><span class="tocnumber">1.3</span> <span class="toctext">changePatternTextNode(startRegexp,endRegexp,container,styleChange){</span></a></li>
+<li class="toclevel-2"><a href="#Text_example"><span class="tocnumber">1.4</span> <span class="toctext">Text example</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Parsing_through_the_node_in_a_containter"></a><h2> <span class="mw-headline">Parsing through the node in a containter</span></h2>
+<p>It's fine when we have to parse through a container's child nodes to 
+find a node of interest.  But what if the nodes you want are a mix of 
+"child nodes" of the cotainer <b>and</b> "child nodes" of the "child nodes" <b>or even</b> "child nodes" of the "child nodes" of the "child nodes"?  What you need is recursive code.
+</p>
+<a name="Our_Scenario"></a><h3> <span class="mw-headline">Our Scenario</span></h3>
+<p>A customer decides they want to highlight all the numbers in a block 
+by changing them from black to red text.  In order to do this, we need 
+to:
+</p>
+<ol><li>Write a regexp based <b>matching and replacing function</b> to find the <b>numbers</b>, where they start and end. 
+</li><li>Write another function  that, from a starting container node, 
+find all the text nodes, and run each text node through this and, if the
+ text node has <b>numbers</b>, replace the <b>numbers</b> in the text node with &lt;span&gt; tags with a style containing the new color.
+</li><li>Within each container, you <b>must</b> start at the <b>last text node</b> and work backwards.  This is because:
+<ol><li>Adding the span tags will change the number of nodes
+</li><li>If you start at the end, the number of text nodes changes for the content after this node
+</li><li>But since we start with the last node, there will be no nodes of interest after this one
+</li></ol>
+</li><li>If you find element nodes within the container, use these 
+element nodes as the new "container" and recursively call your function.
+</li></ol>
+<p>Here is the targeted area
+</p>
+<pre>&lt;div id="_1"&gt;We have 200 minutes of fun in store for you.  Yes 3000 minutes....
+	Oh, wait, was it 999988889 minutes, or maybe 1, or maybe 18, or maybe 34, or maybe 12345?
+	&lt;span&gt;Who does $100 sound good to?&lt;/span&gt;
+	&lt;div&gt;I think most people agree, it would be almost as good as $200&lt;/div&gt;
+	&lt;div&gt;
+		&lt;table&gt;
+			&lt;tr&gt;
+				&lt;td&gt;I say $4000 dollars is alot&lt;/td&gt;
+				&lt;td&gt;And I add that $2000 dollars is not as much&lt;/td&gt;
+				&lt;td&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;My social security number is 555-55-5555&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+			&lt;/tr&gt;		
+		&lt;/table&gt;	
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p><br>
+</p>
+<a name="walkTheDOM.28startRegexp.2CendRegexp.2Ccontainer.2CstyleChange.29"></a><h3> <span class="mw-headline">walkTheDOM(startRegexp,endRegexp,container,styleChange)</span></h3>
+<p>I wrote this myself for this example.  First, we have the recursive function:
+</p>
+<pre>function walkTheDOM(startRegexp,endRegexp,container,styleChange) {
+	var TEXT_NODE=3;
+	var children=container.childNodes; 
+	for(var i=children.length-1;i&gt;-1;i--){
+		if(children[i].nodeType==TEXT_NODE) {
+			changePatternTextNode(startRegexp,endRegexp,children[i],styleChange);
+		}
+		else walkTheDOM(startRegexp,endRegexp,children[i],styleChange); 	
+	} 
+} 
+</pre>
+<p>Where I pass in:
+</p>
+<ul><li><b>startRegexp</b> - a regexp representation of the starting match
+</li><li><b>endRegexp</b> - a regexp representation of the ending match - can be a null if you are only interested in matching <b>startRegexp</b>
+</li><li><b>container</b> - our starting container 
+</li><li><b>styleChange</b> - the style change we want to implement
+</li></ul>
+<p>So all I do here is:
+</p>
+<ol><li>I get all the childNodes in this container and starting at the last childNode, 
+</li><li>I check to see if its a text node
+<ol><li>If its a text node, I execute my <b>matching and replacing function</b> 
+</li><li>If its not a text node, I use that as my container node and call this same function recursively
+</li></ol>
+</li></ol>
+<a name="changePatternTextNode.28startRegexp.2CendRegexp.2Ccontainer.2CstyleChange.29.7B"></a><h3> <span class="mw-headline">changePatternTextNode(startRegexp,endRegexp,container,styleChange){</span></h3>
+<pre>function changePatternTextNode(startRegexp,endRegexp,container,styleChange){
+	var rxpSt=new RegExp(startRegexp); 
+	var rxpEnd=(endRegexp!=null?new RegExp(endRegexp):endRegexp); //if endRegexp=null, don't create RegExp object
+	end=[];
+	start=[];	
+	var offset=0;
+	match=true;
+	do {  //Since we may have multiple matches in any particular text node, unless endRegexp is null
+		var val=container.nodeValue.substring(offset,container.nodeValue.length);
+		if(rxpSt.exec(val)){ //if the nodeValue contains the start match.....
+			rVal=val.substring(rxpSt.exec(val).index,val.length);
+			if(rxpEnd==null){//If endRegexp is null, we have a match - only care about "startRegexp"
+				start.push(rxpSt.exec(val).index+offset);
+				end.push(rxpSt.exec(val).index+startRegexp.toString().length+offset);
+				offset+=rxpSt.exec(val).index+startRegexp.toString().length;		
+				match=false; //Won't have multiple matches for this case
+			}
+			else if(rxpEnd.exec(rVal)){ //if the nodeValue contains the end match after it....
+				start.push(rxpSt.exec(val).index+offset);	
+				end.push(rxpSt.exec(val).index+rxpEnd.exec(rVal).index+offset);
+				offset+=rxpSt.exec(val).index+rxpEnd.exec(rVal).index;
+			}
+			else match=false;
+		}
+		else match=false;	
+	} while(match);
+	if(start.length&gt;0){
+		var myNode=container.nodeValue;	//Get the value you will manipulate
+		nodeBucket=[];	
+		for(var j=start.length-1;j&gt;-1;j--){		
+			if(j&lt;start.length-1) var newText3=document.createTextNode(myNode.substring(end[j],start[j+1]));	
+			else var newText3=document.createTextNode(myNode.substring(end[j],myNode.length));	
+			nodeBucket.push(newText3);		
+
+			var newSpan=document.createElement('span');	
+			newSpan.style.cssText=styleChange;
+			var newText2=document.createTextNode(myNode.substring(start[j],end[j]));		
+			newSpan.appendChild(newText2);
+			nodeBucket.push(newSpan);		
+		}			
+		var newText=document.createTextNode(myNode.substring(0,start[0]));			
+		nodeBucket.push(newText);		
+		for(var j=0;j&lt;nodeBucket.length;j++){		
+			container.parentNode.insertBefore(nodeBucket[j],container.nextSibling);
+		}
+		container.parentNode.removeChild(container);	
+	}
+}
+</pre>
+<p>I pass in the same parameters as the walkTheDOm function, and I:
+</p>
+<ol><li>Get the <b>nodeValue</b> for this text node.
+</li><li>Run it through a do{..}while that looks for matches of my starting and ending patterns.
+<ol><li>Saves the start and end match locations in separate arrays
+</li><li>Continues doing this until there are no more matches
+</li><li>If the ending pattern passed in <b>endRegexp</b> is null, that means was are looking for a match of <b>startRegexp</b> only, and we do not need to look for more matches within this node once <b>startRegexp</b> matches.
+</li></ol>
+</li><li>Then, if there were matches for this text node, starting at the last match, we make the necessary changes.
+</li></ol>
+<a name="Text_example"></a><h3> <span class="mw-headline">Text example</span></h3>
+<p>Here is my test page, for now it is on the URL <a href="http://kidwww.optimost.com/webtest/jim/ndc.html" class="external free" title="http://kidwww.optimost.com/webtest/jim/ndc.html" rel="nofollow">http://kidwww.optimost.com/webtest/jim/ndc.html</a>, but that may change, so here is the code, also:
+</p>
+<pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Change number's style&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="_1"&gt;We have 200 minutes of fun in store for you.  Yes 3000 minutes....
+	Oh, wait, was it 999988889 minutes, or maybe 1, or maybe 18, or maybe 34, or maybe 12345?
+	&lt;span&gt;Who does $100 sound good to?&lt;/span&gt;
+	&lt;div&gt;I think most people agree, it would be almost as good as $200&lt;/div&gt;
+	&lt;div&gt;
+		&lt;table&gt;
+			&lt;tr&gt;
+				&lt;td&gt;I say $4000 dollars is alot&lt;/td&gt;
+				&lt;td&gt;And I add that $2000 dollars is not as much&lt;/td&gt;
+				&lt;td&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;My social security number is 555-55-5555&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+			&lt;/tr&gt;		
+		&lt;/table&gt;	
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;button onclick='walkTheDOM(/\d{1,4}/,/\D|$/,document.body,"color:#CC0000")'&gt;walkTheDOM2&lt;/button&gt;
+&lt;script&gt;
+
+function walkTheDOM(startRegexp,endRegexp,container,styleChange) {
+	var TEXT_NODE=3;
+	var children=container.childNodes; 
+	for(var i=children.length-1;i&gt;-1;i--){
+		if(children[i].nodeType==TEXT_NODE) {
+			changePatternTextNode(startRegexp,endRegexp,children[i],styleChange);
+		}
+		else walkTheDOM(startRegexp,endRegexp,children[i],styleChange); 	
+	} 
+} 
+function changePatternTextNode(startRegexp,endRegexp,container,styleChange){
+	var rxpSt=new RegExp(startRegexp); 
+	var rxpEnd=new RegExp(endRegexp); 
+	end=[];
+	start=[];	
+	var offset=0;
+	match=true;
+	do {  //Since we may have multiple matches in any particular text node
+		var val=container.nodeValue.substring(offset,container.nodeValue.length);
+		if(rxpSt.exec(val)){ //if the nodeValue contains the start match.....
+			rVal=val.substring(rxpSt.exec(val).index,val.length);
+			if(rxpEnd.exec(rVal)){ //and the nodeValue contains the end match after it....
+				start.push(rxpSt.exec(val).index+offset);	
+				end.push(rxpSt.exec(val).index+rxpEnd.exec(rVal).index+offset);
+				offset+=rxpSt.exec(val).index+rxpEnd.exec(rVal).index;
+			}
+			else match=false;
+		}
+		else match=false;	
+	} while(match);
+	if(start.length&gt;0){
+		var origNode=container.nodeValue;
+		var myNode=container.nodeValue;
+		for(var j=start.length-1;j&gt;-1;j--){					
+			myNode=myNode.substring(0,start[j])+
+			'&lt;span style="'+styleChange+'"&gt;'+myNode.substring(start[j],end[j])+'&lt;/span&gt;'+
+			myNode.substring(end[j],myNode.length);													
+		}		
+		var newSpan=document.createElement('span');	
+		newSpan.innerHTML=myNode;
+		container.parentNode.insertBefore(newSpan,container.nextSibling);
+		container.parentNode.removeChild(container);
+	}
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<hr>
+<p>Return to <a href="http://wiki.interwoven.com/optimost/Functions" title="Functions">Functions</a>
+</p><p>Return to <a href="http://wiki.interwoven.com/optimost/Regular_expressions" title="Regular expressions">Regular expressions</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 19/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:727-0!1!0!!en!2!edit=0 and timestamp 20130816142807 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Parsing_nodes_recursively_and_changing_color_of_all_numbers">http://wiki.interwoven.com/optimost/Parsing_nodes_recursively_and_changing_color_of_all_numbers</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Parsing_nodes_recursively_and_changing_color_of_all_numbers" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Parsing_nodes_recursively_and_changing_color_of_all_numbers&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Parsing_nodes_recursively_and_changing_color_of_all_numbers&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Parsing_nodes_recursively_and_changing_color_of_all_numbers&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Parsing_nodes_recursively_and_changing_color_of_all_numbers" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Parsing_nodes_recursively_and_changing_color_of_all_numbers" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Parsing_nodes_recursively_and_changing_color_of_all_numbers" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Parsing_nodes_recursively_and_changing_color_of_all_numbers&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Parsing_nodes_recursively_and_changing_color_of_all_numbers&amp;oldid=6145" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Parsing%20nodes%20recursively%20and%20changing%20color%20of%20all%20numbers%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 13 January 2012, at 17:16.</li>
+				<li id="viewcount">This page has been accessed 86 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.195 secs. -->
+</body></html>

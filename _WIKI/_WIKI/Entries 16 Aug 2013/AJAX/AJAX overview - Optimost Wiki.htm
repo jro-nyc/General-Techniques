@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="AJAX overview,ASP.NET AJAX and Optimost,Technical consultants">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>AJAX overview - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="AJAX%20overview%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "AJAX_overview";
+var wgTitle = "AJAX overview";
+var wgAction = "view";
+var wgArticleId = "179";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6272";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="AJAX%20overview%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="AJAX%20overview%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="AJAX%20overview%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="AJAX%20overview%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-AJAX_overview">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">AJAX overview</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#See_also"><span class="tocnumber">1</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1"><a href="#AJAX_-_Brief_overview"><span class="tocnumber">2</span> <span class="toctext">AJAX - Brief overview</span></a></li>
+<li class="toclevel-1"><a href="#AJAX_and_Optimost"><span class="tocnumber">3</span> <span class="toctext">AJAX and Optimost</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Separation_of_data.2C_format.2C_style.2C_and_function"><span class="tocnumber">3.1</span> <span class="toctext">Separation of data, format, style, and function</span></a></li>
+<li class="toclevel-2"><a href="#AJAX_applications_and_innerHTML_-_What_we_need_to_look_for"><span class="tocnumber">3.2</span> <span class="toctext">AJAX applications and innerHTML - What we need to look for</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Specific_example_.231_-_Product_page_with_Ajax"><span class="tocnumber">4</span> <span class="toctext">Specific example #1 - Product page with Ajax</span></a>
+<ul>
+<li class="toclevel-2"><a href="#How_it_was_done_-_adding_the_.22hook.22"><span class="tocnumber">4.1</span> <span class="toctext">How it was done - adding the "hook"</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Specific_example_.232_-_Passing_data_to_Optimost_directly_using_Ajax"><span class="tocnumber">5</span> <span class="toctext">Specific example #2 - Passing data to Optimost directly using Ajax</span></a>
+<ul>
+<li class="toclevel-2"><a href="#How_it_was_done"><span class="tocnumber">5.1</span> <span class="toctext">How it was done</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#AJAX_and_jQuery"><span class="tocnumber">6</span> <span class="toctext">AJAX and jQuery</span></a></li>
+<li class="toclevel-1"><a href="#See_also_2"><span class="tocnumber">7</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1"><a href="#Back_to"><span class="tocnumber">8</span> <span class="toctext">Back to</span></a></li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="See_also"></a><h2> <span class="mw-headline">See also</span></h2>
+<ul><li><a href="http://wiki.interwoven.com/optimost/ASP.NET_AJAX_and_Optimost" title="ASP.NET AJAX and Optimost">ASP.NET_AJAX_and_Optimost</a>
+</li></ul>
+<a name="AJAX_-_Brief_overview"></a><h2> <span class="mw-headline">AJAX - Brief overview</span></h2>
+<p>As each day passes, more websites are using AJAX to efficiently pass 
+data from servers to web pages without forcing a page refresh.  This 
+results in increased efficiency and interactivity, at the cost of 
+increased page size (libraries usually included) and increased code 
+complexity (cross-browser code needed to upload the content and render 
+it)
+</p>
+<a name="AJAX_and_Optimost"></a><h2> <span class="mw-headline">AJAX and Optimost</span></h2>
+<a name="Separation_of_data.2C_format.2C_style.2C_and_function"></a><h3> <span class="mw-headline">Separation of data, format, style, and function</span></h3>
+<p>One of the advantages is that you can deliver information using a 
+multitude of formats.  This allows for smarter and more efficient 
+applications.  In terms of how this effect pages Optimost works on, this
+ means that a page that is changing the colors and sizes available as 
+the user scrolls through different products can send that information 
+as:
+</p>
+<ol><li>Raw data embedded in XML
+</li><li>The actual HTML for the area to be replaced.
+</li></ol>
+<p>The first method is more efficient, but then you have to convert it 
+to HTML to add it to the page.  The second method is easier because you 
+can just add it immediately to the page, but using innerHTML has some 
+cross-browser issues since it is not a real DOM standard application.  
+In most cases, our customers use method #2, and this has caused us some 
+issues.
+</p>
+<a name="AJAX_applications_and_innerHTML_-_What_we_need_to_look_for"></a><h3> <span class="mw-headline">AJAX applications and innerHTML - What we need to look for</span></h3>
+<p>Most of our customers use AJAX to pass the HTML of the area that 
+needs to be changed, and then add it to the innerHTML of the cell of 
+interest.  This works fine for our customers, but can be a problem for 
+us since the elements may or may not be in the DOM.  Here is what you 
+need to look for (and I am assuming that we have a "hook" into their 
+code so that as soon as the AJAX response is added to the page, our code
+ gets called to make our changes):
+</p>
+<ol><li>Find out how they are receiving the data and adding it to the 
+page.  Basically, where in the DOM is it being added. There may be 
+multiple calls, find out for all of them.  
+</li><li>If you are moving content into or out of the area that is being
+ written into the DOM, be very VERY careful.  You may find that reading 
+the content from the recently added area and/or adding content into the 
+recently added area may fail.  I had this problem in IE.  Instead, I 
+found an area of the page that was <b>not</b> being passed by the AJAX call, and did my DOM additions into there.
+</li></ol>
+<p>The Moral of the story?  Understand how your page works before you implement any dynamic changes.
+</p>
+<a name="Specific_example_.231_-_Product_page_with_Ajax"></a><h2> <span class="mw-headline">Specific example #1 - Product page with Ajax</span></h2>
+<p>A while back, we worked on a Product Page that loaded the product 
+information usign Ajax.  Our test included testing the contents within 
+two of the areas that where passed using Ajax.  So we needed the 
+customer to <b>"hook"</b> us into the code so that as soon as the Ajax modifies the content via the DOM, we can step in and do our thing.
+</p>
+<a name="How_it_was_done_-_adding_the_.22hook.22"></a><h3> <span class="mw-headline">How it was done - adding the "hook"</span></h3>
+<p>So here is an example of how they added us into their code.  There was an include named <code>/shopping/js/fc_nav.js</code> that contained the Ajax code.  In there, they had the following:
+</p>
+<pre>// AJAX call to reload divs.
+function reloadDiv (pUrl, pDivId, pCallback) {
+    var xmlhttp;
+    // create the request
+    xmlhttp = window.XMLHttpRequest?new XMLHttpRequest(): new ActiveXObject("Microsoft.XMLHTTP");
+    // callback to update specified div
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            // alert ("x updating: " + pDivId + "\nURL: "+pUrl+"\nstatus: " + xmlhttp.status);
+            document.getElementById(pDivId).innerHTML = xmlhttp.responseText;
+            if (typeof(pCallback) == "function"){
+            	pCallback();
+            }
+        }
+    }
+    // submit request
+    xmlhttp.open("get", pUrl);
+    xmlhttp.send(null);
+}
+</pre>
+<p>This is a standard block that sets up the Ajax to make the call to <b>pUrl</b>, then await the response.  Notice that the variable <b>pCallback</b>
+ is passed in and, if it is function, it is executed after the response -
+ the response happens to be HTML to replace some area - is written to 
+the element with passed in id <b>pDivId</b>.
+</p><p>So we they could call reloadDiv as follows:
+</p>
+<pre>reloadDiv(/catalog/productpurchasewrapper.jsp,"product-purchase");
+</pre>
+<p>But there is nothing passed as the 3rd paramenter, no function call. But then to <b>hook</b> us in, they could say:
+</p>
+<pre>reloadDiv(/catalog/productpurchasewrapper.jsp,"product-purchase", opProductPurchaseReload);
+</pre>
+<p>and then we would put that function in our setup block:
+</p>
+<pre>function opProductPurchaseReload(){
+//redo variables impacted by Ajax changes
+
+}
+</pre>
+<a name="Specific_example_.232_-_Passing_data_to_Optimost_directly_using_Ajax"></a><h2> <span class="mw-headline">Specific example #2 - Passing data to Optimost directly using Ajax</span></h2>
+<p>We also had a case of a client wanting to test content that did not 
+exist on the default version of the page. As we all know, we would need 
+them to normally add it as hidden element, or as a javascript value.  
+But they suggested passing it as Ajax.  Like, how fun!
+</p>
+<a name="How_it_was_done"></a><h3> <span class="mw-headline">How it was done</span></h3>
+<p>So we start by making the Ajax call within out Setup block.
+</p>
+<pre>//importXML() is called by the variables values that would need the Ajax response.
+function importXML(){
+	ajaxLoader("/bookonline/breaklistingsX.asp?BB=1&amp;ht=All&amp;mds=14&amp;tp=WEB8A&amp;lp=1&amp;n=3&amp;bpp=14");
+}
+function ajaxLoader(url){
+	x=null; opIE=false;
+	if (document.getElementById) {
+		//var x = (window.ActiveXObject)&nbsp;? new ActiveXObject('MSXML2.XMLHTTP.3.0'): new XMLHttpRequest();
+		if (window.XMLHttpRequest) {// If IE7, Mozilla, Safari, and so on: Use native object.
+			x= new XMLHttpRequest();
+		}
+		else{
+			if (window.ActiveXObject) {// ...otherwise, use the ActiveX control for IE5.x and IE6.
+				x= new ActiveXObject('MSXML2.XMLHTTP.3.0');
+				opIE=true;
+  			}
+		}
+	}
+	if (x){
+		x.onreadystatechange = function(){
+			if (x.readyState == 4 &amp;&amp; x.status == 200){
+				if(!opIE) opParseXML(x.responseXML);
+				else{
+					ieResp = x.responseText;
+					opParseXML(ieResp);
+
+				}
+			}
+		}
+		x.open("GET", url, true);
+		x.send(null);
+	}
+}
+</pre>
+<p>So this setups the Ajax call, and when it successfully receives the response, it calls <b>opParseXML</b>, which parses the XML data - this is XML data being sent, not HTML wrapped in XML - as follows:
+</p>
+<pre>opAllNodesList=['WarnerBreakListing','WarnerBreak','Description','Entertainment','Text'];
+allNodes = new Object;
+allVariableValues = new Object;
+TOP_DATA_CONTAINER_NODE='WarnerBreakListing';
+
+function opParseXML(allXML){
+	var containerNode=null;
+	if(allXML.firstChild.nodeName.toLowerCase()!='xml') { //NOT IE
+		topNode=allXML;
+		for (var i=0; i&lt;topNode.childNodes.length; i++) {
+			if(topNode.childNodes[i].nodeName==TOP_DATA_CONTAINER_NODE){
+				containerNode=topNode.childNodes[i];
+				break;
+			}
+		}
+	}
+	else {//IE if we use xmlOBJ.responseXML
+		topNode=allXML.documentElement;
+		if(topNode.nodeName==TOP_DATA_CONTAINER_NODE) containerNode=topNode;
+	}
+	//alert(topNode.firstChild.nodeName);
+	if(containerNode!=null){
+		var warnerBreakNodes = containerNode.getElementsByTagName("WarnerBreak");
+		for (var i=0; i&lt;warnerBreakNodes.length; i++) {
+			ents=warnerBreakNodes[i].getElementsByTagName("Entertainment");
+			txts=warnerBreakNodes[i].getElementsByTagName("Text");
+			for(var j=0;j&lt;ents.length;j++) allNodes['WarnerBreak'+i+':Ents']=ents[j].firstChild.nodeValue;
+			for(var j=0;j&lt;txts.length;j++) allNodes['WarnerBreak'+i+':txts']=txts[j].firstChild.nodeValue;
+			if ( warnerBreakNodes[i].attributes &amp;&amp; warnerBreakNodes[i].attributes.length ) {
+				for ( var k=0; k&lt;warnerBreakNodes[i].attributes.length;k++ ) {
+					var key = warnerBreakNodes[i].attributes[k].nodeName;
+					if ( typeof(key)&nbsp;!= "string" ) continue;
+					var val = warnerBreakNodes[i].attributes[k].nodeValue;
+					if (&nbsp;! val ) continue;
+					allNodes['WarnerBreak'+i+':ATTR:'+key]=val;
+				}
+			}
+
+		}
+
+		var list='';
+		for(var n in allNodes) list+=(n+"  =  "+ allNodes[n]+"\n");
+		alert(list);		
+	}
+	else{
+		var list='Container Node not found!';
+		alert(list);		
+			
+	}
+}
+
+</pre>
+<p>And here is a truncated example of the XML, modified to maximize your
+ viewing pleasure.  You can get the real version from the  here <a href="http://wiki.interwoven.com/optimost/Image:AjaxResponse.xml" title="Image:AjaxResponse.xml">Image:AjaxResponse.xml</a>
+</p>
+<pre>&lt;WarnerBreakListing&gt;
+	&lt;WarnerBreak BreakID="AL  TS    20080801" WasFrom="304" Save="68.80" NowFrom="235.20" CurPromoInfo="20" PromoCode="WEB8A"&gt;
+		&lt;Description&gt;
+			&lt;Entertainment&gt;Tribute-Kings of Swing&lt;/Entertainment&gt;
+			&lt;Text&gt;Sounds of Swing&lt;/Text&gt;
+		&lt;/Description&gt;
+	&lt;/WarnerBreak&gt;
+	&lt;WarnerBreak BreakID="BM  SB    20080801" WasFrom="244" Save="20" NowFrom="224" CurPromoInfo="" PromoCode="WEB8A"&gt;
+		&lt;Description&gt;
+			&lt;Entertainment&gt;The Grumbleweeds&lt;/Entertainment&gt;
+			&lt;Text&gt;Starbreak&lt;/Text&gt;
+		&lt;/Description&gt;
+	&lt;/WarnerBreak&gt;
+&lt;/WarnerBreakListing&gt;
+</pre>
+<p><br>
+</p>
+<a name="AJAX_and_jQuery"></a><h2> <span class="mw-headline">AJAX and jQuery</span></h2>
+<p>If the site has jQuery it might be possible to use 
+jQuery(window).ajaxSuccess(function() { ... }); to call your changes 
+when the page updates. When using it, ajaxSuccess will trigger an event 
+whenever there has been a successful jQuery AJAX call on the page. You 
+can then add callbacks to functions with your changes in, and it will 
+perform the changes again once the AJAX call has been completed. 
+</p>
+<a name="See_also_2"></a><h2> <span class="mw-headline">See also</span></h2>
+<ul><li><a href="http://wiki.interwoven.com/optimost/ASP.NET_AJAX_and_Optimost" title="ASP.NET AJAX and Optimost">ASP.NET_AJAX_and_Optimost</a>
+</li></ul>
+<a name="Back_to"></a><h2> <span class="mw-headline">Back to</span></h2>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Technical_consultants" class="mw-redirect" title="Technical consultants">Technical consultants</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 35/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:179-0!1!0!!en!2!edit=0 and timestamp 20130816144716 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/AJAX_overview">http://wiki.interwoven.com/optimost/AJAX_overview</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.interwoven.com/optimost/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Category:AJAX&amp;action=edit&amp;redlink=1" class="new" title="Category:AJAX (not yet written)">AJAX</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/AJAX_overview" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:AJAX_overview&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_overview&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_overview&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=AJAX_overview" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/AJAX_overview" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/AJAX_overview" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_overview&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_overview&amp;oldid=6272" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="AJAX%20overview%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 31 January 2012, at 17:21.</li>
+				<li id="viewcount">This page has been accessed 208 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.230 secs. -->
+</body></html>

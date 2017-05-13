@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Add dynamic clickthrus,&quot;Turning&quot; non-anchor tags into anchor tags,Absolute address,Add Load Event,Adding MAP and AREA elements,Appending code to an existing function,Control spacing/height of dynamically created DIV,Create Style,Creating Ordinal numbers,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Add dynamic clickthrus - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Add%20dynamic%20clickthrus%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Add_dynamic_clickthrus";
+var wgTitle = "Add dynamic clickthrus";
+var wgAction = "view";
+var wgArticleId = "6";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5616";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Add%20dynamic%20clickthrus%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Add%20dynamic%20clickthrus%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Add%20dynamic%20clickthrus%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Add%20dynamic%20clickthrus%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Add_dynamic_clickthrus">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Add dynamic clickthrus</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Functionality"><span class="tocnumber">1</span> <span class="toctext">Functionality</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Instances"><span class="tocnumber">1.1</span> <span class="toctext">Instances</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Code"><span class="tocnumber">2</span> <span class="toctext">Code</span></a></li>
+<li class="toclevel-1"><a href="#Issues"><span class="tocnumber">3</span> <span class="toctext">Issues</span></a></li>
+<li class="toclevel-1"><a href="#Example_of_how_to_apply_with_jQuery"><span class="tocnumber">4</span> <span class="toctext">Example of how to apply with jQuery</span></a></li>
+<li class="toclevel-1"><a href="#See_also"><span class="tocnumber">5</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1"><a href="#Functions"><span class="tocnumber">6</span> <span class="toctext">Functions</span></a></li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Functionality"></a><h2> <span class="mw-headline">Functionality</span></h2>
+<p>Applies clickthrus onto links or form tags.  After reading this, feel
+ free to look at an example of all 3 types of clicks to be tracked: <a href="http://kidwww.optimost.com/webtest/jim/testCT.html" class="external free" title="http://kidwww.optimost.com/webtest/jim/testCT.html" rel="nofollow">http://kidwww.optimost.com/webtest/jim/testCT.html</a>
+</p><p>When looking at the example, use the debug clickthru tool so you can see what is happening, <a href="http://kidwww.optimost.com/webtest/mdauria/qa.html" class="external free" title="http://kidwww.optimost.com/webtest/mdauria/qa.html" rel="nofollow">http://kidwww.optimost.com/webtest/mdauria/qa.html</a>
+</p>
+<a name="Instances"></a><h3> <span class="mw-headline">Instances</span></h3>
+<p>For an anchor tag, it should be added as an onclick event, assuming the anchor tag does not already have an onclick, as in:
+</p>
+<pre>//Say the first anchor tag
+ckt="{{$clickthru.getClick.url}}";  //How to define the click in Optimost to create a clickthru in the Wizard
+ckt="http://by.optimost.com/go/2-3282/a0fb0hw21j245ei27k07n7904/";  //An example clickthru value, an actual value
+anchor=document.getElementsByTagName('a');
+if(anchor.length&gt;0)a[0].onclick= new Function('$opt.clickthru(this,ckt,"oplink");return true;');
+</pre>
+<p>And for Form tag, if it has no onsubmit event already, added as an onsubmit event, as in:
+</p>
+<pre>//Say the first form
+ckt="{{$clickthru.getClick.url}}";  
+ckt="http://by.optimost.com/go/2-3282/a0fb0hw21j245ei27k07n7904/"; 
+document.forms[0].onsubmit= new Function('$opt.clickthru(this,ckt,"oppost");return true;');
+</pre>
+<p>or for a Form with an onsubmit already, change the form action straight-up
+</p>
+<pre>//Say the first form
+ckt="{{$clickthru.getClick.url}}"; 
+ckt="http://by.optimost.com/go/2-3282/a0fb0hw21j245ei27k07n7904/"; 
+$opt.clickthru(document.forms[0],ckt,"oppost")
+</pre>
+<p>Both these form examples have a "go" clickthru, which assumes the 
+post method="GET".  It would be different for a method="POST", and I 
+will talk about that later in this entry.
+</p>
+<a name="Code"></a><h2> <span class="mw-headline">Code</span></h2>
+<p>This first example works for both a anchor tag and a Form POST - note
+ that most of the Forms we deal with have method="POST".  And for the <b>absoluteAddr</b> function go to <a href="http://wiki.interwoven.com/optimost/Absolute_address" title="Absolute address">Absolute address</a>.
+</p>
+<pre>$opt={};
+
+$opt.clickthru = function (o, ct, qsParam) {
+     if (typeof(o.originaltarget)&nbsp;!= 'undefined') return false; //see if we have done this before
+
+     o.originaltarget = 'done'; // Used in tandem with line above to prevent from instrumenting link - doing this process - more than once
+     if (o.tagName.toLowerCase() == "form") h=absoluteAddr(o.action);
+     else h=absoluteAddr(o.href);   
+
+     o.originaltarget = h;
+     h = ct+(ct.indexOf('?')==-1?'?':'&amp;') + qsParam +'=' + escape(h);
+     // This gets around problem with '+' characters in URL which are otherwise changed to spaces
+     h = h.replace(/\+/g,'%2B'); 
+     if (o.tagName.toLowerCase() == "form") o.action= h;
+     else o.href= h;
+
+     return true;
+}
+
+</pre>
+<p>This next example is more comprehensive as it takes into account 
+whether the Form is a GET or POST, since passing the URL for GET and 
+POST is different - for POST we pass as a query string paramter (just as
+ we would for an anchor tag), but for GET it must be passed as a hidden 
+input.
+</p>
+<pre>$opt={};
+
+$opt.clickthru = function (o, ct, qsParam) {
+	if (typeof(o.originaltarget)&nbsp;!= 'undefined') return false; //see if we have done this before
+		
+	o.originaltarget = 'done'; // Used in tandem with line above to prevent from  re-instrumenting the target object
+	if (o.tagName.toLowerCase() == "form") h=absoluteAddr(o.action);
+	else h=absoluteAddr(o.href);   
+		
+	o.originaltarget = h;
+	newH = ct+(ct.indexOf('?')==-1?'?':'&amp;') + qsParam +'=' + escape(h);
+	if (o.tagName.toLowerCase() == "form"){
+		if(o.method.toLowerCase()=='post'){//Adding for POST and href is same				
+			o.action= newH;
+		}
+		else {//get Click, need to add Clickthru as action and form post value as a hidden input
+			var newInput=document.createElement('input');
+			newInput.setAttribute('type','hidden');
+			newInput.setAttribute('name',qsParam);
+			newInput.setAttribute('value',h);	
+			o.appendChild(newInput);
+			o.action= ct;			
+		}
+	}
+	else { //Adding for POST and href is same
+		o.href= newH;
+	}
+	return true;
+}</pre>
+<a name="Issues"></a><h2> <span class="mw-headline">Issues</span></h2>
+<ul><li>Ignores target attribute, function needs be updated to take target attribute into account.
+</li></ul>
+<ul><li>Also, remember that a POST click is different than a GET click. 
+ Must be defined as POST or GET in the Agency, and it defaults to GET, 
+so creating a POST dynamically means you have to go in and change it 
+from GET to POST in the clickthru.  To make this change, go to the 
+clickthru of interest, go to the advanced Tab, and select POST.
+</li></ul>
+<ul><li>If we want to add an onclick to an anchor tag, and it already 
+has an onclick, we can do it.  First, we need to determine that we can 
+add it to the onclick without adverse effects. If we can, then we can 
+add it within the onclick, usually either at the beginning or the end.  
+Here is an example:
+</li></ul>
+<pre>&lt;a id="testA" href="http://www.optimost.com" onclick="return doSetCookie();"&gt;Optimost&lt;/a&gt;
+
+&lt;script&gt;
+
+function doSetCookie(){alert('this is a built-in onclick');return true;}
+
+temp=document.getElementById('testA').onclick.toString();  //Get the Anchor object and pull out the onclick event as a string
+temp=temp.substring(temp.indexOf("{") + 1, temp.lastIndexOf("}"));  //Removes the function definition tags from the original
+document.getElementById('testA').onclick=new Function("$opt.clickthru(this,getClick,'oplink');"+temp); //Add our onclick + orig function
+
+&lt;/script&gt;
+
+
+
+</pre>
+<p>And here's a function for that:
+</p>
+<pre>function addClickthru(opLinks,clickthru)
+{
+        if(typeof(opLinks.onclick)!="function") opLinks.onclick=new Function('$opt.clickthru(this,"' + clickthru +'","oplink");return true;');
+        else{
+                temp=opLinks.onclick.toString();
+                temp=temp.substring(temp.indexOf("{") + 1, temp.lastIndexOf("}"));
+                opLinks.onclick=new Function('$opt.clickthru(this,"' + clickthru +'","oplink");'+temp);
+        }
+}
+
+</pre>
+<p><br>
+</p>
+<ul><li>Remember that if you add our onclick tracking function at the end, an onclick is <b>expected to return true;</b>
+ in order to allow the href to trigger.  So you must remember if you add
+ it at the end to account for that.  Also, we add this onclick assuming 
+it ends in <b>return true;</b> since we have changed the href to track it.  If the onclick does something else and does not <b>return true</b>,
+ or does something funky to also change the href, or just does something
+ else funky, then adding the onclick may not work and we need to look 
+into more detail in trying to track it.
+</li></ul>
+<a name="Example_of_how_to_apply_with_jQuery"></a><h2> <span class="mw-headline">Example of how to apply with jQuery</span></h2>
+<p>Jim's level 2 event function
+</p>
+<pre>$opt.doClickthruJquery = function(evt){
+	var randNum=Math.floor(Math.random()*1000000);
+	evtX=evt;
+	do{  //The event triggered MAY NOT be our anchor tag, so we need to find &lt;a&gt; to get the attributes we are passing in
+		if(evtX.is('a')==false)evtX=evtX.parent();
+	} while(evtX.is('a')==false &amp;&amp; evtX.is('body')==false );	
+
+	var ct="";
+	if(evtX.attr('ckthru')!=null)ct=evtX.attr('ckthru');
+	var qsParam ="link";
+	if(evtX.attr('ckparam')!=null) qsParam =evtX.attr('ckparam');
+	h=evtX.attr('href');
+	if (h.substr(0,4)&nbsp;!= "http"){
+		if (h.substr(0,1) == "/"){
+		// link is relative to document domain
+			h = location.protocol + "//" +location.host + h;
+		}
+		else { 
+		// link is relative to document path
+			path=location.pathname.substr(0,location.pathname.lastIndexOf('/')+1);
+			h = location.protocol + "//" +location.host + path + h;
+		}
+	} 
+	h = ct+(ct.indexOf('?')==-1?'?':'&amp;') + qsParam +'=' + escape(h);
+	evtX.attr('href', h);	
+	return true;
+}
+</pre>
+<p>How to apply
+</p>
+<pre>        $opt.registroBtn=$('#cabecera.cabecera-v2 .header-top .registro span.opc-login a.pildora-dere');
+        if($opt.exists($opt.registroBtn)){
+               $opt.registroBtn.attr('ckthru', '{{$clickthru.registro.url}}');
+               $opt.registroBtn.attr('ckparam', 'oplink');
+               $opt.registroBtn.click(function(){
+                      if($(this).attr('opclicked')!='true'){   
+                               $opt.doClickthruJquery($(this));
+                      }
+                      $(this).attr('opclicked', 'true');
+               });
+        }
+</pre>
+<a name="See_also"></a><h2> <span class="mw-headline">See also</span></h2>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Absolute_address" title="Absolute address">Absolute address</a>
+</li></ul>
+<p>And here is a great example of tracking the 3 types of clicks:
+</p><p><a href="http://kidwww.optimost.com/webtest/jim/testCT.html" class="external free" title="http://kidwww.optimost.com/webtest/jim/testCT.html" rel="nofollow">http://kidwww.optimost.com/webtest/jim/testCT.html</a>
+</p>
+<a name="Functions"></a><h2> <span class="mw-headline">Functions</span></h2>
+<ul><li><a href="http://wiki.interwoven.com/optimost/DOM_manipulation_functions" title="DOM manipulation functions">DOM manipulation functions</a> <small>A list of useful functions for DOM templates</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Find_elements_matching_a_CSS_selector%2C_jQuery_style" title="Find elements matching a CSS selector, jQuery style">Find elements matching a CSS selector, jQuery style</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Universal_Clickthru_Include_code" title="Universal Clickthru Include code">Universal Clickthru Include code</a> 
+</li></ul>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Simulating_a_%22click%22_on_an_element" title="Simulating a &quot;click&quot; on an element">Simulating a "click" on an element</a> <small>Simulates a click, but can be other event</small>
+</li><li>Recursive Functions
+<ul><li><a href="http://wiki.interwoven.com/optimost/Parsing_through_ALL_nodes_in_a_container_-_recursive" title="Parsing through ALL nodes in a container - recursive">Parsing through ALL nodes in a container - recursive</a> <small style="color:#777777">If a container has lots of nested nodes and you need to find something</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Parsing_nodes_recursively_and_changing_color_of_all_numbers" title="Parsing nodes recursively and changing color of all numbers">Parsing nodes recursively and changing color of all numbers</a> <small style="color:#777777">Different than above since we have to change text nodes to element nodes</small> 
+</li><li><a href="http://wiki.interwoven.com/optimost/Parsing_nodes_recursively_to_remove_them" title="Parsing nodes recursively to remove them">Parsing nodes recursively to remove them</a> <small style="color:#777777">When running an A/B test with bad HTML on the client's page</small> 
+</li></ul>
+</li></ul>
+<ul><li><strong class="selflink">Add dynamic clickthrus</strong>
+</li><li><a href="http://wiki.interwoven.com/optimost/Absolute_address" title="Absolute address">Absolute address</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Add_Load_Event" title="Add Load Event">Add Load Event</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Appending_code_to_an_existing_function" title="Appending code to an existing function">Appending code to an existing function</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_Next_Sibling" title="Get Next Sibling">Get Next and Previous Sibling</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_First_Child" title="Get First Child">Get First Child</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Creating_Ordinal_numbers" title="Creating Ordinal numbers">Creating Ordinal numbers</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/%22Turning%22_non-anchor_tags_into_anchor_tags" title="&quot;Turning&quot; non-anchor tags into anchor tags">"Turning" non-anchor tags into anchor tags</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Shortcuts_function_%28%24D%29" title="Shortcuts function ($D)">Shortcuts function ($D)</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_Ancestor" title="Get Ancestor">Get Ancestor</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_Elements_By_Class_Name" title="Get Elements By Class Name">Get Elements By Class Name</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Increment_Alphabetically" title="Increment Alphabetically">Increment Alphabetically</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Show_creative_ID" title="Show creative ID">Show creative ID</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Unobtrusive_popup" title="Unobtrusive popup">Unobtrusive popup</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Create_Style" title="Create Style">Create Style</a> <small style="color:#777777">For when you can't just document.write it...</small> 
+</li><li><a href="http://wiki.interwoven.com/optimost/Adding_MAP_and_AREA_elements" title="Adding MAP and AREA elements">Adding MAP and AREA elements</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Image_counter" title="Image counter">Image counter</a>
+</li></ul>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a> <small style="color:#ff7777">How to transfer cookies across domains using window.name property as the transport mechanism</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Text-wrapping_Efficiently" title="Text-wrapping Efficiently">Text-wrapping Efficiently</a> <small style="color:#ff7777">How to wrap text to efficiently to maximize use of space</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Stop_the_closing_of_a_window" title="Stop the closing of a window">Stop the closing of a window</a> <small style="color:#ff7777">How to add an element and try to stop the visitor from leaving.</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Control_spacing/height_of_dynamically_created_DIV" title="Control spacing/height of dynamically created DIV">Control spacing/height of dynamically created DIV</a> <small style="color:#ff7777">How to limit the height of an element to allow for proper spacing of elements below it.</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifer_and_Click_Tracking_Code" class="mw-redirect" title="Selector-based Content modifer and Click Tracking Code">Selector-based Content modifer and Click Tracking Code</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Extracting_creative_information_from_Optimost_Cookies" title="Extracting creative information from Optimost Cookies">Extracting creative information from Optimost Cookies</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 49/1000000
+Post-expand include size: 4479/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:6-0!1!0!!en!2!edit=0 and timestamp 20130816142839 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Add_dynamic_clickthrus">http://wiki.interwoven.com/optimost/Add_dynamic_clickthrus</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.interwoven.com/optimost/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://wiki.interwoven.com/optimost/Category:Functions" title="Category:Functions">Functions</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Add_dynamic_clickthrus" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Add_dynamic_clickthrus&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Add_dynamic_clickthrus&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Add_dynamic_clickthrus&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Add_dynamic_clickthrus" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Add_dynamic_clickthrus" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Add_dynamic_clickthrus" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Add_dynamic_clickthrus&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Add_dynamic_clickthrus&amp;oldid=5616" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Add%20dynamic%20clickthrus%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 17 February 2011, at 09:23.</li>
+				<li id="viewcount">This page has been accessed 407 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.209 secs. -->
+</body></html>

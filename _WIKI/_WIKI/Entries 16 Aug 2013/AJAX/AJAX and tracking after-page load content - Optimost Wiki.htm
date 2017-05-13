@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="AJAX and tracking after-page load content,AJAX overview,ASP.NET AJAX and Optimost,Technical consultants">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>AJAX and tracking after-page load content - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "AJAX_and_tracking_after-page_load_content";
+var wgTitle = "AJAX and tracking after-page load content";
+var wgAction = "view";
+var wgArticleId = "1095";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6289";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-AJAX_and_tracking_after-page_load_content">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">AJAX and tracking after-page load content</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#AJAX_and_tracking_after_page_load_content"><span class="tocnumber">1</span> <span class="toctext">AJAX and tracking after page load content</span></a></li>
+<li class="toclevel-1"><a href="#AJAX_and_a_Search_Bar"><span class="tocnumber">2</span> <span class="toctext">AJAX and a Search Bar</span></a>
+<ul>
+<li class="toclevel-2"><a href="#HTML_for_the_Search_box"><span class="tocnumber">2.1</span> <span class="toctext">HTML for the Search box</span></a></li>
+<li class="toclevel-2"><a href="#DOM_view_of_Search_box_during_Auto-populate"><span class="tocnumber">2.2</span> <span class="toctext">DOM view of Search box during Auto-populate</span></a></li>
+<li class="toclevel-2"><a href="#Approach_.231_-_.22hook.22_into_the_AJAX_code"><span class="tocnumber">2.3</span> <span class="toctext">Approach #1 - "hook" into the AJAX code</span></a></li>
+<li class="toclevel-2"><a href="#Approach_.232_-_Add_event_to_parent_container_that_exist_at_page_load.2C_then_determine_the_event_from_there"><span class="tocnumber">2.4</span> <span class="toctext">Approach #2 - Add event to parent container that exist at page load, then determine the event from there</span></a></li>
+<li class="toclevel-2"><a href="#Approach_.233_-_Use_a_function_from_a_library_to_detect_AJAX_requests"><span class="tocnumber">2.5</span> <span class="toctext">Approach #3 - Use a function from a library to detect AJAX requests</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="AJAX_and_tracking_after_page_load_content"></a><h2> <span class="mw-headline">AJAX and tracking after page load content</span></h2>
+<p>More websites are using AJAX to efficiently pass data from servers to
+ web pages without a page refresh.  One of the more popular applications
+ of this is auto-populated search bars.  This entry goes over the two 
+options for adding tracking to those elements that are loaded via AJAX.
+</p>
+<a name="AJAX_and_a_Search_Bar"></a><h2> <span class="mw-headline">AJAX and a Search Bar</span></h2>
+<a name="HTML_for_the_Search_box"></a><h3> <span class="mw-headline">HTML for the Search box</span></h3>
+<p>Here is what the search box looks like on page load:
+<br>
+<a href="http://wiki.interwoven.com/optimost/Image:SearchBar.gif" class="image" title="Image:searchBar.gif"><img alt="Image:searchBar.gif" src="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/SearchBar.gif" height="112" border="0" width="812"></a>
+<br>
+And here is the HTML of that section of the page.
+</p>
+<pre>&lt;div id="search"&gt;
+    &lt;form id="main-search" action="/Search"&gt;
+        &lt;input value="Search" class="placeholder" name="text" id="mainSearchText" autocomplete="off" type="text" maxlength="80"/&gt;
+        &lt;span class="search replace"&gt;Search&lt;/span&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+</pre>
+<a name="DOM_view_of_Search_box_during_Auto-populate"></a><h3> <span class="mw-headline">DOM view of Search box during Auto-populate</span></h3>
+<p>Here is what the search box looks like after I enter the letters "jaim" into the search box:
+<br>
+<a href="http://wiki.interwoven.com/optimost/Image:SearchBar_autoSelect.gif" class="image" title="Image:searchBar_autoSelect.gif"><img alt="Image:searchBar_autoSelect.gif" src="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/SearchBar_autoSelect.gif" height="269" border="0" width="791"></a>
+<br>
+And here is that same section of HTML after I enter the letters "jaim" into the search box:
+</p>
+<pre>&lt;div id="search"&gt;
+    &lt;form id="main-search" action="/Search"&gt;
+        &lt;ul id="as-selections-043" class="as-selections"&gt;
+            &lt;li id="as-original-043" class="as-original"&gt;
+                &lt;input type="text" maxlength="80" autocomplete="off" id="as-input-043" name="text" class="placeholder as-input" value="Search" /&gt;
+                &lt;input type="hidden" id="as-values-043" name="as_values_043" class="as-values" /&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div id="as-results-043" class="as-results" style="display: none;"&gt;
+            &lt;ul class="as-list"&gt;
+                &lt;li id="as-result-item-0" class="as-result-item"&gt;&lt;span class="text"&gt;&lt;em&gt;Jaim&lt;/em&gt;e S?ez&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-1" class="as-result-item"&gt;&lt;span class="text"&gt;&lt;em&gt;Jaim&lt;/em&gt;e Mara??n&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-2" class="as-result-item"&gt;&lt;span class="text"&gt;&lt;em&gt;jaim&lt;/em&gt;e  cruz&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-3" class="as-result-item"&gt;&lt;span class="text"&gt;&lt;em&gt;Jaim&lt;/em&gt;e Coll&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-4" class="as-result-item"&gt;&lt;span class="text"&gt;&lt;em&gt;Jaim&lt;/em&gt;e Galan&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-5" class="as-result-item"&gt;&lt;span class="text"&gt;&lt;em&gt;Jaim&lt;/em&gt;e De Jesus&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-6" class="as-result-item active"&gt;&lt;span class="text"&gt;&lt;em&gt;Jaim&lt;/em&gt;e Teran&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-7" class="as-result-item"&gt;&lt;span class="text"&gt;&lt;em&gt;Jaim&lt;/em&gt;e Tamariz&lt;/span&gt;&lt;span class="type"&gt;MEMBER&lt;/span&gt;&lt;/li&gt;
+                &lt;li id="as-result-item-8" class="as-result-item as-fullSearch"&gt;&lt;a href="#" class="Search"&gt;SEE ALL RESULTS&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;span class="search replace" style="background-color: rgb(237, 237, 237);"&gt;Search&lt;/span&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+</pre>
+<p>As you can see, there are a lot of nodes added and the content has 
+changed considerably.  How can I not track user actions on these new 
+nodes?
+</p>
+<a name="Approach_.231_-_.22hook.22_into_the_AJAX_code"></a><h3> <span class="mw-headline">Approach #1 - "hook" into the AJAX code</span></h3>
+<p>The first approach is to get a "hook" into the AJAX code to add 
+tracking code.  Somewhere on the page, there is AJAX code that handles 
+the transaction between the browser and the server, and when the content
+ comes back from the server, right after the customer's code makes the 
+changes to the DOM, the Optimost code is called to make its tracking 
+addition.  You can reference the following WIKI entries for more on that
+ approach:<br>
+</p>
+<ul><li><a href="http://wiki.interwoven.com/optimost/AJAX_overview" title="AJAX overview">AJAX overview</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/ASP.NET_AJAX_and_Optimost" title="ASP.NET AJAX and Optimost">ASP.NET_AJAX_and_Optimost</a>
+</li></ul>
+<p>The biggest disadvantage of this approach is that you need to have 
+way to hook into the AJAX code.  The viability of doing this can be 
+categorized as follows:
+</p>
+<ol><li>In the .NET example in the wiki, Microsoft has built in an event
+ that gets run when AJAX updates are made.  So we can use this 
+functionality to "hook" ourselves in, and we have done this a number of 
+times for pages with .NET.  This is a workable scenario.
+</li><li>For other back-end architectures, there are times when the AJAX
+ code is a small standalone piece of code that can be "hooked" into 
+either by redefining the function to add a hook to our code or using 
+existing functionality to pass in our function.  We did this a number of
+ times in the past when AJAX was first being used by customers, but this
+ is happening less and less over time<sup><b>1</b></sup> because most pages are falling into the next category...
+</li><li>For pages that use libraries - custom or open-source - some 
+will have thousands of line of custom code with AJAX functionality built
+ into it.  These are often functions that cannot be modified and provide
+ no hooks into the code.  For these pages, we must resort to one of the 
+following approaches.
+</li></ol>
+<p><sup><b>1</b></sup>This entry was created in January of 2012 as more complicated and purposely-obfuscated code is being written by developers.
+</p>
+<a name="Approach_.232_-_Add_event_to_parent_container_that_exist_at_page_load.2C_then_determine_the_event_from_there"></a><h3> <span class="mw-headline">Approach #2 - Add event to parent container that exist at page load, then determine the event from there</span></h3>
+<p>The second approach has the advantage that you don't need any 
+assistance from the customer.  You simply need to identify the best 
+parent container for adding your event(s).
+</p><p>In this example, we could attach an event to either the <b>&lt;form  id="main-search" action="/Search"&gt;</b> node or the <b>&lt;div id="search" &gt;</b> node.  We decided to attach it to the <b>form</b> since the search area is the "form", and it is  "closer" to the nodes we want to add events to than the <b>div</b> is.
+</p><p>Here is the code we wrote to track this case:
+</p>
+<pre>&lt;script&gt;
+$opt={},$vopt={};
+$opt.addEvent = function (el, evt, func, bubble) {
+    if (!el || typeof (func)&nbsp;!= "function") {
+	return false;
+    }
+    bubble = bubble || false;
+    var evtType = (window.attachEvent)&nbsp;? "attach"&nbsp;: (window.addEventListener)&nbsp;? "add"&nbsp;: "none";
+    if (evtType == "attach") {
+	el.attachEvent("on" + evt, func);
+    } else if (evtType == "add") {
+	el.addEventListener(evt, func, bubble);
+    }
+}
+$opt.opCounters=[];
+$opt.cntr = function(num,val){	
+	var myPro = (("https:" == document.location.protocol)&nbsp;? "https://by.essl.optimost.com/by"&nbsp;: "http://by.optimost.com");
+	num = (typeof(num)&nbsp;!= 'undefined')&nbsp;? num&nbsp;: "";
+	val = (typeof(val)&nbsp;!= 'undefined')&nbsp;? val&nbsp;: "";
+	
+	var randnum=Math.floor(Math.random()*100000);
+	var url=myPro+"/counter/551/-/"+num+"/event.gif?op551gheaderliid={{$creative.sessionId}}&amp;type="+val+"&amp;session=" + randnum;
+	$opt.opCounters[$opt.opCounters.length]=new Image();
+	$opt.opCounters[$opt.opCounters.length-1].src=url;
+	
+}
+$opt.enterKey = function(evt){
+
+	if(evt.keyCode==13){
+		//alert("counter fired");
+		$opt.cntr(14,"unique");
+	}
+}
+$opt.inputClick=function(evt){
+	if(evt.keyCode!=13){
+		if(evt.stopPropagation)evt.stopPropagation();
+		else evt.cancelBubble=true;
+	}
+}
+//Start Tracking code
+$vopt.searchForm = document.getElementById("main-search");
+$vopt.searchBarInput = $vopt.searchForm&nbsp;? $opt.get("className","placeholder as-input","input",$vopt.searchForm):null;
+$vopt.spanButton = $vopt.searchForm&nbsp;? $opt.get("className","search replace","span",$vopt.searchForm):null;
+
+//counters
+$opt.addEvent($vopt.searchForm,'click',function(){$opt.cntr(14,"autoselect");});  //Autoselect returned &lt;li&gt; entry selected, click on entire form
+$opt.addEvent($vopt.searchBarInput ,'keydown',$opt.enterKey);                     //User entered content and hit enter to select it
+$opt.addEvent($vopt.spanButton,'click',function(){$opt.cntr(14,"unique");});      //User entered content and hit the button on the right to select it
+$opt.addEvent($vopt.searchBarInput,'click',$opt.inputClick,false);                //An event is added so that a click in the text input is ignored
+&lt;/script&gt;
+</pre>
+<p>So to track the visitor's behavior, we need to account for the following contingencies:
+</p>
+<ol><li>We need to fire an event when the visitor selects a search item.  This means:
+<ul><li>Fire a counter event when the visitor submits the text input in the search box that they populated.
+</li><li>Fire a counter event when the visitor selects one of the auto-populated entries returned via AJAX.
+</li></ul>
+</li><li>Unfortunately, the javascript code added by the customer 
+circumvents the normal submission process of the form and submits the 
+form using javascript, so we cannot use the form's onsubmit event.
+</li></ol>
+<p>Given this, if we could magically add the events just after the 
+auto-populated entries are returned, then we would add these events:
+</p>
+<ol><li>A <b>click</b> event to the <b>span</b> magnifying glass to indicate the user selected their text input.
+</li><li>A <b>keydown</b> event on the <b>text input</b> that looks for the <b>enter key</b> to be pressed by the user, indicating selection of their text input.
+</li><li>A <b>click</b> event on the newly-created <b>&lt;ul class="as-list"&gt;</b> to indicate user selection of an auto-populated entry.
+</li></ol>
+<p>The issue is with the last event which cannot be added on page load 
+since that node does not exist.  So to solve this problem, we do the 
+following:
+</p>
+<ul><li>We find the three nodes that exist in the original HTML on page load: The <b>form</b> node, the <b>text input</b> and the <b>span</b> containing the submit magnifying glass
+</li><li>We add the first two events above since those two nodes are available in the original HTML.
+</li><li>For the 3rd <b>event</b>, we add 2 events to the existing nodes: 
+<ol><li>For the <b>form</b> node, we add a <b>click</b> event.  This 
+will capture when a visitor clicks on the autoselect entries that will 
+later be added via AJAX.  Unfortunately, it will also capture any click 
+inside the <b>form</b>, some of which we don't want to track, so we also add...
+</li><li>For the <b>text input</b> node, we then add a <b>click</b> 
+event to cancel the propagation of that click if a user clicks inside 
+the text input.  A click inside the text input will be the visitor 
+adding focus to the select input, BUT since it is inside the <b>form</b>, the <b>form</b> click we already added will also be triggered.  So since the <b>text input</b> click will occur first - the <b>form</b> is a parent of the <b>text input</b> -  we add an event to stop the event propogation, and now the form <b>click</b> event is not fired.
+</li></ol>
+</li></ul>
+<a name="Approach_.233_-_Use_a_function_from_a_library_to_detect_AJAX_requests"></a><h3> <span class="mw-headline">Approach #3 - Use a function from a library to detect AJAX requests</span></h3>
+<p>Some of the open-source libraries have functions that will indicate 
+certain states in AJAX events.  For example, jQuery has four functions 
+to tell you about the progress of an AJAX transaction.  The following 
+code shows four useful state indicators:
+</p>
+<pre>$(document).ajaxStart(function() { document.title+="start"; });
+$(document).ajaxStop(function() { document.title+="stop"; });
+$(document).ajaxComplete(function() { document.title+="Complete"; });
+$(document).ajaxSuccess(function() { document.title+="Success"; });
+</pre>
+<p>In this simple example, the document.title will be modified to append
+ the name of the jQuery AJAX Event that has fired.  For the scenario in 
+this WIKI entry, we could theoretically use <b>ajaxStop</b> or <b>ajaxComplete</b> or <b>ajaxSuccess</b>
+ to make the necessary changes.  If you test it, you will see that the 
+normal order of triggering is "Start - Success - Complete - Stop".
+</p><p>Some points on Approach #3:
+</p>
+<ol><li>In our list of scenarios where we need to add a "hook" to our 
+code, the "page uses a library that has complicated and obfuscated code"
+ scenario often involves jQuery as the underlying library.  So this 
+approach is an option with jQuery.  
+</li><li>If the test page uses jQuery, you need no assistance from the customer to track your events.  
+</li><li>For the example in this WIKI entry, it would allow you to add the <b>3rd event</b> we had above after a succesful return of AJAX entries, while adding the first 2 events on page load as normal.  
+</li><li>For pages where you also need to make changes to the returned 
+content - if the returned AJAX content is part of our MVT test - you can
+ use this to trigger a execution of your module again.
+</li></ol>
+<hr>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Technical_consultants" class="mw-redirect" title="Technical consultants">Technical consultants</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 28/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1095-0!1!0!!en!2!edit=0 and timestamp 20130816144752 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/AJAX_and_tracking_after-page_load_content">http://wiki.interwoven.com/optimost/AJAX_and_tracking_after-page_load_content</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.interwoven.com/optimost/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Category:AJAX&amp;action=edit&amp;redlink=1" class="new" title="Category:AJAX (not yet written)">AJAX</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/AJAX_and_tracking_after-page_load_content" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:AJAX_and_tracking_after-page_load_content&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_and_tracking_after-page_load_content&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_and_tracking_after-page_load_content&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=AJAX_and_tracking_after-page_load_content" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/AJAX_and_tracking_after-page_load_content" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/AJAX_and_tracking_after-page_load_content" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_and_tracking_after-page_load_content&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=AJAX_and_tracking_after-page_load_content&amp;oldid=6289" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="AJAX%20and%20tracking%20after-page%20load%20content%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 3 February 2012, at 18:40.</li>
+				<li id="viewcount">This page has been accessed 20 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.264 secs. -->
+</body></html>

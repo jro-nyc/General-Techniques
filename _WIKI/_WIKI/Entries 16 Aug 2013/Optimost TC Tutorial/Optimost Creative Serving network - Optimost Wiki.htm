@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Optimost Creative Serving network,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Failover copy,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Optimost Creative Serving network - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Optimost_Creative_Serving_network";
+var wgTitle = "Optimost Creative Serving network";
+var wgAction = "view";
+var wgArticleId = "991";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5900";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Optimost_Creative_Serving_network">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Optimost Creative Serving network</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<strong class="selflink">Optimost Creative Serving network</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>Here are some details on how the Serving of Optimost content works
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#High-level_Architecture_for_Creative_Network"><span class="tocnumber">1</span> <span class="toctext">High-level Architecture for Creative Network</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Standard_approach:_Browser-based_experiments"><span class="tocnumber">1.1</span> <span class="toctext">Standard approach: Browser-based experiments</span></a></li>
+<li class="toclevel-2"><a href="#Specialized_approach:_Server_to_Server_experiments"><span class="tocnumber">1.2</span> <span class="toctext">Specialized approach: Server to Server experiments</span></a></li>
+<li class="toclevel-2"><a href="#For_all_Optimost_experiments"><span class="tocnumber">1.3</span> <span class="toctext">For all Optimost experiments</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Storing_and_Presenting_the_Analytics_data"><span class="tocnumber">2</span> <span class="toctext">Storing and Presenting the Analytics data</span></a></li>
+<li class="toclevel-1"><a href="#Akamai_and_Uptime_protection"><span class="tocnumber">3</span> <span class="toctext">Akamai and Uptime protection</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Failover_Copy"><span class="tocnumber">3.1</span> <span class="toctext">Failover Copy</span></a></li>
+<li class="toclevel-2"><a href="#Optimost_Creative_Servers_-_NOT_CACHED"><span class="tocnumber">3.2</span> <span class="toctext">Optimost Creative Servers - NOT CACHED</span></a></li>
+<li class="toclevel-2"><a href="#Optimost_.22uploads.22_-_CACHED_CONTENT"><span class="tocnumber">3.3</span> <span class="toctext">Optimost "uploads" - CACHED CONTENT</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Changes_to_Served_content"><span class="tocnumber">4</span> <span class="toctext">Changes to Served content</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Creating_a_new_Wave"><span class="tocnumber">4.1</span> <span class="toctext">Creating a new Wave</span></a></li>
+<li class="toclevel-2"><a href="#Refreshing_Creatives"><span class="tocnumber">4.2</span> <span class="toctext">Refreshing Creatives</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="High-level_Architecture_for_Creative_Network"></a><h2> <span class="mw-headline">High-level Architecture for Creative Network</span></h2>
+<p>Here is some diagrams of how the Creative Serving Network is configured, with explanations.<br>
+</p>
+<a name="Standard_approach:_Browser-based_experiments"></a><h3> <span class="mw-headline">Standard approach: Browser-based experiments</span></h3>
+<p>The first diagram show our standard implementation, where Optimost code is place in the customer web pages to be tested.
+<a href="http://wiki.interwoven.com/optimost/Image:HighLevelArchitecture.gif" class="image" title="image:highLevelArchitecture.gif"><img alt="image:highLevelArchitecture.gif" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/HighLevelArchitecture.gif" height="600" border="0" width="912"></a>
+<br>
+A few things to note:
+</p>
+<ol><li>As we remind customers, in a standard implementation, there is 
+no communications between the Optimost Servers and the Customer's 
+Servers.  Everything happens in the Browser.
+</li><li>These experiments usually require relatively little work from 
+the customers in creating experiments since Optimost Technical 
+Consultants or the Author tool will create code to make the necessary 
+changes to the page being tested. 
+</li><li>The final product served by Optimost is javascript that changes the DOM or CSS of the page.
+</li><li>The overwhelming majority of our experiments - 99%+ - are standard implementations.
+</li></ol>
+<a name="Specialized_approach:_Server_to_Server_experiments"></a><h3> <span class="mw-headline">Specialized approach: Server to Server experiments</span></h3>
+<p>This second diagram show a Server to Server implementation, where 
+Optimost code communicates with the customer's Servers, and then the 
+Customer creates the experiment based on this content.<br>
+<a href="http://wiki.interwoven.com/optimost/Image:HighLevel_SeverToServer.gif" class="image" title="Image:HighLevel_SeverToServer.gif"><img alt="Image:HighLevel_SeverToServer.gif" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/HighLevel_SeverToServer.gif" height="600" border="0" width="912"></a>
+<br>
+A few things to note:
+</p>
+<ol><li>Unlike the standard approach, the communications is between the 
+Optimost Servers and the Customer's Servers.  Optimost does not have 
+access to the final product, so the Customer will be responsible for 
+creating that experience based on the content received from Optimost.
+</li><li>These experiments usually require more work from the customers 
+in creating experiments since they have to create the final user 
+experience.  Normally, Server to Server experiments are either:
+<ul><li>Email experiments, where you cannot use a javascript to modify content (as a Standard implementation can)
+</li><li>Any browser-based experience that is critical enough for 
+security reasons that the customer does not want javascript code 
+manipulating the page.
+</li></ul>
+</li><li>The final product served by Optimost is XML that encapsulates 
+what the customer has asked for. Optimost works with the customer to 
+create the appropriate XML schema for transporting the desired content.
+</li><li>Although comprising less than 1% of our experiments, Server to 
+Server can be very attractive to large customers with the resources and 
+volume to profit from multivariable testing.
+</li></ol>
+<a name="For_all_Optimost_experiments"></a><h3> <span class="mw-headline">For all Optimost experiments</span></h3>
+<p>The following apply to the serving network, and are the same for all experiments
+</p>
+<ol><li>Akamai <b>routes</b> the traffic to the closest/fastest responding Optimost Server, one of the 5 location worldwide.
+<ul><li>The <b>by.optimost.com/by.essl.optiomst.com</b> domain points to Akamai, and then Akamai figures out where to route the request.
+</li><li>Akamai does not host the Creative Servers.
+</li><li>We do have content hosted by Akamai, our <b>Uploads</b> on the <b>es.optimost.com</b> domain.
+</li></ul>
+</li><li>If our Creative Servers are down/not responding, Akamai has an offering that takes care of that scenario, as we shall see next.
+</li></ol>
+<a name="Storing_and_Presenting_the_Analytics_data"></a><h2> <span class="mw-headline">Storing and Presenting the Analytics data</span></h2>
+<p>Here is a detailed diagram of our Creative Serving Network and the Storing and Presentation of the data.<br>
+<a href="http://wiki.interwoven.com/optimost/Image:OptimostArchitectureDetailed.gif" class="image" title="image:optimostArchitectureDetailed.gif"><img alt="image:optimostArchitectureDetailed.gif" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/OptimostArchitectureDetailed.gif" height="720" border="0" width="960"></a>
+<br>
+When any visitor event occurs - a page view, a clickthru, a counter 
+being triggered - that event is routed through Akamai to our Creative 
+Servers, or BY Servers.
+That data is stored at the BY Server's DB, then pushed to our Pleasanton
+ Data Center every 5 minutes.  This data then goes through the 
+"sharding" process, controlled by <b>App-ple-01</b>, 
+being transferred to one of 5 DBs, or shards.  In the diagram, <b>Db-ple-01</b> to <b>Db-ple-05</b>.
+</p><p>For redundancy, each shard has a backup, and that data is backed up at the same time as it is sharded, in the diagram to, <b>Db-ple-06</b> to <b>Db-ple-10</b>.  We then back up the entire DB from <b>Db-ple-06</b> to <b>Db-ple-10</b> once a day, to <b>Backup-ple-01</b>.  In addition, we also have a 2-week buffer that is stored in <b>App-ple-03</b>
+ for storing the raw data BEFORE the sharding process so, if need be, we
+ can reconstructed the last 2 weeks of data at another location.
+</p><p>When accessing the Agency Console, it will get the Analytics data from <b>Db-ple-01</b> to <b>Db-ple-05</b>.  
+</p>
+<a name="Akamai_and_Uptime_protection"></a><h2> <span class="mw-headline">Akamai and Uptime protection</span></h2>
+<p>When Optimost was formed, the first question from every customer's 
+tech department was "what kind of uptime guarantees can you give us".  
+We could talk about how great our network was, but all they would see is
+ a couple of guys in a startup saying to a multi-million dollar 
+business: "trust me". Fortunately for us, we were able to assuage their 
+fears by telling them we used <b>Akamai Site Failover to Edge Server</b> to serve our content in the off chance that our servers are down.  
+</p>
+<a name="Failover_Copy"></a><h3> <span class="mw-headline">Failover Copy</span></h3>
+<p>Failover is done by allowing Akamai Edge Servers to route all visitor
+ requests to the Optiomst Creative servers through their network.  And 
+if they can not get to our Creative servers, they would instead route 
+the traffic to a "failover" copy hosted by the Akamai Edge Servers that 
+contains the content for the specific subject that was being requested. 
+<br>
+<a href="http://wiki.interwoven.com/optimost/Image:HighLevelArchitecture_failover.gif" class="image" title="image:highLevelArchitecture_failover.gif"><img alt="image:highLevelArchitecture_failover.gif" src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/HighLevelArchitecture_failover.gif" height="600" border="0" width="912"></a>
+<br><br>
+In our early experiments, we did HTML replacement of content, not DOM 
+modifications, so the customer wrapped the HTML we where testing in a <b>&lt;noscript&gt;</b>
+ block and we added our old-style Trial Code call below that (this is 
+before Page Code).  If our servers where non-responsive and we had no 
+Failover copy, the visitor to the test page would see a blank test area.
+  So we would put the default version of the test area in failover, 
+which was then and is now at the Template <b>subject</b> level under the left nav entry <b>"Change failover copy"</b>. <br><br>
+With how we implement most of our tests today - modify content via the 
+DOM so that if we do nothing, the default page show up as normal - we 
+simple leave failover copy empty, but if you do have a test where 
+sending no content would be a problem, you need to use failover copy.  
+For example:
+</p>
+<ol><li>Any XML test, which the end device will always expect an XML response with valid data.
+</li><li>Any redirect test where the control creative is - and usually 
+ALL the creatives are - a redirect.  You will run into customers that 
+want to use Optimost to manage their content like this, so if they want 
+this, you will need to add failover to redirect to the control page.
+</li><li>A test where we are changing the default version of the page 
+and the Customer never wants the existing default version - the one in 
+the HTML - to appear.
+</li></ol>
+<p>For more on failover copy, see <a href="http://wiki.interwoven.com/optimost/Failover_copy" title="Failover copy">Failover copy</a>
+</p>
+<a name="Optimost_Creative_Servers_-_NOT_CACHED"></a><h3> <span class="mw-headline">Optimost Creative Servers - NOT CACHED</span></h3>
+<p>For an experiment, <b>Creatives</b> are served to different visitor <b>Personas</b>.
+  Creatives are not cached because each creative contains unique 
+tracking information - a session identifier -  that is generated each 
+time a creative is served.  So each time a visitor loads a page that 
+contains an Optimost experiment, if a Trial Code call is generated 
+(assuming throttling has not turned our experiment off), Akamai will 
+route that request to the nearest Optimost Creative server, and the 
+Optimost Servers will return that creative.  Since our Servers have to 
+generate each creative for each request, this tends to be an "expensive"
+ in terms of our Server resources.
+</p>
+<a name="Optimost_.22uploads.22_-_CACHED_CONTENT"></a><h3> <span class="mw-headline">Optimost "uploads" - CACHED CONTENT</span></h3>
+<p>We also have the capability to host content that Akamai caches on their Edge Servers.  This facility is accessible at the <b>Subject level</b> via the <b>"uploads"</b> link in the left nav.  This is where we should be hosting our global includes - see <a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages </a> - and <b>MAYBE</b> content that the customer cannot host - images, JS includes, or other content<sup><b>1</b></sup>.
+  Caching the content is "cheap" in terms of our Server resources since 
+our Serves are not called, but it still has a cost associated with it 
+based on traffic served.<br><br>
+There is a downside to cached content: the first time you upload it, you should see the content immediately.  But when you <b>change</b>
+ the content, it may take a bit of time for the changes to ripple out to
+ all the cached copies across the Akamai network. So you may have people
+ (or you) complain that they are seeing the old version of an uploaded 
+entity, not the new one.  The caching process is not perfect - you want 
+perfect, then don't cache it - but it is much more economical.
+<sup><b>1</b></sup>Know that this content costs us money to serve, so if
+ you are hosting content for them, you must make sure it is allowed 
+contractually. 
+</p>
+<a name="Changes_to_Served_content"></a><h2> <span class="mw-headline">Changes to Served content</span></h2>
+<p>Within Optimost, there are a number of different scenarios under 
+which a TC or OM may want to change the content that is being served by 
+our Creative Servers.  
+</p>
+<ol><li>Creating a new Wave for testing or QA
+</li><li>Creating a new Persona for testing or QA, then creating a new Wave inside of it.
+</li><li>Taking an existing Wave, making changes to the underlying template or templates, and then <b>"pushing"</b> those changes to the Creative Servers.
+</li></ol>
+<a name="Creating_a_new_Wave"></a><h3> <span class="mw-headline">Creating a new Wave</span></h3>
+<p>When you create a new Wave and are finished adding creatives, you will then have to <b>"activate"</b> the wave before being able to push the content to the Creative Servers.  This is a very important process.  When you <b>"activate"</b>
+ the wave, a "snapshot" of the template or templates used in the Wave is
+ taken and is used for these creatives.  So if you make changes to the 
+underlying template(s), they will NOT be reflected in creatives unless 
+you re-activate the Wave.  The process of reactivation is called <b>Refreshing Creatives</b>.
+</p>
+<a name="Refreshing_Creatives"></a><h3> <span class="mw-headline">Refreshing Creatives</span></h3>
+<p>Refreshing creatives is the process of taking that template snapshot 
+again.  If you are a TC doing QA on a template, you will become accustom
+ to doing this over and over again on existing Waves.  Here are a few 
+things to remember about this process.
+</p>
+<ol><li><b>When you make changes to a Template, you can refresh at the Template OR Wave level</b>
+ -  This is very important when you have a template being served to real
+ customers and you need to test/make changes without effecting the test,
+ you can also have a QA Wave running and only Refresh Creatives on the 
+QA Wave until you are ready to push the changes to the real customers.
+</li><li><b>If you make other changes to the Subject that effect the 
+test - say you change the Stickiness or Activity Tracking values - you 
+will also have to Refresh Creatives</b> - Stickiness and Activity Tracking are also passed in the creative, so you need to refresh to change these, too.
+</li><li><b>Persona changes on an existing Persona DO NOT require you to Refresh Creatives</b>
+</li></ol>
+<p>For more on Refresh scenarios, see the bottom of <a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<strong class="selflink">Optimost Creative Serving network</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 37/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:991-0!1!0!!en!2!edit=0 and timestamp 20130816142329 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network">http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Optimost_Creative_Serving_network&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Creative_Serving_network&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Creative_Serving_network&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Optimost_Creative_Serving_network" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Optimost_Creative_Serving_network" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Optimost_Creative_Serving_network" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Creative_Serving_network&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Creative_Serving_network&amp;oldid=5900" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Optimost%20Creative%20Serving%20network%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 10 August 2011, at 18:30.</li>
+				<li id="viewcount">This page has been accessed 111 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.251 secs. -->
+</body></html>

@@ -1,0 +1,55 @@
+=Introduction=
+One of the more difficult tasks we get is when customers want to do an A/B or MVT concept test that include challenger elements with different CSS/STYLE definitions for the same HTML elements.  In these instances, we have multiple CSS/STYLE definitions, and the second - challenger - definitions do not necessarly overwrite the original ones.  This wiki entry will deal with how to remove the control STYLES so that they can be replace by the STYLES.
+==CSS element in the DOM==
+Knowing that we have to remove the elements, we have to find them.  How are CSS/STYLE definitions added to the DOM?
+===Tags in the DOM===
+As an example of how data is stored in the DOM, here is a function you can run to see each tag, and through that see how the CSS/STYLE are stored.  Run this in Firebug's Console tab, you can pick any page you'd  like, preferably something you are working on:
+
+<pre>
+$domCheck=(typeof($domCheck)=="object"?$domCheck:{});
+$domCheck.getAllTags=function(){
+    var tags=document.getElementsByTagName("*"); //Gets every single tag, which just means all the element nodes
+    $domCheck.tags={};
+    for(var i=0,len=tags.length;i<len;i++){
+        if(tags[i].tagName!=null){
+            $domCheck.tags[tags[i].tagName]=($domCheck.tags[tags[i].tagName]!=null?$domCheck.tags[tags[i].tagName]:[]);
+            $domCheck.tags[tags[i].tagName].push(tags[i])
+        }    
+    }
+}
+$domCheck.getAllTags();
+</pre>
+When you run this, look at the '''$domCheck''' object in the '''DOM''' tab in firebug.  You will see the '''getAllTags''' function, followed by all the tags.  The tags you see will be completely dependent on what the page you chose looks like.
+
+Parsing through the tags, you will eventually figure out that there are two tags of interested:
+#LINK tags
+#STYLE tags
+
+===LINK tags - CSS in an external include===
+First you will notice the '''link''' tags.  These are the external stylesheets that are added as &lt;link&gt; tags to the page.  A specific stylesheet can be easily indentified using the '''href''' parameter.  The actual '''style''' definition is inside the "sheet" parameter, which then contians a '''cssRules''' (or '''rules''' in IE) array containing each '''style''' definition.
+
+To remove one of these, the easiest way is to:
+#Get all the '''link'''tags
+#Parse through them and fin the one with the matching href parameter
+#Remove that one from the DOM
+
+Below is a snippet of code that does just that, removes a '''link''' tag with href containing '''ppstyle.css'''
+
+<pre>
+$domCheck=(typeof($domCheck)=="object"?$domCheck:{});
+$domV=(typeof($domV)=="object"?$domV:{});
+$domCheck.deleteExternalStyleSheetBasedOnHREF=function(theHref){
+    $domV.linkTags = document.getElementsByTagName('link');
+    for(var i = $domV.linkTags.length - 1; i>-1; i--){
+        if($domV.linkTags[i].href!=null && $domV.linkTags[i].href.indexOf(theHref)!=-1){
+            $domV.linkTags[i].parentNode.removeChild($domV.linkTags[i]);
+        }
+    }
+}
+$domCheck.deleteExternalStyleSheetBasedOnHREF("ppstyle.css");
+</pre>
+
+
+===STYLE tags - Inline Style definitions===
+Next you notice the STYLE tags.  Its contents are similar to the LINK tags  - '''sheet''' parameter containing '''cssRules''' array - but it may be much more difficult to identify the specific style block you want to eliminate.
+The LINK tags have an '''href''' parameter that will by definition be unique.  Here, unless an ID or other attribute is added to the &lt;style&gt; tag, you will have to look through the '''cssRules''' for your rule of interest to find the '''cssText''' that matches the rule you want to remove.

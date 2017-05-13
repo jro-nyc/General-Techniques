@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="MVT vs Concept A/B/n experiments,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Implementation considerations,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples,Multi-page experiments,Optimost Creative Serving network">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>MVT vs Concept A/B/n experiments - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "MVT_vs_Concept_A/B/n_experiments";
+var wgTitle = "MVT vs Concept A/B/n experiments";
+var wgAction = "view";
+var wgArticleId = "1033";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5788";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/index_002.php"><!-- site js --></script><script type="text/javascript" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/index.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-MVT_vs_Concept_A_B_n_experiments">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">MVT vs Concept A/B/n experiments</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<strong class="selflink">MVT vs Concept A/B/n experiments</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Concept_test_.28A.2FB.2Fn.29_vs_MVT_experiments"><span class="tocnumber">1</span> <span class="toctext">Concept test (A/B/n) vs MVT experiments</span></a>
+<ul>
+<li class="toclevel-2"><a href="#An_MVT_example"><span class="tocnumber">1.1</span> <span class="toctext">An MVT example</span></a></li>
+<li class="toclevel-2"><a href="#A_Concept_A.2FB.2Fn_example"><span class="tocnumber">1.2</span> <span class="toctext">A Concept A/B/n example</span></a></li>
+<li class="toclevel-2"><a href="#Dynamic_content_example"><span class="tocnumber">1.3</span> <span class="toctext">Dynamic content example</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Product_Pages"><span class="tocnumber">1.3.1</span> <span class="toctext">Product Pages</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Form_Pages"><span class="tocnumber">1.4</span> <span class="toctext">Form Pages</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Summary"><span class="tocnumber">2</span> <span class="toctext">Summary</span></a></li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Concept_test_.28A.2FB.2Fn.29_vs_MVT_experiments"></a><h2> <span class="mw-headline">Concept test (A/B/n) vs MVT experiments</span></h2>
+<p>Optimost is the premier multivariable testing (MVT) provider, and has
+ been since we pioneered the space with a company launch in 2001.  An 
+MVT is a set of related, connected variables that work together to form a
+ test of a visitor’s user experience. Variables can vary from a simple 
+headline change to complex page layout changes.  Our MVTs use orthogonal
+ experimental designs to run experiments efficiently and arrive at 
+quantifiable results as quickly as possible.<br>
+Since an MVT separates the page into test areas, we retain the original 
+structure of the page – we make are “surgical” modifications to each 
+test area by manipulation the DOM<sup>1</sup> via javascript or CSS.  This allows us to run experiments on dynamic pages<sup>2</sup>  by setting up experiments to test "around" the changing content.<br>
+   
+For most Concept A/B/n tests, however, we have to replace the entire 
+content of the control page with a challenger version of the page.  
+Unlike an MVT, Concept A/B/n versions can make changes to the page that 
+modify the structure of the page, when such changes cannot be created by
+ manipulation of the DOM.  In replacing the content, we lose the 
+previous content of the page, and if the page is dynamic, retaining any 
+dynamic elements on the page may or may not be possible.<br>
+</p>
+<br><div style="padding-left:400px;"><i><b>Figure 1</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:OptimostHomePageMVT.gif" class="image" title="image:optimostHomePageMVT.gif"><img alt="image:optimostHomePageMVT.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/OptimostHomePageMVT.gif" height="865" border="0" width="928"></a>  
+</p>
+<div style="padding-left:400px;"><i><b>Figure 1</b></i></div>
+<p><sup>1</sup>DOM – Document Object Model, a standard for representing and interacting with objects on a web page.<br>
+<sup>2</sup>Dynamic Pages – Pages with changing content; i.e. a page can
+ show different products (an ipod, towels, chairs, etc),  a page that 
+looks different for logged in users,  a page with articles that change 
+as world events happen, etc. 
+</p>
+<a name="An_MVT_example"></a><h3> <span class="mw-headline">An MVT example</span></h3>
+<p>Figure 1 shows the Optimost Home Page.  As an example, let's say we 
+are running an MVT on the areas specified.   For variables A, B, C, and 
+D, we test the content of each area.  For variable E, we test the 
+location of areas A-D.  For F, we test the content of the bottom 4 
+sections as a single variable.<br>   
+To make these changes, we simply examine the DOM, find the different 
+test areas, and using either javascript or CSS, make changes to each 
+area.  In this MVT:
+</p>
+<ol><li>Areas A-D are inside a table – one column (&lt;td&gt;) for A and one column for B-D.  
+<ul><li>Area A is a flash.
+</li><li>Areas B-D are images inside an &lt;a&gt; tag, each inside of a separate &lt;div&gt;.  
+</li></ul>
+</li><li>Variable E is not an area, but a layout change, as in:
+<ul><li>The ability to move area A to the right and areas B-D to the left
+</li><li>The ability to shuffle areas B-D above and below each other.
+</li></ul>
+</li><li>Area F is inside a table, with one column (&lt;td&gt;) for each of the 4 sections.
+<ul><li>Each column contains a &lt;table&gt; with the content.
+</li></ul>
+</li></ol>
+<br><div style="padding-left:400px;"><i><b>Figure 2</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:FirebugDOM1.gif" class="image" title="image:firebugDOM1.gif"><img alt="image:firebugDOM1.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/FirebugDOM1.gif" height="837" border="0" width="1181"></a> 
+</p>
+<div style="padding-left:400px;"><i><b>Figure 2</b></i></div>
+<p>Figure 2 shows the DOM structure using Firebug.  Each of the test 
+areas can be found using javascript, So for this MVT, the changes to 
+these 5 areas and the one basic layout change can be made while 
+retaining the original structure of the page.
+</p>
+<a name="A_Concept_A.2FB.2Fn_example"></a><h3> <span class="mw-headline">A Concept A/B/n example</span></h3>
+<p>Next, let’s say we wanted to test a very different version of the Home Page.  
+</p>
+<div style="padding-left:400px;"><i><b>Figure 3</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:OptimostHomePage_Bversion.gif" class="image" title="image:optimostHomePage_Bversion.gif"><img alt="image:optimostHomePage_Bversion.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/OptimostHomePage_Bversion.gif" height="844" border="0" width="1010"></a> 
+</p>
+<div style="padding-left:400px;"><i><b>Figure 3</b></i></div>
+<p>Figure 3 shows a version with the following differences:
+</p>
+<ol><li>No content above the top navigation bar.
+</li><li>A slightly modified top navigation bar.
+</li><li>New content between the top navigation and main content area.
+</li><li>The main content area has:
+<ul><li>Different layout presentation and style. 
+</li><li>Different specific content.
+</li></ul>
+</li><li>A new right-side column with a testimonial and upcoming events.
+</li></ol>
+<p>Looking at the differences, we can see two major issues:
+</p>
+<ol><li>This "B" version, when compared to the original "A" version, cannot be broken into test areas as we did in the MVT. 
+</li><li>If we look at the DOM structure of the page – as we see in 
+Figure 4 – we see a very different structure and layout for the nodes on
+ the page.
+</li></ol>
+<div style="padding-left:400px;"><i><b>Figure 4</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:FirebugDOM2.gif" class="image" title="image:firebugDOM2.gif"><img alt="image:firebugDOM2.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/FirebugDOM2.gif" height="642" border="0" width="1179"></a> 
+</p>
+<div style="padding-left:400px;"><i><b>Figure 4</b></i></div>
+<p>So, given these two factors – either of which by itself would make 
+DOM modifications impossible –  in this case, we will have to do an HTML
+ substitution for the entire test area, which in this case is the entire
+ page.   
+</p>
+<a name="Dynamic_content_example"></a><h3> <span class="mw-headline">Dynamic content example</span></h3>
+<p>For testing a Landing Page like the Optimost Home Page, there is 
+generally not a lot of content that changes in real time.  Things like 
+the upcoming events may be updated on a weekly basis or so, but even in 
+the case where the events are not updated, although it will make the 
+page less useful, it will not "break" the functionality of the page.   
+Here we will dive a little deeper to show the two most common types of 
+dynamic pages we test and explain why running an MVT on such pages is 
+relatively simple BUT running Concept A/B/n may be at best much more 
+difficult, or at worst nearly impossible .
+</p>
+<a name="Product_Pages"></a><h4> <span class="mw-headline">Product Pages</span></h4>
+<p>Product pages, being an integral part of the revenue generating 
+process for e-commerce sites, are prime targets for MVT testing.  Figure
+ 5 shows an example page.
+</p>
+<div style="padding-left:400px;"><i><b>Figure 5</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:ProductPage1.gif" class="image" title="image:productPage1.gif"><img alt="image:productPage1.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/ProductPage1.gif" height="691" border="0" width="1117"></a> 
+</p>
+<div style="padding-left:400px;"><i><b>Figure 5</b></i></div>
+<p>This product page is selling a book, and all the books have common 
+elements, dynamic elements, and “business rules”  associated with the 
+content.  For example:
+</p>
+<ol><li>There are a number of dynamic elements:
+<ul><li>Book specifics – name of the book, its image, the name of the author.
+</li><li>The price for the different types of offering.
+</li><li>Customer rating information.
+</li></ul>
+</li><li>Common elements include:
+<ul><li>The position and style presentation – fonts, colors, sizes – of the content.
+</li><li>The types of buttons.
+</li></ul>
+</li><li>There are a number of "business rules":
+<ul><li>"Customers who bought this also bought" recommendation section 
+may have a different number of items, or even not exist, depending on 
+the book you selected.
+</li><li>They may or may not have used books.
+</li><li>The book may or may not be in stock.
+</li><li>All books may not be available in all the different formats
+</li></ul>
+</li></ol>
+<p>Therefore, on this page we could test, in an MVT:
+</p>
+<ol><li>The position and style – fonts, colors, sizes – of the content.
+</li><li>The appearance or copy of the buttons.
+</li><li>The layout of elements – moving them around in ways that maintain the structural integrity of the page
+</li><li>The existence or non-existence of certain elements.
+</li></ol>
+<p>Now let's say the creative team decided to go crazy with a brand new 
+site design, and test the design below as the challenger “B” version.  
+</p>
+<div style="padding-left:400px;"><i><b>Figure 6</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:ProductPage2.gif" class="image" title="image:productPage2.gif"><img alt="image:productPage2.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/ProductPage2.gif" height="720" border="0" width="1042"></a>
+</p>
+<div style="padding-left:400px;"><i><b>Figure 6</b></i></div>
+<p>Figure 6 shows a page that clearly has a completely different 
+structure.  We would not be able to "surgically" modify the DOM of the 
+original page to produce this one, so we would have to do an HTML 
+replacement.  However, because this is a dynamic page, we would have to 
+extract all the dynamic elements from the original and place them in the
+ B version.  This process would be extremely difficult and time 
+consuming, and for that reason we avoid doing Concept Tests on these 
+types of pages.
+</p>
+<a name="Form_Pages"></a><h3> <span class="mw-headline">Form Pages</span></h3>
+<p>Here we have the original Form page for a website.
+</p>
+<div style="padding-left:400px;"><i><b>Figure 7</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:FormPage1.gif" class="image" title="image:formPage1.gif"><img alt="image:formPage1.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/FormPage1.gif" height="403" border="0" width="935"></a>
+</p>
+<div style="padding-left:400px;"><i><b>Figure 7</b></i></div>
+<p>Their creative team has decided that they want to test an alternate version, and provided the HTML for the following version<sup>3</sup>:
+</p>
+<div style="padding-left:400px;"><i><b>Figure 8</b></i></div>
+<p><a href="http://wiki.interwoven.com/optimost/Image:FormPage2.gif" class="image" title="image:formPage2.gif"><img alt="image:formPage2.gif" src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/FormPage2.gif" height="415" border="0" width="903"></a>
+</p>
+<div style="padding-left:400px;"><i><b>Figure 8</b></i></div>
+<p>Looking at the challenger, the structure is completely different, so 
+we must do HTML substitution, not DOM manipulation.  But this is a form,
+ and it may have dynamic elements, which including:
+</p>
+<ol><li>Hidden inputs that pass session specific information
+</li><li>Front-end form validation built into the page – usually AJAX based.
+</li></ol>
+<p>This form page contains much less dynamic content than a product 
+page, but with an important complication – unlike a product page, a form
+ page needs to successfully validate and post data to the customer’s 
+back end.  So when you are doing an HTML replacement now you have to 
+copy/store all the pertinent state information from the original page 
+and add it to the replacement version so that it looks exactly like the 
+original page to both the back-end (i.e. when you post data, it is 
+exactly what the back-end is expecting) and to any validation 
+instrumentation on the page.
+</p><p><sup>3</sup>Best practices require the Customer provide a working
+ version of the page for Concept tests.   Receiving HTML only will 
+require a significant increase in the time-line.   We are using this 
+example to illustrate complications associated with Concept A/B/n tests 
+containing dynamic content.
+</p>
+<a name="Summary"></a><h2> <span class="mw-headline">Summary</span></h2>
+<p>Optimost can do both MVT and Concept A/B/n experiments – MVT using 
+DOM manipulation, Concept A/B/n using HTML substitution.  In the 
+instance where the experiment contains dynamic content, we strongly 
+recommend that it be an MVT.  If the Customer does insist on doing a 
+Concept A/B/n experiment on a page with dynamic content, know that our 
+standard timelines do not apply to such experiments, and the time needed
+ for implementation it may be significantly greater than an MVT.
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<strong class="selflink">MVT vs Concept A/B/n experiments</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 62/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1033-0!1!0!!en!2!edit=0 and timestamp 20130815164147 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments">http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:MVT_vs_Concept_A/B/n_experiments&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=MVT_vs_Concept_A/B/n_experiments&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=MVT_vs_Concept_A/B/n_experiments&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=MVT_vs_Concept_A/B/n_experiments" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/MVT_vs_Concept_A/B/n_experiments" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/MVT_vs_Concept_A/B/n_experiments" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=MVT_vs_Concept_A/B/n_experiments&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=MVT_vs_Concept_A/B/n_experiments&amp;oldid=5788" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="MVT%20vs%20Concept%20A_B_n%20experiments%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 8 April 2011, at 15:38.</li>
+				<li id="viewcount">This page has been accessed 47 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.160 secs. -->
+</body></html>

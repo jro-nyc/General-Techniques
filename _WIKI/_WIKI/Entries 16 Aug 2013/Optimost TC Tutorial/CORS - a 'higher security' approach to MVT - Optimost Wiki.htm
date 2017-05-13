@@ -1,0 +1,1049 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples,Multi-page experiments,Optimost Creative Serving network">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>CORS - a "higher security" approach to MVT - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "CORS_-_a_\"higher_security\"_approach_to_MVT";
+var wgTitle = "CORS - a \"higher security\" approach to MVT";
+var wgAction = "view";
+var wgArticleId = "1158";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6894";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-CORS_-_a_higher_security_approach_to_MVT">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">CORS - a "higher security" approach to MVT</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<strong class="selflink">CORS - a "higher security" approach to MVT</strong>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>In our standard implementation, Optimost is a third-party javascript 
+include on customer pages.  Most customers have multiple third-party 
+includes on their pages, so adding Optimost code is not a major concern 
+for them.  However, some customers have a "no third-party javascript 
+include" policy on some or all of their web site due to the Cross-site 
+Scripting (XSS) vulnerability.  They are concerned that once third-party
+ javascript is on the page, a rogue programmer could create malicious 
+javascript and do any number of bad things to compromise their 
+customer's private information and/or ruin the company's reputation.
+<br><br>
+As a workaround, we can setup the Optimost code to pass the MVT data as a
+ JSON object - as the payload of an AJAX request initiated by the 
+customer, not as javascript - and now since the customer has to parse 
+through the JSON object in order to implement the MVT, malicious code 
+cannot be automatically executed on the visitor browser, thus working 
+around this vulnerability.
+<br><br>
+As normally configured, Web Servers do not allow AJAX requests to go 
+across domains, but CORS allows our Servers to workaround this 
+limitation.  This wiki entry will explain how Optimost has implemented 
+CORS to allow for more a secure MVT implementation.
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#CORS"><span class="tocnumber">1</span> <span class="toctext">CORS</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Standard_architecture_and_process_flow"><span class="tocnumber">1.1</span> <span class="toctext">Standard architecture and process flow</span></a></li>
+<li class="toclevel-2"><a href="#CORS_architecture_and_process_flow"><span class="tocnumber">1.2</span> <span class="toctext">CORS architecture and process flow</span></a></li>
+<li class="toclevel-2"><a href="#Differences_between_the_two"><span class="tocnumber">1.3</span> <span class="toctext">Differences between the two</span></a></li>
+<li class="toclevel-2"><a href="#Optimost_Servers"><span class="tocnumber">1.4</span> <span class="toctext">Optimost Servers</span></a></li>
+<li class="toclevel-2"><a href="#Customer.27s_Web_Page"><span class="tocnumber">1.5</span> <span class="toctext">Customer's Web Page</span></a></li>
+<li class="toclevel-2"><a href="#.22CORS_MVT_rendering_engine.22_on_customer.27s_Web_Page_-_examples_of_how_to_implement"><span class="tocnumber">1.6</span> <span class="toctext">"CORS MVT rendering engine" on customer's Web Page - examples of how to implement</span></a></li>
+<li class="toclevel-2"><a href="#Pros_and_Cons_of_each_approach"><span class="tocnumber">1.7</span> <span class="toctext">Pros and Cons of each approach</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Generic_engine_example"><span class="tocnumber">1.7.1</span> <span class="toctext">Generic engine example</span></a></li>
+<li class="toclevel-3"><a href="#Custom_engine_example"><span class="tocnumber">1.7.2</span> <span class="toctext">Custom engine example</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="CORS"></a><h2> <span class="mw-headline">CORS</span></h2>
+<p>Let's first look at the differences between a standard implementation and a CORS implementation:
+</p>
+<a name="Standard_architecture_and_process_flow"></a><h3> <span class="mw-headline">Standard architecture and process flow</span></h3>
+<p><a href="http://wiki.interwoven.com/optimost/Image:Architecture_nonCORS.gif" class="image" title="image:Architecture_nonCORS.gif"><img alt="image:Architecture_nonCORS.gif" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/Architecture_nonCORS.gif" height="648" border="0" width="912"></a>
+</p>
+<a name="CORS_architecture_and_process_flow"></a><h3> <span class="mw-headline">CORS architecture and process flow</span></h3>
+<p><a href="http://wiki.interwoven.com/optimost/Image:Architecture_CORS.gif" class="image" title="image:Architecture_CORS.gif"><img alt="image:Architecture_CORS.gif" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/Architecture_CORS.gif" height="648" border="0" width="912"></a>
+</p>
+<a name="Differences_between_the_two"></a><h3> <span class="mw-headline">Differences between the two</span></h3>
+<p>As you can see, the "architecture" is the same, but the difference is
+ the type of MVT content that is returned and thus how that content is 
+"executed".
+</p>
+<ol><li>For a Standard Implementation, Optimost returns javascript that executes itself.
+</li><li>For the CORS Implementation, Optimost returns JSON text, which cannot execute itself, but must be executed using a special <b>"CORS MVT rendering engine"</b>.  More on that engine later in this document.
+</li></ol>
+<p><br><br>
+Let's look at the the different entities involved in an MVT and how each is effected.
+</p>
+<a name="Optimost_Servers"></a><h3> <span class="mw-headline">Optimost Servers</span></h3>
+<p>To allow CORS to work, you simply have to add the domain you will be communicating with.  For an Account, click on the <b>Details</b>, and you will get to a screen where, on the left, you can click on <b>Manage Account Features</b> you will get the following screen:
+</p><p><a href="http://wiki.interwoven.com/optimost/Image:ManageAccount.gif" class="image" title="image:ManageAccount.gif"><img alt="image:ManageAccount.gif" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/ManageAccount.gif" height="570" border="0" width="799"></a>
+</p><p><br>
+</p><p>Then click on <b>Cross-origin Resource Sharing</b>, make sure it's enabled, then click and you will get the following screen:
+</p><p><br>
+</p><p><a href="http://wiki.interwoven.com/optimost/Image:CORS_setting.gif" class="image" title="image:CORS_setting.gif"><img alt="image:CORS_setting.gif" src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/CORS_setting.gif" height="733" border="0" width="832"></a>
+</p><p>where you can enter the domains.  Here we have selected '<b>*'</b>
+ which allows all domains, since this customer had a very large list of 
+domains and had issues getting them all to work.  Since the call is <b>TO</b>
+ our servers - initiated in the customer's browser as an AJAX call - 
+there is no extra security concern from the customer's perspective 
+setting this to '<b>*'</b> versus the individual domains.
+</p><p>The wikipedia entry for CORS give you some examples:
+</p><p><a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" class="external free" title="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" rel="nofollow">http://en.wikipedia.org/wiki/Cross-origin_resource_sharing</a>
+</p>
+<a name="Customer.27s_Web_Page"></a><h3> <span class="mw-headline">Customer's Web Page</span></h3>
+<p>The customer's Web Page now has to make an AJAX request to Optimost, 
+which returns a JSON object.   The JSON will have the pertinent MVT 
+information.  Here are examples of acceptable responses:
+</p>
+<ul><li>For a Custom Engine:
+</li></ul>
+<pre>{
+	"predefinedVariables": {
+		"creativeCustomId": "",
+		"creativeId": "17",
+		"creativeName": "Creative 17",
+		"subjectShortName": "ukstreamlinedbusinesshomesecure",
+		"templateId": "9",
+		"subjectId": "8",
+		"campaignId": "2",
+		"sessionId": "a00i01700h291ay0nc55led92",
+		"visitorId": "291ay0nc55le",
+		"impressionId": "291ay0nc55le",
+		"segmentId": "18",
+		"segmentName": "QA",
+		"waveId": "43",
+		"trialId": "10"
+	},
+	"variables": {
+		"A_StreamlineBizHomepageUK": "0"
+	}
+}
+</pre>
+<ul><li>For a Generic Engine:
+</li></ul>
+<pre>$opt.variable["AreaA_heroImage"] = {
+    "value":2,
+    "selector": ".simpleleftcolumnwideflex div.recipeDetail",
+    "container":null,
+    "implement":{replace:{innerHTML:[
+        '&lt;div class="recipes"&gt;',
+            '&lt;img src="/Shared/Images/iconstext.png" /&gt;',
+        '&lt;/div&gt;',    
+        ''].join('')}}
+}
+$opt.variable ["AreaB_layout"] = {
+    "value":3,
+    "selector": "#main_0_leftcolumn_0_ImageContainer div.lowerDetail",
+    "container":null,
+    "implement":{insertAfter:"#main_0_leftcolumn_0_ImageContainer div.recipeAtrPanel"}
+}
+$opt.variable ["AreaC_buttons "] = {
+    "value":1,
+    "selector": null,
+    "container":null,
+    "implement":{css:"#content input.button{background:url(/images//v2/bg_sprite_btns.png) -134px 0}"}
+}
+$opt.variable ["AreaD_bullets"] = {
+    "value":0,
+    "selector": null,
+    "implement":null
+}
+$opt.variable["AreaE_image"] = {
+    "value":2,
+    "selector": "#main_0_subscribe_btnSignUp",
+    "container":null,
+    "implement":{replace:{src:'https://www.eonon.com/images/paypal.png','style.width':'120px'}}
+    //"implement":{replace:{src:'https://www.eonon.com/images/paypal.png',width:'120'}}
+}
+$opt.variable["predefinedVariables"]= {
+	"creativeCustomId": "",
+	"accountId":"123",
+	"creativeId": "17",
+	"creativeName": "Creative 17",
+	"subjectShortName": "ukstreamlinedbusinesshomesecure",
+	"templateId": "9",
+	"subjectId": "8",
+	"campaignId": "2",
+	"sessionId": "a00i01700h291ay0nc55led92",
+	"visitorId": "291ay0nc55le",
+	"impressionId": "291ay0nc55le",
+	"segmentId": "18",
+	"segmentName": "QA",
+	"waveId": "43",
+	"trialId": "10"
+}
+</pre>
+<a name=".22CORS_MVT_rendering_engine.22_on_customer.27s_Web_Page_-_examples_of_how_to_implement"></a><h3> <span class="mw-headline">"CORS MVT rendering engine" on customer's Web Page - examples of how to implement </span></h3>
+<p>So CORS allows us to send the MVT information as JSON text, so now 
+how do we implement the MVT?  There are two ways to do this, two types 
+of <b>"CORS MVT rendering engine"</b>:
+</p>
+<ol><li>Create the JSON text as objects that can be used to create the MVT using existing DOM manipulation functions.  Here, the <b>"CORS MVT rendering engine"</b> is generic and can be reused across different experiments.  
+</li><li>Create the JSON text as objects that pass in the "values" to be
+ used, and store the javascript used to create the MVT as an include 
+hosted and maintained by the customer.  Here, the <b>"CORS MVT rendering engine"</b> is the custom javascript for this experiment.
+</li></ol>
+<p><br>
+</p>
+<a name="Pros_and_Cons_of_each_approach"></a><h3> <span class="mw-headline">Pros and Cons of each approach</span></h3>
+<ol><li>Generic rendering engine:
+<ul><li>Pro - Can be reused across experiments.
+</li><li>Pro - Less customer interaction after initial Optimost Code integration(Whether Global or Standard).
+</li><li>Con - Customer has less control over what Optimost does.
+</li><li>Con - Some complicated javascript functionality may not be possible.
+</li></ul>
+</li><li>Custom rendering engine:
+<ul><li>Pro - Customer has completed control over what Optimost does.
+</li><li>Pro - Any javascript functionality is be possible.
+</li><li>Con - Cannot be reused across experiments.
+</li><li>Con - Customer interaction necessary initial deployment.
+</li></ul>
+</li></ol>
+<a name="Generic_engine_example"></a><h4> <span class="mw-headline">Generic engine example</span></h4>
+<p>Here is the code for a Generic Rendering engine.  Consult <a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a> for more details on the example below, the code is very similar with a few minor modifications.  
+</p>
+<pre>$opt={};
+$vopt={};
+$opt.variable={};
+$opt.addEvent=function(el,evt,func,bubble){
+	if(!el || typeof(func)&nbsp;!="function"){return false;}
+	bubble = bubble || false;
+	var evtType=(window.attachEvent)?"attach":(window.addEventListener)? "add":"none";
+	if(evtType == "attach"){el.attachEvent("on"+evt,func);}
+	else if(evtType == "add"){el.addEventListener(evt,func,bubble);}
+}
+$opt.createStyle=function (styleText){
+        var head = document.getElementsByTagName('head')[0],
+        style = document.createElement('style'),
+        rules = document.createTextNode(styleText);
+        style.type = 'text/css';
+        if(style.styleSheet)
+        style.styleSheet.cssText = rules.nodeValue;
+        else style.appendChild(rules);
+        head.appendChild(style);
+}
+$vopt.imgArray=[];
+$opt.triggerCounter=function(argPath, argLiid, argParams) {
+    var opPro=(("https:"==document.location.protocol)?"https://by.essl.optimost.com/by":"http://by.optimost.com");
+    rn=Math.floor(Math.random()*100000);
+    var src = opPro+argPath + '?' + argLiid + '={{$creative.sessionId}}' + (argParams!=''?'&amp;' + argParams:'') + '&amp;opts=' + rn;
+    var n=$vopt.imgArray.length;
+    $vopt.imgArray[n]= new Image();
+    $vopt.imgArray[n].src=src&nbsp;;
+}
+
+$opt.getElementsByTagNameAndClassName = function(startObj,clsName,tagName){
+	var retVal = [];
+	if(startObj==null)return retVal;
+	var elements = startObj.getElementsByTagName(tagName);
+	if(clsName=="")return elements;//20 Jan 2013
+	for(var i = 0;i &lt; elements.length;i++){
+		if(elements[i].className.indexOf(" ") &gt;= 0){
+			var classes = elements[i].className.split(" ");
+			for(var j = 0;j &lt; classes.length;j++){
+				if(classes[j] == clsName)
+				retVal.push(elements[i]);
+			}
+		}
+		else if(elements[i].className == clsName)
+			retVal.push(elements[i]);
+	}
+        //alert('in clsname '+clsName+'-'+startObj.innerHTML+'\n\n'+retVal[0].innerHTML)
+	return retVal;
+}
+$opt.endArray=[];
+$opt.walkTheDOM = function(container,selector,endElement){
+    var at=selector[0].split("|");//Split out special match paramters. Can only be used on last selector
+    var loc=0;
+    var simple=true;
+    var tgs=null;
+    if(at[1]!=null){//If this exists, means we are soind a special match parameter.
+	simple=false;//This is not a 'simple' search -  not just the class and tag need to be matched
+	var sep=at[1].split(":");//':' seperates the attributes to look at from the match value.
+	if(sep[1]==null){ //If we do a "location" match - find the 4th element with this final selector - just enter a number after the '|'
+		var rxpSt=new RegExp(/\d{1,2}/); 
+		tmp=rxpSt.exec(sep[0]);
+		if(tmp)loc=tmp;
+	}else{ //If we do an attribute match, get the attribute OR the tag and attribute
+		var attrs={};
+		attrs.value=sep[1];
+		var tgs=sep[0].split(","); //If tag and attribute, ',' separated	
+	}
+    }
+    var es=at[0].split(".");//split the tagName from the class in the selector
+    if(es.length!=2)return null;
+    var tagName=(es[0]==""?"*":es[0]);//If not tagName, then use '*', which is a wildcard for any tag on an element node
+    var sel=es[1];
+    var start;
+    start=$opt.getElementsByTagNameAndClassName(container,sel,tagName); //Function to look based on tagName and class
+
+    for(var i=0,len=start.length;i&lt;len;i++){//recursive routine to find the nodes of interest
+        if(selector[1]==null){
+	    if(simple==true){
+		if(endElement!="array")return start[i];   //Simple search, you are done
+		else $opt.endArray.push(start[i]);
+	    }
+	    else{
+		if(loc!=0){ //Location search
+			loc--;//Countdown until you get to the nth element
+			if(loc==0){
+				if(endElement=="array")$opt.endArray.push(start[i]);
+				else return start[i];
+			}
+		}
+		else if(tgs!=null){
+			var check = -1;
+			if(tgs[1]==null){//An attribute of the final container - usually innerHTML, can be src or href in other cases
+				var check=start[i][tgs[0]].indexOf(unescape(attrs.value));
+				if(endElement=="array")$opt.endArray.push(start[i]);
+				else return start[i];	
+			}
+			else {//Points to an attribute of an element inside the final container - usuelly src, href, etc
+				cnt=start[i].getElementsByTagName(tgs[0]); //Find the tagName nodes
+				for(var j=0,len2=cnt.length;j&lt;len2;j++){				
+					var check=cnt[j][tgs[1]].indexOf(unescape(attrs.value));
+					if(endElement=="array")$opt.endArray.push(start[i]);
+					else return start[i];		
+				}
+			}
+			if(check!=-1){
+				if(endElement=="array")$opt.endArray.push(start[i]);
+				else return start[i];						
+			}
+		}
+	    }
+        }
+        else {
+		var tmp=selector;
+		tmp.splice(0,1);
+		myRet=$opt.walkTheDOM(start[i],tmp,endElement);
+		if(myRet){
+			if(endElement=="array") return $opt.endArray;
+			else return myRet;		   
+		}
+		else{
+			if(endElement=="array") return $opt.endArray;
+		}
+        }
+    }
+    return null;
+} 
+
+$opt.evaluateContainer=function(ths){
+        if(ths.container==null){
+		switch(typeof(ths.selector)) {
+			case 'string':
+				var end="node";
+				if(ths.selectorEnd&amp;&amp;ths.selectorEnd=="array")end="array";			
+				var ps=ths.selector.split(" ");
+				var tmp;
+				if(ps[0].indexOf("#")!=-1){
+				tmp=document.getElementById(ps[0].replace("#",""));
+				ps.splice(0,1);
+				}
+				else tmp=document;
+				if(tmp==null)return;
+				if(ps.length&gt;0)	obj=$opt.walkTheDOM(tmp,ps,end);
+				else obj=tmp;
+				ths.container=obj;  
+				
+				break;
+			
+			case 'object':
+				$opt.endArray=[];
+				var end="node";
+				if(ths.selectorEnd&amp;&amp;ths.selectorEnd=="array")end="array";
+				var num=0;
+				var obj;
+				do{
+					var ps=ths.selector[num].split(" ");
+					var tmp;
+					if(num==0){
+						if(ps[0].indexOf("#")!=-1){
+							tmp=document.getElementById(ps[0].replace("#",""));
+							ps.splice(0,1);
+						}
+						else tmp=document;
+						if(tmp==null)return;
+						if(ps.length&gt;0){
+							obj=$opt.walkTheDOM(tmp,ps,end);
+							obj=$opt.endArray;
+							$opt.endArray=[];
+						}
+						else obj=tmp;
+					}else {
+						if(typeof(obj)=="object" &amp;&amp; obj.length&gt;0){
+							var tmpObj;
+							for(var i=0,len=obj.length;i&lt;len;i++){
+								var tmp=obj[i];
+								if(ps.length&gt;0){
+									tmpObj=$opt.walkTheDOM(tmp,ps,end);
+								}
+								else tmpObj=tmp;													
+							}
+							tmpObj=$opt.endArray;
+							$opt.endArray=[];
+							obj=tmpObj;
+						}
+						else if(typeof(obj)=="object"){
+							tmp=obj;
+							if(ps.length&gt;0){
+								obj=$opt.walkTheDOM(tmp,ps,end);
+								obj=$opt.endArray;
+								$opt.endArray=[];
+							}
+							else obj=tmp;
+						}
+						
+					}
+					num++;
+				}while(num&lt;ths.selector.length)
+				ths.container=obj;  
+				
+				break;                         
+		}
+        }
+}
+
+$opt.evaluateTracking=function(ths){
+    if(ths.container!=null &amp;&amp; ths.clickTagType!=null){
+        ths.matchingTags=[];
+	var tags=ths.container.getElementsByTagName(ths.clickTagType);
+	for(var i=0,len=tags.length;i&lt;len;i++){
+	    if(ths.condition=="contains"){
+		for(var n in ths.tagMatch){
+		    if(tags[i][n].indexOf(ths.tagMatch[n])!=-1)ths.matchingTags.push(tags[i]);
+		}                                     
+	    }
+	    else  if(ths.condition=="equals"){
+		for(var n in ths.tagMatch){
+		    if(tags[i][n]==ths.tagMatch[n])ths.matchingTags.push(tags[i]);
+		}   
+	    }
+	    else ths.matchingTags.push(tags[i]);
+	}
+	for(var i=0,len=ths.matchingTags.length;i&lt;len;i++){
+	    var link='';
+	    if(ths.attribute!=null){
+		for(var n in ths.attribute){
+			if(typeof(ths.attribute[n])=="string")link=n+"="+escape(ths.matchingTags[i][ths.attribute[n]]);
+			if(typeof(ths.attribute[n])=="function"){
+				var result=ths.attribute[n](ths.matchingTags[i]);
+				if(result!=null)link=n+"="+escape(result);
+			}
+		}		
+	    }
+	    $opt.addEvent(ths.matchingTags[i],"click",function(url,dly,liidNm,lnk){		
+		return function(e){                
+		    $opt.triggerCounter(url,liidNm,lnk);
+		    var date = new Date();
+		    //var ms=225;
+		    var ms=dly;
+		    var curDate = null;
+		    do { curDate = new Date(); } 
+		    while(curDate-date &lt; ms);
+		}		
+	    }(ths.unique,ths.dly,ths.liidName,link),true);		
+	}
+    }
+}
+$opt.trackingSetup=function(ths){
+	window.opCreativeId=ths.creativeId;	
+	//Set cookies
+	function opCsA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null)&nbsp;? ""&nbsp;: ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null)&nbsp;? ""&nbsp;: (";domain=" + d));}
+	function opCsSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l &lt; 2) sld = null;else if (!isNaN(dp[l-1]) &amp;&amp;&nbsp;!isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+	opCsA("op"+ths.accountId+ths.subjectShortName+"gum", ths.sessionId, opCsSLD(), 2592000);
+	opCsA("op"+ths.accountId+ths.subjectShortName+"liid", ths.sessionId, opCsSLD(), 86400);
+}
+$opt.render=function(){
+	for(var n in $opt.variable){
+                var conx=$opt.variable[n];
+		if(conx.selector!=null &amp;&amp; (typeof(conx.selector)=="string" || typeof(conx.selector)=="object")&amp;&amp; conx.container==null){
+			$opt.evaluateContainer(conx);        
+			for(var m in conx.implement){
+				switch(m) {
+					case 'css':
+						$opt.createStyle(conx.implement[m])
+						break;
+					
+					case 'moveAfter':
+					case 'moveBefore':
+						if(conx.container){
+							if(typeof(conx.container)=="object"&amp;&amp;conx.container.length&gt;0){
+								conx.selectorOrig=conx.selector;
+								conx.containerOrig=conx.container;
+								conx.container=null;
+								conx.selector=conx.implement[m]; 
+								$opt.evaluateContainer(conx);								
+								for(var i=conx.container.length-1;i&gt;-1;i--){
+									if(m=="moveBefore"){if(conx.containerOrig[i] &amp;&amp; conx.container[i])conx.container[i].parentNode.insertBefore(conx.containerOrig[i],conx.container[i]);}
+									else if(m=="moveAfter"){if(conx.containerOrig[i] &amp;&amp; conx.container[i])conx.container[i].parentNode.insertBefore(conx.containerOrig[i],conx.container[i].nextSibling);}
+								}
+							}
+							else {														
+								conx.selectorOrig=conx.selector;
+								conx.containerOrig=conx.container;
+								conx.container=null;
+								conx.selector=conx.implement[m]; 
+								$opt.evaluateContainer(conx);							
+								if(m=="moveBefore"){if(conx.containerOrig &amp;&amp; conx.container)conx.container.parentNode.insertBefore(conx.containerOrig,conx.container);}
+								else if(m=="moveAfter"){if(conx.containerOrig &amp;&amp; conx.container)conx.container.parentNode.insertBefore(conx.containerOrig,conx.container.nextSibling);}
+							}
+						}
+						break;
+					
+					case 'addBefore':
+					case 'addAfter':
+						if(conx.container){
+							var nd=conx.implement[m]["elem"];
+							var obj=document.createElement(nd.node);
+							for(var l in nd){
+								if(l!="div")obj[l]=nd[l];							
+							}
+							if(m=="addBefore")conx.container.parentNode.insertBefore(obj,conx.container)
+							else if(m=="addAfter")conx.container.parentNode.insertBefore(obj,conx.container.nextSibling)
+						}
+						break;
+					
+					case 'replace':
+						if(conx.container){
+							for(var l in conx.implement[m]){
+								if(l.indexOf('style.')!=-1)conx.container.style[l.split('.')[1]]=conx.implement[m][l];
+								else conx.container[l]=conx.implement[m][l];							
+							}
+						}
+						break;
+										
+					case 'remove':
+						if(conx.container){
+							if(typeof(conx.container)=="object"&amp;&amp;conx.container.length&gt;0){
+								for(var i=conx.container.length-1;i&gt;-1;i--)conx.container[i].parentNode.removeChild(conx.container[i]);
+							}
+							else conx.container.parentNode.removeChild(conx.container);
+						}					
+						break;	
+		    
+					default: break;
+				}
+			}
+		}
+		else if(n=="predefinedVariables"){
+			$opt.trackingSetup(conx);			
+		}
+	}
+}
+</pre>
+<p>This example does not deal with passing the Session identifiers and other Optimost-specific information.
+<br>
+Here is the JSON that is returned in the CORS call, which would be followed by a call to <b>$opt.render()</b>
+</p>
+<pre>//VARIABLES[[START]]
+//These first 3 objects make changes on http://www.bettycrocker.com/recipes/impossibly-easy-chicken-taco-pie/2a1cc84e-00a8-46d3-8c8e-26867da043de
+$opt.variable["AreaA_heroImage"] = {
+    "value":2,
+    "selector": ".simpleleftcolumnwideflex div.recipeDetail",
+    "container":null,
+    "implement":{replace:{innerHTML:[
+        '&lt;div class="recipes"&gt;',
+            '&lt;img src="/Shared/Images/iconstext.png" /&gt;',
+        '&lt;/div&gt;',    
+        ''].join('')}}
+}
+$opt.variable["AreaA_heroImage_alt"] = {
+    "value":2,
+    "selector": ".simpleleftcolumnwideflex div.recipeDetail",
+    "container":null,
+    "implement":{addBefore:{elem:{node:"div",className:"outer",innerHTML:[
+        '&lt;div class="recipes"&gt;',
+            '&lt;img src="/Shared/Images/iconstext.png" /&gt;',
+        '&lt;/div&gt;',    
+        ''].join('')}}
+    }
+}
+$opt.variable ["AreaB_layout"] = {
+    "value":3,
+    "selector": "#main_0_leftcolumn_0_ImageContainer div.lowerDetail",
+    "container":null,
+    "implement":{moveAfter:"#main_0_leftcolumn_0_ImageContainer div.recipeAtrPanel"}
+}
+$opt.variable ["AreaC_buttons "] = {
+    "value":1,
+    "selector": null,
+    "container":null,
+    "implement":{css:"#content input.button{background:url(/images//v2/bg_sprite_btns.png) -134px 0}"}
+}
+$opt.variable ["AreaD_bullets"] = {
+    "value":0,
+    "selector": null,
+    "implement":null
+}
+$opt.variable["AreaE_image"] = {
+    "value":2,
+    "selector": "#main_0_subscribe_btnSignUp",
+    "container":null,
+    "implement":{replace:{src:'https://www.eonon.com/images/paypal.png','style.width':'120px'}}
+}
+//These next 4 objects make changes on http://www.rewardtv.com/rewards/auctions.sdo
+$opt.variable["AreaF_removeBid_alt"] = {
+    "value":2,
+    //"selector": "#container div.centercol div.bordermaker div.boxcontent table.data tr.",
+    "selector": ["#container div.centercol div.bordermaker div.boxcontent table.data tr.","td.|3"],
+    "selectorEnd":"array",
+    "container":null,
+    "implement":{remove:{src:'https://www.eonon.com/images/paypal.png','style.width':'120px'}}
+}
+$opt.variable["AreaG_removeStuff"] = {
+    "value":2,
+    //"selector": "#container div.centercol div.bordermaker div.boxcontent table.data tr.",
+    "selector": "#container table.box_layout_adjuster table.blkEarn",
+    "selectorEnd":"array",
+    "container":null,
+    "implement":{remove:{src:'https://www.eonon.com/images/paypal.png','style.width':'120px'}}
+}
+$opt.variable["AreaH_moveBid"] = {
+    "value":2,
+    //"selector": "#container div.centercol div.bordermaker div.boxcontent table.data tr.",
+    "selector": ["#container div.centercol div.bordermaker div.boxcontent table.data tr.","td.|3"],
+    "selectorEnd":"array",
+    "container":null,
+    "implement":{moveAfter:["#container div.centercol div.bordermaker div.boxcontent table.data tr.","td.|4"]}
+}
+$opt.variable["predefinedVariables"]= {
+	"creativeCustomId": "",
+	"accountId":"123",
+	"creativeId": "17",
+	"creativeName": "Creative 17",
+	"subjectShortName": "ukstreamlinedbusinesshomesecure",
+	"templateId": "9",
+	"subjectId": "8",
+	"campaignId": "2",
+	"sessionId": "a00i01700h291ay0nc55led92",
+	"visitorId": "291ay0nc55le",
+	"impressionId": "291ay0nc55le",
+	"segmentId": "18",
+	"segmentName": "QA",
+	"waveId": "43",
+	"trialId": "10"
+}
+//VARIABLES[[END]]
+
+$opt.render();
+</pre>
+<a name="Custom_engine_example"></a><h4> <span class="mw-headline">Custom engine example</span></h4>
+<p>Below is an example of what the static javascript would look like based on the JSON text object defined in the previous section.
+</p>
+<pre>//Code which runs right away before AJAX completes
+$opt = {};
+$opt.newStyle=function(myStyle){var style1=document.createElement('style');style1.setAttribute('type','text/css');var txt1=document.createTextNode(myStyle);if(style1.styleSheet)style1.styleSheet.cssText = txt1.nodeValue;else style1.appendChild(txt1);if((myHead=document.getElementsByTagName("head")[0])!=null)myHead.insertBefore(style1,myHead.childNodes[myHead.childNodes.length-1]);else if((myBody=document.body)!=null) myBody.insertBefore(style1,myBody.childNodes[myBody.childNodes.length-1]);}
+$opt.newStyle("#main {display:none;}");
+
+//Show hidden area with module code or on AJAX error
+optimost.show=function(){
+	$opt.newStyle("#main {display:block;}");
+};
+
+//Setup which waits on JSON
+optimost.setup=function(){
+	window.opCreativeId=optimost.JSON.predefinedVariables.creativeId;
+		
+	//Set cookies
+	function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);document.cookie = n + "=" + escape(v) + ((e==null)&nbsp;? ""&nbsp;: ("; expires=" + de.toGMTString())) + "; path=/" + ((d==null)&nbsp;? ""&nbsp;: (";domain=" + d));}
+	function opCreativeGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;if (l &lt; 2) sld = null;else if (!isNaN(dp[l-1]) &amp;&amp;&nbsp;!isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+	opCreativeSetCookieA("op1644ukstreamlinedbusinesshomesecuregum", optimost.JSON.predefinedVariables.sessionId, opCreativeGetDocumentSLD(), 1814400);
+	opCreativeSetCookieA("op1644ukstreamlinedbusinesshomesecureliid", optimost.JSON.predefinedVariables.sessionId, opCreativeGetDocumentSLD(), 86400);
+	
+	$opt.insertLink = function (href) {
+		var link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.type = "text/css";
+		link.href = href;
+		document.documentElement.childNodes[0].appendChild(link)
+	}
+};
+
+//Module code
+optimost.module=function(){
+	if (optimost.JSON.variables.A_StreamlineBizHomepageUK == "0") {
+		//Site Catalyst
+		$opt.prop37="::test_ukstreamlinebizhome_control";
+		$opt.prop25="main:mktg:business::home:::test_ukstreamlinebizhome_control";
+		$opt.eVar25="main:mktg:business::home:::test_ukstreamlinebizhome_control";
+	} else if (optimost.JSON.variables.A_StreamlineBizHomepageUK == "1") {
+		//Replace HTML
+		jQuery('#content').replaceWith(
+			'&lt;link href="https://www.paypalobjects.com/eboxapps/css/99/a999df98b263a68918457b3f7df47a.css"  rel="stylesheet" type="text/css" /&gt;' + 
+			'&lt;section id="content" tabindex="-1"&gt;' +
+			'&lt;section id="headline"&gt;' +
+			'&lt;h1 class="accessAid"&gt;' +
+			'PayPal' +
+			'&lt;/h1&gt;' +
+			'&lt;/section&gt;' +
+			'&lt;div id="messageBox" class="empty"&gt;&lt;/div&gt;		' +
+			'&lt;section id="main"&gt;' +
+			'&lt;div class="contentWrapper"&gt;' +
+			'&lt;div class="catWidget headLineContent"&gt; &lt;section class="pageHeadline"&gt; &lt;div class="nsb_16_8"&gt; &lt;div class="one column"&gt; &lt;h1&gt;Compare online payment solutions&lt;/h1&gt; &lt;/div&gt;&lt;div class="two column nogutter"&gt;&lt;div&gt;&lt;img src="https://www.paypalobjects.com/webstatic/mktg/Latam/phone.png"&gt; &lt;strong&gt;0844 338 0470&lt;/strong&gt;&lt;br&gt; &lt;span style="font-size: 80%;"&gt;Calls cost 5p per minute from a BT landline (minimum charge 5.5p). Calls from other networks may vary and from mobiles will cost considerably more.&lt;/span&gt;&lt;br&gt; &lt;br&gt; &lt;/div&gt;&lt;/div&gt; &lt;/div&gt; &lt;/section&gt; &lt;/div&gt;&lt;h2&gt;However you do business PayPal gets you paid.&lt;/h2&gt; &lt;h3&gt;Don\'t worry, you can change or upgrade at any time.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h3&gt; &lt;h2&gt;&nbsp;&lt;/h2&gt;&lt;div class="catWidget columnContainer nsb_8_8_8"&gt; &lt;div class="one column"&gt;&lt;div id="StdContainer" class="wtDiv clearfix merchantContainer"&gt;&lt;div id="Std-ribbon-most-popular" class="wtDiv clearfix ribbon-most-popular"&gt;&lt;div class="catWidget imageContainer imageAlignLeft"&gt;&lt;img src="https://www.paypalobjects.com/webstatic/emea/i/emea-ribbon-most-popular.png"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="StdText" class="wtDiv clearfix "&gt;&lt;h3 style="text-align: center;"&gt;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Start accepting&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; online payments&lt;/h3&gt; &lt;h3 style="text-align: center;"&gt;£0&lt;/h3&gt; &lt;p style="text-align: center;"&gt;per month&lt;br&gt; &lt;/p&gt; &lt;p style="text-align: center;"&gt;Website Payments Standard&lt;/p&gt; &lt;ul&gt; &lt;li&gt;For small or start-up businesses&lt;/li&gt; &lt;li&gt;You can start accepting secure online payments in minutes&lt;br&gt; &lt;/li&gt; &lt;li&gt;Includes a mobile optimised checkout&lt;br&gt; &lt;/li&gt; &lt;li&gt;No application process, no set-up fees, no cancellation fees&lt;br&gt; &lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div class="catWidget buttonContainer centerAlign fullwidth"&gt;&lt;a class="catWidget button medium centerAlign default " href="https://www.paypal.com/uk/cgi-bin/?cmd=_product-go&amp;product=wp_standard"&gt;Get started&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/webapps/mpp/standard"&gt;Learn more&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="two column"&gt;&lt;div id="ECContainer" class="wtDiv clearfix merchantContainer"&gt;&lt;div id="ECText" class="wtDiv clearfix "&gt;&lt;h3 style="text-align: center;"&gt;&nbsp;&nbsp; Add PayPal to your&nbsp;&nbsp;&nbsp;&nbsp; current solution&lt;/h3&gt; &lt;h3 style="text-align: center;"&gt;£0&lt;/h3&gt; &lt;p style="text-align: center;"&gt;per month&lt;/p&gt; &lt;p style="text-align: center;"&gt;Express Checkout&lt;/p&gt; &lt;ul&gt; &lt;li&gt;For any business already accepting payments online&lt;/li&gt; &lt;li&gt;You can sell to millions of shoppers who prefer to pay with PayPal&lt;/li&gt; &lt;li style="white-space: nowrap;"&gt;Convert more sales with a 3-click checkout&lt;br&gt; &lt;/li&gt; &lt;li&gt;Includes a mobile optimised checkout&lt;br&gt; &lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div class="catWidget buttonContainer centerAlign fullwidth"&gt;&lt;a class="catWidget button medium centerAlign default " href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_product-go&amp;product=additional_payment"&gt;Get started&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/webapps/mpp/express-checkout"&gt;Learn more&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/fees"&gt;&nbsp;&lt;/a&gt;&lt;/div&gt; &lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/fees"&gt;See pricing and transaction fees&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class="three column nogutter"&gt;&lt;div id="ProContainer" class="wtDiv clearfix merchantContainer"&gt;&lt;div id="ProText" class="wtDiv clearfix "&gt;&lt;h3 style="text-align: center;"&gt;&nbsp; &nbsp; Get a complete&nbsp;&nbsp; &nbsp;&nbsp; payment solution&lt;/h3&gt; &lt;h3 style="text-align: center;"&gt;£20&lt;/h3&gt; &lt;p style="text-align: center;"&gt;per month&lt;/p&gt; &lt;p style="text-align: center;"&gt;Website Payments Pro&lt;/p&gt; &lt;ul&gt; &lt;li&gt;For larger online businesses&lt;/li&gt; &lt;li&gt;Customise and host your checkout&nbsp;&lt;/li&gt; &lt;li&gt;A merchant account and gateway from just one payment provider&lt;/li&gt; &lt;li&gt;Advanced fraud management features&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div class="catWidget buttonContainer centerAlign fullwidth"&gt;&lt;a class="catWidget button medium centerAlign default " href="https://registration.paypal.com/welcomePage.do?partner=PayPalUK&amp;bundleCode=C3&amp;country=GB"&gt;Apply now&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/webapps/mpp/pro"&gt;Learn more&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style="text-align: right;" id="opSpecial"&gt;Accept: &lt;img src="https://www.paypalobjects.com/webstatic/en_GB/i/uk-payment-logos.png"&gt;&lt;/div&gt;&lt;h2&gt;Why use PayPal for your business?&lt;br&gt; &lt;/h2&gt; &lt;h2&gt;&nbsp;&lt;/h2&gt;&lt;div id="columns_wttwocolumnsadvanced_0" class="catWidget columnContainer nsb_12_12" style="height:133px;"&gt; &lt;div class="one column"&gt;&lt;h3&gt;Get paid fast&lt;br&gt; &lt;/h3&gt; &lt;p&gt;With PayPal, you get your money fast. When the order is complete, the money usually shows up in your PayPal business account within minutes. From there, transfer it directly to your bank account, pay suppliers or spend it wherever PayPal is accepted.&lt;/p&gt;&lt;/div&gt;&lt;div class="two column nogutter"&gt;&lt;h3&gt;Keep your costs down&lt;br&gt; &lt;/h3&gt; &lt;p&gt;Like most credit card processors, we charge a small percentage and fixed transaction fee on every sale. What makes PayPal different is that there are no fees for setup, downgrades, statements or account cancellation.&lt;/p&gt; &lt;p&gt;&lt;a href="https://www.paypal.com/uk/fees"&gt;See pricing&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="columns_wttwocolumnsadvanced_1" class="catWidget columnContainer nsb_12_12"&gt; &lt;div class="one column"&gt;&lt;h3&gt;Provide a great experience for customers&lt;br&gt; &lt;/h3&gt; &lt;p&gt;PayPal gives online and mobile shoppers an easy, convenient, more secure way to pay. We don\'t charge your customers to make a purchase and they can pay you using their credit card, bank account or direct from their PayPal account in any of 24 currencies. It\'s so easy that 110 million people prefer to pay with PayPal.&lt;br&gt; &lt;/p&gt;&lt;/div&gt;&lt;div class="two column nogutter"&gt;&lt;h3&gt;Protect your business from fraud&lt;br&gt; &lt;/h3&gt; &lt;p&gt;If there\'s one thing people know about PayPal, it\'s how seriously we take security. Behind the scenes, we work hard to protect your business. Automatic fraud screening, our team of fraud specialists and our Seller Protection Policy are all working to help keep your business and your customers safer.&lt;br&gt; &lt;/p&gt;&lt;/div&gt;&lt;/div&gt;' +
+			'&lt;/div&gt;' +
+			'&lt;/section&gt;' +
+			'&lt;/section&gt;'
+		);
+		
+		//Style fixes
+		$opt.newStyle('.merchantContainer{border:1px solid #b3b3b3;background-color:#f0f0f0;border-radius:4px 4px 4px 4px;color:#444;position:relative;padding:24px;}#StdContainer{background-color:#ebf5fb;}#StdContainer #StdText,#ProContainer #ProText, #ECContainer #ECText{height:320px;}.ribbon-most-popular{position:absolute;top:-9px;left:-9px;}');
+		$opt.newStyle('.pageHeadline {font-size:inherit !important; line-height:inherit !important; height:91px !important;}');
+		$opt.newStyle('#StdContainer, #ECContainer, #ProContainer {height: 386px;}');
+		
+		if((window.ActiveXObject &amp;&amp; document.addEventListener)||!window.ActiveXObject){ //Non IE and IE 9+
+			$opt.newStyle('#content #main {padding-bottom: 78px !important;}');
+			
+			jQuery('#opSpecial').css('height','490px');
+			jQuery('#opSpecial').html('&lt;span style="position: relative; top: 54px; left: -299px;"&gt;Accept:&lt;/span&gt; &lt;img style="position: relative; left: 0px; top: 29px;" src="https://www.paypalobjects.com/webstatic/en_GB/i/uk-payment-logos.png"&gt;');
+		}
+		
+		if(window.ActiveXObject &amp;&amp; document.querySelector){ //IE 8+
+			$opt.newStyle('.searchForm .searchSubmit {background-image:url("https://www.paypalobjects.com/webstatic/i/ex_ce2/sprite/sprite_ia.png"); background-position-x:6px; background-position-y:-443px;}');
+		}
+		
+		if(window.ActiveXObject &amp;&amp; document.querySelector &amp;&amp;&nbsp;!document.addEventListener){ //IE 8
+			$opt.newStyle('#content #main {padding-bottom: 39px !important;}');
+			jQuery('.pageHeadline .two.column.nogutter').css('line-height','normal');
+			jQuery('.pageHeadline .two.column.nogutter strong').css('font-size','13px');
+			jQuery('.pageHeadline .two.column.nogutter span').css('font-size','10px');
+			jQuery('.pageHeadline .two.column.nogutter strong').css('line-height','normal');
+			jQuery('.pageHeadline .two.column.nogutter span').css('line-height','normal');
+			jQuery('.pageHeadline').css('font-size','inherit');
+		}
+
+		//Site Catalyst
+		$opt.prop37="::test_ukstreamlinebizhome_treatment1";
+		$opt.prop25="main:mktg:business::home:::test_ukstreamlinebizhome_treatment1";
+		$opt.eVar25="main:mktg:business::home:::test_ukstreamlinebizhome_treatment1";
+	} else if (optimost.JSON.variables.A_StreamlineBizHomepageUK == "2") {
+		//Replace HTML
+		jQuery('#content').replaceWith(
+			'&lt;link href="https://www.paypalobjects.com/eboxapps/css/99/a999df98b263a68918457b3f7df47a.css"  rel="stylesheet" type="text/css" /&gt;' + 
+			'&lt;section id="content" tabindex="-1"&gt;' +
+			'&lt;section id="headline"&gt;' +
+			'&lt;h1 class="accessAid"&gt;' +
+			'PayPal' +
+			'&lt;/h1&gt;' +
+			'&lt;/section&gt;' +
+			'&lt;div id="messageBox" class="empty"&gt;&lt;/div&gt;		' +
+			'&lt;section id="main"&gt;' +
+			'&lt;div class="contentWrapper"&gt;' +
+			'&lt;div class="catWidget headLineContent"&gt; &lt;section class="pageHeadline"&gt; &lt;div class="nsb_16_8"&gt; &lt;div class="one column"&gt; &lt;h1&gt;Compare online payment solutions&lt;/h1&gt; &lt;/div&gt;&lt;div class="two column nogutter"&gt;&lt;div&gt;&lt;img src="https://www.paypalobjects.com/webstatic/mktg/Latam/phone.png"&gt; &lt;strong&gt;0844 338 0470&lt;/strong&gt;&lt;br&gt; &lt;span style="font-size: 80%;"&gt;Calls cost 5p per minute from a BT landline (minimum charge 5.5p). Calls from other networks may vary and from mobiles will cost considerably more.&lt;/span&gt;&lt;br&gt; &lt;br&gt; &lt;/div&gt;&lt;/div&gt; &lt;/div&gt; &lt;/section&gt; &lt;/div&gt;&lt;h2&gt;However you do business PayPal gets you paid.&lt;/h2&gt; &lt;h3&gt;Don\'t worry, you can change or upgrade at any time.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h3&gt; &lt;h2&gt;&nbsp;&lt;/h2&gt;&lt;div class="catWidget columnContainer nsb_8_8_8"&gt; &lt;div class="one column"&gt;&lt;div id="StdContainer" class="wtDiv clearfix merchantContainer"&gt;&lt;div id="Std-ribbon-most-popular" class="wtDiv clearfix ribbon-most-popular"&gt;&lt;div class="catWidget imageContainer imageAlignLeft"&gt;&lt;img src="https://www.paypalobjects.com/webstatic/emea/i/emea-ribbon-most-popular.png"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="StdText" class="wtDiv clearfix "&gt;&lt;h3 style="text-align: center;"&gt;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Start accepting&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; online payments&lt;/h3&gt; &lt;h3 style="text-align: center;"&gt;£0&lt;/h3&gt; &lt;p style="text-align: center;"&gt;per month&lt;br&gt; &lt;/p&gt; &lt;p style="text-align: center;"&gt;Website Payments Standard&lt;/p&gt; &lt;ul&gt; &lt;li&gt;For small or start-up businesses&lt;/li&gt; &lt;li&gt;You can start accepting secure online payments in minutes&lt;br&gt; &lt;/li&gt; &lt;li&gt;Includes a mobile optimised checkout&lt;br&gt; &lt;/li&gt; &lt;li&gt;No application process, no set-up fees, no cancellation fees&lt;br&gt; &lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div class="catWidget buttonContainer centerAlign fullwidth"&gt;&lt;a class="catWidget button medium centerAlign default " href="https://www.paypal.com/uk/cgi-bin/?cmd=_product-go&amp;product=wp_standard"&gt;Sign up&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/webapps/mpp/standard"&gt;Learn more&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="two column"&gt;&lt;div id="ECContainer" class="wtDiv clearfix merchantContainer"&gt;&lt;div id="ECText" class="wtDiv clearfix "&gt;&lt;h3 style="text-align: center;"&gt;&nbsp;&nbsp; Add PayPal to your&nbsp;&nbsp;&nbsp;&nbsp; current solution&lt;/h3&gt; &lt;h3 style="text-align: center;"&gt;£0&lt;/h3&gt; &lt;p style="text-align: center;"&gt;per month&lt;/p&gt; &lt;p style="text-align: center;"&gt;Express Checkout&lt;/p&gt; &lt;ul&gt; &lt;li&gt;For any business already accepting payments online&lt;/li&gt; &lt;li&gt;You can sell to millions of shoppers who prefer to pay with PayPal&lt;/li&gt; &lt;li style="white-space: nowrap;"&gt;Convert more sales with a 3-click checkout&lt;br&gt; &lt;/li&gt; &lt;li&gt;Includes a mobile optimised checkout&lt;br&gt; &lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div class="catWidget buttonContainer centerAlign fullwidth"&gt;&lt;a class="catWidget button medium centerAlign default " href="https://www.paypal.com/uk/cgi-bin/webscr?cmd=_product-go&amp;product=additional_payment"&gt;Sign up&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/webapps/mpp/express-checkout"&gt;Learn more&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/fees"&gt;&nbsp;&lt;/a&gt;&lt;/div&gt; &lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/fees"&gt;See pricing and transaction fees&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class="three column nogutter"&gt;&lt;div id="ProContainer" class="wtDiv clearfix merchantContainer"&gt;&lt;div id="ProText" class="wtDiv clearfix "&gt;&lt;h3 style="text-align: center;"&gt;&nbsp; &nbsp; Get a complete&nbsp;&nbsp; &nbsp;&nbsp; payment solution&lt;/h3&gt; &lt;h3 style="text-align: center;"&gt;£20&lt;/h3&gt; &lt;p style="text-align: center;"&gt;per month&lt;/p&gt; &lt;p style="text-align: center;"&gt;Website Payments Pro&lt;/p&gt; &lt;ul&gt; &lt;li&gt;For larger online businesses&lt;/li&gt; &lt;li&gt;Customise and host your checkout&nbsp;&lt;/li&gt; &lt;li&gt;A merchant account and gateway from just one payment provider&lt;/li&gt; &lt;li&gt;Advanced fraud management features&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt;&lt;div class="catWidget buttonContainer centerAlign fullwidth"&gt;&lt;a class="catWidget button medium centerAlign default " href="https://registration.paypal.com/welcomePage.do?partner=PayPalUK&amp;bundleCode=C3&amp;country=GB"&gt;Apply now&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;a href="https://www.paypal.com/uk/webapps/mpp/pro"&gt;Learn more&lt;/a&gt;&lt;br&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style="text-align: right;" id="opSpecial"&gt;Accept: &lt;img src="https://www.paypalobjects.com/webstatic/en_GB/i/uk-payment-logos.png"&gt;&lt;/div&gt;&lt;h2&gt;Why use PayPal for your business?&lt;br&gt; &lt;/h2&gt; &lt;h2&gt;&nbsp;&lt;/h2&gt;&lt;div id="columns_wttwocolumnsadvanced_0" class="catWidget columnContainer nsb_12_12" style="height:133px;"&gt; &lt;div class="one column"&gt;&lt;h3&gt;Get paid fast&lt;br&gt; &lt;/h3&gt; &lt;p&gt;With PayPal, you get your money fast. When the order is complete, the money usually shows up in your PayPal business account within minutes. From there, transfer it directly to your bank account, pay suppliers or spend it wherever PayPal is accepted.&lt;/p&gt;&lt;/div&gt;&lt;div class="two column nogutter"&gt;&lt;h3&gt;Keep your costs down&lt;br&gt; &lt;/h3&gt; &lt;p&gt;Like most credit card processors, we charge a small percentage and fixed transaction fee on every sale. What makes PayPal different is that there are no fees for setup, downgrades, statements or account cancellation.&lt;/p&gt; &lt;p&gt;&lt;a href="https://www.paypal.com/uk/fees"&gt;See pricing&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="columns_wttwocolumnsadvanced_1" class="catWidget columnContainer nsb_12_12"&gt; &lt;div class="one column"&gt;&lt;h3&gt;Provide a great experience for customers&lt;br&gt; &lt;/h3&gt; &lt;p&gt;PayPal gives online and mobile shoppers an easy, convenient, more secure way to pay. We don\'t charge your customers to make a purchase and they can pay you using their credit card, bank account or direct from their PayPal account in any of 24 currencies. It\'s so easy that 110 million people prefer to pay with PayPal.&lt;br&gt; &lt;/p&gt;&lt;/div&gt;&lt;div class="two column nogutter"&gt;&lt;h3&gt;Protect your business from fraud&lt;br&gt; &lt;/h3&gt; &lt;p&gt;If there\'s one thing people know about PayPal, it\'s how seriously we take security. Behind the scenes, we work hard to protect your business. Automatic fraud screening, our team of fraud specialists and our Seller Protection Policy are all working to help keep your business and your customers safer.&lt;br&gt; &lt;/p&gt;&lt;/div&gt;&lt;/div&gt;' +
+			'&lt;/div&gt;' +
+			'&lt;/section&gt;' +
+			'&lt;/section&gt;'
+		);
+		
+		//Style fixes
+		$opt.newStyle('.merchantContainer{border:1px solid #b3b3b3;background-color:#f0f0f0;border-radius:4px 4px 4px 4px;color:#444;position:relative;padding:24px;}#StdContainer{background-color:#ebf5fb;}#StdContainer #StdText,#ProContainer #ProText, #ECContainer #ECText{height:320px;}.ribbon-most-popular{position:absolute;top:-9px;left:-9px;}');
+		$opt.newStyle('.pageHeadline {font-size:inherit !important; line-height:inherit !important; height:91px !important;}');
+		$opt.newStyle('#StdContainer, #ECContainer, #ProContainer {height: 386px;}');
+		
+		if((window.ActiveXObject &amp;&amp; document.addEventListener)||!window.ActiveXObject){ //Non IE and IE 9+
+			$opt.newStyle('#content #main {padding-bottom: 78px !important;}');
+			
+			jQuery('#opSpecial').css('height','490px');
+			jQuery('#opSpecial').html('&lt;span style="position: relative; top: 54px; left: -299px;"&gt;Accept:&lt;/span&gt; &lt;img style="position: relative; left: 0px; top: 29px;" src="https://www.paypalobjects.com/webstatic/en_GB/i/uk-payment-logos.png"&gt;');
+		}
+		
+		if(window.ActiveXObject &amp;&amp; document.querySelector){ //IE 8+
+			$opt.newStyle('.searchForm .searchSubmit {background-image:url("https://www.paypalobjects.com/webstatic/i/ex_ce2/sprite/sprite_ia.png"); background-position-x:6px; background-position-y:-443px;}');
+		}
+		
+		if(window.ActiveXObject &amp;&amp; document.querySelector &amp;&amp;&nbsp;!document.addEventListener){ //IE 8
+			$opt.newStyle('#content #main {padding-bottom: 39px !important;}');
+			jQuery('.pageHeadline .two.column.nogutter').css('line-height','normal');
+			jQuery('.pageHeadline .two.column.nogutter strong').css('font-size','13px');
+			jQuery('.pageHeadline .two.column.nogutter span').css('font-size','10px');
+			jQuery('.pageHeadline .two.column.nogutter strong').css('line-height','normal');
+			jQuery('.pageHeadline .two.column.nogutter span').css('line-height','normal');
+			jQuery('.pageHeadline').css('font-size','inherit');
+		}
+		
+		//Site Catalyst
+		$opt.prop37="::test_ukstreamlinebizhome_treatment2";
+		$opt.prop25="main:mktg:business::home:::test_ukstreamlinebizhome_treatment2";
+		$opt.eVar25="main:mktg:business::home:::test_ukstreamlinebizhome_treatment2";
+	}
+	
+	optimost.show();
+	
+	//passing eVar25, sprop25, sprop37 using jQuery document ready event.
+	$opt.addS=function(){
+			if(typeof(s)=="object"){
+					  s.prop20=new Date().getTime();
+					  s.prop25=$opt.prop25;
+					  s.prop37=$opt.prop37;
+					  s.prop75=optimost.JSON.predefinedVariables.impressionId;
+					  s.eVar25=$opt.eVar25;
+		//Triggering a second time, so removing some values.
+					  s.prop10="";
+					  //s.pageName="";
+					  s.channel="";
+					  s.prop50="";
+					  window.opCreativeId = "";
+					  var s_code=s.t();if(s_code)document.write(s_code);
+			}
+	}
+	
+	$(document).ready(function() {
+	  $opt.addS();
+	});
+};
+
+//Retrieve the JSON
+optimost.getJSON()
+</pre>
+<p>For the code above:
+</p>
+<ol><li>As you can see, the module has an if-else loop that checks the value of <b>optimost.JSON.variables.A_StreamlineBizHomepageUK</b>
+ - the variable passed in by the JSON text - and performs the 
+appropriate DOM manipulation based on the value.  Notice you can only 
+have 0, 1, or 2 as acceptable values. 
+</li><li>Also notice the predefined are used as values of <b>optimost.JSON.predefinedVariables.creativeId</b>, <b>optimost.JSON.predefinedVariables.sessionId</b>, etc
+</li></ol>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<strong class="selflink">CORS - a "higher security" approach to MVT</strong>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 42/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1158-0!1!0!!en!2!edit=0 and timestamp 20130816142416 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT">http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:CORS_-_a_%22higher_security%22_approach_to_MVT&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=CORS_-_a_%22higher_security%22_approach_to_MVT&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=CORS_-_a_%22higher_security%22_approach_to_MVT&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=CORS_-_a_%22higher_security%22_approach_to_MVT" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/CORS_-_a_%22higher_security%22_approach_to_MVT" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/CORS_-_a_%22higher_security%22_approach_to_MVT" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=CORS_-_a_%22higher_security%22_approach_to_MVT&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=CORS_-_a_%22higher_security%22_approach_to_MVT&amp;oldid=6894" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="CORS%20-%20a%20%27higher%20security%27%20approach%20to%20MVT%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 1 February 2013, at 19:25.</li>
+				<li id="viewcount">This page has been accessed 59 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.337 secs. -->
+</body></html>

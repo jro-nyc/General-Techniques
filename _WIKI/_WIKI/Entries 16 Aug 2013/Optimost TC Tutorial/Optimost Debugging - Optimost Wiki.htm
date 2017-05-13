@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Optimost Debugging,CORS - a &quot;higher security&quot; approach to MVT,Counter code parsed,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Failover copy,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Optimost Debugging - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Optimost%20Debugging%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Optimost_Debugging";
+var wgTitle = "Optimost Debugging";
+var wgAction = "view";
+var wgArticleId = "982";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5739";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Optimost%20Debugging%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Optimost%20Debugging%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Optimost%20Debugging%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Optimost%20Debugging%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Optimost_Debugging">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Optimost Debugging</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<strong class="selflink">Optimost Debugging</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>Debugging tools used by Optimost.
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Optimost_Debugging_options"><span class="tocnumber">1</span> <span class="toctext">Optimost Debugging options</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Built-in_functionality"><span class="tocnumber">1.1</span> <span class="toctext">Built-in functionality</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Pause_clickthrus"><span class="tocnumber">1.1.1</span> <span class="toctext">Pause clickthrus</span></a></li>
+<li class="toclevel-3"><a href="#Display_counter_alerts"><span class="tocnumber">1.1.2</span> <span class="toctext">Display counter alerts</span></a></li>
+<li class="toclevel-3"><a href="#Pinning_Creatives_-_using_sticky.3Dxyz"><span class="tocnumber">1.1.3</span> <span class="toctext">Pinning Creatives - using sticky=xyz</span></a></li>
+<li class="toclevel-3"><a href="#Pinning_Creatives_-_using_Creative_Pinning_tool"><span class="tocnumber">1.1.4</span> <span class="toctext">Pinning Creatives - using Creative Pinning tool</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#QA_Tools"><span class="tocnumber">1.2</span> <span class="toctext">QA Tools</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Super_quick_debug_on_a_broken_page_-_sticky.3D999999"><span class="tocnumber">1.2.1</span> <span class="toctext">Super quick debug on a broken page - sticky=999999</span></a></li>
+<li class="toclevel-3"><a href="#Using_bookmarklets_to_create_tools"><span class="tocnumber">1.2.2</span> <span class="toctext">Using bookmarklets to create tools</span></a></li>
+<li class="toclevel-3"><a href="#The_original_debug_page"><span class="tocnumber">1.2.3</span> <span class="toctext">The original debug page</span></a></li>
+<li class="toclevel-3"><a href="#The_new_debug_page"><span class="tocnumber">1.2.4</span> <span class="toctext">The new debug page</span></a></li>
+<li class="toclevel-3"><a href="#Detect_Optimost_code_on_the_page.2C_.22Check_for_Optimost.22"><span class="tocnumber">1.2.5</span> <span class="toctext">Detect Optimost code on the page, "Check for Optimost"</span></a></li>
+<li class="toclevel-3"><a href="#Add_Clickthru_.22value.22_to_the_template_clickthru_page"><span class="tocnumber">1.2.6</span> <span class="toctext">Add Clickthru "value" to the template clickthru page</span></a></li>
+<li class="toclevel-3"><a href="#Adding_a_1st_party_cookie_in_the_domain_of_a_page_you_are_working_on"><span class="tocnumber">1.2.7</span> <span class="toctext">Adding a 1st party cookie in the domain of a page you are working on</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Optimost_Debugging_options"></a><h1> <span class="mw-headline">Optimost Debugging options</span></h1>
+<p>Since we need to QA/test the pages we work on, we need to have tools 
+that make that process more efficient.  We use a variety of tools, some 
+built into the system, others we have added as extra debugging features.
+</p>
+<a name="Built-in_functionality"></a><h2> <span class="mw-headline">Built-in functionality</span></h2>
+<p>As explained on the <a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a> page in the tutorial, we use <b>actions</b> and <b>clickthrus</b> to measure visitor events pertaining to our test page, and each version of a page we are testing is called a <b>creative</b>.
+   In order to more easily verify that those events are occurring and 
+the creatives are rendering properly, the following options are 
+available for debugging purposes.
+</p>
+<a name="Pause_clickthrus"></a><h3> <span class="mw-headline">Pause clickthrus</span></h3>
+<p>Clickthrus use what is called an HTTP 302 redirect to measure visitor
+ behavior.  When a visitor clicks on a link we are tracking, we modify 
+that link to first come to the Optimost servers, the we redirect it 
+using a 302 that tells the browser "oh, the URL has changed, go here 
+instead".<br>
+In order to more easily debug this process, we give the person testing the page an option of dropping a cookie <b>ADMIN_DEBUG_SETTINGS=16</b> in the <b>optimost.com</b>
+ domain.  If this cookie exists, then when the 302 goes to Optimost, 
+instead of sending a 302, it returns an interstitial page telling the 
+user the clickthru information and adding a continue button to click in 
+order to go the redirection URL. 
+</p>
+<a name="Display_counter_alerts"></a><h3> <span class="mw-headline">Display counter alerts</span></h3>
+<p>If we are dealing with javascript counters, as explained before, the 
+script call returns a simple variable definition.  BUT if the person 
+testing the page drops a cookie <b>OPTEST_COUNTER=1</b> in the <b>optimost.com</b>
+ domain, it will also return a popup with a list of the subject the 
+counter is associated with and what information was passed for each 
+subject. See <a href="http://wiki.interwoven.com/optimost/Counter_code_parsed" title="Counter code parsed">Counter code parsed</a> for more information.
+</p>
+<a name="Pinning_Creatives_-_using_sticky.3Dxyz"></a><h3> <span class="mw-headline">Pinning Creatives - using sticky=xyz</span></h3>
+<p>In order to see a specific creative for testing purposes, the system defaults to allowing you to set a query string parameter <b>sticky</b>
+ and passing a number to the servers.  If the number happens to be 
+creative in the wave you are testing, you will see that creative.  If it
+ is not, you will see what is called <b>failover copy</b>, which will normally be no content from the servers, a JS with just a superflous style definitions, something like this:
+</p>
+<pre>document.write('&lt;style type="text/css"&gt;' +
+'.opDefaultContent_mySubjectName' +
+'{display:none;}&lt;/style&gt;');
+</pre>
+<p>For more on <b>failover copy</b>, see <a href="http://wiki.interwoven.com/optimost/Failover_copy" title="Failover copy">Failover copy</a><br><br>
+So given how we normally setup our experiments, no content will leave 
+the page as is and result in the customer's default content showing, 
+which is exactly what we want.  Note that:
+</p>
+<ol><li>This sticky parameter is a default setting under "Change Stickiness", the last parameter that says <b>Force sticky request argument:</b>.  It says <b>optrial.sticky</b> - optrial is an object we look for to pass in parameters to the Trial Code - and you can change it to <b>optrial.fred</b> to use <b>fred</b> as your query string parameter.
+</li><li>If you have two experiments going on at once, and both will have sticky as the default parameter, if you use <b>sticky</b>
+ to pass in a creative, the other subject will not have that creative in
+ its wave, so it will serve failover.  You have to use the Creative 
+Pinning tool to work around this.
+</li></ol>
+<a name="Pinning_Creatives_-_using_Creative_Pinning_tool"></a><h3> <span class="mw-headline">Pinning Creatives - using Creative Pinning tool</span></h3>
+<p>We have a more precise way to pin creatives, by setting a cookie that
+ passes Account, Wave, and Creative information to specifically target a
+ creative.<br>
+<b>QA_PIN_CREATIVE=account,wave,creative</b><br>
+This only effects the correct Account and Wave, so that - unlike using <b>sticky=xyz</b> - it can only effect one test at a time.  <span style="color:#CC0000">I would strongly recommend you use this method for normal testing of creatives rather than the <b>sticky=xyz</b> method.</span>
+</p>
+<a name="QA_Tools"></a><h2> <span class="mw-headline">QA Tools</span></h2>
+<p>We have built a number of web based tools that take advantage of 
+these built-in cookie setting and also use javascript to give us more 
+insight into the inner workings of a test.
+</p>
+<a name="Super_quick_debug_on_a_broken_page_-_sticky.3D999999"></a><h3> <span class="mw-headline">Super quick debug on a broken page - <b>sticky=999999</b></span></h3>
+<p>Although I don't recommend using the <b>sticky</b> parameter for normal QA, if you have a page with problems - say:
+</p>
+<ol><li>A suddenly blank page.
+</li><li>A page with a suddenly messed up layout
+</li><li>A page with JS errors that may or may not have issues #1 and #2.
+</li></ol>
+<p>Then if you add <b>sticky=999999</b> to the URL, since it is very 
+unlikely we are testing a creative with that number, you will get the 
+failover copy - no content - and should see the default page.  From this
+ you will know that something has happened and our code is not working 
+as intended, and normally do the following:
+</p>
+<ol><li>Put a blank wave up in the Persona(s) that receive visitor traffic so the error will not negatively impact visitors to the page.
+</li><li>In the QA segment, test the page to determine what has happened to "break" the page.  You will usually find that:
+<ol><li>One or more of the creatives triggers a JS error in the module that results in test area not being set to <b>display:block</b>.  And this can be because:
+<ul><li>The TC just missed something
+</li><li>The customer made a change to a page without telling us and an unexpected condition occurred, resulting in a JS error.
+</li><li>In a highly dynamic page, a special case was missed/not coded for, resulting in a JS error.
+</li></ul>
+</li><li>The page is visible but looks very funny because:
+<ul><li>The customer made a change to the page without telling us.
+</li><li>In a highly dynamic page, a special case was missed/not coded for, resulting in the funky layout.
+</li></ul>
+</li></ol>
+</li><li>Once you fix the issue in QA, inform the Account manager of the problem (and the fix) and have them decide next steps.
+</li></ol>
+<a name="Using_bookmarklets_to_create_tools"></a><h3> <span class="mw-headline">Using <b>bookmarklets</b> to create tools</span></h3>
+<p>A bookmarklet is a tiny program (a JavaScript application) contained 
+in a bookmark (the URL is a "javascript:" URL) which can be saved and 
+used the same way you use normal bookmarks.  Other than the original 
+debug page, the rest of the tools here use bookmarklets.  You can go to:<br>
+<a href="http://www.bookmarklets.com/" class="external free" title="http://www.bookmarklets.com/" rel="nofollow">http://www.bookmarklets.com/</a><br>
+for a general overview of how they work and some things they can do.
+</p>
+<a name="The_original_debug_page"></a><h3> <span class="mw-headline">The original debug page</span></h3>
+<p>It is hosted here:<br>
+<a href="http://by.optimost.com/trial/2/p/debugtool.f75/695/content.html" class="external free" title="http://by.optimost.com/trial/2/p/debugtool.f75/695/content.html" rel="nofollow">http://by.optimost.com/trial/2/p/debugtool.f75/695/content.html</a><br>
+And looks like this:<br>
+<a href="http://wiki.interwoven.com/optimost/Image:OriginalDebug.gif" class="image" title="Image:originalDebug.gif"><img alt="Image:originalDebug.gif" src="Optimost%20Debugging%20-%20Optimost%20Wiki_files/OriginalDebug.gif" height="488" border="0" width="917"></a><br>
+The left side has the built-in debug parameters as described above.  The
+ right side allows you to set an additional cookie in the Optimost 
+domain for additional debugging. I have instructed all TCs to setup 
+their QA persona to accept <b>opqa=true</b> as one of the conditions to 
+put the visitor into that persona - it can be the only condition OR it 
+can be added to already existing conditions.<br>
+Although this tool can be extremely useful for QA, the disadvantage is 
+that pinning the creatives is a very manual process and takes too much 
+going back and forth between the QA page and the list of craatives and 
+values.<br>  
+So to that end:
+</p>
+<a name="The_new_debug_page"></a><h3> <span class="mw-headline">The new debug page</span></h3>
+<p>It is hosted here:<br>
+<a href="http://asp.optimost.com/webtest/QA/debugAndCounters.html" class="external free" title="http://asp.optimost.com/webtest/QA/debugAndCounters.html" rel="nofollow">http://asp.optimost.com/webtest/QA/debugAndCounters.html</a><br>
+And, when properly implemented, will look something like this:<br>
+<a href="http://wiki.interwoven.com/optimost/Image:NewDebug.gif" class="image" title="Image:newDebug.gif"><img alt="Image:newDebug.gif" src="Optimost%20Debugging%20-%20Optimost%20Wiki_files/NewDebug.gif" height="710" border="0" width="1110"></a><br>
+As you can see, this page has more information about the creatives being tested.  
+Just follow the instructions outlined on the page.  We use a bookmarklet to run javascript to pull the pertinent data from the <b>Value Matrix</b> page for the wave we are testing -  as in <b>https://asp.optimost.com/wave-value-matrix.phtml?wvd=xyz</b> - and then that data is passed to the page as query string parameters.  The data that is passed in includes:
+</p>
+<ol><li>The variables for the template used to make the creative
+</li><li>The values used in each creative
+</li><li>A list of counters used by the Account, differentiating between
+ ones associated with this subject and not associated with the subject.
+</li></ol>
+<p>Since this was not built into the system, I had to pass the 
+information from the bookmarklet to the new debugging page, and chose to
+ use query string parameters.  If there are too many parameters the URL 
+gets really long.  
+<br><br>Here is the bookmarklet code:<br>
+<code>
+javascript:var%20e=document.createElement('script');e.setAttribute('language','javascript');e.setAttribute('src','<a href="http://asp.optimost.com/webtest/QA/loadValuesCounters.js%27%29;document.body.appendChild%28e%29;void%280%29" class="external free" title="http://asp.optimost.com/webtest/QA/loadValuesCounters.js');document.body.appendChild(e);void(0)" rel="nofollow">http://asp.optimost.com/webtest/QA/loadValuesCounters.js');document.body.appendChild(e);void(0)</a>;
+</code><br>
+</p>
+<a name="Detect_Optimost_code_on_the_page.2C_.22Check_for_Optimost.22"></a><h3> <span class="mw-headline">Detect Optimost code on the page, "Check for Optimost" </span></h3>
+<p>This bookmarlet takes the web page you are on and does a high-level scrub to see if there is any Optimost code on the page.  
+<br><br>
+<code>
+javascript:var%20e=document.createElement('script');e.setAttribute('language','javascript');e.setAttribute('src','<a href="http://asp.optimost.com/webtest/QA/findOpt.js%27%29;document.body.appendChild%28e%29;void%280%29" class="external free" title="http://asp.optimost.com/webtest/QA/findOpt.js');document.body.appendChild(e);void(0)" rel="nofollow">http://asp.optimost.com/webtest/QA/findOpt.js');document.body.appendChild(e);void(0)</a>;
+</code><br><br>
+If there is no code on the page, it will only detect "itself" on the page, and you will get the alert message saying:<br><br>
+<b>A script call is being made to:</b><br>
+<b>http://asp.optimost.com/webtest/QA/findOpt.js</b>
+<br><br>
+If there is more on the page, there will be additional information in the alert.
+</p>
+<a name="Add_Clickthru_.22value.22_to_the_template_clickthru_page"></a><h3> <span class="mw-headline">Add Clickthru "value" to the template clickthru page</span></h3>
+<p>You need to be at the clickthru page for a template to use this, like <b>https://asp.optimost.com/template-clickthrus.phtml?tid=xyz</b>, which you can access from the Template level by clicking on the <b>"clickthrus"</b> link on the top left, if there are clickthrus in this template.
+<br><br>
+<code>
+javascript:obj=document.getElementById("clickthrus");if(obj){trs=obj.getElementsByTagName("tr");for(var%20i=0;i&lt;trs.length;i++){if((lsv=trs[i].getAttribute("listctrlvalue"))!=null){newTD=document.createElement("td");newTD.innerHTML=lsv;newTD.style.color="#CC0000";trs[i].insertBefore(newTD,trs[i].firstChild);}else%20if(trs[i].parentNode.tagName.toLowerCase()=="thead"){newTD=document.createElement("td");newTD.innerHTML="cVal";newTD.style.paddingRight="0";newTD.className="tdbtngn";trs[i].insertBefore(newTD,trs[i].firstChild);}}}void(0);
+</code><br>
+</p>
+<a name="Adding_a_1st_party_cookie_in_the_domain_of_a_page_you_are_working_on"></a><h3> <span class="mw-headline">Adding a 1st party cookie in the domain of a page you are working on</span></h3>
+<p>A bookmarklet for dropping a 1st party cookie in the domain of 
+whatever page you invoke this on.  It assumes a starting 2-level domain 
+ which can be changed manually – so you will change this for 
+international 3-level domains –  and will check to see if you are trying
+ to overwrite an existing cookie<sup>1</sup> or if you are trying to write it to a domain you do not have access to.   You can find the bookmarklet here:
+</p><p><a href="http://asp.optimost.com/webtest/QA/addCookie.html" class="external free" title="http://asp.optimost.com/webtest/QA/addCookie.html" rel="nofollow">http://asp.optimost.com/webtest/QA/addCookie.html</a>
+<br><br>And here is the code:<br>
+<code>
+javascript:var%20e=document.createElement('script');e.setAttribute('language','javascript');e.setAttribute('src','<a href="http://es.optimost.com/es/2/c/836/u/addCookie1stParty.js%27%29;document.body.appendChild%28e%29;void%280%29" class="external free" title="http://es.optimost.com/es/2/c/836/u/addCookie1stParty.js');document.body.appendChild(e);void(0)" rel="nofollow">http://es.optimost.com/es/2/c/836/u/addCookie1stParty.js');document.body.appendChild(e);void(0)</a>;
+</code>
+</p><p>You can drag it into the bookmark toolbar in Firefox,  Chrome, Safari, for IE just copy in the URL for IE.<br>
+</p><p>So let's say you need to drop a cookie in the acme.com domain, 
+just go to acme.dom, click on the bookmarklet, and a DIV will appear at 
+the top of the page that allow you to drop a cookie.  It should be 
+self-explanatory from there.<br>
+Uses include:<br>
+</p>
+<ol><li>Setting the Global code selection cookie to point us to the Staging version without adding a QS parameter.  This is for:
+<ul><li>Customer pages that do not allow you to add QS parameters
+</li><li>If a page reload cannot be done for some reason
+</li><li>In order to do this, the Global implementations must have 1st 
+party cookies as an option in the selector code - some older selector 
+code implementations do not have this option.
+</li></ul>
+</li><li>For pages with throttling, "spoofing" the throttling by either:
+<ul><li>Setting it to <b>ON</b> by setting the gum cookie to a value other than "mvt-no".
+</li><li>Setting it to <b>OFF</b> by setting the gum cookie to a value of "mvt-no".
+</li></ul>
+</li><li>Changing the value of some existing cookie for some other 
+practical  purpose – like resetting the SERVERID cookie on the Optimost 
+servers when one of the Pleasenton servers was down.
+</li></ol>
+<p><sup>1</sup> Know that this is using javascript to get the cookie 
+information, and when reading the document.cookie object, you cannot 
+determine the exact domain it is in - say <b>acme.com</b> vs <b>www.acme.com</b>
+ - just that you have access to the cookie.  This is different than 
+plug-ins/built-in browser functionality that do have access to that 
+information.  So when this bookmarklet tells you that the cookie already
+ exists in the domain, it is only looking for a cookie name match, and 
+cannot match the exact domain you entered with the exact domain which it
+ is registered under.
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<strong class="selflink">Optimost Debugging</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 73/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:982-0!1!0!!en!2!edit=0 and timestamp 20130816142302 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging">http://wiki.interwoven.com/optimost/Optimost_Debugging</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Optimost_Debugging&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Debugging&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Debugging&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Optimost_Debugging" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Optimost_Debugging" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Optimost_Debugging" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Debugging&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Debugging&amp;oldid=5739" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Optimost%20Debugging%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 24 March 2011, at 19:25.</li>
+				<li id="viewcount">This page has been accessed 80 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.291 secs. -->
+</body></html>

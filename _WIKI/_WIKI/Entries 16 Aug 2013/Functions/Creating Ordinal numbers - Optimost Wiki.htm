@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Creating Ordinal numbers,&quot;Turning&quot; non-anchor tags into anchor tags,Absolute address,Add Load Event,Add dynamic clickthrus,Adding MAP and AREA elements,Appending code to an existing function,Control spacing/height of dynamically created DIV,Create Style,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Creating Ordinal numbers - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Creating%20Ordinal%20numbers%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Creating_Ordinal_numbers";
+var wgTitle = "Creating Ordinal numbers";
+var wgAction = "view";
+var wgArticleId = "196";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "2015";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Creating%20Ordinal%20numbers%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Creating%20Ordinal%20numbers%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Creating%20Ordinal%20numbers%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Creating%20Ordinal%20numbers%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Creating_Ordinal_numbers">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Creating Ordinal numbers</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>Simple function, take a look.
+</p>
+<pre>&lt;head&gt;
+	&lt;title&gt;Cardinal to Ordinal number converter, 1 to 500&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;script&gt;
+opToOrdinal=function(num){
+	tens=num&nbsp;% 100;
+	if(tens&gt;9 &amp;&amp; tens&lt;20){ //If the number is in the "teens" - ie 15 or 715 - than all end in "th"
+		str= num+"th";
+		return str;	
+	}
+	else{  //Pretty simple, if not in teens, 0="th", 1="st", 2="nd", 3="rd", 4-9="th"
+		num=parseInt(num,10);
+		endings=["th","st","nd","rd"];
+		ones=(num%10&gt;3?0:num%10);
+		str= num+endings[ones];
+		return str;
+	}
+}
+for(var i=1;i&lt;501;i++){
+	if((i-1)%20==0)document.write('&lt;div style="display:block;"&gt;');
+	document.write('&lt;div style="border:2px solid red;display:inline"&gt;'+opToOrdinal(i)+'&lt;\/div&gt;');
+	if(i%20==0)document.write('&lt;\/div&gt;');
+}
+
+&lt;/script&gt;
+</pre>
+<a name="Functions"></a><h2> <span class="mw-headline">Functions</span></h2>
+<ul><li><a href="http://wiki.interwoven.com/optimost/DOM_manipulation_functions" title="DOM manipulation functions">DOM manipulation functions</a> <small>A list of useful functions for DOM templates</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Find_elements_matching_a_CSS_selector%2C_jQuery_style" title="Find elements matching a CSS selector, jQuery style">Find elements matching a CSS selector, jQuery style</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Universal_Clickthru_Include_code" title="Universal Clickthru Include code">Universal Clickthru Include code</a> 
+</li></ul>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Simulating_a_%22click%22_on_an_element" title="Simulating a &quot;click&quot; on an element">Simulating a "click" on an element</a> <small>Simulates a click, but can be other event</small>
+</li><li>Recursive Functions
+<ul><li><a href="http://wiki.interwoven.com/optimost/Parsing_through_ALL_nodes_in_a_container_-_recursive" title="Parsing through ALL nodes in a container - recursive">Parsing through ALL nodes in a container - recursive</a> <small style="color:#777777">If a container has lots of nested nodes and you need to find something</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Parsing_nodes_recursively_and_changing_color_of_all_numbers" title="Parsing nodes recursively and changing color of all numbers">Parsing nodes recursively and changing color of all numbers</a> <small style="color:#777777">Different than above since we have to change text nodes to element nodes</small> 
+</li><li><a href="http://wiki.interwoven.com/optimost/Parsing_nodes_recursively_to_remove_them" title="Parsing nodes recursively to remove them">Parsing nodes recursively to remove them</a> <small style="color:#777777">When running an A/B test with bad HTML on the client's page</small> 
+</li></ul>
+</li></ul>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Add_dynamic_clickthrus" title="Add dynamic clickthrus">Add dynamic clickthrus</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Absolute_address" title="Absolute address">Absolute address</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Add_Load_Event" title="Add Load Event">Add Load Event</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Appending_code_to_an_existing_function" title="Appending code to an existing function">Appending code to an existing function</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_Next_Sibling" title="Get Next Sibling">Get Next and Previous Sibling</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_First_Child" title="Get First Child">Get First Child</a>
+</li><li><strong class="selflink">Creating Ordinal numbers</strong>
+</li><li><a href="http://wiki.interwoven.com/optimost/%22Turning%22_non-anchor_tags_into_anchor_tags" title="&quot;Turning&quot; non-anchor tags into anchor tags">"Turning" non-anchor tags into anchor tags</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Shortcuts_function_%28%24D%29" title="Shortcuts function ($D)">Shortcuts function ($D)</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_Ancestor" title="Get Ancestor">Get Ancestor</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Get_Elements_By_Class_Name" title="Get Elements By Class Name">Get Elements By Class Name</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Increment_Alphabetically" title="Increment Alphabetically">Increment Alphabetically</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Show_creative_ID" title="Show creative ID">Show creative ID</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Unobtrusive_popup" title="Unobtrusive popup">Unobtrusive popup</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Create_Style" title="Create Style">Create Style</a> <small style="color:#777777">For when you can't just document.write it...</small> 
+</li><li><a href="http://wiki.interwoven.com/optimost/Adding_MAP_and_AREA_elements" title="Adding MAP and AREA elements">Adding MAP and AREA elements</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Image_counter" title="Image counter">Image counter</a>
+</li></ul>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a> <small style="color:#ff7777">How to transfer cookies across domains using window.name property as the transport mechanism</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Text-wrapping_Efficiently" title="Text-wrapping Efficiently">Text-wrapping Efficiently</a> <small style="color:#ff7777">How to wrap text to efficiently to maximize use of space</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Stop_the_closing_of_a_window" title="Stop the closing of a window">Stop the closing of a window</a> <small style="color:#ff7777">How to add an element and try to stop the visitor from leaving.</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Control_spacing/height_of_dynamically_created_DIV" title="Control spacing/height of dynamically created DIV">Control spacing/height of dynamically created DIV</a> <small style="color:#ff7777">How to limit the height of an element to allow for proper spacing of elements below it.</small>
+</li><li><a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifer_and_Click_Tracking_Code" class="mw-redirect" title="Selector-based Content modifer and Click Tracking Code">Selector-based Content modifer and Click Tracking Code</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Extracting_creative_information_from_Optimost_Cookies" title="Extracting creative information from Optimost Cookies">Extracting creative information from Optimost Cookies</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 19/1000000
+Post-expand include size: 4481/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:196-0!1!0!!en!2!edit=0 and timestamp 20130816143031 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Creating_Ordinal_numbers">http://wiki.interwoven.com/optimost/Creating_Ordinal_numbers</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.interwoven.com/optimost/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://wiki.interwoven.com/optimost/Category:Functions" title="Category:Functions">Functions</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Creating_Ordinal_numbers" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Creating_Ordinal_numbers&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_Ordinal_numbers&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_Ordinal_numbers&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Creating_Ordinal_numbers" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Creating_Ordinal_numbers" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Creating_Ordinal_numbers" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_Ordinal_numbers&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_Ordinal_numbers&amp;oldid=2015" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Creating%20Ordinal%20numbers%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 23 June 2008, at 21:35.</li>
+				<li id="viewcount">This page has been accessed 32 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.192 secs. -->
+</body></html>

@@ -1,0 +1,920 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Selector-based Content modifier and Click Tracking Code,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples,Multi-page experiments">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Selector-based Content modifier and Click Tracking Code - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Selector-based%20Content%20modifier%20and%20Click%20Tracking%20Code%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Selector-based_Content_modifier_and_Click_Tracking_Code";
+var wgTitle = "Selector-based Content modifier and Click Tracking Code";
+var wgAction = "view";
+var wgArticleId = "1126";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6882";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Selector-based%20Content%20modifier%20and%20Click%20Tracking%20Code%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Selector-based%20Content%20modifier%20and%20Click%20Tracking%20Code%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Selector-based%20Content%20modifier%20and%20Click%20Tracking%20Code%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Selector-based%20Content%20modifier%20and%20Click%20Tracking%20Code%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Selector-based_Content_modifier_and_Click_Tracking_Code">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Selector-based Content modifier and Click Tracking Code</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<strong class="selflink">Selector-based Content modifier and Click Tracking Code</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Objective"><span class="tocnumber">1</span> <span class="toctext">Objective</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Why_create_this_code"><span class="tocnumber">1.1</span> <span class="toctext">Why create this code</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Author"><span class="tocnumber">1.1.1</span> <span class="toctext">Author</span></a></li>
+<li class="toclevel-3"><a href="#Standard_Management_Console_experiments"><span class="tocnumber">1.1.2</span> <span class="toctext">Standard Management Console experiments</span></a></li>
+<li class="toclevel-3"><a href="#Caveats_for_TCs"><span class="tocnumber">1.1.3</span> <span class="toctext">Caveats for TCs</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Code_Functionality"><span class="tocnumber">2</span> <span class="toctext">Code Functionality</span></a>
+<ul>
+<li class="toclevel-2"><a href="#.24opt.widget_object"><span class="tocnumber">2.1</span> <span class="toctext">$opt.widget object</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Required_properties"><span class="tocnumber">2.1.1</span> <span class="toctext">Required properties</span></a></li>
+<li class="toclevel-3"><a href="#DOM_manipulation_properties"><span class="tocnumber">2.1.2</span> <span class="toctext">DOM manipulation properties</span></a></li>
+<li class="toclevel-3"><a href="#Click_Tracking_properties"><span class="tocnumber">2.1.3</span> <span class="toctext">Click Tracking properties</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#The_CSS_Selectors_-_how_they_work"><span class="tocnumber">2.2</span> <span class="toctext">The CSS Selectors - how they work</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Example_.231"><span class="tocnumber">2.2.1</span> <span class="toctext">Example #1</span></a></li>
+<li class="toclevel-3"><a href="#Example_.232"><span class="tocnumber">2.2.2</span> <span class="toctext">Example #2</span></a></li>
+<li class="toclevel-3"><a href="#Example_.233"><span class="tocnumber">2.2.3</span> <span class="toctext">Example #3</span></a></li>
+<li class="toclevel-3"><a href="#Example_.234"><span class="tocnumber">2.2.4</span> <span class="toctext">Example #4</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#.24opt.getElementsByTagNameAndClassName_function"><span class="tocnumber">2.3</span> <span class="toctext">$opt.getElementsByTagNameAndClassName function</span></a></li>
+<li class="toclevel-2"><a href="#.24opt.evaluateContainer_function"><span class="tocnumber">2.4</span> <span class="toctext">$opt.evaluateContainer function</span></a></li>
+<li class="toclevel-2"><a href="#.24opt.walkTheDOM_function"><span class="tocnumber">2.5</span> <span class="toctext">$opt.walkTheDOM function</span></a></li>
+<li class="toclevel-2"><a href="#.24opt.evaluateTracking_function"><span class="tocnumber">2.6</span> <span class="toctext">$opt.evaluateTracking function</span></a></li>
+<li class="toclevel-2"><a href="#Example"><span class="tocnumber">2.7</span> <span class="toctext">Example</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Objective"></a><h1> <span class="mw-headline">Objective</span></h1>
+<p>This code was written so that someone creating Optimost Templates in the Management Console can create objects that:
+</p>
+<ol><li>Use CSS selectors to find nodes in the DOM
+</li><li>Then use the nodes to:
+<ul><li>Add clicks to specific tags within the node container
+</li><li>Take the node and perform some DOM action to modify its content, position, functionality
+</li></ul>
+</li></ol>
+<a name="Why_create_this_code"></a><h2> <span class="mw-headline">Why create this code</span></h2>
+<p>This Code was created with the Sales Engineers in mind as they are being called to put together POCs, usually consisting of:
+</p>
+<ol><li>A Global Code deployment of Optimost.
+</li><li>A test on at least one customer page.  
+</li></ol>
+<p>I wanted to make it easier for them to easily reuse the same code 
+across POCs. So I started with the Author-style Global Code and created 
+this code.
+</p>
+<a name="Author"></a><h3> <span class="mw-headline">Author</span></h3>
+<p>The Author-style Global code -  <a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+ -  allows us to add standardized, self-contained objects as we add new 
+trials/counters to be tested.  The idea is to have a common block of 
+decision/implementation logic, then add objects that contain all the 
+relevant information for a Trial, Counter, or other special purpose 
+object.  Then the decision/implementation logic loops through each 
+object and performs the specified action if that object's criteria 
+"matches" our page.
+</p><p>This paradigm has 3 advantages:
+</p>
+<ol><li>Allows you to reuse code more easily.
+</li><li>Makes life-cycle support easier (since everyone's code looks the same).
+</li><li>Allow less technically-savvy individuals to modify the Global Code.
+</li></ol>
+<p>And has one disadvantages
+</p>
+<ol><li>Since it is general purpose code, there will be more code.
+</li></ol>
+<p>But given the fact that the Global Code has not been fully-integrated
+ into Author or the Management Console, the life-cycle support 
+considerations  make this the correct approach for the Global code.  
+</p>
+<a name="Standard_Management_Console_experiments"></a><h3> <span class="mw-headline">Standard Management Console experiments</span></h3>
+<p>That same paradigm can be used for Management console experiments.  
+For the most part, our TCs can code the templates without the help of 
+code like this, but for the Sales Engineers (or new TCs), this could 
+help accelerate their ability to create templates.  
+</p>
+<a name="Caveats_for_TCs"></a><h3> <span class="mw-headline">Caveats for TCs</span></h3>
+<p>The job here requires you to not only write working code but also 
+understand how it works within the page and how it is interacting within
+ the Internet.  You need to be able to debug your code when something 
+strange happens.   This is why I am leery of libraries that "help" 
+programmers do their jobs because often they produce programmers that 
+can solve a problem they don't understand, so when something goes wrong,
+ they don't have the understanding to fix it.  We are a third-party 
+provider of content and there are implementation restrictions/scenarios 
+that mean your understanding of "how things work" is more crucial that 
+it would be for a TC equivalent at a customer.  Keep that in mind if you
+ decide to use this code (or jQuery or any other library).
+</p>
+<a name="Code_Functionality"></a><h1> <span class="mw-headline">Code Functionality</span></h1>
+<p>Much of this code reuses standard Optimost code. Here are the new functions created for this application:
+</p>
+<a name=".24opt.widget_object"></a><h2> <span class="mw-headline">$opt.widget object</span></h2>
+<p>Object contains all the necessary information for a specific 
+container, and whatever you want to do with it.  Here are a few 
+examples:
+</p>
+<pre>//Simple "find a container"
+$opt.widget["New Widget Location"] = {
+    "selector": "#main_0_leftcolumn_0_ImageContainer div.recipeDetail",
+    "container":null,
+    "evaluate":$opt.evaluateContainer
+}
+
+//Find a container, then implement a change: set a new background color
+$opt.widget["Spoons Location"] = {
+    "selector": "div.recipeProcedure div.recipeDetail|img,src:Images/star_full.gif",
+    "container":null,
+    "evaluate":$opt.evaluateContainer,
+    "implement":function(){
+		var obj=this.container;
+		if(obj){
+			obj.style.background="#FF00FF";
+		}
+        }
+}
+
+//Find a container, then add clicks to all the anchor tags, with an attribute - its FAQ number
+$opt.widget["FAQS"] = {
+    "clickTagType": "a",
+    //"selector": "#main_0_leftcolumn_0_RecipeToolbar_ToolbarContainerPanel div.recipeWidgetRht",
+    "selector": "#faq div.faq-links",
+    "container":null,
+    "containerType":"container",
+    "tagMatch": null,
+    "condition": null,
+    "attribute": {"link":function(obj){
+			if(obj.href.indexOf("#faq")!=-1){
+				found=obj;
+				var rxpSt=new RegExp(/\d{1,2}/); 
+				tmp=rxpSt.exec(obj.href);
+				if(tmp)return "faq"+tmp;
+				else return null;
+			}
+		}
+    },
+    "unique": "/counter/0021/-/8/event.gif",
+    "liidName":"op0021homepageliid",
+    "dly": 225,
+    "evaluate":$opt.evaluateContainer,
+    "tracking":$opt.evaluateTracking    
+}
+
+</pre>
+<p>Here are the properties:
+</p>
+<a name="Required_properties"></a><h3> <span class="mw-headline">Required properties</span></h3>
+<ul><li><b>selector</b> - Set to a string (as a selector) or a function 
+(custom code that does the searching and returns the container) or a 
+null (if container has been initialized to the object)
+</li><li><b>container</b> - the final container.  Usually set to <b>null</b>, but can contain the final container object.
+</li><li><b>evaluate</b> - Set to function <b>$opt.evaluateContainer</b> if container is initialized as <b>null</b>. If container not <b>null</b>, then this is a <b>null</b>
+</li></ul>
+<p>These properties help you find the container.  If all you want to do 
+is find a container - to be used by later container - this will be 
+enough.
+</p>
+<a name="DOM_manipulation_properties"></a><h3> <span class="mw-headline">DOM manipulation properties</span></h3>
+<ul><li><b>implement</b> - A function that "implements" the DOM changes on this object. (In the second object above only)
+</li></ul>
+<p>This property allows you to execute you change on the <b>container</b> of interest.  Notice the use of <b>this.container</b>, remember that since the <b>implement</b> function is part of an object, <b>this</b> allows me to reference that object and get its <b>container</b>.  I could have alternately said <b>$opt.widget["Spoons Location"].container</b> but you don't want to do that.
+</p>
+<a name="Click_Tracking_properties"></a><h3> <span class="mw-headline">Click Tracking properties</span></h3>
+<ul><li><b>clickTagType</b> - Set to the tag, ie "a", "input", "img"
+</li><li><b>tagMatch</b> - If there is some ADDITIONAL condition for the tag found to be a match, you add it here as an object. Otherwise, its a <b>null</b>.  Format is:
+<ul><li>{"attributeName":"value"}.  
+</li><li>So, for example, setting this to <b>{"href":"index.html"}</b> means that any <b>clickTagType</b> in this container that has an <b>href</b> that equals/contains <b>index.html</b>, it is a match. Otherwise, not a match.
+</li></ul>
+</li><li><b>condition</b> - For the tagMatch, either <b>contains</b> or <b>equals</b>.
+</li><li><b>attribute</b> - If we want to pass an attribute in the tracking.  Its an object, format <b>{"query string parameter name":"attributeName"}</b> or <b>{"query string parameter name":function(){return value;}</b>
+</li><li><b>unique</b> - the binary counter URL
+</li><li><b>liidName</b> - the activity tracking name for this subject
+</li><li><b>dly</b> - the delay on the counter, set to 225 for redirect 
+clicks, to 0 for clicks that stay on page or spawn a new browser 
+tab/window.
+</li></ul>
+<a name="The_CSS_Selectors_-_how_they_work"></a><h2> <span class="mw-headline">The CSS Selectors - how they work</span></h2>
+<p>When creating the CSS selector, you need to create it as follows:
+</p>
+<ol><li>The selectors use standard CSS rules, for example:
+<ul><li>A white space separates each selector. Here, we use a single space only.
+</li><li>You use <b>"#"</b> before any ID and <b>"."</b> before classes.
+</li></ul>
+</li><li>The first selector can be either an <b>#id</b> or a <b>tagName.class</b> combination<sup>1</sup>.  We assume all IDs are unique.
+</li><li>Subsequent selectors can only be <b>tagName.class</b> combinations.  
+</li><li>The last selector can have a "search field" appended to it to 
+allow you to search for specific content to identify the container.  
+This allows us to find non-unique final selectors based on unique 
+content inside OR their order.
+</li></ol>
+<hr>
+<p><sup>1</sup>With HTML5, you may find pages that use used new HTML 5 
+tags for some browsers and old ones for others.  For example, they may 
+use the <b>&lt;section&gt;</b> tag for Chrome, FF, IE9, Safari, but use <b>&lt;div&gt;</b> for IE8,IE7.  You have been warned.
+</p>
+<hr>
+<p>Within the $opt.widget object we see selectors.  Here are some examples:
+</p>
+<a name="Example_.231"></a><h3> <span class="mw-headline">Example #1</span></h3>
+<ul><li><b>"selector": "div.simpleleftcolumn div.recipeSteps dl.ingredient",</b>
+</li></ul>
+<p>This means:
+</p>
+<ol><li>Find the <b>div</b> with <b>class=simpleleftcolumn</b> 
+</li><li>Inside that container, find the <b>div</b> with <b>class=simpleleftcolumn</b> 
+</li><li>Inside that container, find the <b>dl</b> with <b>class=ingredient</b> (It will return the first one found)
+</li></ol>
+<p>Straightforward
+</p>
+<a name="Example_.232"></a><h3> <span class="mw-headline">Example #2</span></h3>
+<ul><li><b>"selector": "div.simpleleftcolumn div.recipeSteps dl.ingredient|3",</b>
+</li></ul>
+<p>This means:
+</p>
+<ol><li>Find the <b>div</b> with <b>class=simpleleftcolumn</b> 
+</li><li>Inside that container, find the <b>div</b> with <b>class=simpleleftcolumn</b> 
+</li><li>Inside that container, find the <b>dl</b> with <b>class=ingredient</b>, and give me the 3rd one
+</li></ol>
+<p>Here we use the "|" as a separator on the last selector, and here we ask for the 3rd one in that container. 
+</p>
+<a name="Example_.233"></a><h3> <span class="mw-headline">Example #3</span></h3>
+<ul><li><b>"selector": "div.simpleleftcolumn div.recipeSteps dl.ingredient|innerHTML:Stir%20together%20Bisquick,",</b>
+</li></ul>
+<p>This means:
+</p>
+<ol><li>Find the <b>div</b> with <b>class=simpleleftcolumn</b>
+</li><li>Inside that container, find the <b>div</b> with <b>class=simpleleftcolumn</b> 
+</li><li>Inside that container, find the <b>dl</b> with <b>class=ingredient</b>, and give me the one that has innerHTML containing <b>Stir together Bisquick,</b> (It will return the first one found)
+</li></ol>
+<p>Here we use the "|" as a separator on the last selector. Since the 
+selector is not a number, it is attribute of the final container or the 
+attribute of an element in the final container.  Since the left side of 
+the <b>":"</b> has only 1 paramater, it is an attribute of the final container.
+</p>
+<a name="Example_.234"></a><h3> <span class="mw-headline">Example #4</span></h3>
+<ul><li><b>"selector": "div.simpleleftcolumn div.recipeSteps dl.ingredient|img,src:Images/star_full.gif</b>
+</li></ul>
+<p>This means:
+</p>
+<ol><li>Find the <b>div</b> with <b>class=simpleleftcolumn</b> 
+</li><li>Inside that container, find the <b>div</b> with <b>class=simpleleftcolumn</b>
+</li><li>Inside that container, find the <b>dl</b> with <b>class=ingredient</b>, and give me the one that has an <b>img</b> inside containing <b>Images/star_full.gif</b> in its <b>src</b> URL. (It will return the first one found)
+</li></ol>
+<p>Here we use the "|" as a separator on the last selector. Since the 
+selector is not a number, it is attribute of the final container or the 
+attribute of an element in the final container.  Since the left side of 
+the <b>":"</b> has 2 paramater, the first parameter is the tagName and the second is the attribute,all within the final.
+</p>
+<a name=".24opt.getElementsByTagNameAndClassName_function"></a><h2> <span class="mw-headline">$opt.getElementsByTagNameAndClassName function</span></h2>
+<p>This is used to parse through a specific tag that contains a specific
+ class. A tag with multiple classes will match if one matches.  This 
+function returns an array.
+</p><p><br>
+</p>
+<a name=".24opt.evaluateContainer_function"></a><h2> <span class="mw-headline">$opt.evaluateContainer function</span></h2>
+<p>For a <b>$opt.widget</b> object, parses through the <b>selector</b> property to as follows:
+</p>
+<ol><li>If it is <b>function</b>, it executes it and returns the resulting object.
+</li><li>If it is a <b>string</b>, parses it out to determine the starting point", then calls <b>$opt.walkTheDOM</b>, which returns the matching object.
+</li></ol>
+<a name=".24opt.walkTheDOM_function"></a><h2> <span class="mw-headline">$opt.walkTheDOM function</span></h2>
+<p>This is a recursive routine that parses the string <b>selector</b> 
+property, finds the appropriate node, then calls itself again with the 
+found node and the next selector as its new starting point. The number 
+of times it "recurs" is based on the length of the selector.  Here is 
+the flow for the function:
+</p>
+<ol><li>It is called with a "starting" container node and an array 
+containing all the selectors from the starting node down to the final 
+container.
+</li><li>The first selector is the only one evaluated.  
+</li><li>This first selector is parsed to determine if it has a Search component to the selector.  If so it is parsed out.
+</li><li>The first selector is parsed to separate the tagName from the class, and then the function <b>$opt.getElementsByTagNameAndClassName</b> is called to return an array of matching nodes.
+</li><li>We loop through these returned nodes.  If there are no additional selectors, then we determine:
+<ul><li>Is this a "simple" search - ie no Search component - then return this node.
+</li><li>If it is not "simple", then do the complex search and return the "matching" node, IF THERE IS ONE.  Otherwise, we return null.
+</li></ul>
+</li><li>If there are additional selectors, then we:
+<ul><li>Remove the selector we just used
+</li><li>Call this function again using our spliced selector and the node we found.  This is the recursion.
+</li><li>If the returned value for this search is a node, we return this node.
+</li></ul>
+</li></ol>
+<p>Recursion can be confusing since there will be multiple "return" 
+events to itself, so it may not be clear how you get out of this loop.  
+Here are the keys to understanding it:
+</p>
+<ol><li>You only re-call the routine - the recursion only occurs - if there are selectors left.  
+</li><li>This means that the line of code: <b>myRet=$opt.walkTheDOM(start[i],tmp);</b> will be called recursively until you get to the last selector.
+</li><li>At that last selector, you will NOT call the function again, but instead return something.  Either the node you found or a <b>null</b>.
+<ul><li>The line <b>if(myRet)return myRet;</b> says if a node is returned by <b>$opt.walkTheDOM</b>, then return that node.
+</li><li>Since the routine is recursive, those 2 lines will continue to 
+"execute" for each recursive call until eventually that node - found in 
+the last selector - is returned to the original call.
+</li><li>If the value returned is <b>null</b>, it will fall out of the 
+loop and null will be returned, which will then do the same across all 
+the other recursive calls and return it to the original call.
+</li></ul>
+</li></ol>
+<a name=".24opt.evaluateTracking_function"></a><h2> <span class="mw-headline">$opt.evaluateTracking function</span></h2>
+<p>If we want to add clicks to one of our found <b>$opt.widget</b> objects, this function is executed.  Here is what it does:
+</p>
+<ol><li>An array <b>this.matchingTags</b> is created to hold all the matching tags.
+</li><li>We then find all the nodes of type <b>clickTagType</b> within the <b>container</b>, and then loop through all these nodes:
+<ul><li>If we have an additional matching condition - ie if condition ==
+ "contains" or condition == "equals" - then for each node, we see if the
+ condition is met. If the condition is met, the node is pushed into <b>this.matchingTags</b>
+</li><li>If no matching conditions are specified, the node is pushed into <b>this.matchingTags</b>
+</li></ul>
+</li><li>Next, we loop through each node in <b>this.matchingTags</b>, 
+<ul><li>If an attribute is specified for it, we get that attribute and save it as the variable <b>link</b>
+</li><li>Then we add a click event to this node, passing in the URL, delay, liidName, and link value.
+</li></ul>
+</li></ol>
+<a name="Example"></a><h2> <span class="mw-headline">Example</span></h2>
+<p>Here is the code for a test on:
+</p><p><a href="http://www.bettycrocker.com/recipes/impossibly-easy-chicken-taco-pie/2a1cc84e-00a8-46d3-8c8e-26867da043de" class="external free" title="http://www.bettycrocker.com/recipes/impossibly-easy-chicken-taco-pie/2a1cc84e-00a8-46d3-8c8e-26867da043de" rel="nofollow">http://www.bettycrocker.com/recipes/impossibly-easy-chicken-taco-pie/2a1cc84e-00a8-46d3-8c8e-26867da043de</a>.  
+</p><p>We move the buttons above the recipe to below the recipe, change 
+the format of the buttons, change the format area vacated by buttons, 
+and track the clicks on the buttons.
+</p>
+<pre>//Simple test on http://www.bettycrocker.com/recipes/impossibly-easy-chicken-taco-pie/2a1cc84e-00a8-46d3-8c8e-26867da043de
+$opt={};
+$vopt={};
+$opt.widget={};
+$opt.addEvent=function(el,evt,func,bubble){
+	if(!el || typeof(func)&nbsp;!="function"){return false;}
+	bubble = bubble || false;
+	var evtType=(window.attachEvent)?"attach":(window.addEventListener)? "add":"none";
+	if(evtType == "attach"){el.attachEvent("on"+evt,func);}
+	else if(evtType == "add"){el.addEventListener(evt,func,bubble);}
+}
+$opt.createStyle=function (styleText){
+        var head = document.getElementsByTagName('head')[0],
+        style = document.createElement('style'),
+        rules = document.createTextNode(styleText);
+        style.type = 'text/css';
+        if(style.styleSheet)
+        style.styleSheet.cssText = rules.nodeValue;
+        else style.appendChild(rules);
+        head.appendChild(style);
+}
+$vopt.imgArray=[];
+$opt.triggerCounter=function(argPath, argLiid, argParams) {
+    var opPro=(("https:"==document.location.protocol)?"https://by.essl.optimost.com/by":"http://by.optimost.com");
+    rn=Math.floor(Math.random()*100000);
+    var src = opPro+argPath + '?' + argLiid + '={{$creative.sessionId}}' + (argParams!=''?'&amp;' + argParams:'') + '&amp;opts=' + rn;
+    var n=$vopt.imgArray.length;
+    $vopt.imgArray[n]= new Image();
+    $vopt.imgArray[n].src=src&nbsp;;
+}
+
+$opt.getElementsByTagNameAndClassName = function(startObj,clsName,tagName){
+	var retVal = [];
+	if(startObj==null)return retVal;
+	var elements = startObj.getElementsByTagName(tagName);
+	for(var i = 0;i &lt; elements.length;i++){
+		if(elements[i].className.indexOf(" ") &gt;= 0){
+			var classes = elements[i].className.split(" ");
+			for(var j = 0;j &lt; classes.length;j++){
+				if(classes[j] == clsName)
+				retVal.push(elements[i]);
+			}
+		}
+		else if(elements[i].className == clsName)
+			retVal.push(elements[i]);
+	}
+        //alert('in clsname '+clsName+'-'+startObj.innerHTML+'\n\n'+retVal[0].innerHTML)
+	return retVal;
+}
+
+$opt.walkTheDOM = function(container,selector){
+    var at=selector[0].split("|");//Split out special match paramters. Can only be used on last selector
+    var loc=0;
+    var simple=true;
+    if(at[1]!=null){//If this exists, means we are soind a special match parameter.
+	simple=false;//This is not a 'simple' search -  not just the class and tag need to be matched
+	var sep=at[1].split(":");//':' seperates the attributes to look at from the match value.
+	if(sep[1]==null){ //If we do a "location" match - find the 4th element with this final selector - just enter a number after the '|'
+		var rxpSt=new RegExp(/\d{1,2}/); 
+		tmp=rxpSt.exec(sep[0]);
+		if(tmp)loc=tmp;
+	}else{ //If we do an attribute match, get the attribute OR the tag and attribute
+		var attrs={};
+		attrs.value=sep[1];
+		var tgs=sep[0].split(","); //If tag and attribute, ',' separated	
+	}
+    }
+    var es=at[0].split(".");//split the tagName from the class in the selector
+    if(es.length!=2)return null;
+    var tagName=(es[0]==""?"*":es[0]);//If not tagName, then use '*', which is a wildcard for any tag on an element node
+    var sel=es[1];
+    //alert(tagName+'-'+sel+'-'+at[1]+'\nSimple='+simple+' with a location of '+loc+' and a next selector of '+selector[1])
+    var start;
+    start=$opt.getElementsByTagNameAndClassName(container,sel,tagName); //Function to look based on tagName and class
+    //alert('start returns a container with lenght of '+start.length)
+    for(var i=0,len=start.length;i&lt;len;i++){//recursive routine to find the nodes of interest
+        if(selector[1]==null){
+            //alert('returning:\n\n'+start[i]+'\n\n'+start[i].innerHTML);
+	    if(simple==true)return start[i];   //Simple search, you are done
+	    else{
+		if(loc!=0){ //Location search
+			loc--;//Countdown until you get to the nth element
+			if(loc==0)return start[i];
+		}
+		else{
+			var check = -1;
+			if(tgs[1]==null){//An attribute of the final container - usually innerHTML, can be src or href in other cases
+				var check=start[i][tgs[0]].indexOf(unescape(attrs.value));
+				if(check!=-1)return start[i];
+				//alert(check+'\n\n'+tgs[0]+'='+unescape(attrs.value)+'\n'+start[i][tgs[0]])
+			}
+			else {//Points to an attribute of an element inside the final container - usuelly src, href, etc
+				cnt=start[i].getElementsByTagName(tgs[0]); //Find the tagName nodes
+				for(var j=0,len2=cnt.length;j&lt;len2;j++){				
+					var check=cnt[j][tgs[1]].indexOf(unescape(attrs.value));
+					//alert(check+'\n\n'+tgs[0]+'-'+tgs[1]+'='+unescape(attrs.value)+'\n'+start[i][tgs[0]])
+					if(check!=-1)return start[i];
+				}
+			}
+			if(check!=-1)return start[i];
+		}
+	    }
+        }
+        else {
+            var tmp=selector;
+            tmp.splice(0,1);
+	    //alert(start[i]+'\n\n'+start[i].innerHTML);
+            myRet=$opt.walkTheDOM(start[i],tmp);
+            if(myRet)return myRet;
+        }
+    }
+    return null;
+} 
+
+$opt.evaluateContainer=function(){
+        if(this.container==null){
+            switch(typeof(this.selector)) {
+                case 'string':
+                    var ps=this.selector.split(" ");
+                    var tmp;
+                    if(ps[0].indexOf("#")!=-1){
+                        tmp=document.getElementById(ps[0].replace("#",""));
+                        ps.splice(0,1);
+                    }
+                    else tmp=document;
+		    if(tmp==null)return;
+                    if(ps.length&gt;0)obj=$opt.walkTheDOM(tmp,ps);
+                    else obj=tmp;
+                    this.container=obj;  //alert($opt.widget[n].container.innerHTML);
+                    break;
+                
+                case 'function':
+                    obj=this.selector();
+                    this.container=obj;  //alert($opt.widget[n].container.innerHTML);
+                    break;                
+            }
+        }
+}
+
+$opt.evaluateTracking=function(){
+    if(this.container!=null &amp;&amp; this.clickTagType!=null){
+        this.matchingTags=[];
+	var tags=this.container.getElementsByTagName(this.clickTagType);
+	for(var i=0,len=tags.length;i&lt;len;i++){
+	    if(this.condition=="contains"){
+		for(var n in this.tagMatch){
+		    if(tags[i][n].indexOf(this.tagMatch[n])!=-1)this.matchingTags.push(tags[i]);
+		}                                     
+	    }
+	    else  if(this.condition=="equals"){
+		for(var n in this.tagMatch){
+		    if(tags[i][n]==this.tagMatch[n])this.matchingTags.push(tags[i]);
+		}   
+	    }
+	    else this.matchingTags.push(tags[i]);
+	}
+	for(var i=0,len=this.matchingTags.length;i&lt;len;i++){
+	    var link='';
+	    if(this.attribute!=null){
+		for(var n in this.attribute){
+			if(typeof(this.attribute[n])=="string")link=n+"="+escape(this.matchingTags[i][this.attribute[n]]);
+			if(typeof(this.attribute[n])=="function"){
+				var result=this.attribute[n](this.matchingTags[i]);
+				if(result!=null)link=n+"="+escape(result);
+			}
+		}		
+	    }
+	    $opt.addEvent(this.matchingTags[i],"click",function(url,dly,liidNm,lnk){		
+		return function(e){                
+		    $opt.triggerCounter(url,liidNm,lnk);
+		    var date = new Date();
+		    //var ms=225;
+		    var ms=dly;
+		    var curDate = null;
+		    do { curDate = new Date(); } 
+		    while(curDate-date &lt; ms);
+		}		
+	    }(this.unique,this.dly,this.liidName,link),true);		
+	}
+    }
+}
+
+$opt.widget["Step 2 Location"] = {
+    "selector": "div.bottomContainer ul.instructions li.instruction|innerHTML:Stir%20together%20Bisquick,",
+    "container":null,
+    "evaluate":$opt.evaluateContainer,
+    "implement":function(){
+		var obj=this.container;
+		if(obj){
+			obj.style.background="#FFFF00";
+		}
+        }
+}
+
+$opt.widget["Spoons Location"] = {
+    "selector": "div.recipeProcedure div.recipeDetail|img,src:Images/star_full.gif",
+    "container":null,
+    "evaluate":$opt.evaluateContainer,
+    "implement":function(){
+		var obj=this.container;
+		if(obj){
+			obj.style.background="#FF00FF";
+		}
+        }
+}
+
+$opt.widget["Third Ingredient Location"] = {
+    "selector": "div.simpleleftcolumn div.recipeSteps dl.ingredient|3",
+    "container":null,
+    "evaluate":$opt.evaluateContainer,
+    "implement":function(){
+		var obj=this.container;
+		if(obj){
+			obj.style.background="#00FFFF";
+		}
+        }    
+}
+
+$opt.widget["New Widget Location"] = {
+    "selector": "#main_0_leftcolumn_0_ImageContainer div.recipeDetail",
+    "container":null,
+    "evaluate":$opt.evaluateContainer
+}
+$opt.widget["HVT button banner"] = {
+    "selector": "#main_0_leftcolumn_0_TopHeadDiv div.recipeWidgetRht",
+    "container":null,
+    "evaluate":$opt.evaluateContainer,
+    "clickTagType": "a",    
+    "containerType":"container",
+    "tagMatch": null,
+    "condition": null,
+    "attribute": {"link":"className"},
+    "unique": "/counter/0021/-/8/event.gif",
+    "liidName":"op0021homepageliid",
+    "dly": 225,
+    "tracking":$opt.evaluateTracking,
+    "implement":function(){
+		if($opt.widget["New Widget Location"].container!=null &amp;&amp; $opt.widget["HVT button banner"].container!=null){
+			newDiv=document.createElement("div");
+			newDiv.className="recipeDetail";
+			newDiv.id="newOpt";
+		
+			$opt.createStyle("#newOpt{min-height:50px;padding-top:15px !important;}");
+			$opt.createStyle("#newOpt li {display: block;float: left;height:48px !important;;width:40px;list-style: none outside none;margin: 0 5px 0 0;padding: 0;}");
+			$opt.createStyle("#newOpt .recipeWidgetRht{width:600px;}");
+			$opt.createStyle("#newOpt .recipeWidget{width:590px;}");
+			$opt.createStyle("#newOpt .recipeWidget ul li a {height: 45px !important};width:40px !important;");
+			$opt.createStyle("#main_0_leftcolumn_0_TopHeadDiv .headingFloatLft{width:600px !important;}");
+			$opt.createStyle("#main_0_leftcolumn_0_TopHeadDiv .recipeDetailHeading{width:600px !important;}");
+			newDiv.appendChild($opt.widget["HVT button banner"].container)
+			$opt.widget["New Widget Location"].container.parentNode.insertBefore(newDiv,$opt.widget["New Widget Location"].container);
+			
+			var oldCont=document.getElementById("main_0_leftcolumn_0_TopHeadDiv");
+			if(oldCont)oldCont.parentNode.style.minHeight="20px";
+			
+			_A=$opt.widget["HVT button banner"].matchingTags;
+			var _Text={"recipe":{"innr":"SAVE","w":"40px","pt":"12px"},
+						"print":{"innr":"PRINT","wd":"40px","pt":"12px"},
+						"email":{"innr":"EMAIL","wd":"40px","pt":"12px"},
+						"writereviewicon":{"innr":"WRITE A&lt;BR/&gt;REVIEW","wd":"60px","pt":"7px"},
+						"grocery":{"innr":"GROCERY&lt;BR/&gt;LIST","wd":"60px","pt":"7px"},
+						"share":{"innr":"SHARE","wd":"40px","pt":"12px"}};
+			for(var i=0,len=_A.length;i&lt;len;i++){
+				var newA=document.createElement("a");
+				var newLI=document.createElement("li");
+				var cn=_A[i].className;
+				var newInner;
+				for(var n in _Text){
+					if(cn.indexOf(n)!=-1){
+						newInner=_Text[n].innr;
+						newLI.style.width=_Text[n].wd;
+						newLI.style.paddingTop=_Text[n].pt;
+					}			
+				}
+				newA.innerHTML=newInner;
+				newA.href=_A[i].href;
+				newA.style.display="inline";
+				newLI.style.background="url(none)";
+				newLI.appendChild(newA);
+				_A[i].parentNode.parentNode.insertBefore(newLI,_A[i].parentNode.nextSibling);
+				//need to add events to these new links
+				var _C=$opt.widget["HVT button banner"];
+				$opt.addEvent(newA,"click",function(url,dly,liidNm,lnk){		
+				    return function(e){                
+					$opt.triggerCounter(url,liidNm,lnk);
+					var date = new Date();
+					//var ms=225;
+					var ms=dly;
+					var curDate = null;
+					do { curDate = new Date(); } 
+					while(curDate-date &lt; ms);
+				    }		
+				}(_C.unique,_C.dly,_C.liidName,"link="+escape(cn)),true);			
+			}
+		}
+	}    
+}
+
+$opt.widget["FAQS"] = {
+    "selector": "#faq div.faq-links",
+    "container":null,
+    "containerType":"container",
+    "clickTagType": "a",
+    "tagMatch": null,
+    "condition": null,
+    "attribute": {"link":function(obj){
+			if(obj.href.indexOf("#faq")!=-1){
+				found=obj;
+				var rxpSt=new RegExp(/\d{1,2}/); 
+				tmp=rxpSt.exec(obj.href);
+				if(tmp)return "faq"+tmp;
+				else return null;
+			}
+		}
+    },
+    "unique": "/counter/0021/-/8/event.gif",
+    "liidName":"op0021homepageliid",
+    "dly": 225,
+    "evaluate":$opt.evaluateContainer,
+    "tracking":$opt.evaluateTracking    
+}
+
+//Evaluate (and Track, if necessary) for each object
+for(var n in $opt.widget){
+	for(var m in $opt.widget[n]){
+	if(typeof($opt.widget[n][m])=="function")$opt.widget[n][m]();
+
+	}
+}
+
+</pre>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<strong class="selflink">Selector-based Content modifier and Click Tracking Code</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 40/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1126-0!1!0!!en!2!edit=0 and timestamp 20130816142439 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code">http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Selector-based_Content_modifier_and_Click_Tracking_Code&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Selector-based_Content_modifier_and_Click_Tracking_Code&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Selector-based_Content_modifier_and_Click_Tracking_Code&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Selector-based_Content_modifier_and_Click_Tracking_Code" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Selector-based_Content_modifier_and_Click_Tracking_Code" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Selector-based_Content_modifier_and_Click_Tracking_Code&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Selector-based_Content_modifier_and_Click_Tracking_Code&amp;oldid=6882" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Selector-based%20Content%20modifier%20and%20Click%20Tracking%20Code%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 10 January 2013, at 19:20.</li>
+				<li id="viewcount">This page has been accessed 55 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.288 secs. -->
+</body></html>

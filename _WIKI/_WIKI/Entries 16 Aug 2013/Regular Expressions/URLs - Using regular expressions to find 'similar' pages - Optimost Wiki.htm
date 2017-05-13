@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="URLs - Using regular expressions to find &quot;similar&quot; pages">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>URLs - Using regular expressions to find "similar" pages - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="URLs%20-%20Using%20regular%20expressions%20to%20find%20%27similar%27%20pages%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "URLs_-_Using_regular_expressions_to_find_\"similar\"_pages";
+var wgTitle = "URLs - Using regular expressions to find \"similar\" pages";
+var wgAction = "view";
+var wgArticleId = "1127";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6896";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="URLs%20-%20Using%20regular%20expressions%20to%20find%20%27similar%27%20pages%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="URLs%20-%20Using%20regular%20expressions%20to%20find%20%27similar%27%20pages%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="URLs%20-%20Using%20regular%20expressions%20to%20find%20%27similar%27%20pages%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="URLs%20-%20Using%20regular%20expressions%20to%20find%20%27similar%27%20pages%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-URLs_-_Using_regular_expressions_to_find_similar_pages">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">URLs - Using regular expressions to find "similar" pages</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p>With our increasing use of Global Code, we are finding more 
+instances where we need to use Regular Expression to parse URLs to find 
+"similar" pages. Here are some examples of URLs and how to write a 
+regexp function to identify pages
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Recipe_pages"><span class="tocnumber">1</span> <span class="toctext">Recipe pages</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Creating_the_Regexp_object"><span class="tocnumber">1.1</span> <span class="toctext">Creating the Regexp object</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Code"><span class="tocnumber">1.1.1</span> <span class="toctext">Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Round_Brackets_in_Regular_Expressions.2C_.28....29"><span class="tocnumber">1.2</span> <span class="toctext">Round Brackets in Regular Expressions, (...)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Product_pages_-_type_1.2C_a_simple_path"><span class="tocnumber">2</span> <span class="toctext">Product pages - type 1, a simple path</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Creating_the_Regexp_object_2"><span class="tocnumber">2.1</span> <span class="toctext">Creating the Regexp object</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Code_2"><span class="tocnumber">2.1.1</span> <span class="toctext">Code</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Product_pages_-_type_2.2C_a_more_complicated_path_with_exclusions"><span class="tocnumber">3</span> <span class="toctext">Product pages - type 2, a more complicated path with exclusions</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Code_3"><span class="tocnumber">3.1</span> <span class="toctext">Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Recipe_detail_page_-_type_3.2C_another_complicated_path_with_exclusions"><span class="tocnumber">4</span> <span class="toctext">Recipe detail page - type 3, another complicated path with exclusions</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Code_4"><span class="tocnumber">4.1</span> <span class="toctext">Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Thank_You_page_-_separating_currency_from_price"><span class="tocnumber">5</span> <span class="toctext">Thank You page - separating currency from price</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Final_transaction_examples"><span class="tocnumber">5.1</span> <span class="toctext">Final transaction examples</span></a></li>
+<li class="toclevel-2"><a href="#CODE_5"><span class="tocnumber">5.2</span> <span class="toctext">CODE</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Recipe_pages"></a><h2> <span class="mw-headline">Recipe pages</span></h2>
+<p>Here the customer wants to use the page URL to identify the pages in 
+an experiment. Here are a couple of URLs for the "similar" page for this
+ experiment:
+</p>
+<ul><li><a href="http://www.bettycrocker.com/recipes/slow-cooker-chicken-cacciatore/32f51bba-0af9-4821-8aa4-f26f6de35207" class="external free" title="http://www.bettycrocker.com/recipes/slow-cooker-chicken-cacciatore/32f51bba-0af9-4821-8aa4-f26f6de35207" rel="nofollow">http://www.bettycrocker.com/recipes/slow-cooker-chicken-cacciatore/32f51bba-0af9-4821-8aa4-f26f6de35207</a>
+</li><li><a href="http://www.bettycrocker.com/recipes/chicken-milano/54a8035f-be60-4a2b-a631-ad582271e7bf" class="external free" title="http://www.bettycrocker.com/recipes/chicken-milano/54a8035f-be60-4a2b-a631-ad582271e7bf" rel="nofollow">http://www.bettycrocker.com/recipes/chicken-milano/54a8035f-be60-4a2b-a631-ad582271e7bf</a>
+</li><li><a href="http://www.bettycrocker.com/recipes/healthified-greek-chicken-pizza/71061c4a-8756-4fa9-be8e-2f7f1ad07554" class="external free" title="http://www.bettycrocker.com/recipes/healthified-greek-chicken-pizza/71061c4a-8756-4fa9-be8e-2f7f1ad07554" rel="nofollow">http://www.bettycrocker.com/recipes/healthified-greek-chicken-pizza/71061c4a-8756-4fa9-be8e-2f7f1ad07554</a>
+</li></ul>
+<p>The pages follow this format:
+</p>
+<ol><li>The pages are in their website's recipes directory, as in <b>bettycrocker.com/recipes/</b>
+</li><li>Next in the URL, there will be a string with the name of the 
+recipe. It will be at least 9 characters long and contain alphanumerics 
+and dashes, ending with a "/", as in <b>slow-cooker-chicken-cacciatore/</b>
+</li><li>Finally, each recipe ends with a 32 character hexadecimal ID, 
+with dashes separating 5 groups of characters - so 4 dashes for a total 
+of 36 characters, as in <b>32f51bba-0af9-4821-8aa4-f26f6de35207</b>
+</li></ol>
+<a name="Creating_the_Regexp_object"></a><h3> <span class="mw-headline">Creating the Regexp object</span></h3>
+<ol><li>A regexp object starts with <b>/</b> and ends with <b>/</b>
+</li><li>First look for <b>www.bettycrocker.com/recipes/</b> in the URL (Must escape the "." and "/" characters).
+</li><li>Next, immediately after, look for any alphanumeric plus "_" and "-" of at least 9 characters, followed by a "/".
+</li><li>Finally, immediately after, look for any hexadecimal and "-" that is at least 36 characters in length.
+</li></ol>
+<p>Here is the resulting regexp value:
+</p>
+<ul><li><b>/(bettycrocker\.com\/recipes\/)([a-zA-Z0-9_-]{9,}\/)([0-9abcdef-]{36})/</b>
+</li></ul>
+<a name="Code"></a><h4> <span class="mw-headline">Code</span></h4>
+<p>Here is the code
+</p>
+<pre>match=false;
+var criteria=/(bettycrocker\.com\/recipes\/)([a-zA-Z0-9_-]{9,}\/)([0-9abcdef-]{36})/;
+var opDocLoc=document.location.toString();
+if(criteria.test(opDocLoc)==true)match=true;
+</pre>
+<a name="Round_Brackets_in_Regular_Expressions.2C_.28....29"></a><h3> <span class="mw-headline">Round Brackets in Regular Expressions, <b>(...)</b></span></h3>
+<p>In the example above, none of the round brackets are necessary for 
+the regular expression to validate correctly.  Round brackets allow you 
+to group sections of a large expression into clauses for instances where
+ you may - for whatever reason - need to back-reference which clauses 
+matched. Here, I have added them to make the expression more readable, 
+which I would recommend to Regular Expression mortals like myself.  BUT 
+know that when you are doing a lookahead or lookbehind -- of which I 
+have examples below -- you <b>MUST</b> use round brackets to separate the lookahead or lookbehind grouping from the general expression.
+</p>
+<a name="Product_pages_-_type_1.2C_a_simple_path"></a><h2> <span class="mw-headline">Product pages - type 1, a simple path</span></h2>
+<p>The customer wants to use the page URL to identify the pages in an 
+experiment. Here are a couple of URLs for the "similar" page for this 
+experiment:
+</p>
+<ul><li><a href="http://www.officedepot.com/a/products/315812/Staedtler-Nonphoto-Cross-Section-Drawing-Paper/" class="external free" title="http://www.officedepot.com/a/products/315812/Staedtler-Nonphoto-Cross-Section-Drawing-Paper/" rel="nofollow">http://www.officedepot.com/a/products/315812/Staedtler-Nonphoto-Cross-Section-Drawing-Paper/</a>
+</li><li><a href="http://www.officedepot.com/a/products/404079/Post-it-100percent-Recycled-3-x/?cm_cat=2000000351" class="external free" title="http://www.officedepot.com/a/products/404079/Post-it-100percent-Recycled-3-x/?cm_cat=2000000351" rel="nofollow">http://www.officedepot.com/a/products/404079/Post-it-100percent-Recycled-3-x/?cm_cat=2000000351</a>
+</li><li><a href="http://www.officedepot.com/a/products/705484/Band-Aid-Brand-Adhesive-Bandages-Variety/" class="external free" title="http://www.officedepot.com/a/products/705484/Band-Aid-Brand-Adhesive-Bandages-Variety/" rel="nofollow">http://www.officedepot.com/a/products/705484/Band-Aid-Brand-Adhesive-Bandages-Variety/</a>
+</li><li><a href="http://www.officedepot.com/a/products/872878/Kodak-EasyShare-M532-140-Megapixel-Digital/?cm_cat=2000000361" class="external free" title="http://www.officedepot.com/a/products/872878/Kodak-EasyShare-M532-140-Megapixel-Digital/?cm_cat=2000000361" rel="nofollow">http://www.officedepot.com/a/products/872878/Kodak-EasyShare-M532-140-Megapixel-Digital/?cm_cat=2000000361</a>
+</li></ul>
+<p>The pages follow this format:
+</p>
+<ol><li>The pages are in their website's products directory, which is <b>officedepot.com/a/products/</b>
+</li><li>Next in the URL comes a 6 digit number, as in <b>315812</b>, ending with a "/".
+</li><li>Next in the URL, there will be a string with the name of the 
+product. It will be at least 9 characters long and contain alphanumerics
+ and dashes, ending with a "/", as in <b>Staedtler-Nonphoto-Cross-Section-Drawing-Paper/</b>
+</li></ol>
+<a name="Creating_the_Regexp_object_2"></a><h3> <span class="mw-headline">Creating the Regexp object</span></h3>
+<ol><li>A regexp object starts with <b>/</b> and ends with <b>/</b>
+</li><li>First look for <b>officedepot.com/a/products/</b> in the URL (Must escape the "." and "/" characters).
+</li><li>Next,we look for a 6 digit number, followed by a "/".
+</li><li>Finally, immediately after, look for any alphanumeric plus "_" and "-" of at least 9 characters, followed by a "/".
+</li></ol>
+<p>Here is the resulting regexp value:
+</p>
+<ul><li><b>/(officedepot\.com\/a\/products\/)(\d{6}\/)([a-zA-Z0-9_-]{9,}\/)/</b>
+</li></ul>
+<a name="Code_2"></a><h4> <span class="mw-headline">Code</span></h4>
+<p>Here is the code
+</p>
+<pre>match=false;
+var criteria=/(officedepot\.com\/a\/products\/)(\d{6}\/)([a-zA-Z0-9_-]{9,}\/)/;
+var opDocLoc=document.location.toString();
+if(criteria.test(opDocLoc)==true)match=true;
+</pre>
+<a name="Product_pages_-_type_2.2C_a_more_complicated_path_with_exclusions"></a><h2> <span class="mw-headline">Product pages - type 2, a more complicated path with exclusions</span></h2>
+<p>The customer wants to use the page URL to identify the pages in an 
+experiment.  This is a bit more complicated because of a particular use 
+case.
+</p><p>Here are a couple of URLs for the "similar" page for this experiment:
+</p>
+<ul><li><a href="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/men/men/7809914" class="external free" title="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/men/men/7809914" rel="nofollow">http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/men/men/7809914</a>  
+</li><li><a href="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/7811165?Color=MIDNIGHT" class="external free" title="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/7811165?Color=MIDNIGHT" rel="nofollow">http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/7811165?Color=MIDNIGHT</a>  
+</li><li><a href="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/TM110?Color=COBALT" class="external free" title="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/TM110?Color=COBALT" rel="nofollow">http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/TM110?Color=COBALT</a> 
+</li><li><a href="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/7106256?Color=SAINT%20MARTIN%20WASH" class="external free" title="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/7106256?Color=SAINT%20MARTIN%20WASH" rel="nofollow">http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/7106256?Color=SAINT%20MARTIN%20WASH</a>
+</li></ul>
+<p>The pages follow this format:
+</p>
+<ol><li>The pages are in a website common directory path, which is <b>tommy.com/webapp/wcs/stores/servlet/en/thb2cus/</b>
+</li><li>Next in the URL can come a number of different path combos - 
+empty to a few levels - but it will end in a 5+ character alphanumeric 
+product number, as in <b>TM110</b>.
+</li></ol>
+<p>The regexp for that is: 
+</p>
+<ul><li><b>/(tommy\.com\/webapp\/wcs\/stores\/servlet\/en\/thb2cus\/)(.{0,})([a-zA-Z0-9]{4,}$)/</b>
+</li></ul>
+<p>However, it turns out that the following URL is NOT a product page:
+</p>
+<ul><li><a href="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/search/teamspirit-onlineshops-men/TM1110" class="external free" title="http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/search/teamspirit-onlineshops-men/TM1110" rel="nofollow">http://usa.tommy.com/webapp/wcs/stores/servlet/en/thb2cus/search/teamspirit-onlineshops-men/TM1110</a>
+</li></ul>
+<p>It is a search page of some sort, but it matches our <b>regexp</b> above.  So now we have to exclude results that contain "search" right after the original path.
+</p><p>Here is the resulting regexp value:
+</p>
+<ul><li><b>/(tommy\.com\/webapp\/wcs\/stores\/servlet\/en\/thb2cus\/)(?!(search))(.{0,})([a-zA-Z0-9]{4,}$)/</b>
+</li></ul>
+<p>OR
+</p>
+<ul><li><b>/(tommy\.com\/webapp\/wcs\/stores\/servlet\/en\/thb2cus\/)(?!(search))(.*)([a-zA-Z0-9]{4,}$)/</b>
+</li></ul>
+<p><b>(.*)</b> and <b>(.{0,})</b> both mean "match any character from 0 
+to any number of times", which is just saying there may or may not be 
+space between the group before and after this
+</p>
+<a name="Code_3"></a><h4> <span class="mw-headline">Code</span></h4>
+<p>Here is the code
+</p>
+<pre>match=false;
+var criteria=/(tommy\.com\/webapp\/wcs\/stores\/servlet\/en\/thb2cus\/)(?!(search))+(.{0,})([a-zA-Z0-9]{4,}$)/;
+var opDocLoc=document.location.toString();
+if(criteria.test(opDocLoc)==true)match=true;
+</pre>
+<p><br>
+</p>
+<a name="Recipe_detail_page_-_type_3.2C_another_complicated_path_with_exclusions"></a><h2> <span class="mw-headline">Recipe detail page - type 3, another complicated path with exclusions</span></h2>
+<p>The customer wants to use the page URL to identify the pages in an 
+experiment.  This is also a bit more complicated because of a particular
+ use case.
+</p><p>Here are a couple of URLs for the "similar" page for this experiment:
+</p>
+<ul><li><a href="http://www.pillsbury.com/recipes/slow-cooked-barbecue-pork-sandwiches/3f5e46ac-0b21-4ef9-a8ce-9315c10e827a" class="external free" title="http://www.pillsbury.com/recipes/slow-cooked-barbecue-pork-sandwiches/3f5e46ac-0b21-4ef9-a8ce-9315c10e827a" rel="nofollow">http://www.pillsbury.com/recipes/slow-cooked-barbecue-pork-sandwiches/3f5e46ac-0b21-4ef9-a8ce-9315c10e827a</a>
+</li><li><a href="http://www.pillsbury.com/recipes/green-beans-with-bacon-walnut-vinaigrette/d51ac7e4-f054-4c88-bdfb-0ad03a013de0/" class="external free" title="http://www.pillsbury.com/recipes/green-beans-with-bacon-walnut-vinaigrette/d51ac7e4-f054-4c88-bdfb-0ad03a013de0/" rel="nofollow">http://www.pillsbury.com/recipes/green-beans-with-bacon-walnut-vinaigrette/d51ac7e4-f054-4c88-bdfb-0ad03a013de0/</a>
+</li><li><a href="http://www.pillsbury.com/recipes/tangy-beans-and-bacon/54bbcd43-57d6-483b-ac77-83b1d9c310d" class="external free" title="http://www.pillsbury.com/recipes/tangy-beans-and-bacon/54bbcd43-57d6-483b-ac77-83b1d9c310d" rel="nofollow">http://www.pillsbury.com/recipes/tangy-beans-and-bacon/54bbcd43-57d6-483b-ac77-83b1d9c310d</a>
+</li><li><a href="http://www.pillsbury.com/recipes/x/971c56fc-b6a8-4fe4-a859-462dfa16791e/" class="external free" title="http://www.pillsbury.com/recipes/x/971c56fc-b6a8-4fe4-a859-462dfa16791e/" rel="nofollow">http://www.pillsbury.com/recipes/x/971c56fc-b6a8-4fe4-a859-462dfa16791e/</a>
+</li></ul>
+<p>The pages follow this format:
+</p>
+<ol><li>The pages are in a website common directory path, which is <b>pillsbury.com/recipes</b>
+</li><li>Next in the URL comes a recipe description name, that may be separated by dashes
+</li><li>Next comes a Hexadecimal number with a specific pattern and a length of 36 characters.
+</li><li>The URL may or may not end in a "/"
+</li></ol>
+<p>The regexp for that is: 
+</p>
+<ul><li><b>/(pillsbury\.com\/recipes\/)+([a-zA-Z0-9_-]{1,}\/)+([0-9abcdef-]{36})/,</b>
+</li></ul>
+<p>However, it turns out that the following URL is NOT a product page:
+</p>
+<ul><li><a href="http://www.pillsbury.com/recipes/slow-cooked-barbecue-pork-sandwiches/3f5e46ac-0b21-4ef9-a8ce-9315c10e827a/reviews" class="external free" title="http://www.pillsbury.com/recipes/slow-cooked-barbecue-pork-sandwiches/3f5e46ac-0b21-4ef9-a8ce-9315c10e827a/reviews" rel="nofollow">http://www.pillsbury.com/recipes/slow-cooked-barbecue-pork-sandwiches/3f5e46ac-0b21-4ef9-a8ce-9315c10e827a/reviews</a>
+</li></ul>
+<p>It is the reviews page for the specific recipe detail page, but it matches our <b>regexp</b> above.  So now we have to exclude results that ends in "/reviews" right after the original path.
+</p><p>Here is the resulting regexp value:
+</p>
+<ul><li><b>/(pillsbury\.com\/recipes\/)([a-zA-Z0-9_-]{1,}\/)([0-9abcdef-]{36})(?!(.*)reviews)/;</b>
+</li></ul>
+<p>OR
+</p>
+<ul><li><b>/pillsbury\.com\/recipes\/[a-zA-Z0-9_-]{1,}\/[0-9abcdef-]{36}(?!(.*)reviews)/</b>
+</li></ul>
+<p>In my lookahead sections, I actually say "followed by some undefined number of characters that can be anything -<b>(.*)</b>- then <b>reviews</b>".  I wanted to not enter the leading <b>/</b> as part of the match, so I used <b>(.*)</b> to specify anything of any length, including zero length/nothing.<br>
+And this is an example of what I mentioned at the top, that most of the 
+round brackets you use in regexp for groupings (and the + symbol) are 
+not required.  I like to use them to help you better organize your 
+expression. <b>BUT</b> you must have the last clause inside of round brackets, <b>(?!(.*)reviews)</b>.  It could actually say <b>(?!.*reviews)</b>, but the outermost round brackets allow it to be a <b>"negative lookahead"</b> grouping, which says you have a match if all the previous stuff is true BUT it is not followed by this, then we have a match.  
+</p>
+<a name="Code_4"></a><h4> <span class="mw-headline">Code</span></h4>
+<p>Here is the code
+</p>
+<pre>match=false;
+var criteria=/(pillsbury\.com\/recipes\/)([a-zA-Z0-9_-]{1,}\/)([0-9abcdef-]{36})(?!(.*)reviews)/;
+var opDocLoc=document.location.toString();
+if(criteria.test(opDocLoc)==true)match=true;
+</pre>
+<a name="Thank_You_page_-_separating_currency_from_price"></a><h2> <span class="mw-headline">Thank You page - separating currency from price</span></h2>
+<p>Ok, this is not a URL thing, but it is  regular expression thing.  We
+ are tasked with getting an average order value based on the final cost 
+of each transaction.  Problem is, we are doing this for an airline that 
+has 6 currencies in which you can purchase tickets.  The final 
+transaction cost is a alphanumeric string with the currency in the 
+beginning, followed by the price in that currency.   So we need to:
+</p>
+<ol><li>Remove the currency string from the alphanumeric string.
+</li><li>Remove the price string from the alphanumeric string.
+</li><li>Using the exchange rate, create a new normalized price for the transaction.
+</li></ol>
+<a name="Final_transaction_examples"></a><h3> <span class="mw-headline">Final transaction examples</span></h3>
+<pre>var ebRev = 'IDR387800';  //Indonesian Rupia
+.......
+var ebRev = 'EUR444.99';  //Euro
+.....
+var ebRev = 'USD546.99';  //US Dollar
+
+</pre>
+<p><br>
+</p>
+<a name="CODE_5"></a><h3> <span class="mw-headline">CODE</span></h3>
+<pre>var crtNum=/\d{1,}\.\d{0,}|\d{1,}/;
+var crtLet=/\D{1,}/; 
+var price=crtNum.exec(ebRev);
+var currency=crtLet.exec(ebRev);
+</pre>
+<ul><li>For the price, fine either:
+<ul><li>Any combination of 1 or more numbers followed by a "." then followed by any combo of 1 or more numbers
+</li><li>Any combination of 1 or more numbers
+</li></ul>
+</li><li>For the currency, find:
+<ul><li>Any combination of 1 or more non-numbers
+</li></ul>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 34/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1127-0!1!0!!en!2!edit=0 and timestamp 20130816144105 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/URLs_-_Using_regular_expressions_to_find_%22similar%22_pages">http://wiki.interwoven.com/optimost/URLs_-_Using_regular_expressions_to_find_%22similar%22_pages</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/URLs_-_Using_regular_expressions_to_find_%22similar%22_pages" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:URLs_-_Using_regular_expressions_to_find_%22similar%22_pages&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=URLs_-_Using_regular_expressions_to_find_%22similar%22_pages&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=URLs_-_Using_regular_expressions_to_find_%22similar%22_pages&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=URLs_-_Using_regular_expressions_to_find_%22similar%22_pages" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/URLs_-_Using_regular_expressions_to_find_%22similar%22_pages" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/URLs_-_Using_regular_expressions_to_find_%22similar%22_pages" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=URLs_-_Using_regular_expressions_to_find_%22similar%22_pages&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=URLs_-_Using_regular_expressions_to_find_%22similar%22_pages&amp;oldid=6896" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="URLs%20-%20Using%20regular%20expressions%20to%20find%20%27similar%27%20pages%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 20 February 2013, at 22:31.</li>
+				<li id="viewcount">This page has been accessed 34 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.212 secs. -->
+</body></html>

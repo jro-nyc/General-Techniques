@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Adding events for clickthrus - why we add &quot;onclick&quot; and not events listeners,Clickthru - Tracking a DIV onclick,Figuring out what events are on a page">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Adding events for clickthrus - why we add "onclick" and not events listeners - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Adding%20events%20for%20clickthrus%20-%20why%20we%20add%20%27onclick%27%20and%20not%20events%20listeners%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Adding_events_for_clickthrus_-_why_we_add_\"onclick\"_and_not_events_listeners";
+var wgTitle = "Adding events for clickthrus - why we add \"onclick\" and not events listeners";
+var wgAction = "view";
+var wgArticleId = "730";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "4270";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Adding%20events%20for%20clickthrus%20-%20why%20we%20add%20%27onclick%27%20and%20not%20events%20listeners%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Adding%20events%20for%20clickthrus%20-%20why%20we%20add%20%27onclick%27%20and%20not%20events%20listeners%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Adding%20events%20for%20clickthrus%20-%20why%20we%20add%20%27onclick%27%20and%20not%20events%20listeners%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Adding%20events%20for%20clickthrus%20-%20why%20we%20add%20%27onclick%27%20and%20not%20events%20listeners%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Adding_events_for_clickthrus_-_why_we_add_onclick_and_not_events_listeners">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Adding events for clickthrus - why we add "onclick" and not events listeners</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Adding_Events_-_Tracking_clickthrus_and_triggering_counters"><span class="tocnumber">1</span> <span class="toctext">Adding Events - Tracking clickthrus and triggering counters</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Optimost_1.0"><span class="tocnumber">1.1</span> <span class="toctext">Optimost 1.0</span></a></li>
+<li class="toclevel-2"><a href="#Optimost_2.0"><span class="tocnumber">1.2</span> <span class="toctext">Optimost 2.0</span></a></li>
+<li class="toclevel-2"><a href="#Level_2_vs_Level_0_events"><span class="tocnumber">1.3</span> <span class="toctext">Level 2 vs Level 0 events</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Level_2_code_example"><span class="tocnumber">1.3.1</span> <span class="toctext">Level 2 code example</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Level_2_vs_0_differences"><span class="tocnumber">1.4</span> <span class="toctext">Level 2 vs 0 differences</span></a></li>
+<li class="toclevel-2"><a href="#Why_use_Level_2.3F"><span class="tocnumber">1.5</span> <span class="toctext">Why use Level 2?</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Final_thoughts"><span class="tocnumber">2</span> <span class="toctext">Final thoughts</span></a></li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Adding_Events_-_Tracking_clickthrus_and_triggering_counters"></a><h2> <span class="mw-headline">Adding Events - Tracking clickthrus and triggering counters</span></h2>
+<p>This page is here to explain 
+</p><p>You can also look at:
+</p><p><a href="http://wiki.interwoven.com/optimost/Figuring_out_what_events_are_on_a_page" title="Figuring out what events are on a page">Figuring out what events are on a page</a>
+</p><p>For more information
+</p>
+<a name="Optimost_1.0"></a><h3> <span class="mw-headline">Optimost 1.0</span></h3>
+<p>When Optimost was first developed, "clickthrus" were developed to 
+track users as they navigated away from the page we were testing.  
+Originally, none of our templates where dynamic, so the Optimost 
+Template wizard would take the HTML on a page and add a clickthru:
+</p><p>First, we start with the anchor tag:
+</p>
+<pre>&lt;a href="http://www.acme.com/product.jsp"&gt;Click Here&lt;/a&gt;
+</pre> 
+<p>In the template, after running the Template Wizard, it becomes:
+</p>
+<pre>&lt;a href="{{$clickthru.Click_Here.url}}" {{$clickthru.Click_Here.spoofstatus}}&gt;Click Here&lt;/a&gt;
+</pre>
+<p>And in the creative it becomes:
+</p>
+<pre>&lt;a href="http://by.optimost.com/go/1-32/a0fb0h1j245ei27n7904/" 
+onMouseOver="window.status='http://www.acme.com/product.jsp'; return true;" onMouseOut="window.status='';"&gt;Click Here&lt;/a&gt;
+</pre>
+<p>But we no longer do this because:
+</p>
+<ol><li>Most of our page are dynamic, so we don't create static clickthrus
+</li><li>The "Spoofstatus" code that uses onmouseover events to "spoof" 
+the URL is considered bad behavior by some browsers and blocked, so in 
+order to not show the "by.optimost.com" url when you mouse over the 
+link, we need to do something else.
+</li></ol>
+<a name="Optimost_2.0"></a><h3> <span class="mw-headline">Optimost 2.0</span></h3>
+<p>So in lieu of that approach, we now add onclick events, you can go to <a href="http://wiki.interwoven.com/optimost/Clickthru_-_Tracking_a_DIV_onclick" title="Clickthru - Tracking a DIV onclick">Clickthru - Tracking a DIV onclick</a> to see an example.
+</p><p>In this approach, we add an onclick event that will change the 
+href when the user makes the decision to click.  Then after the onclick 
+is done - provided it does not return false - the browser will redirect 
+to the href value, which we just changed to an the Optimost clickthru.  
+Here is an example of our onclick events, and we use what is called a 
+"Level 0" event model.
+</p><p>As an example, here we look at all the anchor tags on the page, and add a function called <b>opt.clickthru</b>
+</p>
+<pre>var ancs=document.getElementsByTagName('a');
+for(var i=0;i&lt;ancs.length;i++) {
+	if(typeof(ancs[i].onclick)!="function") ancs[i].onclick=new Function("opt.clickthru(this,'"+ct+"','oplink');return true;");
+	else{
+		temp=ancs[i].onclick.toString();
+		temp=temp.substring(temp.indexOf("{") + 1, temp.lastIndexOf("}"));
+		ancs[i].onclick=new Function("opt.clickthru(this,'"+ct+"','oplink');"+temp);
+	}	
+}
+</pre>
+<p>There are two issues hanging over this:
+</p>
+<ol><li>If the action opens a new window instead of redirecting, the HREF now has an Optimost.com URL.
+</li><li>If the onlclick already has a function, we need to add ours and make sure thiers still works.
+</li></ol>
+<p>The first issue is just a "caveat emptor" that is not considerer a game changer, the second issue we will deal with below.
+</p>
+<a name="Level_2_vs_Level_0_events"></a><h3> <span class="mw-headline">Level 2 vs Level 0 events</span></h3>
+<p>So here is the format for a Level 2 event:
+</p>
+<pre>obj.attachEvent("onclick"+evt,eventFunction); //For IE
+obj.addEventListener("click",eventFunction,false); //For All others
+</pre>
+<a name="Level_2_code_example"></a><h4> <span class="mw-headline">Level 2 code example</span></h4>
+<p>Here is some basic code to add a Level 2 event:
+</p>
+<pre>function addEvent(el,evt,func,bubble){
+	if(!el || typeof(func)&nbsp;!="function"){return false;}
+	bubble = bubble || false;
+	var evtType=(window.attachEvent)?"attach":(window.addEventListener)? "add":"none";
+	if(evtType == "attach"){el.attachEvent("on"+evt,func);}
+	else if(evtType == "add"){el.addEventListener(evt,func,bubble);}
+}	
+</pre>
+<ul><li><b>el</b> - is the object you want to add the event to
+</li><li><b>evt</b> - is the event, ie <b>"click"</b>, <b>"mouseover"</b>, etc
+</li><li><b>func</b> - is the function to be called
+</li><li><b>bubble</b> - is whether you want the event to bubble, just set to false if you are not sure.
+</li></ul>
+<a name="Level_2_vs_0_differences"></a><h3> <span class="mw-headline">Level 2 vs 0 differences</span></h3>
+<p>From an Optimost perspective, there are two major differences between Level 0 and Level 2.
+</p>
+<ol><li>Level 0 events work with all browsers.
+</li><li>Level 0 events must account for the existince of the chosen event on the node of interest.
+</li><li>Level 0 events can be found by parsing the DOM and looking for the chosen event on any node.
+</li><li>Level 2 events must account for the browsers - IE vs W3C.
+</li><li>Level 2 events do not have to account for other instances of the chose event on the node, all will be executed.
+</li><li>Level 2 events <b>cannot</b> be found by parsing the DOM and looking for the chosen event on any node.
+</li></ol>
+<p>So for Level 2 events, you need to keep track of what events you added order to make any future changes to them.
+</p>
+<a name="Why_use_Level_2.3F"></a><h3> <span class="mw-headline">Why use Level 2?</span></h3>
+<p>If the browser supports Level 2 events, it will also support Level 0 
+events, so, since Level 2 has cross-browser differences, why bother with
+ Level 2?  Well, if you do not want to have to account for exising Level
+ 0 events already existing, then Level 2 does have advantages.  But know
+ that either can be used without negative impacts, so I normally use 
+Level 0.
+</p>
+<a name="Final_thoughts"></a><h2> <span class="mw-headline">Final thoughts</span></h2>
+<p>When working on a page, know that the fancier libraries use Level 2 
+events whenever possible, partially probably because their events will 
+be obscured from outside observers.  If there are Level 2 events, you 
+need to make sure that if we add our events - whether Level 0 or 2 - 
+that those events of ours will be executed.  And if they are not, figure
+ out a way so that they are.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 27/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:730-0!1!0!!en!2!edit=0 and timestamp 20130816145636 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners">http://wiki.interwoven.com/optimost/Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Adding_events_for_clickthrus_-_why_we_add_%22onclick%22_and_not_events_listeners&amp;oldid=4270" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Adding%20events%20for%20clickthrus%20-%20why%20we%20add%20%27onclick%27%20and%20not%20events%20listeners%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 20 October 2009, at 16:53.</li>
+				<li id="viewcount">This page has been accessed 45 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.194 secs. -->
+</body></html>

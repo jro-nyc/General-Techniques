@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Server to Server - Creating a Template using XML,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples,Multi-page experiments">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Server to Server - Creating a Template using XML - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Server_to_Server_-_Creating_a_Template_using_XML";
+var wgTitle = "Server to Server - Creating a Template using XML";
+var wgAction = "view";
+var wgArticleId = "261";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "5805";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Server_to_Server_-_Creating_a_Template_using_XML">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Server to Server - Creating a Template using XML</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<strong class="selflink">Server to Server - Creating a Template using XML</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Why_Server_to_Server.3F"><span class="tocnumber">1</span> <span class="toctext">Why Server to Server?</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Modular_implementation"><span class="tocnumber">1.1</span> <span class="toctext">Modular implementation</span></a></li>
+<li class="toclevel-2"><a href="#Modular_implementation.2C_high-level_Architecture_view"><span class="tocnumber">1.2</span> <span class="toctext">Modular implementation, high-level Architecture view</span></a></li>
+<li class="toclevel-2"><a href="#Server_To_Server_-_HTML_template"><span class="tocnumber">1.3</span> <span class="toctext">Server To Server - HTML template</span></a></li>
+<li class="toclevel-2"><a href="#Server_To_Server.2C_high-level_Architecture_view"><span class="tocnumber">1.4</span> <span class="toctext">Server To Server, high-level Architecture view</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Server_to_Server.2C_Email_template"><span class="tocnumber">2</span> <span class="toctext">Server to Server, Email template</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Standard_test_-_Email_vendor_hits_our_servers_once_per_email_to_be_sent"><span class="tocnumber">2.1</span> <span class="toctext">Standard test - Email vendor hits our servers once per email to be sent</span></a></li>
+<li class="toclevel-2"><a href="#.22Once_per_creative.22_test_-_Email_vendor_hits_our_servers_once_per_creative_to_be_sent"><span class="tocnumber">2.2</span> <span class="toctext">"Once per creative" test - Email vendor hits our servers once per creative to be sent</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Creating_the_XML_template"><span class="tocnumber">3</span> <span class="toctext">Creating the XML template</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Content_as_pure_XML"><span class="tocnumber">3.1</span> <span class="toctext">Content as pure XML</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Passing_URLs"><span class="tocnumber">3.1.1</span> <span class="toctext">Passing URLs</span></a></li>
+<li class="toclevel-3"><a href="#Passing_text_instructions"><span class="tocnumber">3.1.2</span> <span class="toctext">Passing text instructions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Content_as_HTML_wrapped_in_XML"><span class="tocnumber">3.2</span> <span class="toctext">Content as HTML wrapped in XML</span></a></li>
+<li class="toclevel-2"><a href="#Content_as_HTML_containing_javascript_wrapped_in_XML"><span class="tocnumber">3.3</span> <span class="toctext">Content as HTML containing javascript wrapped in XML</span></a></li>
+<li class="toclevel-2"><a href="#Content_as_pure_javascript_wrapped_in_XML"><span class="tocnumber">3.4</span> <span class="toctext">Content as pure javascript wrapped in XML</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Tracking_-_Cookies_and_an_XML_template"><span class="tocnumber">4</span> <span class="toctext">Tracking - Cookies and an XML template</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Passing_cookies_via_XML"><span class="tocnumber">4.1</span> <span class="toctext">Passing cookies via XML</span></a></li>
+<li class="toclevel-2"><a href="#Passing_cookies_via_javascript_in_the_XML"><span class="tocnumber">4.2</span> <span class="toctext">Passing cookies via javascript in the XML</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#See_also"><span class="tocnumber">5</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Why_Server_to_Server.3F"></a><h2> <span class="mw-headline">Why Server to Server?</span></h2>
+<p>Most of our work is done with modular templates.   The clients puts 
+page code and trial code on the page, wraps the test area(s) with module
+ code, and we test the page.  This covers over 90% of the experiments we
+ do.  However, instead of going directly between the Optimost Servers 
+and the Visitor's Browser, we may want/need to send the creative 
+information directly to the Customer's servers.  Reasons could include:
+</p>
+<ol><li>We are running an Email test, and since emails cannot use javascript, a modular implementation will not work.
+</li><li>The customer's page has very sensitive private information, and
+ they do not want the appearance that a third-party could have access to
+ that information, so they eliminate the need for javascript code in the
+ visitor's browser by first getting the creatives from Optimost, then 
+rendering the web page with that creative information from their 
+servers.
+</li><li>The customer's security department has a "no third-party 
+content" policy, so we cannot put Trial code on the page.  So, as #2, 
+they eliminate the need for javascript code in the visitor's browser by 
+first getting the creatives from Optimost, then rendering the web page 
+with that creative information from their servers.
+</li></ol>
+<a name="Modular_implementation"></a><h3> <span class="mw-headline">Modular implementation</span></h3>
+<p>Over 90% of our test are modular implementations, and here is the basic flow of those tests.
+</p>
+<ol><li>Visitor comes to page under test, and calls customer’s servers.  
+</li><li>Customer's servers present the HTML, CSS, and javascript for that page to the Visitor's Browers
+</li><li>With the content in hand, the browser begins executing the 
+code.  When it finds calls for external content, it calls the servers in
+ question to get that additional content.  
+</li><li>The browser reaches the Optimost Trial code call.  This 
+includes a call to our servers, so the browser calls the Optimost 
+servers, and ….
+</li><li>Our Servers return the code necessary to implement this test.  This includes all the modules defined for this experiment.
+</li><li>The browser continues to execute the content.  Later in the 
+page, if it arrives at Optimost module code, it will execute the module 
+code, which will make the changes to that test area.
+</li><li>The browser proceeds and eventually gets to the end of the content, and then finishes its execution.
+</li></ol>
+<p><a href="http://wiki.interwoven.com/optimost/Image:Modular.gif" class="image" title="Image:modular.gif"><img alt="Image:modular.gif" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/Modular.gif" height="396" border="0" width="654"></a>
+</p>
+<a name="Modular_implementation.2C_high-level_Architecture_view"></a><h3> <span class="mw-headline">Modular implementation, high-level Architecture view</span></h3>
+<p>Here is a diagram with our Creative Servers and the Akamai routing functionality accounted for:
+<br>
+<a href="http://wiki.interwoven.com/optimost/Image:HighLevel_standard.gif" class="image" title="image:highLevel_standard.gif"><img alt="image:highLevel_standard.gif" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/HighLevel_standard.gif" height="600" border="0" width="912"></a>
+<br>
+</p>
+<a name="Server_To_Server_-_HTML_template"></a><h3> <span class="mw-headline">Server To Server - HTML template </span></h3>
+<p>If we decide to do Server to Server for an HTML template, here is its basic flow.
+</p>
+<ol><li>Visitor comes to page under test, and calls customer's servers.  
+</li><li>Customer’s servers recognize that this page is their test page,
+ and they call the Optimost servers to get the creative for the test.  
+In the call they will include any stickiness and activity tracking 
+information that tells Optimost which creative, if any, they visitor had
+ previously seen
+</li><li>With this information from the customer's servers, Optimost 
+gets the creative of interest and sends it back to the Customer's 
+servers.  This is normally sent using XML, which can be anything from a 
+an HTML page with XML wrappers around it, or a pure XML version of the 
+page under test with a instruction set defined by the customer.
+</li><li>The Customer's servers take this XML and do any necessary processing to construct the HTML page needed for this creative
+</li><li>Customer’s servers present the HTML, CSS, and javascript for 
+that page to the Visitor's Browers, including the code for the area we 
+are testing.  They will be responsible for dropping the stickiness and 
+activity tracking cookies.
+</li><li>With the content in hand, the browser begins executing the 
+code. When it finds calls for external content, it calls the servers in 
+question to get that additional content. The browser proceeds until it 
+gets to the end of the content, and then finishes its execution.  
+</li></ol>
+<p><a href="http://wiki.interwoven.com/optimost/Image:ServerToServer.gif" class="image" title="Image:ServerToServer.gif"><img alt="Image:ServerToServer.gif" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/ServerToServer.gif" height="396" border="0" width="655"></a>
+</p>
+<a name="Server_To_Server.2C_high-level_Architecture_view"></a><h3> <span class="mw-headline">Server To Server, high-level Architecture view</span></h3>
+<p>Here is a diagram with our Creative Servers and the Akamai routing functionality accounted for:
+<br>
+<a href="http://wiki.interwoven.com/optimost/Image:HighLevel_SeverToServer.gif" class="image" title="image:highLevel_SeverToServer.gif"><img alt="image:highLevel_SeverToServer.gif" src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/HighLevel_SeverToServer.gif" height="600" border="0" width="912"></a>
+<br>
+</p>
+<a name="Server_to_Server.2C_Email_template"></a><h2> <span class="mw-headline">Server to Server, Email template</span></h2>
+<p>First, the Email vendor and Optimost need to decide on the process to
+ be used.  We can either do it as a Server to Server XML application or 
+as pre-constructed Email templates. Please take a look at:
+</p><p><a href="http://wiki.interwoven.com/opwiki/index.php?title=Page:toBeAddedLater&amp;action=edit&amp;redlink=1" class="new" title="Page:toBeAddedLater (not yet written)">page:toBeAddedLater</a>
+</p><p>for more information on the difference.
+</p><p>Let's look at the two possibilities within the Server to Server app
+</p>
+<a name="Standard_test_-_Email_vendor_hits_our_servers_once_per_email_to_be_sent"></a><h3> <span class="mw-headline">Standard test - Email vendor hits our servers once per email to be sent</span></h3>
+<p>In a standard Optimost experiment, each “page view” – in this case 
+email – requires a call to the Optimost servers. With that scenario in 
+mind:
+</p>
+<ol><li>Email vendor decides to send an email, so their Server call the Optimost Servers.  
+</li><li>Optimost returns a randomly-selected email creative from the 
+experiment/wave that is running.  If necessary, Optimost had built the 
+creative with placeholders for dynamic content to be added by Email 
+vendor.
+</li><li>Email vendor takes received email and adds any necessary dynamic content.
+</li><li>Email vendor delivers email to intended recipient.
+</li><li>Email vendor repeats process for each email to be sent.  
+</li><li>Optimost analyzes results in normal fashion.
+</li></ol>
+<p><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:Upload&amp;wpDestFile=EmailStandardTest.gif" class="new" title="Image:EmailStandardTest.gif">Image:EmailStandardTest.gif</a>
+</p>
+<a name=".22Once_per_creative.22_test_-_Email_vendor_hits_our_servers_once_per_creative_to_be_sent"></a><h3> <span class="mw-headline">"Once per creative" test - Email vendor hits our servers once per creative to be sent</span></h3>
+<p>In an alternate scenario, the Email vendor only wants to call the 
+Optimost servers once per creative in the experiment, then they will 
+take each of the creatives and distribute them evenly amongst the 
+intended email recipients.  With that scenario in mind:
+</p>
+<ol><li>Optimost manually provides Email vendor with list of creatives in current experiment/wave.  Let's assume there are N creatives
+</li><li>Email vendor calls Optimost Server and passes the creative number for the first creative.
+</li><li>Optimost returns the specific-defined creative from the 
+experiment/wave that is running.  If necessary, Optimost had built the 
+creative with placeholders for dynamic content to be added by Email 
+vendor.
+</li><li>Email vendor takes received creative and stores it as one of N 
+creatives. Email vendor can add any necessary dynamic content that is 
+best added at this point (Email vendor discretion).
+</li><li>Email Vendor repeats steps 2 to 5 for all N creatives to be able to store all creatives.
+</li><li>At some later time – could be seconds later, could be hours, 
+days – email vendor randomly picks 1 of N creatives to send to a 
+specific email recipient.   May add any necessary dynamic content that 
+is recipient-specific at this point.
+</li><li>Email vendor delivers email to intended recipient.
+</li><li>Email vendor repeats steps 6 to 7 for each email recipients.  
+</li><li>Optimost will do analysis off-line since single page view send multiple times and standard analysis will get confused.
+</li></ol>
+<p><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:Upload&amp;wpDestFile=EmailOncePerCreativeTest.gif" class="new" title="Image:EmailOncePerCreativeTest.gif">Image:EmailOncePerCreativeTest.gif</a>
+</p>
+<a name="Creating_the_XML_template"></a><h2> <span class="mw-headline">Creating the XML template</span></h2>
+<p>If we do Server to Server, then XML is the template type.  In this 
+instance XML is used to store and transmit data, and there are a few 
+approaches:
+</p>
+<a name="Content_as_pure_XML"></a><h3> <span class="mw-headline">Content as pure XML</span></h3>
+<p>In this example, we send the individual elements not as HTML, but as 
+XML data,  For example, let's say we have 3 images we are testing with 
+one link.  There are two ways to do this:
+</p>
+<a name="Passing_URLs"></a><h4> <span class="mw-headline">Passing URLs</span></h4>
+<p>Here we send the images as URLs, and the clickthru as a click.  Here is some sample XML.
+</p>
+<pre>&lt;OPTIMOST_RESPONSE&gt;
+	&lt;OPTIMOST_CONTENT&gt;
+		&lt;AREA_A&gt;http://es.optimost.com/es/0/c/0/u/A1.gif&lt;/AREA_A&gt;
+		&lt;AREA_B&gt;http://es.optimost.com/es/0/c/0/u/B3.gif&lt;/AREA_B&gt;
+		&lt;AREA_C&gt;http://es.optimost.com/es/0/c/0/u/C2.gif&lt;/AREA_C&gt;
+		&lt;CLICK_TRACKING&gt;http://by.optimost.com/go/0-20/a0fb0i4e249i1ei30rb4db/&lt;/CLICK_TRACKING&gt;
+	&lt;/OPTIMOST_CONTENT&gt;
+&lt;/OPTIMOST_RESPONSE&gt;
+</pre>
+<p>Here the server needs to know where to plug in the individual URLs into the HTML that the customers will see.
+</p>
+<a name="Passing_text_instructions"></a><h4> <span class="mw-headline">Passing text instructions</span></h4>
+<p>Here we send text instructions indicating which image to use, and the clickthru as a click.  Here is some sample XML.
+</p>
+<pre>&lt;OPTIMOST_RESPONSE&gt;
+	&lt;OPTIMOST_CONTENT&gt;
+		&lt;AREA_A&gt;value 1&lt;/AREA_A&gt;
+		&lt;AREA_B&gt;value 3&lt;/AREA_B&gt;
+		&lt;AREA_C&gt;value 2&lt;/AREA_C&gt;
+		&lt;CLICK_TRACKING&gt;http://by.optimost.com/go/0-20/a0fb0i4e249i1ei30rb4db/&lt;/CLICK_TRACKING&gt;
+	&lt;/OPTIMOST_CONTENT&gt;
+&lt;/OPTIMOST_RESPONSE&gt;
+</pre>
+<p>In this case, the data we are passing needs to first be converted 
+into an actual URL (or whatever element it happens to be), then added 
+into the HTML of the page as appropriate.  For organizations that want 
+full control of all the content generated, this is the best approach.
+</p>
+<a name="Content_as_HTML_wrapped_in_XML"></a><h3> <span class="mw-headline">Content as HTML wrapped in XML</span></h3>
+<p>In this example, we send the elements as HTML.  For example, let's 
+say we have 3 images we are testing with one link.  Here we send the 
+images as URLs, and the clickthru as a click.  Here is some sample XML.
+</p>
+<pre>&lt;OPTIMOST_RESPONSE&gt;
+	&lt;OPTIMOST_CONTENT&gt;
+		&lt;AREA_ABC_HTML&gt;
+			&lt;table&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="http://es.optimost.com/es/0/c/0/u/A1.gif" /&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;a href="http://by.optimost.com/go/0-20/a0fb0i4e249i1ei30rb4db/"&gt;
+						&lt;img src="http://es.optimost.com/es/0/c/0/u/B1.gif" /&gt;
+					&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;img src="http://es.optimost.com/es/0/c/0/u/C2.gif" /&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/table&gt;
+		&lt;/AREA_ABC_HTML&gt;
+	&lt;/OPTIMOST_CONTENT&gt;
+&lt;/OPTIMOST_RESPONSE&gt;
+</pre>
+<p>Note that XML gets validated with specific syntax rules, so that the 
+HTML inside the XML must open, close, and nest tags properly, as well 
+only use syntax characters for markup delineation.   
+</p>
+<a name="Content_as_HTML_containing_javascript_wrapped_in_XML"></a><h3> <span class="mw-headline">Content as HTML containing javascript wrapped in XML</span></h3>
+<p>In this example, we add inline javascipt to the HTML example above.  
+</p>
+<pre>&lt;OPTIMOST_RESPONSE&gt;
+	&lt;OPTIMOST_CONTENT&gt;
+		&lt;AREA_ABC_HTML&gt;
+			&lt;table&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="http://es.optimost.com/es/0/c/0/u/A1.gif" /&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;a href="http://by.optimost.com/go/0-20/a0fb0i4e249i1ei30rb4db/"&gt;
+						&lt;img src="http://es.optimost.com/es/0/c/0/u/B1.gif" /&gt;
+					&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;img src="http://es.optimost.com/es/0/c/0/u/C2.gif" /&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/table&gt;
+			&lt;script type="text/javascript"&gt;&lt;![CDATA[
+				if((aVal=='3')||(aVal=='5'))document.write('&lt;img src="../images/optimost/areaA4'
+ 				+ aVal + (aVal=='3'?'.gif':'.jpg') +'" border="0" id="section_a" alt="" /&gt;')
+			]]&gt;&lt;/script&gt;	
+		&lt;/AREA_ABC_HTML&gt;
+	&lt;/OPTIMOST_CONTENT&gt;
+&lt;/OPTIMOST_RESPONSE&gt;
+</pre>
+<p>Since the content of the script block does not follow the well-formed XML rules, so it must be escaped inside a CDATA block.
+</p>
+<a name="Content_as_pure_javascript_wrapped_in_XML"></a><h3> <span class="mw-headline">Content as pure javascript wrapped in XML</span></h3>
+<p>In this example, we send only inline javascipt, which would emulate 
+the actual payload of content.js in a Standard Implementation.  This 
+would allow for a template implemented with DOM manipulation - as a 
+Standard Implementation does - but going through the Client Servers to 
+ensure nothing untoward was going on.
+</p>
+<pre>&lt;OPTIMOST_RESPONSE&gt;
+    &lt;OPTIMOST_CONTENT&gt;
+	&lt;AREA_ABC_HTML&gt;
+	    &lt;script type="text/javascript"&gt;&lt;![CDATA[
+                function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() +
+                 e * 1000);document.cookie = n + "=" + escape(v)
+                + ((e==null)&nbsp;? ""&nbsp;: ("; expires=" + de.toGMTString())) + "; path=/" + 
+                ((d==null)&nbsp;? ""&nbsp;: (";domain=" + d));}
+                function opCreativeGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");
+                var l = dp.length;if (l &lt; 2) sld = null;
+                else if (!isNaN(dp[l-1]) &amp;&amp;&nbsp;!isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] +
+                 "." + dp[l-1];return sld;}
+                opCreativeSetCookieA("op2modularexample-advancedmvtgum", "a0m00rl332273pm0yt5wg48d5",
+                opCreativeGetDocumentSLD(), 604800);
+                opCreativeSetCookieA("op2modularexample-advancedmvtliid", "a0m00rl332273pm0yt5wg48d5", 
+                opCreativeGetDocumentSLD(), 86400);
+                optimost.addModule("body", function ()
+                {
+                ck1="http://by.optimost.com/go/2-3763/a0m00rl332273pm0yt5wg48d5/";
+                ck2="http://by.optimost.com/go/2-3764/a0m00rl332273pm0yt5wg48d5/";
+                ck3="http://by.optimost.com/go/2-3765/a0m00rl332273pm0yt5wg48d5/";
+                ck4="http://by.optimost.com/go/2-3766/a0m00rl332273pm0yt5wg48d5/";
+                clickthrus=[ck1,ck2,ck3,ck4];
+                objA=document.getElementById('LeftNav');
+                objBCtop=document.getElementById('topMiddle');
+                objBCbot=document.getElementById('bottomMiddle');
+                objD=document.getElementById('footer');
+                objE=document.getElementById('topArea');
+                objB=null;
+                objC=null;
+                if(objA!=null) {var imgs=objA.getElementsByTagName('img');
+                if(imgs[0]!=null) imgs[0].src="http://es.optimost.com/es/2/c/600/u/left.gif";}
+                objB=objBCtop;
+                objC=objBCbot;
+                if(objB!=null) {var imgs=objB.getElementsByTagName('img');
+                if(imgs[0]!=null)imgs[0].src="http://es.optimost.com/es/2/c/600/u/topMid.gif";}
+                if(objC!=null) {var imgs=objC.getElementsByTagName('img');
+                if(imgs[0]!=null) imgs[0].src="http://es.optimost.com/es/2/c/600/u/topRight.gif";}
+                if(objE!=null) {var imgs=objE.getElementsByTagName('img');
+                if(imgs[0]!=null) imgs[0].src="http://es.optimost.com/es/2/c/600/u/top.gif";}
+                anchors=document.getElementsByTagName('a');
+                alert(anchors.length);
+                for(i=0;i&lt;anchors.length;i++){opOnClick(anchors[i],clickthrus[i],null);}
+                document.write('\n&lt;style&gt;\n#opmodule_body{display:inline}\n&lt;\/style&gt;');
+                });
+                
+                document.write('&lt;style type="text/css"&gt;' +
+                '.opDefaultContent_modularexample-advancedmvt' +
+                ',#opmodule_body' +
+                '{display:none;}&lt;/style&gt;');
+                
+                opssid='a0m00rl332273pm0yt5wg48d5';
+                opB='Other';
+                opBrowser=navigator.userAgent.toLowerCase();
+                if(opBrowser.indexOf('opera')!=-1) opB='Opera';
+                else if(opBrowser.indexOf('firefox')!=-1) opB='Firefox';
+                else if(opBrowser.indexOf('msie')!=-1) opB='IE';
+                function opOnClick(a,b,c){alert('add code'};
+		]]&gt;&lt;/script&gt;
+	    &lt;/AREA_ABC_HTML&gt;
+    &lt;/OPTIMOST_CONTENT&gt;
+&lt;/OPTIMOST_RESPONSE&gt;
+</pre>
+<p>Since the content of the script block does not follow the well-formed XML rules, so it must be escaped inside a CDATA block.
+</p>
+<a name="Tracking_-_Cookies_and_an_XML_template"></a><h2> <span class="mw-headline">Tracking - Cookies and an XML template</span></h2>
+<p>for dropping the Stickiness and Activity Tracking cookies, we have 2 options:
+</p>
+<ol><li>Have Optimost pass the cookie-dropping javascript code in the XML CDATA script block.
+</li><li>Have Optimost pass in the cookie name-value pair as XML data and the Client either:
+<ol><li>Drops the cookies using Server Side code
+</li><li>Drops the cookies using javascript in the web browser
+</li></ol>
+</li></ol>
+<a name="Passing_cookies_via_XML"></a><h3> <span class="mw-headline">Passing cookies via XML</span></h3>
+<p>Here we pass the Activity Tracking cookie and Stickiness cookie parameters via XML.  We pass in:
+</p>
+<ol><li>The name of the cookie
+</li><li>The value for the cookie
+</li><li>The cookie expiration time, in seconds.  Usually set to 1-day for Activity Tracking and 30-days for Stickiness.
+</li></ol>
+<pre>&lt;?xml version="1.0"&nbsp;?&gt;
+&lt;OPTIMOST_RESPONSE&gt;
+  &lt;OPTIMOST_CONTENT&gt;
+    &lt;COOKIES&gt;
+      &lt;ACTIVITY&gt;
+        &lt;NAME&gt;op2turnvexmlliid&lt;/NAME&gt;
+        &lt;VALUE&gt;a0s70xd3wm26b9i0pk43db0e3&lt;/VALUE&gt;
+        &lt;TIME&gt;86400&lt;/TIME&gt;
+      &lt;/ACTIVITY&gt;
+      &lt;STICKY&gt;
+        &lt;NAME&gt;op2turnvexmlgum&lt;/NAME&gt;
+        &lt;VALUE&gt;a0s70xd3wm26b9i0pk43db0e3&lt;/VALUE&gt;
+        &lt;TIME&gt;2592000&lt;/TIME&gt;
+      &lt;/STICKY&gt;
+    &lt;/COOKIES&gt;
+  &lt;/OPTIMOST_CONTENT&gt;
+&lt;/OPTIMOST_RESPONSE&gt;
+</pre>
+<p>With this data, the client would drop the cookies from the Server-side or in the browser (using javascript). 
+</p>
+<a name="Passing_cookies_via_javascript_in_the_XML"></a><h3> <span class="mw-headline">Passing cookies via javascript in the XML</span></h3>
+<p>Optionally, we can pass the javascript in the XML, and the Client would have to place this code in the HTML.
+</p>
+<pre>&lt;?xml version="1.0"&nbsp;?&gt;
+&lt;OPTIMOST_RESPONSE&gt;
+    &lt;OPTIMOST_CONTENT&gt;
+        &lt;COOKIES&gt;
+	&lt;script type="text/javascript"&gt;&lt;![CDATA[
+            function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime()
+            + e * 1000);document.cookie = n + "=" + escape(v)
+            + ((e==null)&nbsp;? ""&nbsp;: ("; expires=" + de.toGMTString())) + "; path=/" +
+            ((d==null)&nbsp;? ""&nbsp;: (";domain=" + d));}
+            function opCreativeGetDocumentSLD(){var sld = document.domain;
+            var dp = sld.split(".");var l = dp.length;if (l &lt; 2) sld = null;
+            else if (!isNaN(dp[l-1]) &amp;&amp;&nbsp;!isNaN(dp[l-2])) sld = null;
+            else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+            opCreativeSetCookieA("op2turnvexmlgum", "a0s70xd3wm26b9i0pk43db0e3", 
+                        opCreativeGetDocumentSLD(), 604800);
+            opCreativeSetCookieA("op2turnvexmlliid", "a0s70xd3wm26b9i0pk43db0e3", 
+                        opCreativeGetDocumentSLD(), 86400);
+	]]&gt;&lt;/script&gt;        
+        &lt;/COOKIES&gt;
+    &lt;/OPTIMOST_CONTENT&gt;
+&lt;/OPTIMOST_RESPONSE&gt;
+</pre>
+<p>In this scenario, the customer places the javascript on the page as inline code, and it will drops the cookies.
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<strong class="selflink">Server to Server - Creating a Template using XML</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<a name="See_also"></a><h2> <span class="mw-headline">See also</span></h2>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Technical_consulting" title="Technical consulting">Technical consulting</a>
+</li><li><a href="http://wiki.interwoven.com/optimost/Technical_consulting/Summit_2008" title="Technical consulting/Summit 2008">TC Summit 2008</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 54/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:261-0!1!0!!en!2!edit=0 and timestamp 20130816142244 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML">http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.interwoven.com/optimost/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Category:TC_summit_2008&amp;action=edit&amp;redlink=1" class="new" title="Category:TC summit 2008 (not yet written)">TC summit 2008</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Server_to_Server_-_Creating_a_Template_using_XML&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Server_to_Server_-_Creating_a_Template_using_XML&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Server_to_Server_-_Creating_a_Template_using_XML&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Server_to_Server_-_Creating_a_Template_using_XML" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Server_to_Server_-_Creating_a_Template_using_XML" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Server_to_Server_-_Creating_a_Template_using_XML" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Server_to_Server_-_Creating_a_Template_using_XML&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Server_to_Server_-_Creating_a_Template_using_XML&amp;oldid=5805" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Server%20to%20Server%20-%20Creating%20a%20Template%20using%20XML%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 3 May 2011, at 20:18.</li>
+				<li id="viewcount">This page has been accessed 209 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.363 secs. -->
+</body></html>

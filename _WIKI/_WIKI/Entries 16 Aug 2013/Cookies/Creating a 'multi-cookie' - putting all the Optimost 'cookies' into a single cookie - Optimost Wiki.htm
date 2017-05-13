@@ -1,0 +1,633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,CORS - a &quot;higher security&quot; approach to MVT,Cross-domain cookie workaround,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples,Multi-page experiments,Optimost Creative Serving network">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Creating%20a%20%27multi-cookie%27%20-%20putting%20all%20the%20Optimost%20%27cookies%27%20into%20a%20single%20cookie%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Creating_a_\"multi-cookie\"_-_putting_all_the_Optimost_\"cookies\"_into_a_single_cookie";
+var wgTitle = "Creating a \"multi-cookie\" - putting all the Optimost \"cookies\" into a single cookie";
+var wgAction = "view";
+var wgArticleId = "731";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6586";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Creating%20a%20%27multi-cookie%27%20-%20putting%20all%20the%20Optimost%20%27cookies%27%20into%20a%20single%20cookie%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Creating%20a%20%27multi-cookie%27%20-%20putting%20all%20the%20Optimost%20%27cookies%27%20into%20a%20single%20cookie%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Creating%20a%20%27multi-cookie%27%20-%20putting%20all%20the%20Optimost%20%27cookies%27%20into%20a%20single%20cookie%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Creating%20a%20%27multi-cookie%27%20-%20putting%20all%20the%20Optimost%20%27cookies%27%20into%20a%20single%20cookie%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Creating_a_multi-cookie_-_putting_all_the_Optimost_cookies_into_a_single_cookie">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<strong class="selflink">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Background"><span class="tocnumber">1</span> <span class="toctext">Background</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Activity_Tracking_and_Stickiness"><span class="tocnumber">1.1</span> <span class="toctext">Activity Tracking and Stickiness</span></a></li>
+<li class="toclevel-2"><a href="#Implementation"><span class="tocnumber">1.2</span> <span class="toctext">Implementation</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Setting_the_cookies"><span class="tocnumber">1.2.1</span> <span class="toctext">Setting the cookies</span></a></li>
+<li class="toclevel-3"><a href="#Getting_the_cookies"><span class="tocnumber">1.2.2</span> <span class="toctext">Getting the cookies</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Server_context_and_the_Solution"><span class="tocnumber">1.3</span> <span class="toctext">Server context and the Solution</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Issues_with_the_Solution"><span class="tocnumber">1.3.1</span> <span class="toctext">Issues with the Solution</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Code_for_.22multi-cookie.22"><span class="tocnumber">1.4</span> <span class="toctext">Code for "multi-cookie"</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Modified_Page_Code_and_example_calls"><span class="tocnumber">1.4.1</span> <span class="toctext">Modified Page Code and example calls</span></a></li>
+<li class="toclevel-3"><a href="#Modified_Counter_Code"><span class="tocnumber">1.4.2</span> <span class="toctext">Modified Counter Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Implementation_2"><span class="tocnumber">1.5</span> <span class="toctext">Implementation</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Background"></a><h2> <span class="mw-headline">Background</span></h2>
+<p>One of our partners, Digital River, tends to run a bunch of 
+experiments simultaneously. Because of this, they are running into the 
+problem of running "out" of First-party cookies with IE 6 and some IE 7 
+users - ones with browsers with a 20 cookie per domain limit.  Since we 
+normally drop 2 cookies per Subject/Trial Code call, if you are running 5
+ tests on a site, you are using 10 cookies or half of your available 
+pool, and if the site also has more than 10 cookies they want to drop - 
+not that unusual - then we have a problem.  
+DR was going over by 1 or 2 cookies, so their solution was to make the 
+stickiness cookie cross-domain, and their issue was taken care of.  But,
+ ideally, we would like to have a more scalable solution.  This entry is
+ about such a solution
+</p>
+<a name="Activity_Tracking_and_Stickiness"></a><h3> <span class="mw-headline">Activity Tracking and Stickiness</span></h3>
+<p>In order to do either Activity Tracking or Stickiness, we need to have a way to know what creative a visitor saw so that:
+</p>
+<ol><li>If that visitor returns to the page or refreshes the page, we can show them the same creative again.
+</li><li>If that visitor progresses down the funnel and gets to a "success" page, we can associate that success with a specific visit.
+</li></ol>
+<p>The first scenario describes <b>"Stickiness"</b>, the second <b>"Activity Tracking"</b>.
+  Back in the day, these values where often explicitly stored on our 
+customer's backend and sent back to us when visitor returned or when a 
+success occured.  Over time, it was decided that to ease our 
+implementation process, we should drop these values as "cookies".
+</p><p>Since we are doing this using cookies, the developers decided 
+that you needed separate parameters since, although they have the same 
+value when a visitor arrives at our page, the "lifetime" of these values
+ may differ. In most cases, we set the stickiness for 30 days, and the 
+Activity Trakcing for 1 day.
+</p><p>At the present, over 99% of our customers use cookies for tracking.  
+</p>
+<a name="Implementation"></a><h3> <span class="mw-headline">Implementation</span></h3>
+<a name="Setting_the_cookies"></a><h4> <span class="mw-headline">Setting the cookies</span></h4>
+<p>When a call is made to our Trial code, the response start with something like this:
+</p>
+<pre>function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);
+document.cookie = n + "=" + escape(v) + ((e==null)&nbsp;? ""&nbsp;: ("; expires=" + 
+de.toGMTString())) + "; path=/" + ((d==null)&nbsp;? ""&nbsp;: (";domain=" + d));}
+
+function opCreativeGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;
+if (l &lt; 2) sld = null;
+else if (!isNaN(dp[l-1]) &amp;&amp;&nbsp;!isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+
+opCreativeSetCookieA("op0registrationpagegum", "a00401z00625ali0n96n4e851", opCreativeGetDocumentSLD(), 2592000);
+opCreativeSetCookieA("op0registrationpageliid", "a00401z00625ali0n96n4e851", opCreativeGetDocumentSLD(), 604800);
+....
+....
+</pre>
+<p>This code includes two functions:
+</p>
+<ol><li><b>opCreativeSetCookieA</b> - to set the cookie's name value pair, domain, and expiration
+</li><li><b>opCreativeGetDocumentSLD</b> - to get the document domain - assumed to be a 2 word base domain - for <b>opCreativeSetCookieA</b>
+</li></ol>
+<p>and then calls to those fuctions to set the two cookies. Notice the 
+cookie values are indentical - the Session Identifier for that page view
+ - and the values only differ by the last characters - <b>gum</b> for the Stickiness cookie and <b>liid</b> for the Activity Tracking cookie. 
+</p>
+<a name="Getting_the_cookies"></a><h4> <span class="mw-headline">Getting the cookies</span></h4>
+<p>To get the cookies, the Page Code pulls them out by finding all 
+First-party cookies that start with "op" and attaches them to the Trial 
+code URL, so that the URL will look something like:
+</p><p><code>
+<a href="https://by.essl.optimost.com/by/trial/0/p/registrationpage.ab4/1/content.js?op0registrationpagegum=a00401z00625ali0n96n4e851&amp;op0registrationpageliid=a00401z00625ali0n96n4e851" class="external free" title="https://by.essl.optimost.com/by/trial/0/p/registrationpage.ab4/1/content.js?op0registrationpagegum=a00401z00625ali0n96n4e851&amp;op0registrationpageliid=a00401z00625ali0n96n4e851" rel="nofollow">https://by.essl.optimost.com/by/trial/0/p/registrationpage.ab4/1/content.js?op0registrationpagegum=a00401z00625ali0n96n4e851&amp;op0registrationpageliid=a00401z00625ali0n96n4e851</a>
+</code>
+</p>
+<a name="Server_context_and_the_Solution"></a><h3> <span class="mw-headline">Server context and the Solution</span></h3>
+<p>Understand that when the visitor's browser makes a call to our 
+servers to serve a creative, the cookie values are passed back as Query 
+String parameters.  The fact that this value was stored as a single 
+cookie is irrelevant to the server, the only thing that needs to happen 
+is that it needs to be passed in the URL. As I mentioned before, back in
+ the day the values were stored on the Customer's servers and then 
+attached to the URL by a back-end process. The Server didn't care/know 
+then and doesn't care/know now how it is stored. (caveat - if you use 
+cross domain tracking, the Server does care because it has to look for 
+those in the header, not the URL's Query string)
+</p><p>So we could just as easily store all the First-party cookies in a
+ single cookie on the Visitor's PC, parse out all the individual 
+name-value pairs, and send it back in the Trial code URL as separate 
+Query string parameters. 
+</p>
+<a name="Issues_with_the_Solution"></a><h4> <span class="mw-headline">Issues with the Solution</span></h4>
+<p>This solution has to be done using purely front-end code, with no 
+extra development to the Console by the Development team to accomodate 
+it - ie they are not changing the code that drops the Activity Tracking 
+and Stickiness cookies to suddenly drop a "multi-cookie".  With that in 
+mind, here are the major issues.
+</p>
+<ol><li>There will have to be a "modification" to the Page code to allow
+ us to read and write the "multi-cookie" cookies, and parse out the 
+individual name-value pairs to send back in the Trial Code URL.
+</li><li>We must account for the individual time stamp/expiration of the individual cookies inside the "multi-cookie"
+</li><li>We should delete the standard Activity Tracking and Stickiness cookies since the code will continue to drop them.
+</li><li><span style="color:#CC0000;font-weight:bold;">We will need new 
+counter code to parse out the "multi-cookie" for the individual 
+name-value pairs to send back in the Counter Code URL.</span>
+</li><li>Although this makes it less likely we go over the number of 
+cookie limit for a browser domain, we could still go over the cookie 
+size limit.  In 2007 documentation, IE says you each domain can have up 
+to 20 cookies with a total size of 4096 bytes, which means one 4096 byte
+ cookie or 20 cookies that total 4096 bytes. Be conscious of this in 
+light of:
+<ul><li>How many experiments we will be running at once, which effects how large our multi cookie will get
+</li><li>The number and size of the cookies the customer is presently dropping in their domain.
+</li></ul>
+</li></ol>
+<a name="Code_for_.22multi-cookie.22"></a><h3> <span class="mw-headline">Code for "multi-cookie"</span></h3>
+<p>I had to create modified Page Code and modified Counter Code
+</p>
+<a name="Modified_Page_Code_and_example_calls"></a><h4> <span class="mw-headline">Modified Page Code and example calls</span></h4>
+<p>This code does the following:
+</p>
+<ol><li>It takes the Page Code and adds two functions:
+<ol><li><b>getMultiCookie(type)</b> - Executed first, it looks for an 
+existing cookie whose name starts with "op" and whose value starts with 
+"optmulti". Parses this cookie and adds the name-value pairs whose time 
+stamp has not expired to the Optimost.C object, and resaves the 
+multi-cookie with all the name-value pairs whose time stamp has not 
+expired.  The parmeters are:
+<ol><li>If the parameter <b>type</b> is <b>"add"</b>, it returns the "multi-cookie" value without checking the timestamp for each name-value pair..  
+</li><li>If the parameter <b>type</b> is <b>"get"</b>, it returns the unexpired "multi-cookie" name-value pairs with thieir individual timestamps.
+</li></ol>
+</li><li><b>setMultiCookie(add,nm,v,e,d,ckn)</b> -  Calls <b>getMultiCookie()</b> to get the multi cookie and now adds the new cookie name-value pair plus time stamp that is passed in.  The parmeters are:
+<ol><li><b>add</b> - boolean, whether you want to add the drop the cookie as a first-party cookie in addition to adding it to the multi-cookie.
+</li><li><b>nm</b> - the cookie name
+</li><li><b>v</b> - the cookie value
+</li><li><b>e</b> - the cookie expiration time in seconds
+</li><li><b>d</b> - the domain
+</li><li><b>ckn</b> - the name for the "multi-cookie". If a null, defaults to "opmulti001"
+</li></ol>
+</li></ol>
+</li></ol>
+<p>You can find the code at:
+<a href="http://asp.optimost.com/webtest/jim/wiki/opt_newMultiAll.html" class="external free" title="http://asp.optimost.com/webtest/jim/wiki/opt_newMultiAll.html" rel="nofollow">http://asp.optimost.com/webtest/jim/wiki/opt_newMultiAll.html</a>
+</p><p>and here is the code
+</p>
+<pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;OPT multi cookie test - Set and Get Multi cookie&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script language="javascript" type="text/javascript"&gt;&lt;!--
+var optimost={
+A:{},C:{},D:document,L:document.location,M:[],Q:{},T:new Date(),U:'',V:'2.75',Enabled:true,ST:"script",
+SA:{"type":"text/javascript"},I:function(){var s=this.L.search;var c=this.D.cookie;if(s.length&gt;3){
+for(var a=s.substring(1).split("&amp;"),i=0,l=a.length;i&lt;l;i++){var p=a[i].indexOf("=");if(p&gt;0)
+this.Q[a[i].substring(0,p)]=unescape(a[i].substring(p+1));}}if(c.length&gt;3){	for(var a=c.split(";"),
+i=0,b=a.length;i&lt;b;i++){var v=a[i].split("=");while(v[0].substring(0,1)==" ")v[0]=v[0].
+substring(1,v[0].length);if(v.length==2)this.C[v[0]]=unescape(v[1]);}}},B:function(){var n;this.A={};
+var _o=this;this.A.D_ts=Math.round(_o.T.getTime()/1000);this.A.D_tzo=_o.T.getTimezoneOffset();this.A.D_loc=_o.L.protocol+
+"//"+_o.L.hostname+_o.L.pathname;this.A.D_ckl=_o.D.cookie.length;this.A.D_ref=_o.D.referrer;if(typeof optrial=="object")
+for(n in optrial)this.A[n]=optrial[n];for(n in this.Q)this.A[n]=this.Q[n];for(n in this.C)if(n.substring(0,2)=="op")this.A[n]=
+this.C[n];},S:function(){var q='';for(var n in this.A)if(this.A[n]!=null &amp;&amp; this.A[n]!="")q+=(q.length&gt;0?"&amp;":(this.U.indexOf(
+"?")&gt;0?"&amp;":"?"))+n+"="+escape(this.A[n]);return this.U+q;},SC:function(n,v,e,d){var de=new Date();de.setTime(de.getTime()+e * 1000);
+this.D.cookie=n+"="+escape(v)+((e==null)?"":("; expires="+de.toGMTString()))+"; path=/"+((d==null)?"":(";domain="+d));},
+SLD:function(){var sld=this.D.domain;var dp=sld.split(".");var l=dp.length;if(l&lt;2)sld=null;	else if(!isNaN(dp[l-1])&amp;&amp;
+!isNaN(dp[l-2]))sld=null;else sld="."+dp[l-2]+"."+dp[l-1];return sld;},R:function(r,c,d,e){if(this.Enabled){var b=true;
+if(r&lt;1000){b=(Math.floor(Math.random()*1000)&lt;r);if(c!=null){if(this.C[c]!=null)b=(this.C[c]!="mvt-no");else this.SC
+(c,b?"mvt-yes":"mvt-no",e,d);}}if(b){var t='&lt;'+this.ST+' src="'+this.S()+'"';for(n in this.SA)t+=(" "+n+'="'+this.SA[n]+'"');t+='&gt;&lt;\/'+this.ST+'&gt;';
+this.D.write(t);}}},addModule:function(s,f){this.M[s]=f;},displayModule:function(s){if(typeof this.M[s]=="function")this.M[s]();},
+hasModules:function(){return count(this.M)&gt;0;},
+
+getMultiCookie:function(type){	
+	var t="";
+	for(n in this.C){
+		var _mt=this.C[n].match(/^optmulti/);
+		if(_mt){
+			if(type!=null &amp;&amp; type=='add')return this.C[n];
+			else res=this.C[n];			
+			for(var a=this.C[n].split(":"),i=0,b=a.length;i&lt;b;i++){
+				var v=a[i].split("=");					
+				while(v[0].substring(0,1)==" ")v[0]=v[0].substring(1,v[0].length);
+				if(v.length==2 &amp;&amp; v[0].substring(0,2)=="op"){
+					var vt=v[1].split("#");
+					var de=new Date();						
+					if(vt[1] &amp;&amp; de.getTime()&lt;vt[1])	{
+						t+=a[i]+":";
+						this.C[v[0]]=vt[0];
+					}
+				}
+			}	
+			this.C[n]="optmulti:"+t;
+			if(type!=null &amp;&amp; type=='get') return t;
+			this.SC(n,this.C[n],2592000,this.SLD()); 
+			break;	
+		}		
+	}
+	return t;
+},
+setMultiCookie:function(add,nm,v,e,d,ckn){
+	if(!ckn)ckn="opmulti001";
+	var myMulti=this.getMultiCookie('add');
+	if(!myMulti){
+		ck="optmulti:";
+	}
+	else {
+		ck=this.getMultiCookie('get');
+		var ckt="optmulti:";
+		var ckarr=ck.split(":");
+		for(var i=0;i&lt;ckarr.length;i++){
+			if(ckarr[i].indexOf(nm)==-1 &amp;&amp; ckarr[i]!=""){
+				ckt+=ckarr[i]+":";			
+			}
+		}
+		ck=ckt;
+	}
+	var de=new Date();   
+	var nt=de.getTime()+e*1000;
+	//alert(ck.length); //
+	ck+=nm+"="+v+"#"+nt+":";
+	this.C[nm]=v;
+	this.SC(ckn,ck,2592000,d);  //Drop the new  multi cookie
+	if(!add) this.SC(nm,v,-200,d); //If&nbsp;!add, remove the old cookie by giving it a time-stamp in the past.  
+									//This would apply to when we use this code in the setup block to overwrite
+	else this.SC(nm,v,e,d); 	//If add, drop the cookie 
+	this.I(); //Re-get the cookies in case one was dropped since Page Code executed I()
+}	
+};optimost.I();
+//--&gt;&lt;/script&gt;
+&lt;script&gt;
+var dropCookie=false;
+if(document.location.href.indexOf("dropCookie=yes") &gt; -1)dropCookie=true;
+
+optimost.getMultiCookie();
+node=document.createElement('div');
+var de=new Date(); 
+node.innerHTML=de.getTime();
+document.body.appendChild(node);
+
+optimost.setMultiCookie(dropCookie,"op001testCookieliid","a00h5zh350s0aiqm688081279p00tav5s702y",2592000,optimost.SLD(),null);
+
+optimost.setMultiCookie(dropCookie,"op001testCookiexyz","a00h0si07t95028m281ay00qpz5va736hs850",120,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op001testCookiegum","a00h22i8a795t07qs5a8806vsypzm000h3051",60,optimost.SLD(),null);
+
+optimost.setMultiCookie(dropCookie,"op326abtest1gum","a00hvh208057y59im5z1s0306q807ts08p2aa",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op326abtest1liid","a00hh90q07mi0y38av58s205pt8a600752z1s",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op397profilepage1gum","a00h55t010z706s8mp9800s50ha8q27y2ai3v",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op409driverdirectgum","a00hp00850s077a92vhm88iz0sta2105q536y",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op409driverdirectliid","a00hvh177800tm020pisaq085zs93250865ay",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op501currentaccountsgum","a00h0852s85870yh6a3t9q070m10s20ipzva5",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op501currentaccountsliid","a00h1s0mv2z70q56y2iha9705t0p8083a80s5",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op527orchardbanklpcampaigngum","a00h08i06azy3p7h5s8t5q18vs02a75m29000",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op27blahbalahgum","a00h2isap787vh3qy0s256t5z8800m590001a",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op37blahbalahliid","a00hpq9t028m3057ss18500752ah60iz8yva0",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op27yaddayaddagum","a00ha308zq567iv02s0p705tm5y028a0hs189",60,optimost.SLD(),null);
+optimost.setMultiCookie(dropCookie,"op27yaddayaddaliid","a00h09v805mahyp5283s0602ia0s0q57z8t71",60,optimost.SLD(),null);
+&lt;/script&gt;
+
+&lt;script language="javascript" type="text/javascript"&gt;&lt;!--
+
+(function(){var _o=optimost;_o.U="http://by.optimost.com/by/trial/0/p/tesOnly.abc/123/content.js";
+_o.ST="script";_o.SA={"type":"text/javascript"};_o.B();_o.R(1000,null,null,null);})();
+
+//--&gt;&lt;/script&gt;
+
+&lt;iframe src="opt_newCounterCode.html"&gt;&lt;/iframe&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The way I tested it was to start with no cookies set beforehand, using Firebug, load:
+</p><p><a href="http://asp.optimost.com/webtest/jim/wiki/opt_newMultiAll.html" class="external free" title="http://asp.optimost.com/webtest/jim/wiki/opt_newMultiAll.html" rel="nofollow">http://asp.optimost.com/webtest/jim/wiki/opt_newMultiAll.html</a>
+</p><p>Look at the <b>"Net"</b> tab, and look at the <b>"Params"</b> tab
+ in the two JS files.  You will see all the cookie values - 15 in all - 
+being sent back to the Optimost servers set there.  Next, load:
+</p><p><a href="http://asp.optimost.com/webtest/jim/wiki/opt_newCounterCode.html" class="external free" title="http://asp.optimost.com/webtest/jim/wiki/opt_newCounterCode.html" rel="nofollow">http://asp.optimost.com/webtest/jim/wiki/opt_newCounterCode.html</a>
+</p><p>and look a the single JS file in the <b>"Net"</b> tab and its <b>"Params"</b>
+ tab.  It should also have all the cookies we set.  Refresh this file 
+every 10 seconds or so, and check the params.  You will see that after a
+ minute - the time stamp I set for 13 of the cookies - only the <b>op001testCookieliid</b> and  <b>op001testCookiexyz</b> will remain, and after 2 minutes, only the <b>op001testCookieliid</b> will remain.
+</p>
+<a name="Modified_Counter_Code"></a><h4> <span class="mw-headline">Modified Counter Code</span></h4>
+<p>Just took the core of <b>getMultiCookie</b>, made minor changes to comform to the variable names, and added it to the counter:
+</p><p><a href="http://asp.optimost.com/webtest/jim/wiki/opt_newCounterCode.html" class="external free" title="http://asp.optimost.com/webtest/jim/wiki/opt_newCounterCode.html" rel="nofollow">http://asp.optimost.com/webtest/jim/wiki/opt_newCounterCode.html</a>
+</p><p>and here is the code:
+</p>
+<pre>&lt;script language="javascript" type="text/javascript"&gt;
+&lt;!--
+var _o=(typeof opcounter=="object")?opcounter:new Object;_o.D=document;_o.L=_o.D.location;_o.T=
+new Date;_o.Q=new Object;_o.C=new Object;_o.U="http://by.optimost.com/by/counter/0/-/0/event.js";
+_o.D_ts=Math.round(_o.T.getTime()/1000);_o.D_tzo=_o.T.getTimezoneOffset();_o.D_loc=_o.L.protocol+
+"//"+_o.L.hostname+_o.L.pathname;_o.D_ckl=_o.D.cookie.length;_o.D_ref=_o.D.referrer;function 
+_oI(){var s=_o.L.search;var c=_o.D.cookie;if(s.length&gt;3){for(var a=s.substring(1).split("&amp;")
+,i=0,l=a.length;i&lt;l;i++){var p=a[i].indexOf("=");if(p&gt;0)_o.Q[a[i].substring(0,p)]=unescape(a[i].substring(
+p+1));}}if(c.length&gt;3){for(var a=c.split(";"),i=0,b=a.length;i&lt;b;i++){var v=a[i].split("=");
+while(v[0].substring(0,1)==" ")v[0]=v[0].substring(1,v[0].length);if(v.length==2)_o.C[v[0]]=
+unescape(v[1]);}}}function _oS(){var o=new Object;for(var n in _o)o[n]=_o[n];o.D=o.L=o.T=o.Q=o.C=
+o.U=null;var q='';for(var n in o)if(o[n]!=null &amp;&amp; o[n]!="")q+=(q.length&gt;0?"&amp;":(_o.U.indexOf(
+"?")&gt;0?"&amp;":"?"))+n+"="+escape(o[n]);return _o.U+q;}_oI();for(var n in _o.Q)if(n.substring(
+0,2)=="op")_o[n]=_o.Q[n];
+for(var n in _o.C){
+	var _mt=_o.C[n].match(/^optmulti/);
+	if(_mt){
+		for(var a=_o.C[n].split(":"),i=0,b=a.length;i&lt;b;i++){
+			var v=a[i].split("=");while(v[0].substring(0,1)==" ")v[0]=v[0].substring(1,v[0].length);
+			if(v.length==2 &amp;&amp; v[0].substring(0,2)=="op"){
+				var vt=v[1].split("#");
+				var de=new Date();
+				if(vt[1] &amp;&amp; de.getTime()&lt;vt[1]){
+					//_o.C[v[0]]=vt[0];
+					_o[v[0]]=vt[0];
+				}
+			}
+		}
+	}
+	else if(n.substring(0,2)=="op")_o[n]=_o.C[n];
+}_o.D.write('&lt;'+'script type="text/javascript" src="'
++_oS()+'"&gt;&lt;\/script&gt;');
+//--&gt;
+&lt;/script&gt;
+</pre>
+<a name="Implementation_2"></a><h3> <span class="mw-headline">Implementation</span></h3>
+<p>In order to implement this code, you would need to do the following:
+</p>
+<ol><li>Add the two new functions - <b>getMultiCookie(type)</b> and <b>setMultiCookie(add,nm,v,e,d,ckn)</b>
+ - to the page code, either by deploying new Page Code OR adding the 
+functions to the Optimost Object at the top of the Setup block for the 
+template.
+</li><li>Just below the functions - or at the top of the setup block is 
+the Page Code is modified - you would now drop the "multi-cookie" and 
+remove the one dropped by the Trial code.  So for the example we used 
+above:
+</li></ol>
+<pre>function opCreativeSetCookieA(n, v, d, e){var de = new Date;de.setTime(de.getTime() + e * 1000);
+document.cookie = n + "=" + escape(v) + ((e==null)&nbsp;? ""&nbsp;: ("; expires=" + 
+de.toGMTString())) + "; path=/" + ((d==null)&nbsp;? ""&nbsp;: (";domain=" + d));}
+
+function opCreativeGetDocumentSLD(){var sld = document.domain;var dp = sld.split(".");var l = dp.length;
+if (l &lt; 2) sld = null;
+else if (!isNaN(dp[l-1]) &amp;&amp;&nbsp;!isNaN(dp[l-2])) sld = null;else sld = "." + dp[l-2] + "." + dp[l-1];return sld;}
+
+opCreativeSetCookieA("op0registrationpagegum", "a00401z00625ali0n96n4e851", opCreativeGetDocumentSLD(), 2592000);
+opCreativeSetCookieA("op0registrationpageliid", "a00401z00625ali0n96n4e851", opCreativeGetDocumentSLD(), 604800);
+....
+....
+</pre>
+<p>You would need the following in the setup block:
+</p>
+<pre>optimost.setMultiCookie(false,"op0registrationpagegum","a00401z00625ali0n96n4e851",2592000,optimost.SLD(),null);
+optimost.setMultiCookie(false,"op0registrationpageliid","a00401z00625ali0n96n4e851",604800,optimost.SLD(),null);
+</pre>
+<p>And since you need to get the Session Identifier from the system - 
+you can't hard-code a value - in the template would look like:
+</p>
+<pre>optimost.setMultiCookie(false,"op0registrationpagegum","{{$creative.sessionId}}",2592000,optimost.SLD(),null);
+optimost.setMultiCookie(false,"op0registrationpageliid","{{$creative.sessionId}}",",604800,optimost.SLD(),null);
+</pre>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<strong class="selflink">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 41/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:731-0!1!0!!en!2!edit=0 and timestamp 20130816142430 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie">http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie&amp;oldid=6586" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Creating%20a%20%27multi-cookie%27%20-%20putting%20all%20the%20Optimost%20%27cookies%27%20into%20a%20single%20cookie%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 26 July 2012, at 19:04.</li>
+				<li id="viewcount">This page has been accessed 88 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.246 secs. -->
+</body></html>

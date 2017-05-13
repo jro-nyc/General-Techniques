@@ -1,0 +1,107 @@
+if (window.external == null || typeof(window.external.ResizeWindow)=="undefined") 
+{
+	// do nothing because caller is not invoke the request from EC client
+}
+else
+{
+	// declare this global variable, we will use to resize "Permission" web action
+	var ngdW = 0;
+	var ngdH = 0;
+
+	$( document ).ready(function() {
+		try {
+			// use jquery for height calculation
+			var w;
+			var h;
+
+			w = Math.round($(document).width());
+			h = Math.round($(document).height());
+
+			if ( h < 0 )
+			{
+				// put in a fixed height
+				h = 500;
+			}
+			else
+			{
+				// "Permission" menu action
+				if ( reqFunc == 'doc.permhead' )
+				{
+					h = 400;
+				}
+				h += 20;
+			}
+			h = Math.min(h,screen.availHeight)
+
+			if ( w < 0 )
+			{
+				// put in a fixed width
+				w = 970;
+			}
+			else
+			{
+				// "Permission" menu action
+				if ( reqFunc == 'doc.permhead' )
+				{
+					w = 750;
+				}
+				w += 20;
+			}
+			w = Math.min(w,screen.availWidth);
+
+			// Make News, window heigh changes after onload is invoked. Need to adjust the height to max.
+			var ele = document.getElementById("Story");
+
+			if ( ele )
+			{
+				h = screen.availHeight;
+			}
+
+			if ( reqFunc == 'doc.permhead' )
+			{
+				// wait 1 second, then resize
+				ngdW = w;
+				ngdH = h;
+				setTimeout ( 'window.external.ResizeWindow(ngdW,ngdH);', 1000 );
+			}
+			else
+			{
+				window.external.ResizeWindow(w,h);
+			}
+
+		} catch (err) {
+			alert(err.message);
+		}
+
+		if ( isCompoundEmailItem )
+		{
+			// Turn off Featured Items and the multi-operation bar
+			try
+			{
+				$("#featuredItems").hide();
+				$("#MultiOperationBar1").hide();
+			}
+			catch (err)
+			{
+			}
+		}
+
+		if ( typeof doSearchRH == "function" && isSearchTemplate )
+		{
+			// Most likely this is page have search, we want to disable the search functionality
+			try
+			{
+				performingSearch = true; // set this global var, will prevent search
+				$(".saveButton").hide(); // hide the "Search" button
+
+				$('form[name=infoFrm]').submit(function(){
+					return false;
+    				});
+			}
+			catch( err )
+			{
+				// ignore error
+			}		
+		}
+	});
+}

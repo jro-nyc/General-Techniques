@@ -1,0 +1,577 @@
+=Overview=
+This WIKI entry provides a description of the Global Code used by the US offices.  I am using the format developed by Chris Bazelgette in the UK office, and this entry can be compared with their entry at [[Global CSI code v3: Detailed technical description]].  SO technically this is not plagarism since I am giving Chris full credit for letting me cut and paste my content into his framework.
+==Introduction==
+The Global CSI code consists of Page Code, Selector Code, and Global Module Code.  You can refer to [[Options - Global Code on Customer pages]] for more details. 
+
+===Global Code===
+The latest version of the US Global code differs from previous versions in two main respects:
+#Added a property to turn off an '''opExperiments''' object without removing it from the code or changing its criteria - if the '''enabled''' property is not '''true''', the object will not run
+#Added the ability to change how and when the object is executed, as in:
+#*The '''opExperiments''' object can be executed at the top of the page, bottom of the page, or as an onload, document.ready, or timeout if needed.
+#*In addition to making Trial Code and Counter Code calls, you can also execute functions as part of those calls OR as standalone functions
+
+For details of the working of the  Page code, see [[Page Code and Trial Code explained]].
+
+==The opExperiment object==
+To run an experiment on a page, we create an instance of the '''opExperiment''' object.  It has 12 defined properties - half the selection criteria, half the trial/counter criteria:
+===Properties===
+{| class="wikitable"
+|-
+! Property
+! Type
+! Description
+! Default value
+! Notes
+|-
+|
+|
+|<span style="color:#7542A6;font-size:18px;">These first 6 define the selection criteria</span>
+|
+|
+|-
+| '''method'''
+| ''string''
+| Sets the type of criteria match parameter
+| ''var''
+| Must be set if match == '''false'''. We normally use '''var''', '''array''', or '''complex''' as the must-have choices, with '''regexp''' as a possible extra type.
+|-
+| '''entity'''
+| ''based on the method''
+| The name of the the matching parameter available in the browser containing the information used to determine if an experiment is on this page.
+| ''whatever the method is''
+| This is a variable unless we use the '''complex''' method, in which case this will be '''null'''
+|-
+| '''criteria'''
+| ''based on the method''
+| The value to be compared to the entity for determining.
+| ''whatever the method is''
+| This is a variable unless we use the '''complex''' method, in which case this will be function used to determine if we have a match.
+|-
+| '''condition'''
+| ''string''
+| The matching condition is either '''equals''' or '''contains'''.
+| ''equals''
+|  
+|-
+| '''enabled'''
+| ''boolean''
+| If false, trial code will not be executed and the experiment will not run.
+| ''true''
+| Allows the attribute code to stop the experiment based on some feature in the body of the page. 
+|-
+| '''match'''
+| ''boolean''
+| The '''optimost.identify()''' function uses method, entity, and criteria to determine a match then sets this to '''true''' or '''false'''
+| ''false''
+| Can be set to '''true''' for site-wide experiments/functions
+|-
+|
+|
+|<span style="color:#7542A6;font-size:18px;">These next 6 define the experiment criteria</span>
+|
+|
+|-
+| '''unique'''
+| ''string''
+| This is the URL of the content.js file for the experiment
+| ''empty string''
+| This is the only property whose value must be set to a value other than the default in order for the experiment to run at all.
+|-
+| '''throttle'''
+| ''string''
+| Traffic throttle setting (percentagex10)
+| ''1000''
+|
+|-
+| '''gum'''
+| ''string''
+| Stickiness cookie name
+| ''null''
+| Only needed where traffic throttling < 100%
+|-
+| '''domain'''
+| ''string''
+| Stickiness cookie domain
+| ''null''
+| Only needed where traffic throttling < 100%
+|-
+| '''expire'''
+| ''integer''
+| Stickiness cookie duration in seconds (i.e. stickiness period)
+| ''null''
+| Only needed where traffic throttling < 100%
+|-
+| '''modules'''
+| ''array of strings''
+| Array of subject module names
+| ''empty array''
+| A non-empty value for this is not needed for objects without modules: e.g. a simple redirect A/B test or an object with only an inline function(s).
+|-
+|}
+
+
+===Special Properties/Attributes===
+In addition to the defined properties, the '''opExperiment''' object can have any number of functions/properties added for special functionality
+{| class="wikitable"
+|-
+! Property/Function
+! Type
+! Description
+! Default value
+! Notes
+|-
+|
+|
+|<span style="color:#7542A6;font-size:18px;">Then any functions/properties needed for special functionality.  Here are some examples</span>
+|
+|
+|-
+| '''hideTestArea'''
+| ''function''
+| A function that hides, then later unhides a CSS rule.  The hiding is done immediately, then the unhiding is deferred until after MVT changes by making it a module by defining it inside '''optimost.addModule(name,func())'''. 
+| ''optional part of object, so no default''
+| This is mainly for use with the Author code.  Since its a generic function used for all classes, we must also add:<br/>1. A property with the class to be hidden.<br/>2. Since we need to defer unhidding until after the MVT module runs, add its module name at the end of the '''modules''' array.
+|-
+| '''testAreaCssSpec'''
+| ''string''
+| A CSS selector specifying the area to be hidden/unhidden, used in conjunction with '''hideTestArea''' for Author.
+| ''optional part of object, so no default''
+| This is "1." in '''hideTestArea''' above
+|-
+| '''attribute'''
+| ''function''
+| A function to pass an attribute back in the trial, counter code call, or generically for all calls.  
+| ''optional part of object, so no default''
+| Normally attached to the '''optrial''' object
+|-
+| '''executeTrialCodeInModule'''
+| ''function''
+| A function to execute the Trail Code in the module by defining it inside '''optimost.addModule(name,func())'''.  
+| ''optional part of object, so no default''
+| Often we defer execution to see if certain elements exist in the body, so for those cases you would set '''match:true''' and have the selection criteria inside the function.
+|-
+<!--
+| '''nonDocWrite'''
+| ''boolean''
+| If true, content.js code will be requested by inserting a tag into the DOM rather than 
+| The value of the global optimost.nonDocWrite property, itself defaulting to ''false''
+| The optimost.nonDocWrite property is normally set by the ''nondocwrite=true/false'' parameter on the global head code tag
+|-
+| '''stn'''
+| ''integer''
+| Internally used counter to keep track of style tags where there are multiple experiments on a page.
+| ''0''
+| Allows each tag to have a unique ID, so that they can be sequentially created and removed. 
+|-
+-->
+|}
+
+We have examples of opExperiments objects at the bottom of this wiki entry, you can go here:<br>
+[[#Simple examples with the basic 12 properties]]<br />
+[[#Complex examples with extra attributes and functions set]]
+
+==Philosophy of opExperiments object and Global Code==
+The goal was to build the "special functionality" via the '''opExperiments''' object, and have a minimum of other code to execute the object. So in the code, we have set functionality for standard Trial Code and Counter Code calls, but then allow any other functionality to be built into the '''opExperiments''' object. So if:
+*You want to change execution point of the trial code to the bottom of the page? We have examples of how to build it into the object as a function.  
+*You want to use the object to pull out attributes for the other objects to use? You can also build that as a function within the opExperiments object.
+*You want to add special code for some custom visitor history tracking?  You can also build that as a function within the opExperiments object.
+So the flow of our Global Code is:
+#Define overhead at the top.
+#Add the '''opExperiments''' objects next.
+#The code to identify which objects are to be run on this page
+#The code to execute/run the selected objects.
+In this way, #1, #3, and #4 should eventually not have "new versions". and all '''opExperiments''' objects will have complex functionality built into them.  
+
+
+==CODE: The '''optimost.identify''' function==
+Each '''opExperiments''' object is run through this function to determine if we have a match on the present web page.  We only look to change the match value to '''true''' if our criteria is met.  For site-wide experiments/functions, this will leave the match value as '''true'''.
+<pre>
+optimost.identify = function () {
+	for (var n in opExperiments) {
+		switch (opExperiments[n].method) {
+		case 'var'://The criteria is a based on a single variable that has a single matching value
+			//optimost.conditionEvaluator(opExperiments[n]);				
+			if (typeof (opExperiments[n].entity) != "undefined") {
+				if (opExperiments[n].condition == "equals") {
+					if (opExperiments[n].entity.toString() == opExperiments[n].criteria) opExperiments[n].match = true;
+				}
+				else if (opExperiments[n].condition == "contains") { //alert(opExperiments[n].entity);
+					if (opExperiments[n].entity.toString().indexOf(opExperiments[n].criteria) != -1) opExperiments[n].match = true;
+				}
+			}
+			break;
+
+		case 'array'://The criteria is a based on a single variable that has multiple matching values
+			if (typeof (opExperiments[n].entity) != "undefined" && typeof (opExperiments[n].criteria) == "object") {
+				var len = opExperiments[n].criteria.length;
+				for (var i = 0; i < len; i++) {
+					if (opExperiments[n].condition == "equals") {
+						if (opExperiments[n].entity.toString() == opExperiments[n].criteria[i]) opExperiments[n].match = true;
+					}
+					else if (opExperiments[n].condition == "contains") {
+						if (opExperiments[n].entity.toString().indexOf(opExperiments[n].criteria[i]) != -1) opExperiments[n].match = true;
+					}
+				}
+			}
+			break;
+		
+
+		case 'complex'://The criteria is a based on some custom function stored in the criteria
+			if (typeof (opExperiments[n].criteria) == "function") {
+				if(opExperiments[n].criteria()==true)opExperiments[n].match = true;
+				opExperiments[n].criteria=null; //Set to null so it won't be re-run in the match loop
+			}
+			break;
+
+                case 'regexp':
+                        if(typeof(opExperiments[n].entity)!="undefined" && opExperiments[n].criteria!="undefined"){
+                                opExperiments[n].match=opExperiments[n].criteria.test(opExperiments[n].entity);
+                        }
+                        break;
+
+		}
+	}
+}
+optimost.identify();
+</pre>
+
+
+
+==CODE: The opExperiments execution loop==
+The code below is at the bottom of the Global Code, the last thing executed. The following happens.
+
+#We loop through opExperiments objects in the order they are created in the code.  So in the case where an object is created to set a value to be used by later objects, put it first on the list.
+#If an '''opExperiments''' object has '''match==true''' and '''enabled==true''', the following happens.
+#*If '''throttle == 1000''' - no throttling - we execute any functions defined in the object.
+#*Next, if the unique parameter contains '''event.js''' - a counter - we create a module to allow the counter to be called at the bottom of the web page.  The name of the module is the last entry in the '''modules''' array of '''opExperiments'''.  We then push all the members of '''modules''' into the '''opModulesArray'''
+#*Next, if the unique parameter contains '''content.js''' - trial code - we immediately make a trial code call, and push all the members of '''modules''' into the '''opModulesArray'''
+#*If those 2 are not true:
+#**For instances where throttle <1000, we execute any functions in the object.  
+#**Then we push all the members of '''modules''' into the '''opModulesArray'''
+Now the Global Code has done its work, and the execution of any modules will be done later when the browser's cursor reaches the module code at the bottom of the  page.
+===Added functions to optimost object===
+Since we are adding functions to the '''opExperiments''' object, and we also have throttling, how do we account for both in one object?  We have to separate the throttling "decision" from the '''document.write''' of the trial code to call any functions in between.  So we add:
+#optimost.TH - for the throttling "decision", returns that value
+#optimost.TX -  for the '''document.write''' of the trial code
+<pre>
+optimost.TH=function(r,c,d,e){
+    if (this.Enabled) {
+	var b=true;
+	if(r<1000){
+		b=(Math.floor(Math.random()*1000)<r);
+		if(c!=null){
+			if(this.C[c]!=null)b=(this.C[c]!="mvt-no");
+			else this.SC(c,b?"mvt-yes":"mvt-no",e,d);
+		}
+		return b;
+	}
+	else return true;
+    }
+    else return false;
+}
+optimost.TX=function(){
+	var t='<'+this.ST+' src="'+this.S()+'"';
+	for(n in this.SA)t+=(" "+n+'="'+this.SA[n]+'"');t+='><\/'+this.ST+'>';
+	this.D.write(t);
+}
+
+var opModulesArray = [];
+
+for (var n in opExperiments) {
+	if (opExperiments[n].match == true && opExperiments[n].enabled==true){
+		for(var m in opExperiments[n]){//If I have a function and Throttle==1000, execute it to add attributes/values/special functionality for this Experiment
+						//Counters should always have throttle=1000
+			if(typeof(opExperiments[n][m]) =="function" && opExperiments[n].throttle==1000)opExperiments[n][m]();
+		}		
+		if (opExperiments[n].unique.indexOf("event.js") != -1) {
+			for (var j = 0; j < opExperiments[n].modules.length; j++) opModulesArray.push(opExperiments[n].modules[j]);
+			optimost.addModule(opExperiments[n].modules[opExperiments[n].modules.length-1],
+				function (num) {
+					return function(){//alert("num is "+num+" with a unique of "+opExperiments[num].unique);
+						var _o = optimost;
+						_o.U = opPro + opExperiments[num].unique;
+						_o.ST = "script";
+						_o.SA = {"type": "text/javascript"};
+						_o.B();				
+						_o.R(opExperiments[num].throttle, opExperiments[num].gum, opExperiments[num].domain, opExperiments[num].expire);				
+					}
+				}(n));;
+		}
+		else if (opExperiments[n].unique.indexOf("content.js") != -1) {
+			for (var j = 0; j < opExperiments[n].modules.length; j++) opModulesArray.push(opExperiments[n].modules[j]);
+			(function () {
+				var _o = optimost;
+				_o.U = opPro + opExperiments[n].unique;
+				_o.ST = "script";
+				_o.SA = {"type": "text/javascript"};
+				_o.B();
+				if(opExperiments[n].throttle<1000){//If I have a function and Throttle<1000, first see if we are in, then do it
+					isIn=_o.TH(opExperiments[n].throttle, opExperiments[n].gum, opExperiments[n].domain, opExperiments[n].expire); 
+					if(isIn){//isIn determined if you are in or not, adn dropped cookie to freeze you in that state
+						for(var m in opExperiments[n]){
+							if(typeof(opExperiments[n][m])=="function")opExperiments[n][m]();
+						}
+						_o.TX();
+					}
+				}
+				else _o.R(opExperiments[n].throttle, opExperiments[n].gum, opExperiments[n].domain, opExperiments[n].expire);	
+			})();
+		}
+		else {
+			if(opExperiments[n].throttle <1000){
+				for (var m in opExperiments[n]) if(typeof opExperiments[n][m] == "function") opExperiments[n][m]();
+			}
+			for (var j = 0; j < opExperiments[n].modules.length; j++) opModulesArray.push(opExperiments[n].modules[j]);
+		}
+	}
+}
+</pre>
+
+==opExperiments object examples==
+
+===Simple examples with the basic 12 properties===
+Here are some simple examples.  I have included the standard javascript definitions that exist in all Global code, set above the objects.
+<pre>
+//Global Live CSI
+var optrial=(typeof optrial=="object"?optrial:{});
+if (optimost.Q["opselect"] == "qa") optimost.SC("opselect", "qa", null, optimost.SLD());
+var opPro = (("https:" == document.location.protocol) ? "https://by.essl.optimost.com/by" : "http://by.optimost.com");
+var opDocLocation = document.location.toString().toLowerCase();
+var opExperiments = {};
+var opPageId = (typeof (opPageId) == "string" ? opPageId : "");
+
+//opExperiments object definitions, simple Trial Code and Counter Code examples
+opExperiments["billing and shipping"] = {
+	"method":"var",
+	"entity":opPageId,
+	"criteria":"store-confirm_reservation_address",
+	"condition":"equals",
+	"enabled": true,
+	"match":false,
+	"unique":"/trial/002/billingshipping.702/9/content.js",
+	"throttle":1000,
+	"gum":null,
+	"domain":null,
+	"expire":null,
+	"modules":["body"]
+};
+
+opExperiments["tell a friend"]={
+	"method":"var",
+	"entity":opDocLocation,
+	"criteria":"/tellafriend",
+	"condition":"contains",
+	"enabled": true,
+	"match":false,
+	"unique":"/trial/002/tellafriend.4e9/4/content.js",
+	"throttle":500,
+	"gum":"op639testpagegum",
+	"domain":optimost.SLD(),
+	"expire":2592000,
+	"modules":["body"]
+};
+
+opExperiments["SummaryPage"] = {
+	"method": "array",
+	"entity": opPageId,
+	"criteria": ["confirmation_pre","'''opPageId=="confirmation_pre"'''"],
+	"condition": "equals",
+	"enabled": true,
+	"match": false,
+	"unique": "/counter/002/-/6/event.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+	"modules": ["coutnerXYZ"]
+};
+</pre>
+So these simple examples do the following:
+#If the javascript variable '''opPageId=="store-confirm_reservation_address"''', make the trial code call to '''/trial/002/billingshipping.702/9/content.js'''
+#If the document.location includes '''/tellafriend''', make the trial code call to '''/trial/002/tellafriend.4e9/4/content.js'''
+#If the javascript variable '''opPageId=="confirmation_pre"''' OR '''opPageId=="'''opPageId=="confirmation_pre"'''"''', make the counter code call to '''/counter/002/-/6/event.js'''
+
+
+===A more complex example with the basic 12 properties===
+This is from a customer who wanted to run the MVT on a large number of pages based on page categories and then two other pages, all URL based.  This could probably have been done using a complex regular expression but the TC working on it originally was not that familiar with that art.  So they used the '''complex''' method to determine if we have a match.  In addition, they also needed to pass back attributes, so that was done within the complex function, provided we had a match, and passed into the optrial object.  The could also have made that attribute code its own function within the opExperiments object, but they chose to do it this way.
+<pre>
+opExperiments["Lead Form"] = {
+	"method": "complex",
+	"entity": null,
+	"criteria": function(){
+		var domainList="//www.";
+		var familyList=["/family/", "/service/"];		
+		var includeList=["/enterprise/portfolio/cloud/","/enterprise/portfolio/network-security/"];		
+		var found=false;
+		for(var j=0,len2=familyList.length;j<len2;j++){
+			if((opDocLocation.indexOf(domainList)!=-1)&&(opDocLocation.indexOf(familyList[j])!=-1))found=true;
+		}
+		for(var j=0,len2=includeList.length;j<len2;j++){
+			if((opDocLocation.indexOf(domainList)!=-1)&&(opDocLocation.indexOf(includeList[j])!=-1))found=true;
+		}
+		if(found){
+			var criteria=/business\.att\.com\/enterprise\/service\//;
+			var crReg='business.att.com/enterprise/service/';
+			var opDocLoc=document.location.toString().toLowerCase().split('?')[0];
+			var match=opDocLoc.match(criteria);
+			var sp=null;		
+			if(match!=null)sp=opDocLoc.substring(crReg.length+match.index,opDocLoc.length);
+			if(sp!=null){window.optrial.servicePage=sp}
+			else {window.optrial.servicePage='Not_Service'}
+		}
+		return found;    
+	},
+	"condition": null,
+	"match": false,
+	"unique": "/trial/1638/p/enterpriseleadform/5/content.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+	"modules": ["lead form module"]
+};
+
+</pre>
+===Complex examples with extra attributes and functions set===
+Here are some other more complex examples. I left out the javascript definitions above the objects in these examples
+====Hide and unhide test area, pass attributes in via optrial object====
+You can go here for a full explanation, [[Options_-_Global_Code_on_Customer_pages#Example_.231_-_hiding_content_and_passing_attributes]]
+<pre>
+//opExperiments object definitions, more complex examples
+opExperiments["ProductPage"] = {
+	"method": "var",
+	"entity": (typeof CI_PageType!="undefined")?CI_PageType:"",
+	"criteria": "PRODUCT",
+	"condition": "equals",
+	"enabled": true,
+	"match": false,
+	"unique": "/trial/1579/p/productpages.11e/2/content.js",
+	"throttle": 300,
+	"gum": "op1579productpagesgum",
+	"domain": optimost.SLD(),
+	"expire": 2592000,
+	"modules": ["body", "__unhideTestArea_ProductPage__"],
+	"attribute1":function(){optrial.op_vis = "new";if(optimost.C["opGlobalTest"]){optrial.op_vis = "repeat";}},
+	"attribute2":function(){if(optimost.C["jaime"])optrial.jaime = optimost.C["jaime"];},
+	"value1":null,
+	"testAreaCssSpec": "#firstpage",
+	"hideTestArea":
+		function() {
+			if(this.testAreaCssSpec){
+				optimost.createStyle(this.testAreaCssSpec+"{visibility:hidden}");
+				optimost.testAreaCssSpec = this.testAreaCssSpec;
+				optimost.addModule("__unhideTestArea_ProductPage__",
+				function(){
+					optimost.createStyle(optimost.testAreaCssSpec+"{visibility:visible}");
+				});
+			}
+		}	
+};
+</pre>
+
+
+====Hide and unhide test area, and defer execution of Trial Code until determination of existence of element in DOM====
+You can go here for a full explanation, [[Options_-_Global_Code_on_Customer_pages#TRIAL_CODE_CALL_AT_BOTTOM_OF_PAGE]]
+<pre>
+opExperiments["bsd - preferred icon AB"] = {
+	"method": "array",
+	"entity": opPageId,
+	"criteria": ["sku page","search"],
+	"condition": "equals",
+	"match": false,
+	"enabled":true,
+	"unique": "",
+	"url": "/trial/1587/p/preferrediconab/15/content.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+        "moduleExecution":function(){
+		var hideStyle="#skuTop .sku_icons, .products .sku_icons{visibility:hidden;}";
+		var showStyle="#skuTop .sku_icons, .products .sku_icons{visibility:visible !important;}";
+		var myName="bsd - preferred icon AB";
+                optimost.createStyle(hideStyle);
+                optimost.addModule("bsd_bottom",function(opExp,id){return function(){
+		        var run=false;
+			if(opPageId == "sku page"){
+				var d_sku = document.getElementById("skuTop");
+				var ar_li = (d_sku) ? d_sku.getElementsByTagName("li") : [];
+				for(var i=0; i<ar_li.length; ++i){
+					if(ar_li[i].id == "icon.preferred"){
+						run=true;
+						break;
+					}
+				}
+			}
+			else{
+				//for the search pages
+				var d_prodView = document.getElementById("productView");
+				var ar_ul = (d_prodView) ? d_prodView.getElementsByTagName("ul") : [];
+				for(var i=0; i<ar_ul.length; ++i){
+					if(ar_ul[i].className == "sku_icons" && ar_ul[i].innerHTML.indexOf("/icons/preferred.gif") > -1){
+						run=true;
+						break;
+					}
+				}
+			}
+                        if(run==true){
+                                 (function(){
+					var a=optimost;a.U=opPro+opExp.url,a.ST="script",a.SA={type:"text/javascript"},a.B();
+					if(opExp.throttle<1e3){
+						isIn=a.TH(opExp.throttle,opExp.gum,opExp.domain,opExp.expire);
+						if(isIn){
+							for(var b in opExp)typeof opExp[b]=="function"&&opExp[b]();
+							a.TX();
+						}
+					}
+					else a.R(opExp.throttle,opExp.gum,opExp.domain,opExp.expire)
+				})()
+                        }else {
+                                optimost.createStyle(showStyle);
+                        }
+                }}(opExperiments[myName], myName));
+        },
+	"modules": ["bsd_bottom"]
+};
+</pre>
+
+====Counter a counter that gets attributes and does a "previous action" check====
+This is for collecting value attributes - say total revenue - and now wanting the value to be incremented if the visitor hits "refresh".
+You can go here for a full explanation, [[Optimost_Tracking#Counter_WITH_previous_action_check]]
+<pre>
+opExperiments["Thank You - pandawill"] = {
+    "method": "complex",
+    "entity": null,
+    "criteria": function() {
+        var pn=(typeof(pagename)=="string"?pagename:"");
+	if(pn=="thankyou"){
+	    var b4=optimost.C["opTYB4"];
+            if(b4==null){
+                var myVal=(typeof(orderId)!="undefined"?orderId:"999999999999");
+                optimost.SC("opTYB4",myVal,null,optimost.SLD());
+                return true
+            }
+	    else {
+                var myVal=(typeof(orderId)!="undefined"?orderId:"0");
+                if(myVal==b4)return false;
+                else return true;
+            }
+        }
+        else return false;
+    },
+    "condition": "equals",     
+    "match": false,
+    "unique": "/counter/1643/-/1/event.js",
+    "throttle": 1000,
+    "gum": null,
+    "domain": null,
+    "expire": null,
+    "getAttributes":function(){
+        window.optrial=(typeof(window.optrial)=="object"?window.optrial:{});
+        if(typeof(orderSize)!="undefined")window.optrial.orderSize=orderSize;
+        if(typeof(orderId)!="undefined")window.optrial.orderId=orderId;
+        if(typeof(paymentMethod)!="undefined")window.optrial.paymentMethod=paymentMethod;
+    },
+    "modules": ["counterx"]
+};
+</pre>

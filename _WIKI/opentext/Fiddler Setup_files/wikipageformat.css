@@ -1,0 +1,82 @@
+h1 {
+  font-family: Arial, Verdana, Sans-Serif;
+  font-weight: bold;
+	font-size: 20px;
+	color: #58595b;
+}
+h2 {
+  font-family: Arial, Verdana, Sans-Serif;
+  font-weight: bold;
+	font-size: 18px;
+	color: #58595b;
+}
+
+h3 {
+  font-family: Arial, Verdana, Sans-Serif;
+  font-weight: bold;
+	font-size: 16px;
+	color: #58595b;
+}
+
+h4 {
+  font-family: Arial, Verdana, Sans-Serif;
+  font-weight: bold;
+	font-size: 14px;
+	color: #58595b;
+}
+
+h5 {
+  font-family: Arial, Verdana, Sans-Serif;
+  font-weight: bold;
+	font-size: 12px;
+	color: #58595b;
+}
+
+
+p, dt {
+	margin: 0 0 0.5em 0;
+}
+
+ol {
+	margin-top: 0.5em;
+	padding-top: 0;
+	margin-left: 0;
+	padding-left: 2em;
+}
+
+dl {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	margin-top: .5em;
+	padding-top: 0;
+	margin-left: 0;
+	padding-left: 1.5em;
+}
+
+li {
+	margin-top: .5em;
+	padding-top: 0;
+}
+
+code, .literal, .code, .filename, .screen, .programlisting {
+	font-family : "Courier New", Courier, monospace;
+	font-size: 115%;
+}
+
+.programlisting {
+	font-family : "Courier New", Courier, monospace;
+        font-color: #58595b;;
+}
+
+
+.guilabel  {
+	font-family : Arial, Verdana, Sans-Serif;
+	font-weight: bold;
+	font-size : 12px;
+}
+
+
+.specialnote { margin-top: 1.5em; margin-bottom: 1.5em }

@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Binary Counter method,How to add Level 2 events,Tracking and Attributes">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Binary Counter method - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Binary%20Counter%20method%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Binary_Counter_method";
+var wgTitle = "Binary Counter method";
+var wgAction = "view";
+var wgArticleId = "75";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6389";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Binary%20Counter%20method%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Binary%20Counter%20method%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Binary%20Counter%20method%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Binary%20Counter%20method%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Binary_Counter_method">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Binary Counter method</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub">(Redirected from <a href="http://wiki.interwoven.com/opwiki/index.php?title=New_Binary_Counter_method&amp;redirect=no" title="New Binary Counter method">New Binary Counter method</a>)</div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#When_to_use_Binary_counters"><span class="tocnumber">1</span> <span class="toctext">When to use Binary counters</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Triggering_the_Binary_image_counter"><span class="tocnumber">1.1</span> <span class="toctext">Triggering the Binary image counter</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Turning_the_code_above_into_something_useful"><span class="tocnumber">1.1.1</span> <span class="toctext">Turning the code above into something useful</span></a></li>
+<li class="toclevel-3"><a href="#Another_way_of_adding_a_counter_-_adding_a_JS_event_to_the_DOM"><span class="tocnumber">1.1.2</span> <span class="toctext">Another way of adding a counter - adding a JS event to the DOM</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Adding_Binary_Counters_as_Events"><span class="tocnumber">1.2</span> <span class="toctext">Adding Binary Counters as Events</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Level_2_vs_Level_0_issues:_Passing_Parameters_into_function_and_Bubbling_of_events"><span class="tocnumber">1.2.1</span> <span class="toctext">Level 2 vs Level 0 issues: Passing Parameters into function and Bubbling of events</span></a></li>
+<li class="toclevel-3"><a href="#Function_definition"><span class="tocnumber">1.2.2</span> <span class="toctext">Function definition</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Code_for_Level-2_Binary_Counter_tracking"><span class="tocnumber">1.3</span> <span class="toctext">Code for Level-2 Binary Counter tracking</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Code_in_the_Setup_block"><span class="tocnumber">1.3.1</span> <span class="toctext">Code in the Setup block</span></a></li>
+<li class="toclevel-3"><a href="#In_the_Module_of_interest_-_how_to_define_the_event_for_a_node"><span class="tocnumber">1.3.2</span> <span class="toctext">In the Module of interest - how to define the event for a node</span></a>
+<ul>
+<li class="toclevel-4"><a href="#Using_new_Function"><span class="tocnumber">1.3.2.1</span> <span class="toctext">Using new Function</span></a></li>
+<li class="toclevel-4"><a href="#BETTER_way_of_adding_event.27s_function_-_not_using_new_Function"><span class="tocnumber">1.3.2.2</span> <span class="toctext">BETTER way of adding event's function - not using new Function</span></a></li>
+<li class="toclevel-4"><a href="#creating_a_function_for_when_you_need_to_preserve_loop_values"><span class="tocnumber">1.3.2.3</span> <span class="toctext">creating a function for when you need to preserve loop values</span></a></li>
+<li class="toclevel-4"><a href="#Best_Solution_-_using_anonymous_functions_to_pass_in_values_in_their_own_scope"><span class="tocnumber">1.3.2.4</span> <span class="toctext">Best Solution - using anonymous functions to pass in values in their own scope</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3"><a href="#Code_in_the_Module_-_Two_recommended_solutions"><span class="tocnumber">1.3.3</span> <span class="toctext">Code in the Module - Two recommended solutions</span></a></li>
+<li class="toclevel-3"><a href="#AND_DON.27T_FORGET"><span class="tocnumber">1.3.4</span> <span class="toctext">AND DON'T FORGET</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="When_to_use_Binary_counters"></a><h1> <span class="mw-headline">When to use Binary counters</span></h1>
+<p>Optimost uses two types of counter, <b>javascript counters</b> and <b>binary image counters</b>.
+ Javascript counters are javascript code placed on pages in a customer 
+funnel to track activity as visitors travel through the customer's 
+funnel.  They usually pick up the Activity Tracking cookie that was 
+dropped by Optimost on the test page, and send it back to the Optimost 
+Server to indicate that visitor also made it to the page containing the 
+counter.
+</p><p>Binary image counters have a bit more versatility.  They are used in the following scenarios:
+</p>
+<ol><li>In the customer funnel like a javascript counter, but when the 
+customer does not allow third party code with javascript in their 
+funnel, so we are forced to use third-party Activity Tracking and use 
+binary image counters on the funnel pages.
+</li><li>We are testing events on pages that are not redirects - say 
+someone clicking to display a hidden DIV or clicking to see some section
+ of a flash movie - we must use counters to track them, normally binary 
+image counters.  
+</li><li>We are tracking a redirect, but do not want to use a clickthru (which uses a 302 redirect) for tracking.
+</li></ol>
+<p>This Wiki entry will give you an overview of what goes into Binary 
+Counter, and then provide some code that can be used to cut and paste 
+into a template if you want to use them for scenarios #2 and #3.. 
+</p>
+<a name="Triggering_the_Binary_image_counter"></a><h2> <span class="mw-headline">Triggering the Binary image counter</span></h2>
+<p>Here is the Optimost syntax for triggering a binary image counter (with the session identifier passed for activity tracking) is:
+</p>
+<pre>&lt;script&gt;
+var img= new Image();
+var aN="action";
+var aV="PageLoad"
+img.src = "http://by.optimost.com/counter/0/-/0/event.gif?op000TestTestliid=" + escape("{{$creative.sessionId}}")+"&amp;"+aN+"="+aV;
+&lt;/script&gt;
+</pre>
+<p>This <b>img.src</b> value consists of:
+</p>
+<ol><li>The counter URL - <a href="http://by.optimost.com/counter/0/-/0/event.gif" class="external free" title="http://by.optimost.com/counter/0/-/0/event.gif" rel="nofollow">http://by.optimost.com/counter/0/-/0/event.gif</a> - which points to a counter created in the Optimost Agency console
+</li><li>The Activity Tracking identifier name - op000TestTestliid in 
+this example - which is associated with a subject in the Agency console.
+  When you add a subject to the counter, it will appear in the image 
+URL.
+</li><li>The session identifier - <b>{{$creative.sessionId}}</b> in this
+ example - which is an alphanumeric string associated with a page view. 
+ Its the value that goes with the Activity Tracking identifier.
+</li><li>You may also add attrributes, here I passed <b>"action"</b> as a name and <b>"PageLoad"</b> as its value.  More on that later.
+</li></ol>
+<p>This will result in a call to the Optimost servers, which returns a 1
+ x 1 pixel as the image.  Since this is a javascript call, that pixel is
+ iploaded but not displayed on the page.
+</p>
+<a name="Turning_the_code_above_into_something_useful"></a><h3> <span class="mw-headline">Turning the code above into something useful</span></h3>
+<p>There are 2 major issues with the code above:
+</p>
+<ol><li>If the Binary Image counter needs to be triggered on visitor 
+"event" other than page load - say clicking on a link - the counter will
+ need to be invoked by making a function call.  If you put that code 
+inside a function, when the function is done executing, the contents 
+will be garbage collected by the browser and removed, and there is a 
+chance the image has not made a call to the <b>src</b> URL yet before it is removed.
+</li><li>If you make multiple counts/calls to the same image, unless the
+ URL changes, it may be cached and thus all extra calls may not go to 
+the Optimost Servers as the content it pulled from cache.
+</li></ol>
+<p>Here is the code as a function with these issues accounted for.
+</p>
+<pre>&lt;script&gt;
+var imgArray=[];
+function setOffEvent(){
+	var img= new Image();
+	var rn=Math.floor(Math.random()*100000);
+	img.src = "http://by.optimost.com/counter/0/-/0/event.gif?op000TestTestliid=" + escape("{{$creative.sessionId}}")+"&amp;rn="+rn;
+	imgArray.push(img);
+}
+&lt;/script&gt;
+&lt;button onclick="setOffEvent();"&gt;Trigger Image counter via javascript&lt;/button&gt;
+</pre>
+<p>Now the function allows us to defer its execution
+</p>
+<a name="Another_way_of_adding_a_counter_-_adding_a_JS_event_to_the_DOM"></a><h3> <span class="mw-headline">Another way of adding a counter - adding a JS event to the DOM</span></h3>
+<p>Here, by adding it to the DOM, issue #1 goes away since there is 
+nothing to garbage collect.  And in this case, it's a JS call counter - 
+the normal way we do it except it's not automatically pulling parameters
+ as our counters do.  And here we don't do it as an inline script tag 
+using <b>document.write</b>, instead we add it to the DOM
+</p>
+<pre>&lt;script&gt;
+function setOffEvent(obj){
+	var rn=Math.floor(Math.random()*100000);
+	counterURL="http://by.optimost.com/counter/0/-/0/event.js?op000TestTestliid={{$creative.sessionId}}"+"&amp;rn="+rn;
+	var script = document.createElement('script');
+
+	script.setAttribute('src',counterURL);
+	script.setAttribute('type', 'text/JavaScript');
+	document.documentElement.firstChild.appendChild(script);
+}
+&lt;/script&gt;
+&lt;button onclick="setOffEvent();"&gt;Add counter to DOM, new spin on binary counter&lt;/button&gt;
+</pre>
+<p>The image method is preferable, but if you have to do it this way, here's how.
+<br><br>
+</p>
+<a name="Adding_Binary_Counters_as_Events"></a><h2> <span class="mw-headline">Adding Binary Counters as Events</span></h2>
+<p>As shown in the button example, we can add binary counters as events -
+ we want the counter to be triggered as the visitor performs some 
+action/event, such as clicking on a button.  There are two ways to 
+attach that event, and lets look over how to do it each way.
+</p>
+<a name="Level_2_vs_Level_0_issues:_Passing_Parameters_into_function_and_Bubbling_of_events"></a><h3> <span class="mw-headline">Level 2 vs Level 0 issues: Passing Parameters into function and Bubbling of events</span></h3>
+<p>For level 2, there are some differences in how you will have to 
+define the function that is called by the event, and also have to 
+consider the difference between a Level 0 and Level 2 "event".
+</p>
+<a name="Function_definition"></a><h3> <span class="mw-headline">Function definition</span></h3>
+<p>When you do a Level 0 event, you pass the parameters in directly through the event, such as:
+</p>
+<pre>&lt;a id="testAnchor" href="demo.html" onclick="doMyOnclick(this, myValue,"span",true);"&gt;Look at Demo&lt;/a&gt;
+</pre>
+<p>or if I add it to the anchor via jsvascript:
+</p>
+<pre>&lt;a id="testAnchor" href="demo.html"&gt;Look at Demo&lt;/a&gt;
+&lt;script&gt;
+obj=document.getElementById("testAnchor");
+if(obj){
+	if(typeof(obj.onclick)!="function") obj.onclick=new Function('doMyOnclick(this, myValue,"span",true);return false;');
+	else{
+		temp=obj.onclick.toString();
+		temp=temp.substring(temp.indexOf("{") + 1, temp.lastIndexOf("}"));
+		obj.onclick=new Function('doMyOnclick(this, myValue,"span",true);return false;'+temp);
+	}
+}
+&lt;/script&gt;
+</pre>
+<p>For a level 2, you pass the "function" in a similar manner, but do 
+not have to worry about previous existing events.  So for a level 2 
+event, you would say:
+</p>
+<pre>&lt;a id="testAnchor" href="demo.html"&gt;Look at Demo&lt;/a&gt;
+&lt;script&gt;
+obj=document.getElementById("testAnchor");
+myValue=100;
+if(obj){
+	$opt.addEvent(obj,"click",new Function('doMyOnclick(myValue,"span",true);'),false);
+}
+&lt;/script&gt;
+</pre>
+<p>For Level 2 functions, "this" does not exist in the traditional sense, please look at <a href="http://wiki.interwoven.com/optimost/How_to_add_Level_2_events" title="How to add Level 2 events">How to add Level 2 events</a> for more information.
+</p><p>And, as a reminder, the addEvent function looks like this:
+</p>
+<pre>&lt;script&gt;
+$opt={};
+$opt.addEvent=function(el,evt,func,bubble){
+	if(!el || typeof(func)&nbsp;!="function"){return false;}
+	bubble = bubble || false;
+	var evtType=(window.attachEvent)?"attach":(window.addEventListener)? "add":"none";
+	if(evtType == "attach"){el.attachEvent("on"+evt,func);}
+	else if(evtType == "add"){el.addEventListener(evt,func,bubble);}
+}	
+&lt;/script&gt;
+</pre>
+<a name="Code_for_Level-2_Binary_Counter_tracking"></a><h2> <span class="mw-headline"><span style="color:red;">Code for Level-2 Binary Counter tracking</span></span></h2>
+<p>I want these events added as Level-2 events, and have added tracking 
+code and comments on creating that code.  This section contains code and
+ some explanations of issues you will encounter when creating calls to 
+the events.  The code sections will have <span style="color:#FF8888;font-weight:bold;">red</span> headings.
+</p>
+<a name="Code_in_the_Setup_block"></a><h3> <span class="mw-headline"><span style="color:#FF8888;">Code in the Setup block</span></span></h3>
+<p>Place this in the Setup block.  If $opt exists, no need to create that object.
+</p>
+<pre>&lt;script&gt;
+$opt={};
+$opt.addEvent=function(el,evt,func,bubble){
+	if(!el || typeof(func)&nbsp;!="function"){return false;}
+	bubble = bubble || false;
+	var evtType=(window.attachEvent)?"attach":(window.addEventListener)? "add":"none";
+	if(evtType == "attach"){el.attachEvent("on"+evt,func);}
+	else if(evtType == "add"){el.addEventListener(evt,func,bubble);}
+}
+$opt.imgArray=[];
+$opt.triggerCounter=function (aN,aV){
+	var img= new Image();
+	var rn=Math.floor(Math.random()*100000);
+	img.src = "http://by.optimost.com/counter/0/-/0/event.gif?op000TestTestliid=" 
+	+ escape("{{$creative.sessionId}}")+"&amp;"+aN+"="+aV+"&amp;rn="+rn;
+	$opt.imgArray.push(img);
+}	
+&lt;/script&gt;
+</pre>
+<a name="In_the_Module_of_interest_-_how_to_define_the_event_for_a_node"></a><h3> <span class="mw-headline">In the Module of interest - how to define the event for a node</span></h3>
+<p>Here is how you would add the event to the nodes, as you find them. 
+Here we will go over some issue having to do with closure and the 
+different ways to define that function.  You will see the recommended 
+solutions at the bottom of the section.
+</p>
+<a name="Using_new_Function"></a><h4> <span class="mw-headline">Using new Function</span></h4>
+<p>As I said in #3, this is a simple example, link found by its <b>"id"</b>.
+  Your process of finding each link may be a bit more involved - it 
+likely won't have an id - but this example should be enough to give you 
+the idea of how it works.
+</p>
+<pre>&lt;a id="testAnchor" href="demo.html"&gt;Look at Demo&lt;/a&gt;
+&lt;script&gt;
+obj=document.getElementById("testAnchor");
+myValue=100;
+if(obj){
+	$opt.addEvent(obj,"click",new Function('$opt.triggerCounter("link","Demo");'),false);
+}
+&lt;/script&gt;
+</pre>
+<a name="BETTER_way_of_adding_event.27s_function_-_not_using_new_Function"></a><h4> <span class="mw-headline">BETTER way of adding event's function - not using new Function</span></h4>
+<p>The 3rd parameter passed into the <b>$opt.addEvent</b> function is the function to be called on the event.  Using <b>new Function</b>
+ to create that function is NOT recommended because because it is 
+heavier, takes more overhead to create.  And for static functions where 
+the parameters don't change as the page runs, we can change this easily.
+  So our example could more efficiently have been written:
+</p>
+<pre>obj=document.getElementById("testAnchor");
+myValue=100;
+if(obj){
+	$opt.addEvent(obj,"click",function(){$opt.triggerCounter("link","Demo")},false);
+}
+</pre>
+<p>So for this simple example, use this.
+</p>
+<a name="creating_a_function_for_when_you_need_to_preserve_loop_values"></a><h4> <span class="mw-headline">creating a function for when you need to preserve loop values</span></h4>
+<p>Now lets say we are running a loop to find a bunch of anchors and are
+ pulling some attribute out of each element that will be unique.   Let's
+ do a simple example where the index is passed in.  For example:
+</p>
+<pre>var as=document.getElementsByTagName("a");
+for(var i=0,len=as.length;i&lt;len;i++){
+	$opt.addEvent(obj,"click",function(){$opt.triggerCounter("link",i)},false);
+}
+</pre>
+<p>This will not work, since <b>"i"</b> is passed in as a variable, and when the click event actually happens, <b>"i"</b>
+ will not have the value we intended to pass in,it will have the last 
+value assigned.  So our first thought is, ok, this is where you would 
+use <b>new Function</b>, as in:
+</p>
+<pre>var as=document.getElementsByTagName("a");
+for(var i=0,len=as.length;i&lt;len;i++){
+	$opt.addEvent(obj,"click",new Function('$opt.triggerCounter("link","'+i+'");',false);
+}
+</pre>
+<p>and this will work, but uses new Function.  Is there a way around this.
+</p>
+<a name="Best_Solution_-_using_anonymous_functions_to_pass_in_values_in_their_own_scope"></a><h4> <span class="mw-headline">Best Solution - using anonymous functions to pass in values in their own scope</span></h4>
+<p>What you want is for something to "lock" in the value as you go 
+through the loop, and so you use an anonymous function to do this, so 
+you have a function inside the function, and that inside function is 
+defined when it is created, and the loop values are passed in and made 
+static when the function is created.
+</p>
+<pre>var as=document.getElementsByTagName("a");
+for(var i=0,len=as.length;i&lt;len;i++){
+	$opt.addEvent(obj,"click",function (a,b){return function () {$opt.triggerCounter(a,b)}}("link",i),false);
+}
+</pre>
+<p>Here "link" and the variable i are passed in, but each function in the lop has its own scope and keeps the correct value.
+</p>
+<a name="Code_in_the_Module_-_Two_recommended_solutions"></a><h3> <span class="mw-headline"><span style="color:#FF8888;">Code in the Module - Two recommended solutions</span></span></h3>
+<p>If you don't have any loops to worry about, use this:
+</p>
+<pre>obj=document.getElementById("testAnchor");
+myValue=100;
+if(obj){
+	$opt.addEvent(obj,"click",function(){$opt.triggerCounter("link","Demo")},false);
+}
+</pre>
+<p>If you do have a loop to contend with, then do this:
+</p>
+<pre>var as=document.getElementsByTagName("a");
+for(var i=0,len=as.length;i&lt;len;i++){
+	$opt.addEvent(obj,"click",function (a,b){return function () {$opt.triggerCounter(a,b)}}("link",i),false);
+}
+</pre>
+<p><br>
+</p>
+<a name="AND_DON.27T_FORGET"></a><h3> <span class="mw-headline">AND DON'T FORGET</span></h3>
+<p>Keep a few things in mind:
+</p>
+<ol><li>The image URL value used - what I show as <b><a href="http://by.optimost.com/counter/0/-/0/event.gif" class="external free" title="http://by.optimost.com/counter/0/-/0/event.gif" rel="nofollow">http://by.optimost.com/counter/0/-/0/event.gif</a></b>
+ - will be determined by the Optimost Agency Console when you create the
+ binary image counter in the Account's Setup area.  Use that value.
+</li><li>Also, remember the image needs to be secure on a secure page, the difference being <b>by.optimost.com</b> becomes <b>by.essl.optimost.com/by</b> on a secure page.
+</li><li>You can pass attributes in - say you are using one binary image
+ counter to track 4 buttons.  You will need to pass in name-value pairs 
+to the function, like say <b>link=readme</b> or <b>link=callToAction</b>, etc.
+</li><li>If you are passing attributes, also remember to add them as 
+attributes to the counter, either when you create it or shortly 
+thereafter.  In the Account of interest, when you go to the "Account 
+Setup" section, select "Shared Counters" and access the counter of 
+interest.  Under "Set counter attributes", you need to add the "Name" 
+and "Query string argument" - both the name - and the values will 
+populate themselves.
+</li><li>Make sure you add this counter to the subject of interest, or 
+it will not track. When you access the counter of interest, click on 
+"Change subjects" and select the appropriate ones.
+</li><li>For the code in the "Module of Interest", you will have to find
+ the element or elements you want to track through whatever means.  The 
+example below is just a simple link found based on its <b>"id"</b>.
+</li><li>Make sure you verify it works by testing it.  You can use 
+LiveHTTPheaders in Firefox, or IEliveHTTPheaders for IE. Look at the 
+traffic and verify the activity tracking name value pair and any 
+attributes are correct.
+</li><li><b>AND</b> create a report for the Staging wave to verify they are getting to our servers succesfully. 
+</li></ol>
+<p>Back to <a href="http://wiki.interwoven.com/optimost/Tracking_and_Attributes" title="Tracking and Attributes">Tracking and Attributes</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 68/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:75-0!1!0!!en!2!edit=0 and timestamp 20130816144310 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Binary_Counter_method">http://wiki.interwoven.com/optimost/Binary_Counter_method</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://wiki.interwoven.com/optimost/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Category:Tracking_and_Attributes&amp;action=edit&amp;redlink=1" class="new" title="Category:Tracking and Attributes (not yet written)">Tracking and Attributes</a></span></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Binary_Counter_method" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Binary_Counter_method&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Binary_Counter_method&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Binary_Counter_method&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Binary_Counter_method" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Binary_Counter_method" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Binary_Counter_method" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Binary_Counter_method&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Binary_Counter_method&amp;oldid=6389" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Binary%20Counter%20method%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 1 June 2012, at 18:41.</li>
+				<li id="viewcount">This page has been accessed 221 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.260 secs. -->
+</body></html>

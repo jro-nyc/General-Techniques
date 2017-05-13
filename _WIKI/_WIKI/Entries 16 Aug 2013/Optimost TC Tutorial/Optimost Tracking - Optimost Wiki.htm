@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Optimost Tracking,Binary Counter method,CORS - a &quot;higher security&quot; approach to MVT,Clickthrus - What they are from a Template perspective,Counter code parsed,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Optimost Tracking - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Optimost%20Tracking%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Optimost_Tracking";
+var wgTitle = "Optimost Tracking";
+var wgAction = "view";
+var wgArticleId = "980";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6930";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Optimost%20Tracking%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Optimost%20Tracking%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Optimost%20Tracking%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Optimost%20Tracking%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Optimost_Tracking">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Optimost Tracking</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<strong class="selflink">Optimost Tracking</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>Here is a list of things that you may need to know concerning tracking.  
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#What_is_a_page_view.3F"><span class="tocnumber">1</span> <span class="toctext">What is a page view?</span></a></li>
+<li class="toclevel-1"><a href="#What_is_an_action.3F"><span class="tocnumber">2</span> <span class="toctext">What is an action?</span></a></li>
+<li class="toclevel-1"><a href="#What_are_counters_for_and_where_do_I_put_them.3F"><span class="tocnumber">3</span> <span class="toctext">What are counters for and where do I put them?</span></a></li>
+<li class="toclevel-1"><a href="#What_is_a_clickthru.3F"><span class="tocnumber">4</span> <span class="toctext">What is a clickthru?</span></a></li>
+<li class="toclevel-1"><a href="#What_is_the_difference_between_views_and_visitors.3F"><span class="tocnumber">5</span> <span class="toctext">What is the difference between views and visitors?</span></a></li>
+<li class="toclevel-1"><a href="#Counters_-_duplicate_actions_with_values"><span class="tocnumber">6</span> <span class="toctext">Counters - duplicate actions with values</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Potential_Scenarios_we_can_encounter"><span class="tocnumber">6.1</span> <span class="toctext">Potential Scenarios we can encounter</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Passing_attributes.2Fvalues_to_counters_and_checking_for_a_previous_action"><span class="tocnumber">7</span> <span class="toctext">Passing attributes/values to counters and checking for a previous action</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Creating_opExperiments_counter_and_the_position_of_the_attributes.2Fvalues"><span class="tocnumber">7.1</span> <span class="toctext">Creating opExperiments counter and the position of the attributes/values</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Counter_with_NO_previous_action_check_-_attributes.2Fvalues_set_ABOVE_Global_Code"><span class="tocnumber">7.1.1</span> <span class="toctext">Counter with NO previous action check - attributes/values set ABOVE Global Code</span></a></li>
+<li class="toclevel-3"><a href="#Counter_WITH_previous_action_check_-_attributes.2Fvalues_set_ABOVE_Global_Code"><span class="tocnumber">7.1.2</span> <span class="toctext">Counter WITH previous action check - attributes/values set ABOVE Global Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Attributes.2Fvalues_set_in_body_of_page"><span class="tocnumber">7.2</span> <span class="toctext">Attributes/values set in body of page</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Counter_WITH_previous_action_check_-_attributes.2Fvalues_set_BELOW_Global_Code"><span class="tocnumber">7.2.1</span> <span class="toctext">Counter WITH previous action check - attributes/values set BELOW Global Code</span></a></li>
+<li class="toclevel-3"><a href="#Using_window.name_instead_of_dropping_a_cookie"><span class="tocnumber">7.2.2</span> <span class="toctext">Using window.name instead of dropping a cookie</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="What_is_a_page_view.3F"></a><h2> <span class="mw-headline">What is a page view?</span></h2>
+<p>A page view is a single call to the Optimost servers.  For a <b>Standard Implementation</b>, it is a Trial Code call, a call to <b>content.js</b> from a visitor browser.  It is the "starting point" for Optimost since it signal a visitor has entered an experiments.
+</p>
+<a name="What_is_an_action.3F"></a><h2> <span class="mw-headline">What is an action?</span></h2>
+<p>If a page view is the "starting point" for our experiments, an <b>action</b> is a measurable event in a visitor interaction with the customer's website.  This can include:
+</p>
+<ol><li>Progression down the customer's funnel, as a counter signals that the visitor has landed on a specific customer page.
+</li><li>Some <b>event</b> on the experiment page, clicking on a link, posting a form, opening a hidden content area on the page.
+</li></ol>
+<p>Actions are measure using Counters, which begs the question:
+</p>
+<a name="What_are_counters_for_and_where_do_I_put_them.3F"></a><h2> <span class="mw-headline">What are counters for and where do I put them?</span></h2>
+<p>Counters allow Optimost to measure the events above by making calls 
+to our servers - much like the Trial Code call for the experiment page. 
+ For tracking purposes, there are 2 types of actions:
+</p>
+<ol><li>For progression down a visitors funnel, the customer places <b>javascript counter code</b>
+ on the downstream pages, and that counter can be thought of as a 
+stripped-down Page Code and Trial Code combination.  The Counter code 
+automatically constructs the script call src URL - the unique Optimost 
+address corresponding to this specific counter PLUS query string 
+parameters - and if the visitor went to a test page and then came to 
+this downstream page,  will include the name-value pair for the activity
+ tracking cookie.  When this reaches our servers, we count it as an <b>action</b>.
+</li><li>For events on the experiment page itself, we use <b>binary image counters</b> to track them, which means we create a binary image and add the src URL <b>manually</b><sup><b>1</b></sup> for that counter.  
+</li></ol>
+<hr>
+<p><sup><b>1</b></sup>Unlike a js counter, which has code to read the 
+activity tracking cookie from upstream pages and construct the URL, a 
+binary counter is created in the template and has access to the activity
+ tracking value, so the name-value pair must be added explicitly to the 
+URL by the TC.
+</p>
+<hr>
+<p><br>For more information on binary counters, see:<br>
+</p>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Binary_Counter_method" title="Binary Counter method">Binary Counter method</a>
+</li></ul>
+<p>For more information on javascript counters, see:<br>
+</p>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Counter_code_parsed" title="Counter code parsed">Counter code parsed</a>
+</li></ul>
+<a name="What_is_a_clickthru.3F"></a><h2> <span class="mw-headline">What is a clickthru?</span></h2>
+<p>Another way of tracking events is using <b>clickthrus</b>, which allow us to track visitor redirections or form submissions. For more information on clickthrus, see:<br>
+</p>
+<ul><li><a href="http://wiki.interwoven.com/optimost/Clickthrus_-_What_they_are_from_a_Template_perspective" title="Clickthrus - What they are from a Template perspective">Clickthrus - What they are from a Template perspective</a><br>
+</li></ul>
+<a name="What_is_the_difference_between_views_and_visitors.3F"></a><h2> <span class="mw-headline">What is the difference between views and visitors?</span></h2>
+<p>When a visitor comes to a page with Optimost code on it, the Optimost
+ code drops a cookie - usually in the first-party domain - that contains
+ a value called the <b>session identifier</b>. Embedded within that value is the <b>visitor id</b>.
+   When a visitor returns to a page, that cookie value is sent back to 
+the Optimost servers, and if it is a return visitor, then it will be 
+considered a second view but a repeat visitor.  So refreshing the page 
+16 times will show up as 16 views and 1 visitor<sup><b>2</b></sup>.<br><br>
+<sup><b>2</b></sup>Note that if a visitor comes back in different 
+browsers or different computers, Optimost cannot identify that the 
+visitor is repeat visitor since cookies are browser and computer 
+specific.
+</p>
+<a name="Counters_-_duplicate_actions_with_values"></a><h2> <span class="mw-headline">Counters - duplicate actions with values</span></h2>
+<p>For our javascript counters, they are triggered whenever the page on 
+which they reside loads.  This means that if a page with a counter is 
+refreshed, that counter will fire on each refresh. For most pages, this 
+is not an issue since we associate one UNIQUE ACTION in the reporting 
+for those multiple counter hits.
+<br>
+However, if the counter is also tracking revenue, there is a potential issue.  Revenue will be passed as a <b>values</b>
+ attribute in the counter setup, and values are added to compute a 
+result.   This means that as the page is refreshed, this will result an 
+issue with our total action value since it will be added more than once.
+</p>
+<a name="Potential_Scenarios_we_can_encounter"></a><h3> <span class="mw-headline">Potential Scenarios we can encounter</span></h3>
+<p>These pages are usually deep in the customer funnel and since they 
+are revenue pages, are somewhat sensitive to the customer (and 
+consumer).  Here are some page scenarios you have likely encountered:
+</p>
+<ol><li><b>Customer strictly controls the display of this page and does 
+not allow you to refresh the page, and if you do, you go to a different 
+error page</b> -  We don't need to implement the code on pages like this since duplicate actions cannot occur
+</li><li><b>Customer does not strictly control the page, but warns you not to refresh lest you be charged twice</b> - Not as common today as they were in the past, but we do have to be concerned on these pages.
+</li><li><b>Customer allows refreshes and does not effect the customer</b> - But does effect if we are counting revenue.  We need to be concerned on these pages.
+</li><li><b>Customer has mechanism that may result in page being triggered more than once on their end</b>
+ - the trickiest one since often the customer may not realize they are 
+doing it. As an example, we had a customer that did not realize they 
+were occasionally refiring the counter a second time after page load in 
+some instances.  They only realized it because in testing the page 
+suddenly went blank because of the post-page load <b>document.write</b>.  So when doing revenue tracking, keep that in mind.
+</li></ol>
+<a name="Passing_attributes.2Fvalues_to_counters_and_checking_for_a_previous_action"></a><h2> <span class="mw-headline">Passing attributes/values to counters and checking for a previous action</span></h2>
+<p>Below is code that accounts for this condition.  As I write this in 
+August of 2012, I will use a Global Code counter as an example since we 
+have very few customers using standard implementations, so the code for 
+the counter will be inside an <b>opExperiments</b> object<sup>3</sup>. Hte main example assumes the attributes/values are set in the <b>&lt;head&gt;</b> of the page above our Global Code, which is followed by an example when they are set in the <b>&lt;body&gt;</b>.
+</p>
+<hr>
+<p><sup>3</sup>Please reference <a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a> for more details on the <b>opExperiments</b> definition.
+</p>
+<a name="Creating_opExperiments_counter_and_the_position_of_the_attributes.2Fvalues"></a><h3> <span class="mw-headline">Creating opExperiments counter and the position of the attributes/values</span></h3>
+<p>This code example below is for a Thank You page where the customer 
+wants us to store order information for the action.  Here, the customer 
+has set the information as javascript variables, and they are set in the
+ &lt;head&gt; of the page, before/above our Global code.  Therefore this
+ attribute code does not have to execute/trigger in the module.  I will 
+show an example after this code that shows how to handle the scenario 
+where the attribute/values are available in the body of the page - after
+ the Global Code triggers.
+</p>
+<a name="Counter_with_NO_previous_action_check_-_attributes.2Fvalues_set_ABOVE_Global_Code"></a><h4> <span class="mw-headline">Counter with NO previous action check - attributes/values set ABOVE Global Code</span></h4>
+<p>First I show the original counter on the Thank You page.  This customer wants us to store the following:
+</p>
+<ol><li><b>Payment Method</b> as a regular attribute (named <b>paymentMethod</b> in the customer javascript)
+</li><li><b>Order Value</b>  as a value attribute (named <b>orderSize</b> in the customer javascript)
+</li><li><b>Order ID</b> as an identity atribute (named <b>orderId</b> in the customer javascript)
+</li></ol>
+<p>Here is the code.  
+</p>
+<pre>opExperiments["Thank You - pandawill"] = {
+    "method": "var",
+    "entity": (typeof(pagename)=="string"?pagename:""),
+    "criteria": "thankyou",
+    "condition": "equals",
+    "match": false,
+    "unique": "/counter/1643/-/1/event.js",
+    "throttle": 1000,
+    "gum": null,
+    "domain": null,
+    "expire": null,
+    "getAttributes":function(){
+        window.optrial=(typeof(window.optrial)=="object"?window.optrial:{});
+        if(typeof(orderSize)!="undefined")window.optrial.orderSize=orderSize;
+        if(typeof(orderId)!="undefined")window.optrial.orderId=orderId;
+        if(typeof(paymentMethod)!="undefined")window.optrial.paymentMethod=paymentMethod;
+    },
+    "modules": ["counterx"]
+};
+</pre>
+<p>Works as follow:
+</p>
+<ol><li>Looks for a web page where the javascript variable <b>pagename</b> has the value <b>"thankyou"</b>.
+</li><li>On that page, looks for the following javascript variables and passes them in using the <b>optrial</b> object<sup>4</sup>:
+<ul><li>orderSize
+</li><li>orderId
+</li><li>paymentMethod
+</li></ul>
+</li><li>Fire counter.
+</li></ol>
+<hr>
+<p><sup>4</sup>In our standard implementation, the object <b>optrial</b> - defined in the page code - can be used to pass parameters into the Trial Code call.  For standard Counter, we use the <b>opcounter</b> object.  But for Global implementations, we use the Page Code to fire both Trial Code and Counter Code, so we must use <b>optrial</b> for both.
+</p>
+<hr>
+<a name="Counter_WITH_previous_action_check_-_attributes.2Fvalues_set_ABOVE_Global_Code"></a><h4> <span class="mw-headline">Counter WITH previous action check - attributes/values set ABOVE Global Code</span></h4>
+<p>Although it looks very different, it logically similar to the previous counter, with extra steps of logic added in the middle:
+</p>
+<pre>opExperiments["Thank You - pandawill"] = {
+    "method": "complex",
+    "entity": null,
+    "criteria": function() {
+        var pn=(typeof(pagename)=="string"?pagename:"");
+	if(pn=="thankyou"){
+	    var b4=optimost.C["opTYB4"];
+            if(b4==null){
+                var myVal=(typeof(orderId)!="undefined"?orderId:"999999999999");
+                optimost.SC("opTYB4",myVal,null,optimost.SLD());
+                return true
+            }
+	    else {
+                var myVal=(typeof(orderId)!="undefined"?orderId:"0");
+                if(myVal==b4)return false;
+                else return true;
+            }
+        }
+        else return false;
+    },
+    "condition": "equals",     
+    "match": false,
+    "unique": "/counter/1643/-/1/event.js",
+    "throttle": 1000,
+    "gum": null,
+    "domain": null,
+    "expire": null,
+    "getAttributes":function(){
+        window.optrial=(typeof(window.optrial)=="object"?window.optrial:{});
+        if(typeof(orderSize)!="undefined")window.optrial.orderSize=orderSize;
+        if(typeof(orderId)!="undefined")window.optrial.orderId=orderId;
+        if(typeof(paymentMethod)!="undefined")window.optrial.paymentMethod=paymentMethod;
+    },
+    "modules": ["counterx"]
+};
+</pre>
+<p>Works as follow:
+</p>
+<ol><li>Looks for a web page where the javascript variable <b>pagename</b> has the value <b>"thankyou"</b>.
+</li><li>Looks for a first-party cookie <b>"opTYB4"</b>
+<ol><li>If the cookie exists, it checks to see if its value equals the value of our order ID. 
+<ul><li>If they match, exit the function and do not fire the counter - 
+it has been fired before for this order. EXIT AND DO NOT FIRE COUNTER.
+</li><li>If they do not match, it means this is a different order and we should proceed with firing the counter.
+</li></ul>
+</li><li>If the cookie does not exist, drop the cookie with the value of the <b>orderId</b> and we should proceed with firing the counter.
+</li></ol>
+</li><li>On that page, looks for the following javascript variables and passes them in using the optrial object:
+<ul><li>orderSize
+</li><li>orderId
+</li><li>paymentMethod
+</li></ul>
+</li><li>Fire counter.
+</li></ol>
+<a name="Attributes.2Fvalues_set_in_body_of_page"></a><h3> <span class="mw-headline">Attributes/values set in body of page</span></h3>
+<p>Now we must defer the execution of the attribute code until the module.  
+</p>
+<a name="Counter_WITH_previous_action_check_-_attributes.2Fvalues_set_BELOW_Global_Code"></a><h4> <span class="mw-headline">Counter WITH previous action check - attributes/values set BELOW Global Code</span></h4>
+<p>Reference <a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages#Conditional_Execution_of_Trial_Code_based_on_.3CBODY.3E_content" title="Options - Global Code on Customer pages">Options - Global Code on Customer_pages#Conditional_Execution_of_Trial_Code_based_on_.3CBODY.3E_content</a> for more details on rendering decisions deferred to the module.
+</p>
+<pre>opExperiments["Thank You - pandawill"] = {
+    "method": "array",
+    "entity": (typeof(pagename)=="string"?pagename:""),
+    "criteria": "thankyou",
+    "condition": "equals",
+    "match": false,
+    "unique": "",
+    "url": "/counter/1643/-/1/event.js",
+    "throttle": 1000,
+    "gum": null,
+    "domain": null,
+    "expire": null,
+    "getAttributes":function(){
+	optimost.addModule("trackingOrder",function(){
+	      var pn=(typeof(pagename)=="string"?pagename:"");
+	      if(pn=="thankyou"){
+		   var b4=optimost.C["opTYB4"];
+		   var repeat=false;
+	           if(b4==null){
+	                var myVal=(typeof(orderId)!="undefined"?orderId:"999999999999");
+	                optimost.SC("opTYB4",myVal,null,optimost.SLD());
+	           }
+		   else {
+        	        var myVal=(typeof(orderId)!="undefined"?orderId:"0");
+	                if(myVal==b4)repeat=true;
+	           }
+	           if(!repeat){
+   	     	        window.optrial=(typeof(window.optrial)=="object"?window.optrial:{});
+ 	          	if(typeof(orderSize)!="undefined")window.optrial.orderSize=orderSize;
+ 	          	if(typeof(orderId)!="undefined")window.optrial.orderId=orderId;
+ 	          	if(typeof(paymentMethod)!="undefined")window.optrial.paymentMethod=paymentMethod;
+ 	          	var n="Thank You - pandawill";
+ 	          	(function(){var _o=optimost;_o.U=opPro+opExperiments[n].url;_o.ST="script";_o.SA={"type":"text/javascript"};_o.B();
+	          	_o.R(opExperiments[n].throttle,opExperiments[n].gum,opExperiments[n].domain,opExperiments[n].expire);})();
+	           }
+	      }
+	})
+    },
+    "modules": ["trackingOrder","counterx"]
+};
+</pre>
+<p>The differences:
+</p>
+<ol><li>Instead of having a complex criteria that does the "check the 
+page" and "check for repeats" together, we do a standard variable check 
+for the right page based on the page name.  We do not have the 
+information available to check for repeats in the <b>&lt;head&gt;</b> where the Global Code runs.
+</li><li>Instead of running the attribute code immediately in the Global
+ code, we defer its execution until the module, and combine the "check 
+for repeats" and "get the attributes" code as the contents of that code.
+</li><li>Set the <b>unique</b> property to "" - not the counter code URL - so a criteria match does not automatically run it through the <b>event.js</b> <b>"if"</b> condition in the final loop of the Global Code. Instead, set is as another parameter name - I used <b>url</b> - and after doing the repeat check, if it's not a repeat, make the counter code call there, modifying the code to pass in <b>url</b>, not <b>unique</b>.
+</li></ol>
+<a name="Using_window.name_instead_of_dropping_a_cookie"></a><h4> <span class="mw-headline">Using window.name instead of dropping a cookie</span></h4>
+<p>If you can't drop another cookie, you can consider using the window.name to store the <b>opTYB4</b> value.  Just pointing that out.
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<strong class="selflink">Optimost Tracking</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 54/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:980-0!1!0!!en!2!edit=0 and timestamp 20130816142226 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking">http://wiki.interwoven.com/optimost/Optimost_Tracking</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Optimost_Tracking&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Tracking&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Tracking&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Optimost_Tracking" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Optimost_Tracking" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Optimost_Tracking" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Tracking&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Optimost_Tracking&amp;oldid=6930" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Optimost%20Tracking%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 25 March 2013, at 18:57.</li>
+				<li id="viewcount">This page has been accessed 152 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.259 secs. -->
+</body></html>

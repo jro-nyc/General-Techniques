@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Making page changes - Gotchas and Issues,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Dropping cookies in both 2-level and 3-level domains,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - complexities,Making page changes - examples,Multi-page experiments">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Making page changes - Gotchas and Issues - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Making%20page%20changes%20-%20Gotchas%20and%20Issues%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Making_page_changes_-_Gotchas_and_Issues";
+var wgTitle = "Making page changes - Gotchas and Issues";
+var wgAction = "view";
+var wgArticleId = "989";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6607";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Making%20page%20changes%20-%20Gotchas%20and%20Issues%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Making%20page%20changes%20-%20Gotchas%20and%20Issues%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Making%20page%20changes%20-%20Gotchas%20and%20Issues%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Making%20page%20changes%20-%20Gotchas%20and%20Issues%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Making_page_changes_-_Gotchas_and_Issues">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Making page changes - Gotchas and Issues</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<strong class="selflink">Making page changes - Gotchas and Issues</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>Here are some things to look for to avoid implementation errors.
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Specific_Issues_to_watch_out_for"><span class="tocnumber">1</span> <span class="toctext">Specific Issues to watch out for</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Creating_inputs_with_name_attribute"><span class="tocnumber">1.1</span> <span class="toctext">Creating inputs with name attribute</span></a></li>
+<li class="toclevel-2"><a href="#Converting_CSS_style_definitions_to_DOM_style_object_equivalents"><span class="tocnumber">1.2</span> <span class="toctext">Converting CSS style definitions to DOM style object equivalents</span></a></li>
+<li class="toclevel-2"><a href="#Having_issues_with_stickiness_and_tracking_on_a_3-level_domain"><span class="tocnumber">1.3</span> <span class="toctext">Having issues with stickiness and tracking on a 3-level domain</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#.22The_Code_does_not_work.22"><span class="tocnumber">2</span> <span class="toctext">"The Code does not work"</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Standard_and_Global_implementations_-_initial_deliverable"><span class="tocnumber">2.1</span> <span class="toctext">Standard and Global implementations - initial deliverable</span></a></li>
+<li class="toclevel-2"><a href="#Setting_up_the_template_to_easily_debug"><span class="tocnumber">2.2</span> <span class="toctext">Setting up the template to easily debug</span></a></li>
+<li class="toclevel-2"><a href="#Our_code_is_on_the_page_-_Page_Code.2FTrial_Code.2FModule_Code_-_but_not_working"><span class="tocnumber">2.3</span> <span class="toctext">Our code is on the page - Page Code/Trial Code/Module Code - but not working</span></a></li>
+<li class="toclevel-2"><a href="#Page_is_somehow_.22broken.22_-_more_things_that_can_affect_page_functionality"><span class="tocnumber">2.4</span> <span class="toctext">Page is somehow "broken" - more things that can affect page functionality</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Blank_Page"><span class="tocnumber">2.4.1</span> <span class="toctext">Blank Page</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Our_Global_code_is_on_the_page_-_Page_Code.2FSelector_Code.2FUniversal_Module_Code_-_but_not_working"><span class="tocnumber">2.5</span> <span class="toctext">Our Global code is on the page - Page Code/Selector Code/Universal Module Code - but not working</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Specific_Issues_to_watch_out_for"></a><h2> <span class="mw-headline">Specific Issues to watch out for</span></h2>
+<a name="Creating_inputs_with_name_attribute"></a><h3> <span class="mw-headline">Creating inputs with name attribute</span></h3>
+<p>For some reason, when creating an input with a <b>name</b> attribute, you have to add the name as you create the element in IE.  Here is some code to account for that.
+</p>
+<pre>$opt={};
+$opt.ce=function(tag,name){
+    if (name &amp;&amp; window.ActiveXObject){
+      element = document.createElement('&lt;'+tag+' name="'+name+'"&gt;');
+    }else{
+      element = document.createElement(tag);
+      element.setAttribute('name',name);
+    }
+    return element;
+}
+</pre>
+<p>You can add any other attribute as normal, but <b>name</b> must be done like this.
+</p>
+<a name="Converting_CSS_style_definitions_to_DOM_style_object_equivalents"></a><h3> <span class="mw-headline">Converting CSS style definitions to DOM style object equivalents</span></h3>
+<p>Assuming you know the CSS definitions, the formula is simple:
+</p>
+<ol><li>Remove the dash, capitalize the first letter after the dash
+<ul><li>So style="text-align:center" in CSS becomes style.textAlign="center" in javascript 
+</li></ul>
+</li><li>So why am I having problems applying this rule to the <b>"float"</b> property?
+<ul><li>Turns out that float is a reserved word in many languages, including javascript&nbsp;:(
+</li><li>So you must use a different identifier for javascript
+<ul><li><b>node.style.styleFloat</b> for IE
+</li><li><b>node.style.cssFloat</b> for standards-compliant browsers 
+</li></ul>
+</li></ul>
+</li><li>What about <b>"class"</b> attribute?
+<ul><li>As with float, class is a reserved word in many languages, including javascript&nbsp;:(
+</li><li>So you must use a different identifier for javascript
+<ul><li><b>node.className</b> in all browsers
+</li></ul>
+</li></ul>
+</li></ol>
+<a name="Having_issues_with_stickiness_and_tracking_on_a_3-level_domain"></a><h3> <span class="mw-headline">Having issues with stickiness and tracking on a 3-level domain</span></h3>
+<p>We have an article on this, <a href="http://wiki.interwoven.com/optimost/Dropping_cookies_in_both_2-level_and_3-level_domains" title="Dropping cookies in both 2-level and 3-level domains">Dropping cookies in both 2-level and 3-level domains</a>
+</p>
+<a name=".22The_Code_does_not_work.22"></a><h2> <span class="mw-headline">"The Code does not work"</span></h2>
+<p>We have two ways of implementing code on customer pages: 
+</p>
+<ol><li>The original Page Code &gt; Trial Code &gt; Module Code or Standard implementation 
+</li><li>The more recent Page Code &gt; Selector Code &gt; Universal Module Code or Global implementation 
+</li></ol>
+<p>As of this writing - August 2012 - over 90% of our work will be with 
+Global implementations, where a lot more things can cause problems. You 
+will still need to know the Standard implementation issues when doing a 
+Global implementation, so read all the sections below.  I wiill first go
+ over issues that can occur with the initial deliverable, issues with 
+Standard implementations, then issues with Global implementations. 
+</p>
+<a name="Standard_and_Global_implementations_-_initial_deliverable"></a><h3> <span class="mw-headline">Standard and Global implementations - initial deliverable</span></h3>
+<p>Let's get to some common scenarios. I will assume: 
+</p>
+<ol><li>You have put together a CSI<sup><b>1</b></sup> guide for the page under test - the HTML for the test page with our code added. 
+</li><li>Have tested it and verified it works here at Optimost - using a
+ Whole Page Test in the Sandbox and the CSI guide for the page, PLUS a 
+base statement pointing to the client's servers (which should not be in 
+the CSI guide. 
+</li><li>Created a word doc that outlines how the CSI works<sup><b>2</b></sup> 
+</li></ol>
+<p>So the customer will have working code to implement, and guidance on how to add it to the page(s)to be tested.
+</p>
+<hr>
+<p><sup><b>1</b></sup>Client Side Integration Guide, shows the customer what the HTML in a visitor's browser should look like once our code is added.<br>
+<sup><b>2</b></sup>If you are a new TC, you can reach out for an example
+ of a CSI guide. Make sure to change customer names and content where 
+necessary.
+</p>
+<a name="Setting_up_the_template_to_easily_debug"></a><h3> <span class="mw-headline">Setting up the template to easily debug</span></h3>
+<p>If you have done a Modular implementation, you will have:
+</p>
+<ol><li>A setup block - returned by the Trial Code call as inline code, thus executed automatically.
+</li><li>Module(s) - returned by the Trial Code call as a defined function, then executed when they are called by the module code.
+</li></ol>
+<p>Since there module is not automatically executed, we need a way to determine if it was executed.  There are two ways to do this:
+</p>
+<ol><li>Add code to add the creative and wave number to the document title in the QA persona, for example:
+<ul><li><b>if("{{$creative.segmentName}}".toLowerCase().indexOf("qa")!=-1)document.title='cr#{{$creative.creativeId}}-wv#{{$creative.waveId}}-'+document.title;</b> - this is the easiest way since you see it in the document.title when the page loads.
+</li><li>Define an object in the setup block - say <b>$optv={}</b> - then in the module say <b>$optv.bodyModuleExecuted=true</b> and finding that value set tells you it was executed.
+</li></ul>
+</li></ol>
+<p>Either of these will allow you to more easily debug the page.
+</p>
+<a name="Our_code_is_on_the_page_-_Page_Code.2FTrial_Code.2FModule_Code_-_but_not_working"></a><h3> <span class="mw-headline">Our code is on the page - Page Code/Trial Code/Module Code - but not working</span></h3>
+<p>Here are some things we have seen in the past that cause our code not
+ to work.  They all have to do with the code not being implemented 
+correctly by the customer, so realize this could happen to your 
+implementataion.
+</p>
+<ol><li>Page Code not working - A few possibilities include:
+<ol><li> <b>Client took code and put it on a single line and did not remove the HTML comment tags in the script block.</b>  If they decide to compress it into a single line, they need to remove the comment tags - <b>&lt;!--</b> at the beginning and <b>//--&gt;</b> at the end. If they dont, the page code will not be defined and the Trial Code will flag a JS error.
+</li><li><b>Client runs the Page Code through some filter that modifies the code, resulting in improper operation of the code.</b>  We have had them change <b>&amp;</b> to <b>&amp;amp;</b>, change the quotes, either way, if you have mysterious Page Code behavior, it could be this.
+</li></ol>
+</li><li>Trial Code not working - A few possibilities include:
+<ol><li><b>Customer separates Page Code and Trial Code, and between the 
+two, in javascipt set the document.domain, as in: 
+document.domain="acme.com";</b> - This is an IE only issue, this operation invalidates the Page Code definition of <b>optimost.L=document.location</b>, and the <b>optimost.B()</b>
+ function fails because of this.  Implementing the code like this is not
+ "best practices", and the solution to this problem is to implement as 
+best practices specify OR redefine optimost.L just above the Trial Code,
+ as in <b>&lt;script&gt;optimost.L=document.location.&lt;/script&gt;</b>
+</li><li><b>Throttling has turned the test off and you don't realize it.</b> For more information on throttling, you can go to <a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+ but remember that once throttling turns OFF an experiment, you have to 
+delete the cookie (or wait 30 days) before it can be turned on, unless 
+you set the new throttle to 100%, or a value of 1000.
+</li><li><b>Trial code call has a malformed URL and fails</b> - This is a tricky one that you, the TC, may have little control over. There are two flavors of this one:
+<ul><li><b>Length violation</b> -  The maximum URL length varies from 
+Browser to Browser, but IE has the shorted limit of about 2k bytes.  In a
+ standard implementation with Page Code, we automatically create the URL
+ based on standard parameters that are appended to the URL.  So if for 
+some reason these exceed 2048 or so, we may have issues in IE.
+</li><li><b>Existence of invalid characters (unescaped) in the URL</b> -
+ This is possible when the customer is construction the call to our 
+servers - as Mindspark does on many of their tests - and they don't 
+escape things as they should.
+</li></ul>
+</li><li><b>Cookie length violation results in unexpected behavior</b> -
+ If the cookie length limit is exceeded, then we will not be able to 
+read or write cookies as expected, so stickiness and tracking will be 
+adversely affected.  
+</li></ol>
+</li><li>Module code does not seem to be executing - A few possibilities include:
+<ol><li><b>There is a JS error in the code and execution of the module code is aborted</b>
+ - The most common cause of this issue, we would like to avoid this, you
+ can usually find the cause using Firefox with Firebug or IE with the 
+Advanced Settings set to have "Disable script debugging" unchecked and 
+"Display a notification about every script error" checked.  When this 
+happens, fix it quickly.
+</li><li><b>The name of the module on the customers page does not match the name in the creatives</b>
+ - This could be something as simple as a capitalization issue - the 
+module is named "Body" in the creative, but in the customer code, the 
+module "body" is being invoked.  Just remember you need to match them or
+ the module will not run. 
+</li><li><b>The Page Code (or the optimost object) is redefined between the Trial code and the Module code</b>
+ - This has happened when the Page Code and Trial code are stored by the
+ customer in includes, and the Page Code include exists where it should -
+ just before the Trial Code - AND somehow the Page Code include appears 
+again in the code after the Trial Code call.
+</li></ol>
+</li></ol>
+<a name="Page_is_somehow_.22broken.22_-_more_things_that_can_affect_page_functionality"></a><h3> <span class="mw-headline">Page is somehow "broken" - more things that can affect page functionality</span></h3>
+<a name="Blank_Page"></a><h4> <span class="mw-headline">Blank Page</span></h4>
+<p>When this happens, it can mean we have done something resulting in a 
+blankpage, or the customer has.  The things we could have done are:
+</p>
+<ol><li>Our Trial Code call works, and in the setup block, we hide the 
+page's content, as we should.  But then we don't unhide it in the module
+ area, because:
+<ul><li>The TC forgot to add code to unhide it.
+</li><li>The module call is never made and thus cannot unhide it.
+</li><li>The code to unhide it is never executed because of a javascript error in the module code.
+</li></ul>
+</li><li>The customer makes our Trial Code call <b>AFTER</b> page load, ie as part of an AJAX load of content.  This blanking of the page is due to a <b>document.write</b> being executed after page load because of EITHER:
+<ul><li>The customer uses our standard Page Code/Trial Code implementation that adds the script tag that calls our servers as a <b>document.write</b><sup><b>3</b></sup>.
+</li><li>The customer uses custom Page Code/Trial Code to add the script directly to the DOM<sup><b>4</b></sup>
+ - thus no document.write - but the TC has done a standard modular 
+implementation, and in the code returned from the creative servers,  
+there is a <b>document.write</b> in the returned content.
+</li></ul>
+</li></ol>
+<p>If this does happen, to quickly debug, do the following:
+</p>
+<ol><li>First, get "failover copy" to show up be either adding <b>sticky=999999</b> as a query string parameter or using the new debug page and selecting 999999 from the pulldown.  See <a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a> for more information.
+<ul><li>If now you see a normal page, the Optimost code has caused the issue. 
+</li><li>If the page is still blank, use Firebug to look at the HTML and
+ see what the DOM looks like.  If the issue is 1 - which should be the 
+case 99% of the time - you will see a normal looking DOM, but the 
+content area set to <b>display:none</b>.  If its 2, you will get an empty looking DOM, with just the contents of the <b>document.write</b> in it.
+</li></ul>
+</li></ol>
+<p><sup><b>3</b></sup>Same for a javascript Counter since the Code used <b>document.write</b> to write out the tag, as a trial code call does.<br>
+<sup><b>4</b></sup>See the bottom of <a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a> for more detail.
+</p>
+<a name="Our_Global_code_is_on_the_page_-_Page_Code.2FSelector_Code.2FUniversal_Module_Code_-_but_not_working"></a><h3> <span class="mw-headline">Our Global code is on the page - Page Code/Selector Code/Universal Module Code - but not working</span></h3>
+<p>Here are some extra issues that you will need to consider when doing a
+ Global Code implementation.  Make sure you read the Standard 
+implementation issues first since those will also apply.
+</p>
+<ol><li>Module code does not seem to be executing - A few possibilities include:
+<ol><li><b>You did not name the module properly in the opExperiments object</b> - either something simple like "body" vs "Body", or the wrong name.
+</li></ol>
+</li></ol>
+<p><br>
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="Options - Global Code on Customer pages">Options - Global Code on Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<strong class="selflink">Making page changes - Gotchas and Issues</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 35/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:989-0!1!0!!en!2!edit=0 and timestamp 20130816142311 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues">http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Making_page_changes_-_Gotchas_and_Issues&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_Gotchas_and_Issues&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_Gotchas_and_Issues&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Making_page_changes_-_Gotchas_and_Issues" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Making_page_changes_-_Gotchas_and_Issues" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Making_page_changes_-_Gotchas_and_Issues" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_Gotchas_and_Issues&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Making_page_changes_-_Gotchas_and_Issues&amp;oldid=6607" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Making%20page%20changes%20-%20Gotchas%20and%20Issues%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 6 August 2012, at 15:26.</li>
+				<li id="viewcount">This page has been accessed 77 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.223 secs. -->
+</body></html>

@@ -1,0 +1,1352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="MediaWiki 1.13.1">
+		<meta name="keywords" content="Options - Global Code on Customer pages,CORS - a &quot;higher security&quot; approach to MVT,Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie,Cross-domain cookie workaround,Implementation considerations,MVT vs Concept A/B/n experiments,Making page changes - AJAX,Making page changes - Gotchas and Issues,Making page changes - complexities,Making page changes - examples,Multi-page experiments">
+		<link rel="shortcut icon" href="http://wiki.interwoven.com/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.interwoven.com/opwiki/opensearch_desc.php" title="Optimost Wiki (en)">
+		<link rel="alternate" type="application/rss+xml" title="Optimost Wiki RSS Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Optimost Wiki Atom Feed" href="http://wiki.interwoven.com/opwiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Options - Global Code on Customer pages - Optimost Wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/opwiki/skins/common/shared.css?164";
+			@import "/opwiki/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="Options%20-%20Global%20Code%20on%20Customer%20pages%20-%20Optimost%20Wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/opwiki/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/opwiki/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/opwiki/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/opwiki/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type="text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/opwiki/skins";
+var wgArticlePath = "/optimost/$1";
+var wgScriptPath = "/opwiki";
+var wgScript = "/opwiki/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://wiki.interwoven.com";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Options_-_Global_Code_on_Customer_pages";
+var wgTitle = "Options - Global Code on Customer pages";
+var wgAction = "view";
+var wgArticleId = "1081";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "6908";
+var wgVersion = "1.13.1";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="Options%20-%20Global%20Code%20on%20Customer%20pages%20-%20Optimost%20Wiki_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Options%20-%20Global%20Code%20on%20Customer%20pages%20-%20Optimost%20Wiki_files/ajax.js"></script>
+		<script type="text/javascript" src="Options%20-%20Global%20Code%20on%20Customer%20pages%20-%20Optimost%20Wiki_files/index.php"><!-- site js --></script><script type="text/javascript" src="Options%20-%20Global%20Code%20on%20Customer%20pages%20-%20Optimost%20Wiki_files/index_002.php"></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/opwiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/opwiki/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-Options_-_Global_Code_on_Customer_pages">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Options - Global Code on Customer pages</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Optimost Wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<strong class="selflink">Options - Global Code on Customer pages</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+<p>Here is what you need to know concerning implementation of Global Code on the Customer's side.  
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Global_Code"><span class="tocnumber">1</span> <span class="toctext">Global Code</span></a></li>
+<li class="toclevel-1"><a href="#REQUIREMENTS"><span class="tocnumber">2</span> <span class="toctext">REQUIREMENTS</span></a></li>
+<li class="toclevel-1"><a href="#CLIENT_IMPLEMENTATION_ELEMENTS"><span class="tocnumber">3</span> <span class="toctext">CLIENT IMPLEMENTATION ELEMENTS</span></a></li>
+<li class="toclevel-1"><a href="#SAMPLE_SELECTOR_CODE"><span class="tocnumber">4</span> <span class="toctext">SAMPLE SELECTOR CODE</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Original_Selector_Code"><span class="tocnumber">4.1</span> <span class="toctext">Original Selector Code</span></a></li>
+<li class="toclevel-2"><a href="#Compact_Version_of_the_Selector_Code"><span class="tocnumber">4.2</span> <span class="toctext">Compact Version of the Selector Code</span></a></li>
+<li class="toclevel-2"><a href="#Asynchronous_version_of_the_Selector_Code"><span class="tocnumber">4.3</span> <span class="toctext">Asynchronous version of the Selector Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#SAMPLE_GLOBAL_INCLUDE_.28containing_decision_logic.29"><span class="tocnumber">5</span> <span class="toctext">SAMPLE GLOBAL INCLUDE (containing decision logic)</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Version_1"><span class="tocnumber">5.1</span> <span class="toctext">Version 1</span></a></li>
+<li class="toclevel-2"><a href="#Version_2"><span class="tocnumber">5.2</span> <span class="toctext">Version 2</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Changes_to_opExperiments"><span class="tocnumber">5.2.1</span> <span class="toctext">Changes to opExperiments</span></a>
+<ul>
+<li class="toclevel-4"><a href="#Example_.231_-_hiding_content_and_passing_attributes"><span class="tocnumber">5.2.1.1</span> <span class="toctext">Example #1 - hiding content and passing attributes</span></a></li>
+<li class="toclevel-4"><a href="#Example_.232_-_Persisting_a_site-wide_value_from_an_MVT_test_via_the_Global_Code"><span class="tocnumber">5.2.1.2</span> <span class="toctext">Example #2 - Persisting a site-wide value from an MVT test via the Global Code</span></a></li>
+<li class="toclevel-4"><a href="#Example_.233_-_A_compound_match_criteria.2C_a_complex_match_criteria.2C_and_a_regexp_match_criteria"><span class="tocnumber">5.2.1.3</span> <span class="toctext">Example #3 - A compound match criteria, a complex match criteria, and a regexp match criteria</span></a>
+<ul>
+<li class="toclevel-5"><a href="#COMPOUND"><span class="tocnumber">5.2.1.3.1</span> <span class="toctext">COMPOUND</span></a></li>
+<li class="toclevel-5"><a href="#COMPLEX"><span class="tocnumber">5.2.1.3.2</span> <span class="toctext">COMPLEX</span></a></li>
+<li class="toclevel-5"><a href="#REGEXP"><span class="tocnumber">5.2.1.3.3</span> <span class="toctext">REGEXP</span></a></li>
+</ul>
+</li>
+<li class="toclevel-4"><a href="#Example_.234_-_Firing_the_Counter_Code_at_the_module"><span class="tocnumber">5.2.1.4</span> <span class="toctext">Example #4 - Firing the Counter Code at the module</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3"><a href="#MODULE_ATTRIBUTE"><span class="tocnumber">5.2.2</span> <span class="toctext">MODULE ATTRIBUTE</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Global_Module_Code"><span class="tocnumber">5.3</span> <span class="toctext">Global Module Code</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Location_of_module_code"><span class="tocnumber">5.3.1</span> <span class="toctext">Location of module code</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#TRIAL_CODE_CALL_AT_BOTTOM_OF_PAGE"><span class="tocnumber">6</span> <span class="toctext">TRIAL CODE CALL AT BOTTOM OF PAGE</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Conditional_Execution_of_Trial_Code_based_on_.3CBODY.3E_content"><span class="tocnumber">6.1</span> <span class="toctext">Conditional Execution of Trial Code based on &lt;BODY&gt; content</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Changes_to_opExperiments_object"><span class="tocnumber">6.1.1</span> <span class="toctext">Changes to opExperiments object</span></a></li>
+<li class="toclevel-3"><a href="#Changes_to_Global_Code_logic_.28version_2.29"><span class="tocnumber">6.1.2</span> <span class="toctext">Changes to Global Code logic (version 2)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Global_Code"></a><h2> <span class="mw-headline">Global Code</span></h2>
+<p>In a standard Optimost deployment, each page tested is customized individually with CSI code. 
+However, it is possible to do a one-time site-wide deployment of the CSI code so that, in the future, a
+JavaScript file can be called from your web pages (the Global Include), and that file will identify different
+experiment pages throughout your website, define the modules for that experiment, and render the
+appropriate version of the test page(s) via manipulation of the page’s DOM (Domain Object Model). In
+the place of the Trial code – which ordinarily would have to be updated for each experiment – Selector
+Code is used to call that Global Include that decides which test to implement.
+</p><p><br><a href="http://wiki.interwoven.com/optimost/Image:GlobalImplementation.gif" class="image" title="image:globalImplementation.gif"><img alt="image:globalImplementation.gif" src="Options%20-%20Global%20Code%20on%20Customer%20pages%20-%20Optimost%20Wiki_files/GlobalImplementation.gif" height="845" border="0" width="625"></a><br>
+</p>
+<a name="REQUIREMENTS"></a><h2> <span class="mw-headline">REQUIREMENTS</span></h2>
+<p>To support Global client-side integration, the site must meet the following requirements:
+</p>
+<ol><li>It must be possible to identify the tested Web pages by some 
+unique identifiable characteristic that appears in the page URL or on 
+the page before the Selector Code, such as:
+<ul><li>Something unique in the URL
+</li><li>A unique cookie value
+</li><li>A unique JavaScript variable value
+</li><li>A unique value that is passed on the page as a JavaScript variable
+</li><li>A unique META tag value
+</li><li>Some other value that can be determined dynamically using JavaScript
+</li></ul>
+</li><li> It must be possible to implement the test solely through 
+changes to the DOM, which means A|B|n experiments with radical page 
+changes are not supported.<sup><b>1</b></sup>
+</li><li>The page HTML must be valid so that the DOM is parsed properly by all supported browsers.
+</li><li>The content containers – the div, span, td, th, or other tags 
+used to identify variables – must have unique IDs or class definitions 
+that can be used to uniquely identify DOM nodes.
+</li><li>The Optimost testers must be able to invoke a “QA” or “Live” 
+version of the code – the web-site supports extra query string 
+parameters in the URL, or the customer will host a Debugging Web Page 
+that allows Optimost testers to drop first-party cookies for 
+differentiating QA and Live.
+</li></ol>
+<hr>
+<p><sup><b>1</b></sup>A|B|n experiments with radical layout changes require the module call to be in a specific location on the web
+page, immediately after the closing of the HTML container for the A|B|n test area. On any specific page, this may
+not correspond to the location in the HTML where the module code is placed generically across the site.
+</p>
+<hr>
+<a name="CLIENT_IMPLEMENTATION_ELEMENTS"></a><h2> <span class="mw-headline">CLIENT IMPLEMENTATION ELEMENTS</span></h2>
+<p>In the standard Optimost deployment, the Client needs to place Page 
+Code, Trial Code, and Module Code on the page. In the Global 
+implementation, the Client replaces the Trial Code with the Selector 
+Code. This code allows us to select between two placements of our Global
+ Code:
+</p>
+<ol><li>A QA placement that allows us to test the Global code’s decision logic and verify it works.
+</li><li>A Live placement for the verified code, suitable for production environment use.
+</li></ol>
+<p>We differentiate Live and QA placements using parameters accessible on the page via javascript.
+</p>
+<a name="SAMPLE_SELECTOR_CODE"></a><h2> <span class="mw-headline">SAMPLE SELECTOR CODE</span></h2>
+<p>As mentioned earlier, the Selector Code replaces the Trial Code, and 
+its job is to determine if we are using the LIVE or QA placement, or if 
+we want to turn the placement OFF. Below are selector code examples.
+</p>
+<a name="Original_Selector_Code"></a><h3> <span class="mw-headline">Original Selector Code</span></h3>
+<p>This first example was originally designed to account for collision 
+of variable names and variability in the selector name, which, in 
+retrospect, may not be necessary options.  We will use it to explain the
+ code works:  
+</p>
+<pre>&lt;!-- OPTIMOST SELECTOR CODE V2.8 - Copyright 2002-2012 Autonomy Optimost --&gt;
+&lt;script language="javascript" type="text/javascript"&gt;&lt;!--
+w=window,opname="$optS";
+w[opname]={};
+w[opname].wl=window.location;
+w[opname].wlp=w[opname].wl.protocol;
+w[opname].selVal="opselect";
+if(w[opname].wl &amp;&amp; w[opname].wlp &amp;&amp; w[opname].wlp.toLowerCase().indexOf("https")&gt;-1)w[opname].path="https://by.essl.optimost.com/";
+else w[opname].path="http://es.optimost.com/";
+w[opname].url_live = "es/2/c/012/u/customer.live.js";
+w[opname].url_qa = "es/2/c/012/u/customer.staging.js"; 
+w[opname].url = w[opname].url_live;
+if (typeof(optimost)=='object'){
+	w[opname].qc = optimost.Q[w[opname].selVal] || optimost.C[w[opname].selVal] || "none";
+	if(w[opname].qc.toLowerCase()=="qa")
+	{
+		w[opname].url=w[opname].url_qa;
+	}
+	else if(w[opname].qc.toLowerCase()=="live")
+	{
+		w[opname].url=w[opname].url_live;
+	}
+	else if(w[opname].qc.toLowerCase()=="off")
+	{
+		w[opname].url=''; //Turning off the Global Code, for QA purposes
+	}
+}
+if(w[opname].url!=''){
+	if(w[opname].url.toLowerCase().indexOf("http")==-1)w[opname].url=w[opname].path+w[opname].url; 
+	var opDs=Math.round(optimost.T.getTime()/(3600000*24));
+	document.write('&lt;'+'script type="text/javascript" src="'+w[opname].url+'?D_ds='+ opDs +'"&gt;&lt;\/'+'script&gt;');
+}
+//--&gt;&lt;/script&gt;
+&lt;!-- END OPTIMOST SELECTOR CODE --&gt;
+</pre>
+<p>Looking at the code, it defaults to the LIVE placement of the .js 
+Include. Then if there is a query string parameter or first-party cookie
+ <b>opselect=qa</b>, we select QA. If the value of <b>opselect=live</b>, then we select LIVE.  And if we want to turn off the Global Code entirely<sup><b>2</b></sup>, set <b>opselect=off</b>.
+  We add these options since we assume that there are different domains 
+for Quality Assurance and Production, and allow engineers and QA 
+personnel to view the QA or LIVE placements at any time by manually 
+adding a query string to the URL or dropping a first-party cookie.  
+</p><p>Note that this is a generic example, and you may have some 
+client-specific conditions that necessitate that the Selector Code 
+utilize different techniques to select the QA or the LIVE version of the
+ Global Include.  You are free to do that, while using this as a guide 
+in that process
+</p><p>We have also added a "date stamp" query string parameters - <b>opDs</b>
+ as of May 2012 - that changes once a day at midnight local time.  Since
+ the Global Code is cached at Akamai, this ensures that it will be 
+reloaded at least once a day by a browser.  This allows us to take 
+advantage of the speed of caching, but without the annoyance of the 
+small, indefinite trickle of traffic to browsers that for whatever 
+reason mistakenly continue to use a cached version and never update the 
+Global Code.
+</p>
+<hr>
+<p><sup><b>2</b></sup>The "turning the Global Code off" option is there 
+to allow Optimost and the Customers to "remove" our Global Code from the
+ page and determine if any extraneous issues are caused by the existence
+ of the Global Code.
+</p>
+<hr>
+<a name="Compact_Version_of_the_Selector_Code"></a><h3> <span class="mw-headline">Compact Version of the Selector Code</span></h3>
+<p>If the selector Code above is a bit verbose for you, and you have no intention of varying the names of the object created - <b>$optS</b> - or the selector - <b>opselect</b> - then you may want to use Peter's version instead:
+</p>
+<pre>&lt;!-- OPTIMOST SELECTOR CODE V2.9 - Copyright 2002-2012 Autonomy Optimost --&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+$optS={};
+$optS.path=(window.location&amp;&amp;window.location.protocol&amp;&amp;window.location.protocol.toLowerCase().indexOf('https')&gt;-1)?'https://by.essl.optimost.com/':'http://es.optimost.com/';
+$optS.url='es/2/c/012/u/customer.live.js';
+$optS.url_qa='es/2/c/012/u/customer.staging.js';
+$optS.ds=Math.round(optimost.T.getTime()/(3600000*24));
+if(typeof optimost=='object'){
+      $optS.qc=optimost.Q['opselect']||optimost.C['opselect']||'none';
+      if($optS.qc.toLowerCase()=='qa'){
+            $optS.url=$optS.url_qa;
+      }
+      if($optS.qc.toLowerCase()!='off'){
+            document.write('&lt;'+'script type="text/javascript" src="'+$optS.path+$optS.url+'?D_ds='+$optS.ds+'"&gt;&lt;\/'+'script&gt;');
+      }
+}
+&lt;/script&gt;
+&lt;!-- END OPTIMOST SELECTOR CODE --&gt;
+</pre>
+<a name="Asynchronous_version_of_the_Selector_Code"></a><h3> <span class="mw-headline">Asynchronous version of the Selector Code</span></h3>
+<p>Since the summer of 2012, many prospective clients have balked at the
+ blocking nature of our code and asked for an asynchronous version - one
+ without a <b>document.write</b> to:
+</p>
+<ol><li>Block the loading of other content.
+</li><li>Not allow the Global Code to be called on <b>document.ready</b> or <b>onload</b>.
+</li></ol>
+<p>Below is a version that loads the page the page asynchronously.  That will necessitate some addition to the <b>optimost</b> object, which are shown above the selector code.
+</p>
+<pre>//START - ADDITIONS TO THE OPTIMOST OBJECT
+optimost.isIE6=(navigator.userAgent.toLowerCase().indexOf("msie 6")!=-1?true:false);optimost.XH=function(u){
+if(typeof(u)!="object")return;var s=this.D.createElement(this.ST);for(var n in this.SA){if(!this.isIE6)
+s.setAttribute(n,this.SA[n]);else s[n]=this.SA[n];}for(var n in u){if(!this.isIE6)s.setAttribute(n,u[n]);
+else s[n]=u[n];}var h=this.D.getElementsByTagName("head");if(h[0])h[0].insertBefore(s,h[0].childNodes[h[0].childNodes.length-1]);
+else this.D.body.insertBefore(s,this.D.body.childNodes[this.D.body.childNodes.length-1]);}
+optimost.RXH=function(r,c,d,e){if(this.Enabled){var b=true;if(r&lt;1000){b=(Math.floor(Math.random()*1000)&lt;r);
+if(c!=null){if(this.C[c]!=null)b=(this.C[c]!="mvt-no");else this.SC(c,b?"mvt-yes":"mvt-no",e,d);}}
+if(b){var u={"src":this.S()};this.XH(u);}}}
+//END - ADDITIONS TO THE OPTIMOST OBJECT
+
+$optS={};
+$optS.path=(window.location&amp;&amp;window.location.protocol&amp;&amp;window.location.protocol.toLowerCase().indexOf('https')&gt;-1)?'https://by.essl.optimost.com/':'http://es.optimost.com/';
+$optS.url="es/2/c/012/u/customer.live.js";
+$optS.url_qa="es/2/c/012/u/customer.staging.js";
+$optS.ds=Math.round(optimost.T.getTime()/(3600000*24));
+if(typeof optimost=='object'){
+        $optS.qc=optimost.Q['opselect']||optimost.C['opselect']||'none';
+        if($optS.qc.toLowerCase()=='qa'){
+                $optS.url=$optS.url_qa;
+        }
+        if($optS.qc.toLowerCase()!='off'){
+                 optimost.XH({"src":$optS.path+$optS.url+'?D_ds='+$optS.ds});
+        }
+}
+</pre>
+<p>Although we have to add functions to the <b>optimost object</b>, notice that this selector code is identical to the previous one, with one line difference:
+</p>
+<ul><li>document.write('&lt;'+'script type="text/javascript" src="'+$optS.path+$optS.url+'?D_ds='+$optS.ds+'"&gt;&lt;\/'+'script&gt;');
+</li></ul>
+<p>replaced by
+</p>
+<ul><li>optimost.XH({"src":$optS.path+$optS.url+'?D_ds='+$optS.ds});
+</li></ul>
+<p>For more details on the added functions and other details on asynchronous code, go to <a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+</p><p><br>
+</p>
+<a name="SAMPLE_GLOBAL_INCLUDE_.28containing_decision_logic.29"></a><h2> <span class="mw-headline">SAMPLE GLOBAL INCLUDE (containing decision logic)</span></h2>
+<a name="Version_1"></a><h3> <span class="mw-headline">Version 1 </span></h3>
+<p>This first example is the original standardized version of the Global
+ Code.  It is the version used in the original build of Author for 
+Global Code deployments (Deployed June 2011).  It has also been used 
+before and since then for Global implementations and is sufficient for 
+many clients.  There are, however, some implementations that require 
+more complicated functionality, and Version 2 will explain those 
+scenarios (see below).
+</p><p>The Selector Code selects the appropriate Global Include, live or
+ QA. In the sample code below, the Global Include determines whether a 
+page is being tested based on the page name.  For certain page names, 
+the Global include calls the appropriate Trial Code URL. If those page 
+names do not appear, then no call is made.
+</p>
+<pre>//Global Live CSI
+var optrial=(typeof optrial=="object"?optrial:{});
+if (optimost.Q["opselect"] == "qa") optimost.SC("opselect", "qa", null, optimost.SLD());
+var opPro = (("https:" == document.location.protocol)&nbsp;? "https://by.essl.optimost.com/by"&nbsp;: "http://by.optimost.com");
+var opDocLocation = document.location.toString().toLowerCase();
+var opExperiments = {};
+var opPageId = (typeof (opPageId) == "string"&nbsp;? opPageId&nbsp;: "");
+
+//Trial Code Parameters
+opExperiments["billing and shipping"] = {
+	"method":"var",
+	"entity":opPageId,
+	"criteria":"store-confirm_reservation_address",
+	"condition":"equals",
+	"match":false,
+	"unique":"/billingshipping.702/9/content.js",
+	"throttle":1000,
+	"gum":null,
+	"domain":null,
+	"expire":null,
+	"modules":["body"]
+};
+
+opExperiments["tell a friend"]={
+	"method":"var",
+	"entity":opDocLocation,
+	"criteria":"/tellafriend",
+	"condition":"contains",
+	"match":false,
+	"unique":"/tellafriend.4e9/4/content.js",
+	"throttle":500,
+	"gum":"op639testpagegum",
+	"domain":optimost.SLD(),
+	"expire":2592000,
+	"modules":["body"]
+};
+
+opExperiments["join today"]={
+	"method":"array",
+	"entity":opPageId,
+	"criteria":["join-today"],
+	"condition":"contains",
+	"match":false,
+	"unique":"/signup.53e/1/content.js",
+	"throttle":1000,
+	"gum":"op639testpagegum",
+	"domain":optimost.SLD(),
+	"expire":2592000,
+	"modules":["body"]
+};
+
+
+//method choices: var or array
+optimost.identify=function(){
+	for (var n in opExperiments){
+		switch(opExperiments[n].method) {
+			case 'var':
+				//optimost.conditionEvaluator(opExperiments[n]);				
+				if(typeof(opExperiments[n].entity)!="undefined"){
+					if(opExperiments[n].condition=="equals"){
+						if(opExperiments[n].entity.toString()==opExperiments[n].criteria)opExperiments[n].match=true;
+					}
+					else if(opExperiments[n].condition=="contains"){//alert(opExperiments[n].entity);
+						if(opExperiments[n].entity.toString().indexOf(opExperiments[n].criteria)!=-1)opExperiments[n].match=true;
+					}					
+				}
+				break;				
+
+			case 'array'://The criteria is a based on a single variable that has multiple matching values
+				if (typeof (opExperiments[n].entity)&nbsp;!= "undefined" &amp;&amp; typeof (opExperiments[n].criteria) == "object") {
+					var len = opExperiments[n].criteria.length;
+					for (var i = 0; i &lt; len; i++) {
+						if (opExperiments[n].condition == "equals") {
+							if (opExperiments[n].entity.toString() == opExperiments[n].criteria[i]) opExperiments[n].match = true;
+						}
+						else if (opExperiments[n].condition == "contains") {
+							if (opExperiments[n].entity.toString().indexOf(opExperiments[n].criteria[i])&nbsp;!= -1) opExperiments[n].match = true;
+						}
+					}
+				}
+				break;		
+				
+			default: break;
+				
+		}
+	}
+}
+
+optimost.identify();
+
+var opModulesArray = [];
+
+//Execute Trial code, if set
+for(var n in opExperiments){
+	if(opExperiments[n].match==true){
+		for(var j=0;j&lt;opExperiments[n].modules.length;j++)opModulesArray.push(opExperiments[n].modules[j]);
+		(function(){var _o=optimost;_o.U=opPro+opExperiments[n].unique;
+		_o.ST="script";_o.SA={"type":"text/javascript"};_o.B();_o.R(opExperiments[n].throttle,opExperiments[n].gum,opExperiments[n].domain,opExperiments[n].expire);})();
+	}	
+}
+</pre>
+<p>This Global Code does the following:
+</p><p>It creates the <b>opExperiments</b> object, which contains information about Subject/Experiments for this customer/account. The parameters fall into 3 categories:
+</p>
+<ol><li>The first 5 properties are used to define criteria used to determine what the current page is.  They are:
+<ul><li><b>method</b> - Tells us if the matching parameter available in the browser will be  <b>var</b> or <b>array</b>
+</li><li><b>entity</b> - the name of the the matching parameter 
+available in the browser containing the information used to determine if
+ an experiment is on this page.
+</li><li><b>criteria</b> - the value we use to compare to the matching parameter available in the browser.
+</li><li><b>condition</b> - tells us if the comparison must result in <b>equals</b> or <b>contains</b>
+</li><li><b>match</b> - if the condition is met, set to <b>true</b>.  Defaulte to false to indicate no match.
+</li></ul>
+</li><li>The next 6 properties define the experiment.  This is the relevant content in Trial &gt;&gt; Get Code (within a subject).
+<ul><li><b>unique</b> - the unique part of the Trial Code URL
+</li><li><b>throttle</b> - Throttling percentage, defaults to <b>1000</b> (100%).
+</li><li><b>gum</b> - the name of the cookie used to do the throttling, defaults to <b>null</b>
+</li><li><b>domain</b> - the name of the domain of the cookie used to do the throttling, defaults to <b>null</b>, if used usually <b>optimost.SLD()</b>
+</li><li><b>expire</b> - the time expiration of the cookie used to do the throttling, defaults to <b>null</b>
+</li><li><b>modules</b> - Name of the modules used by this subject.
+</li></ul>
+</li></ol>
+<p>Once all the experiments are defined in opExperiments, we then execute the optimost.identify function:
+</p>
+<ol><li><b>optimost.identify=function(){...}</b> - function that iterates through all the members of <b>opExperiments</b>
+ - which defines the customer pages we are testing - to determine if any
+ of them are a match for this page. To better explain how this works, 
+let's look at the 3 members of <b>opExperiments</b> we use in this example:
+<ul><li>The first member is the object <b>billing and shipping</b>, which tells us its a <b>var</b> whose name is <b>opPageId</b> - a variable that must be defined in the browser.  The criteria we are looking for is <b>"store-confirm_reservation_address"</b>, and that condition must be a match.  The Trial Code URL is provided, and throttling is set to 100%.
+</li><li>The second member is the object <b>tell a friend</b>, which tells us our matching parameter is a <b>var</b> whose name is <b>opDocLocation</b> (document.location.toString().toLowerCase()) - which is the page URL.  The criteria we are looking for is <b>"/tellafriend"</b>, and the condition is that it be <b>contained</b> in the <b>document.location</b>.
+  The Trial Code URL is provided, and throttling is set to 50%.  Since 
+throttling is not 100%, we also set a cookie value - its name - for 
+storing whether or not we got into the test for the next visit to be 
+treated the same.  Its name is usually the same as the gum cookie.
+</li><li>The third member is the object <b>join today</b>, which tells us our matching parameter is  a <b>array</b> whose name is <b>opPageId</b> - an array variable that must be defined in the browser.  The criteria we are looking for is <b>"join-today"</b>, and that condition must be a match.  The Trial Code URL is provided, and throttling is set to 100%.
+</li><li>If the provided criteria meet the specified match condition, <b>match</b> is set to <b>true</b>.
+</li></ul>
+</li><li>We loop through the members of <b>opExperiments</b>, and for any where <b>match=true</b>,
+ we executed the Trial Code call for that subject, and the content will 
+be served as normal, contingent upon the throttling parameters passing.
+</li></ol>
+<a name="Version_2"></a><h3> <span class="mw-headline">Version 2</span></h3>
+<p>To make the Global Code a comprehensive method covering all 
+scenarios, we needed to consider the following situations not covered in
+ Version 1:
+</p>
+<ol><li>Triggering counter code at the bottom of the page - The Version 1 Global code could define a counter URL as the <b>unique</b>
+ parameter in the opExperiments object and trigger it, just as it does 
+for experiments/trials.  But if we needed that counter to fire at the 
+bottom - ie in the module as opposed to the head of the page - we need 
+to add functionality to do that.
+</li><li>Passing in any type of attributes, whether Page View or Action 
+attributes - We need a way to use the existing functionality of the Page
+ Code to pass parameters back to the Optimost Servers - using the <b>optrial</b> object - and add something to the opExperiments object to capture the information.
+</li><li>Allowing the hiding and unhiding of the test area to be built 
+into the Global Code, not the template - This is most important for 
+Author implementations, and leads generically to....
+</li><li>Custom functionality - We may need to add some functionality on
+ specific pages in the funnel, whether a specific page with an 
+experiment or counter on it, or some unique landing page where we need 
+to capture some information.
+</li><li>Need a way to enable experiments based on more complicated 
+criteria - In Version 1, you can select a single entity for matching - 
+say a javascript variable or the document.location -  and match it based
+ on a singe criteria or multiple criteria, with a match based on any of 
+the multiple criteria returning true.  We need to account for:
+<ol><li>Having multiple entities as criteria - say a javascript variable and the document.location - match.
+</li><li>Having some complex matching criteria - having a way of matching based on whatever criteria combination you want.
+</li></ol>
+</li></ol>
+<p>So we make the following additions the the Global Code
+</p>
+<ol><li>The attributes and values passed in to the Trial code or Counter
+ code call via FUNCTIONS/METHODS.  All these parameters are OPTIONAL.
+<ul><li>In addition to being optional, the names are technically 
+irrelevant.  If an opExperiments Object is selected - match==true - then
+ its functions are executed.
+</li><li>For standardization purposes, give the functions names that 
+reflect what they are doing.  So for attibutes and values, name them: 
+attribute1, attribute2, value1, value2
+</li></ul>
+</li><li>Miscellaneous functions - This can be:
+<ul><li>Extra functionality for a page with an experiment and/or counter on it
+</li><li>Functionality for a page without an experiment or  counter
+</li><li>This function/method can be added with any unique name - best 
+to make it relevant to its purpose. If you don't want Trial code or 
+Counter code to execute, just leave the unique parameter blank
+</li></ul>
+</li><li>Hiding and unhidding CSS function
+<ul><li>First, we add a module named "__unhideTestArea__" for unhding the test area right after the module changes are made
+</li><li>testAreaCssSpec - specifies the CSS spec for the test areas to be hidden
+</li><li>hideTestArea - a function to hide the test area as the trial 
+code call is made, then creating a module "__unhideTestArea__" to unhide
+ it after the module changes are made. We will need to account for 
+throttling, etc here
+</li></ul>
+</li></ol>
+<a name="Changes_to_opExperiments"></a><h4> <span class="mw-headline">Changes to opExperiments</span></h4>
+<p>Here are some samples of a Version 2 <b>opExperiments</b> object:
+</p>
+<a name="Example_.231_-_hiding_content_and_passing_attributes"></a><h5> <span class="mw-headline">Example #1 - hiding content and passing attributes</span></h5>
+<p>In this example, the first 10 parameters are identical to a Version 1
+ implementation.  Things change from there as we add code to hide and 
+unhide the test area, as well as pass in attributes to the Optimost 
+Servers.
+</p>
+<pre>opExperiments["ProductPage"] = {
+	"method": "var",
+	"entity": (typeof CI_PageType!="undefined")?CI_PageType:"",
+	"criteria": "PRODUCT",
+	"condition": "equals",
+	"enabled": true,
+	"match": false,
+	"unique": "/trial/1579/p/productpages.11e/2/content.js",
+	"throttle": 300,
+	"gum": "op1579productpagesgum",
+	"domain": optimost.SLD(),
+	"expire": 2592000,
+	"modules": ["body", "__unhideTestArea_ProductPage__"],
+	"attribute1":function(){optrial.op_vis = "new";if(optimost.C["opGlobalTest"]){optrial.op_vis = "repeat";}},
+	"attribute2":function(){if(optimost.C["jaime"])optrial.jaime = optimost.C["jaime"];},
+	"value1":null,
+	"testAreaCssSpec": "#firstpage",
+	"hideTestArea":
+		function() {
+			if(this.testAreaCssSpec){
+				optimost.createStyle(this.testAreaCssSpec+"{visibility:hidden}");
+				optimost.testAreaCssSpec = this.testAreaCssSpec;
+				optimost.addModule("__unhideTestArea_ProductPage__",
+				function(){
+					optimost.createStyle(optimost.testAreaCssSpec+"{visibility:visible}");
+				});
+			}
+		}	
+};
+</pre>
+<ol><li>Hiding and unhiding content - We added 3 elements to implement this functionality:
+<ul><li>A module named <b>"__unhideTestArea_ProductPage__"</b> to the modules list.
+</li><li>The property <b>"testAreaCssSpec"</b> for specifying the CSS to be hidden/unhidden
+</li><li>A function <b>"hideTestArea"</b> that, if <b>"testAreaCssSpec"</b> exists, will hide the test area, then create a module named <b>"__unhideTestArea_ProductPage__"</b> that unhides the test area.  
+</li></ul>
+</li><li>Passing attributes to our servers - We defined 2 functions
+<ul><li>attribute1 - A function that looks for a cookie named <b>"opGlobalTest"</b>, and if it exists, passes in <b>op_vis=repeat</b> in via the optrial object. If it does not exist, it passes in <b>op_vis=new</b>
+</li><li>attribute2 - A function that looks for a cookie named <b>"jaime"</b>, and if it exists, passes it in via the optrial object. If it does not exist, nothing is passed in.
+</li><li>value1 - Set to null, nothing is being passed in or done.   
+This follows our syntax for Page View Attributes, where we can pass in 2
+ attributes and 1 value.  The 2 attributes are passed in with the 
+functions, we happen to not be passing in a value.
+</li></ul>
+</li></ol>
+<p>These additions to the opExperiments object work in tandem with the 
+following change to the code that checks for opExperiments objects with <b>match==true</b>, and executes any functions within that object.  Adding the following line of code accomplishes this:
+</p>
+<pre>if(typeof(opExperiments[n][m])=="function")opExperiments[n][m]();//Anything in opExperiments[n] that is a function, execute it.
+</pre>
+<p>We will give a more detailed example after explaining all the version 2 changes.
+</p>
+<a name="Example_.232_-_Persisting_a_site-wide_value_from_an_MVT_test_via_the_Global_Code"></a><h5> <span class="mw-headline">Example #2 - Persisting a site-wide value from an MVT test via the Global Code</span></h5>
+<ol><li><ul><li>This example is not associated with any experiment directly, and makes no Trial or Counter code call if <b>match==true</b>.  
+</li></ul>
+</li><li>It also defaults <b>match=true</b>, which means it is always on. 
+</li><li>This code is added to allow a set of variables (could be any 
+number) of an MVT on the home page to be persisted throughout the 
+website.  
+<ul><li>So, as with example #1, it defines a function that will be executed when match==true
+</li><li>That function looks for a cookie named "opNavigation", which is
+ dropped by the Home Page experiment, and contains the values for the 
+nav bar variable(s) for that test. 
+</li><li>If that cookie exists, we hide the nav bar area, and create a 
+module that will parse the cookie and replicate the nav bar value from 
+the Home Page experiment (DOM scripting that I have omitted from this 
+example to save space), and then unhide the nav bar once the changes 
+have been made.
+</li></ul>
+</li></ol>
+<pre>opExperiments["Persist Nav Menu value"] = {
+	"method": "none",
+	"entity": null,
+	"criteria": null,
+	"condition": null,
+	"enabled": true,
+	"match": true,
+	"unique": "",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+	"modules": ["GlobalNavigation"],
+	"testAreaCssSpec": "#block-menu_block-1",
+	"extendNavTest":
+		function() {
+			$v1 = {};
+			if(opPageId == 'home') return;
+			if(this.testAreaCssSpec &amp;&amp; optimost.C["opNavigation"]){ //Check for existence of first-party cookie "opNavigation"
+				optimost.createStyle(this.testAreaCssSpec+"{display:none}");
+				optimost.testAreaCssSpec = this.testAreaCssSpec;
+				optimost.addModule("GlobalNavigation",
+					function(){
+						var StyleIdentifier = "li.menu-mlid-1182 a";
+						var opNavArray = [optimost.C["opNavigation"].charAt(1),optimost.C["opNavigation"].charAt(2),optimost.C["opNavigation"].charAt(3),optimost.C["opNavigation"].charAt(4)];
+						if(opNavArray[0] == '0'){$v1.Bval = '0';}
+						else if(opNavArray[0] == '1'){$v1.Bval = '1';}
+						else{$v1.Bval = '2';}
+						if(opNavArray[1] == '0'){$v1.Cval = '0';}
+						else if(opNavArray[1] == '1'){$v1.Cval = '1';}
+						else{$v1.Cval = '2';}
+						//Core of implementatiaon removed to save space for this example
+						//.............................
+						optimost.createStyle(optimost.testAreaCssSpec+"{display:block}");
+					});
+			}
+		}
+};
+</pre>
+<a name="Example_.233_-_A_compound_match_criteria.2C_a_complex_match_criteria.2C_and_a_regexp_match_criteria"></a><h5> <span class="mw-headline">Example #3 - A compound match criteria, a complex match criteria, and a regexp match criteria</span></h5>
+<p>Here we have three examples:
+</p>
+<ul><li>One where we check for multiple entities to match.
+</li><li>One where a complicated formula is created for testing a match.
+</li><li>One that uses a regular expression to identify a class of similar pages as a match.
+</li></ul>
+<a name="COMPOUND"></a><h6> <span class="mw-headline">COMPOUND</span></h6>
+<p>First, we have the compound match.  So now we can look for both a 
+javascript variable and document.location to match in their own ways - 
+say the variable must be a <b>equals</b> and document.location <b>contains</b>, and if one of them is true, then set <b>match=true</b>.
+</p>
+<pre>opExperiments["SummaryPage"] = {
+	"method": "compound",
+	"entity": [opDocLocation,opPageId],
+	"criteria": [["summarypasge.aspx"],["confirmation_pre","confirmation_sub"]],
+	"condition": ["contains","equals"],
+	"enabled": true,
+	"match": false,
+	"unique": "/counter/002/-/6/event.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+	"modules": ["coutnerXYZ"]
+};
+</pre>
+<ol><li>entity - We change entity to show the array of what our matching
+ is based on - here the variable opPageId and the variable opDocLocation
+ (which contains the document.location in lower case)
+</li><li>criteria - The criteria now is separated as an array containing an array with each possible match condition.
+</li><li>condition - The condition for each entity is also stored in an array
+</li></ol>
+<a name="COMPLEX"></a><h6> <span class="mw-headline">COMPLEX</span></h6>
+<p>Next, we look at a more complex condition.  Here we have a customer 
+that has a campaign running to bring visitors to their site.  It takes 
+visitors to a variety of pages, but all the pages they go to have a 
+specific branding "widget" on the page they want Optimost to test.  The 
+way we know the page has a widget is that there will either be a cookie 
+or query string parameter named "cmp" that contains the string "brand" 
+inside of it.  Now this is where it gets complicated:
+</p>
+<ol><li>For whatever reason, they have no control over the case of the 
+parameter or its value.  So you could get cmp=brand104, CMP=BRAND137, 
+cmp=BRAND113, etc, etc
+</li><li>The campaign may change over the course of time so that the 
+parameter may also change.  So it may suddenly change from "cmp" 
+containing "brand" to "cmp" containing "widget" or "cmpg" containing 
+"widgetbrand".  They are not sure so they want to have a way to pass 
+this into us so we can change it on the fly, and they will pass it by 
+setting an object named <b>customerCriteria</b> containing the name value pair.  If it does not exist, continue using "cmp" contains "brand".
+</li></ol>
+<pre>opExperiments["Widget Area"] = {
+	"method": "complex",
+	"entity": null,
+	"criteria": function() {            
+		var cks={};
+		var matchCriteria=(typeof(customerCriteria=="object"?customerCriteria:{"cmp":"brand"});
+		for(var n in optimost.C)cks[n.toLowerCase()]=optimost.C[n].toLowerCase();
+		var qs={}
+		for(var n in optimost.Q)qs[n.toLowerCase()]=optimost.Q[n].toLowerCase();
+		var myMatch=false;
+		for(var n in matchCriteria)if(cks[n].indexOf(matchCriteria[n])!=-1 || qs[n].indexOf(matchCriteria[n])!=-1) myMatch=true;
+		return myMatch;
+	},
+	"condition": null,
+	"enabled": true,
+	"match": false,
+	"unique": "/trial/002/p/landingpage.a6c/1/content.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+	"modules": ["widget"]		
+};
+</pre>
+<ol><li>criteria - So we change the criteria to "complex".
+</li><li>entity - not used, so set to "null".
+</li><li>criteria - Is now a function that checks for this complex match.
+</li><li>condition - not used, so set to "null".
+</li></ol>
+<a name="REGEXP"></a><h6> <span class="mw-headline">REGEXP</span></h6>
+<p>Finally, we look at using a Regular Expression.  Here the customer 
+wants to use the page URL to identify the pages in an experiment.  The 
+pages follow this format:
+</p>
+<ol><li>The pages are in their website's recipes directory, as in <b>acme.com/recipes/</b>
+</li><li>Next in the URL, there will be a string with the name of the 
+recipe. It will be at least 10 characters long and contain alphanumerics
+ and dashes, ending with a "/", as in <b>delicious-taco-salad/</b>
+</li><li>Finally, each recipe ends with a 32 character hexadecimal ID, 
+with dashes separating 5 groups of characters - so 4 dashes for a total 
+of 36 characters, as in <b>32f51bba-0af9-4821-8aa4-f26f6de35207</b> 
+</li></ol>
+<pre>opExperiments["Acme recipes test"] = {
+    "method": "regexp",
+    "entity": opDocLocation,
+    "criteria": /(acme\.com\/recipes\/)+([a-zA-Z0-9_-]{5,}\/)+([0-9abcdef-]{36})/,
+    "condition": "contains",
+    "match": false,
+    "unique": "/trial/002/p/acmerecipestest.d50/2/content.js",
+    "throttle": 1000,
+    "gum": null,
+    "domain": null,
+    "expire": null,
+    "modules": ["body"]
+};
+</pre>
+<p><br>
+To implement all these matching scenarios, we add three conditions to the optimost.identify function:
+</p>
+<pre>optimost.identify = function () {
+	for (var n in opExperiments) {
+		switch (opExperiments[n].method) {
+		case 'var'://The criteria is a based on a single variable that has a single matching value
+			//optimost.conditionEvaluator(opExperiments[n]);				
+			if (typeof (opExperiments[n].entity)&nbsp;!= "undefined") {
+				if (opExperiments[n].condition == "equals") {
+					if (opExperiments[n].entity.toString() == opExperiments[n].criteria) opExperiments[n].match = true;
+				}
+				else if (opExperiments[n].condition == "contains") { //alert(opExperiments[n].entity);
+					if (opExperiments[n].entity.toString().indexOf(opExperiments[n].criteria)&nbsp;!= -1) opExperiments[n].match = true;
+				}
+			}
+			break;
+
+		case 'array'://The criteria is a based on a single variable that has multiple matching values
+			if (typeof (opExperiments[n].entity)&nbsp;!= "undefined" &amp;&amp; typeof (opExperiments[n].criteria) == "object") {
+				var len = opExperiments[n].criteria.length;
+				for (var i = 0; i &lt; len; i++) {
+					if (opExperiments[n].condition == "equals") {
+						if (opExperiments[n].entity.toString() == opExperiments[n].criteria[i]) opExperiments[n].match = true;
+					}
+					else if (opExperiments[n].condition == "contains") {
+						if (opExperiments[n].entity.toString().indexOf(opExperiments[n].criteria[i])&nbsp;!= -1) opExperiments[n].match = true;
+					}
+				}
+			}
+			break;
+		
+                case 'compound'://The criteria is a based on multiple variables which can have multiple matching values
+                        if (typeof (opExperiments[n].entity) == "object") {
+                                var len = opExperiments[n].entity.length;
+                                for (var i = 0; i &lt; len; i++) {					
+                                        for (var j = 0; j &lt; opExperiments[n].criteria[i].length; j++) {						
+                                                if (opExperiments[n].condition[i] == "equals") {
+                                                        if (opExperiments[n].entity[i].toString() == opExperiments[n].criteria[i][j]) {                                        
+                                                                opExperiments[n].match = true;                                                                       
+                                                        }
+                                                }
+                                                else if (opExperiments[n].condition[i] == "contains") {
+                                                        if (opExperiments[n].entity[i].toString().indexOf(opExperiments[n].criteria[i][j])!= -1){                                        
+                                                                opExperiments[n].match = true;
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                        break;
+
+		case 'complex'://The criteria is a based on some custom function stored in the criteria
+			if (typeof (opExperiments[n].criteria) == "function") {
+				if(opExperiments[n].criteria()==true)opExperiments[n].match = true;
+				opExperiments[n].criteria=null; //Set to null so it won't be re-run in the match loop
+			}
+			break;
+
+                case 'regexp':
+                        if(typeof(opExperiments[n].entity)!="undefined" &amp;&amp; opExperiments[n].criteria!="undefined"){
+                                opExperiments[n].match=opExperiments[n].criteria.test(opExperiments[n].entity);
+                        }
+                        break;
+
+		}
+	}
+}
+optimost.identify();
+
+</pre>
+<a name="Example_.234_-_Firing_the_Counter_Code_at_the_module"></a><h5> <span class="mw-headline">Example #4 - Firing the Counter Code at the module</span></h5>
+<p>This does not entail any changes to the opExperiments object, just changes to the loop that checks for <b>match==true</b>.  
+</p>
+<pre>optimost.TH=function(r,c,d,e){
+    if (this.Enabled) {
+	var b=true;
+	if(r&lt;1000){
+		b=(Math.floor(Math.random()*1000)&lt;r);
+		if(c!=null){
+			if(this.C[c]!=null)b=(this.C[c]!="mvt-no");
+			else this.SC(c,b?"mvt-yes":"mvt-no",e,d);
+		}
+		return b;
+	}
+	else return true;
+    }
+    else return false;
+}
+optimost.TX=function(){
+	var t='&lt;'+this.ST+' src="'+this.S()+'"';
+	for(n in this.SA)t+=(" "+n+'="'+this.SA[n]+'"');t+='&gt;&lt;\/'+this.ST+'&gt;';
+	this.D.write(t);
+}
+
+var opModulesArray = [];
+
+for (var n in opExperiments) {
+	if (opExperiments[n].match == true &amp;&amp; opExperiments[n].enabled==true){
+		for(var m in opExperiments[n]){//If I have a function and Throttle==1000, execute it to add attributes/values/special functionality for this Experiment
+						//Counters should always have throttle=1000
+			if(typeof(opExperiments[n][m]) =="function" &amp;&amp; opExperiments[n].throttle==1000)opExperiments[n][m]();
+		}		
+		if (opExperiments[n].unique.indexOf("event.js")&nbsp;!= -1) {
+			for (var j = 0; j &lt; opExperiments[n].modules.length; j++) opModulesArray.push(opExperiments[n].modules[j]);
+			optimost.addModule(opExperiments[n].modules[opExperiments[n].modules.length-1],
+				function (num) {
+					return function(){//alert("num is "+num+" with a unique of "+opExperiments[num].unique);
+						var _o = optimost;
+						_o.U = opPro + opExperiments[num].unique;
+						_o.ST = "script";
+						_o.SA = {"type": "text/javascript"};
+						_o.B();				
+						_o.R(opExperiments[num].throttle, opExperiments[num].gum, opExperiments[num].domain, opExperiments[num].expire);				
+					}
+				}(n));;
+		}
+		else if (opExperiments[n].unique.indexOf("content.js")&nbsp;!= -1) {
+			for (var j = 0; j &lt; opExperiments[n].modules.length; j++) opModulesArray.push(opExperiments[n].modules[j]);
+			(function () {
+				var _o = optimost;
+				_o.U = opPro + opExperiments[n].unique;
+				_o.ST = "script";
+				_o.SA = {"type": "text/javascript"};
+				_o.B();
+				if(opExperiments[n].throttle&lt;1000){//If I have a function and Throttle&lt;1000, first see if we are in, then do it
+					isIn=_o.TH(opExperiments[n].throttle, opExperiments[n].gum, opExperiments[n].domain, opExperiments[n].expire); 
+					if(isIn){//isIn determined if you are in or not, adn dropped cookie to freeze you in that state
+						for(var m in opExperiments[n]){
+							if(typeof(opExperiments[n][m])=="function")opExperiments[n][m]();
+						}
+						_o.TX();
+					}
+				}
+				else _o.R(opExperiments[n].throttle, opExperiments[n].gum, opExperiments[n].domain, opExperiments[n].expire);	
+			})();
+		}
+		else {
+			if(opExperiments[n].throttle &lt;1000){
+				for (var m in opExperiments[n]) if(typeof opExperiments[n][m] == "function") opExperiments[n][m]();
+			}
+			for (var j = 0; j &lt; opExperiments[n].modules.length; j++) opModulesArray.push(opExperiments[n].modules[j]);
+		}
+	}
+}
+</pre>
+<p>This loop differs from the Version 1 in the following ways:
+</p>
+<ol><li>When <b>match==true</b> for an object, we also check to make sure <b>enabled==true</b>, a new property that was added.
+</li><li>We look at all the entities in the matching object for functions to run.  
+<ul><li>If <b>throttle==1000</b> - which means we are in the experiment no matter what - we execute any function we find within the matching object. 
+</li><li>If <b>throttle!=1000</b> - we defer matching object function execution until after we throttle decision is made.
+</li></ul>
+</li><li>We check the <b>unique</b> parameter for either:
+<ul><li>event.js in the string - which tells us its a counter, and we 
+defer execution until the bottom of the page by adding the counter code 
+to a module, and we add that module name to the <b>opModulesArray</b>.
+<ul><li>We assume the module is the <b>LAST</b> entry in the modules 
+list.  Normally, there is only one module here so the first and last 
+will be the same. BUT if you need to pull out an attribute in the body 
+of the page, then you will need to add a function that adds a module to 
+pull out that attribute and list it as the first module.  <b>See the "MODULE ATTRIBUTE" example below</b>
+</li></ul>
+</li><li>content.js in the string - which tells us we have a trial code 
+call, which we then run the throttling code and execute the appropriate 
+outcome immediately.  We also add any modules it has to the <b>opModulesArray</b>. 
+</li><li>Neither condition above met - Not an experiment or counter, so we just add any modules it has to the <b>opModulesArray</b>.  Any functions it has will have already been run by #2 since <b>throttle==1000</b>.
+</li></ul>
+</li></ol>
+<p>An example of v2 global code is available at:<br>
+<a href="http://asp.optimost.com/webtest/jim/global/v2/" class="external free" title="http://asp.optimost.com/webtest/jim/global/v2/" rel="nofollow">http://asp.optimost.com/webtest/jim/global/v2/</a>
+</p>
+<a name="MODULE_ATTRIBUTE"></a><h4> <span class="mw-headline">MODULE ATTRIBUTE</span></h4>
+<p>You can pass attributes using the <b>optrial</b> object, not the <b>opcounter</b> object, for Global Counters<sup>3</sup>.
+  Here is an example of a page where the attribute you are looking for 
+is defined in the top of the page, above the Selector code.
+</p>
+<pre>opExperiments["thankyoucounter"] = {
+	"method": "var",
+	"entity": opPageId,
+	"criteria": "orderthankspage",
+	"condition": "equals",
+	"enabled":true,	
+	"match": false,
+	"unique": "/counter/002/-/1/event.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+	"modules": ["counterx"],
+	"attr1": function(){
+		window.optrial=(typeof window.optrial=="object"?window.optrial:{});
+		if(typeof smac_conv_sales!="undefined") window.optrial.totalPurchasePrice=smac_conv_sales;
+	}
+};
+</pre>
+<p>In this example, 
+</p>
+<ol><li>The function <b>attr1()</b> gets executed as soon as we determine that our <b>opExperiments</b> object is a match.  
+</li><li>The function <b>attr1()</b> immediately adds the attribute of interest to the <b>optrial</b> object, if the attribute exist.
+</li><li>Later, the counter is added as a module using the <b>optimost.addModule</b> function to defer execution until the Module Code is executed.  
+</li><li>So here the attribute must exist above our Selector Code.
+</li></ol>
+<p><br>
+But in the case where the attributes of interest are in the body of the 
+page, then we need to execute the attribute finding code down in the 
+module code, AND execute it before the counter is called.  Here is an 
+example of the same coce
+</p>
+<pre>opExperiments["thankyoucounter"] = {
+	"method": "var",
+	"entity": opPageId,
+	"criteria": "orderthankspage",
+	"condition": "equals",
+	"enabled":true,	
+	"match": false,
+	"unique": "/counter/002/-/1/event.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+	"modules": ["opcounter_call","counterx"],
+	"attr1": function(){
+		optimost.addModule("opcounter_call",function(){
+			window.optrial=(typeof window.optrial=="object"?window.optrial:{});
+			if(typeof smac_conv_sales!="undefined") window.optrial.totalPurchasePrice=smac_conv_sales;
+		})
+	}
+};
+</pre>
+<p>In this example, 
+</p>
+<ol><li>The function <b>attr1()</b> gets executed as soon as we determine that our <b>opExperiments</b> object is a match.  
+</li><li>However, it is added as a module using <b>optimost.addModule</b> to defer execution until the Module Code is executed.  
+</li><li>Later, the counter is added as a module using the <b>optimost.addModule</b> function to defer execution until the Module Code is executed. 
+</li><li>In the Module Code, modules are executed in the order they are 
+saved in the modules array, so putting the counter last ensures that <b>attr1()</b> is executed first, so that the attribute will be pulled out before the counter is fired. 
+</li></ol>
+<hr>
+<p><sup>3</sup>The Agency Console still shows it as the <b>opcounter</b> object when you add attributes as javascript variables in the Counter Attributes menu, but you need to use <b>optrial</b> when you implement it in the Global Code. 
+</p>
+<hr>
+<a name="Global_Module_Code"></a><h3> <span class="mw-headline">Global Module Code</span></h3>
+<p>For a standard CSI, there is a static module definition below the 
+test area or areas.  For a standard CSI, for an implementation with a 
+single module named <b>"body"</b>.  
+</p>
+<pre>&lt;script language="javascript" type="text/javascript"&gt;&lt;!--
+optimost.displayModule("body");
+//--&gt;&lt;/script&gt;
+</pre>
+<p>For a Global implementation, we cannot hardcode the module name, so 
+we must write code that accounts for the the dynamic nature of the 
+module name.  In the <b>opExperiments</b> object, we defined the <b>module</b> array, which contains all the modules for that experiment.  If that experiment is selected, we then push the <b>modules</b> array for that <b>opExperiments</b> object into the <b>opModulesArray</b> array.  Then the Universal Module Code at the bottom of the page will execute the appropriate modules.
+</p>
+<pre>&lt;!-- OPTIMOST UNIVERSAL MODULE --&gt;
+&lt;script class="optimost_author_code" language="javascript" type="text/javascript"&gt;
+if (typeof(optimost) == "object" &amp;&amp; typeof(opModulesArray)&nbsp;!= "undefined" &amp;&amp; opModulesArray.length){
+for(var i=0;i &lt; opModulesArray.length;i++){optimost.displayModule(opModulesArray[i]);}}
+&lt;/script&gt;
+</pre>
+<p>Note that we can have multiple <b>opExperiments</b> objects selected on any test page, which results in multiple trial code calls, and multiple <b>modules</b>
+ being defined.  Make sure that, for any page that may have multiple 
+experiments on it, you use unique names for the modules.  For example, 
+the name <b>"body"</b> is often resused for experiments on different 
+pages.  That's OK to do, but if you think the test area could be on 
+multiple pages, make sure its modules name is going to be unique across 
+the website.
+</p><p>For example, a test of a product page can name the module <b>"body"</b> if the test area is only for that specific page, and you can then reuse the module <b>"body"</b> on other single-page experiments.  But if you want to run a test as either:
+</p>
+<ol><li>Across the website, say a site-wide header or footer, or left-navigation test.
+</li><li>A test of common elements across a number of pages - say the submit buttons for the funnel.
+</li></ol>
+<p>Then you need to use unique names for those modules, names that will only exist for that test.
+</p>
+<a name="Location_of_module_code"></a><h4> <span class="mw-headline">Location of module code</span></h4>
+<p>Our best practices is putting the Global module code:
+</p>
+<ul><li>At the bottom of the page
+<ul><li>below any visible HTML
+</li><li>but above any analytics and other javascript code and calls at the bottom of the customer's page.  
+</li></ul>
+</li></ul>
+<p>The main reason is that the load and execution time for that extra 
+customer code delays the call to the Optimost module and makes our code 
+to appear to run "slower".  If you are deploying new Global Code, feel 
+free to reach out for guidance on where to put it on customer's page.  
+</p>
+<a name="TRIAL_CODE_CALL_AT_BOTTOM_OF_PAGE"></a><h2> <span class="mw-headline">TRIAL CODE CALL AT BOTTOM OF PAGE</span></h2>
+<p>You may have some instances where you cannot determine if you are on 
+the correct page at the top of the page.  In that case, you need to make
+ that determination using the module code functionality. Here is an 
+example of how we can do that.
+</p>
+<a name="Conditional_Execution_of_Trial_Code_based_on_.3CBODY.3E_content"></a><h3> <span class="mw-headline">Conditional Execution of Trial Code based on &lt;BODY&gt; content</span></h3>
+<p>You may run into a situation where the decision to call Trial Code is
+ based on what page you are on AND the existence of some element in the 
+&lt;body&gt; of the page.  Here are the considerations in those 
+scenarios.
+</p>
+<ol><li>Once you determine you are on the correct page, consider that:
+<ul><li>Your final decision has to be made after the page content 
+exists, which means it must happen in the module (or as an 
+onload/document.ready statement, but forget that for now)
+</li><li>You must "call the trial code" in the module, which now means 
+the module code cannot "call the module code" as originally constructed
+</li><li>You need to hide the test area and unhide it, whether or not you have the matching body element.
+</li></ul>
+</li></ol>
+<a name="Changes_to_opExperiments_object"></a><h4> <span class="mw-headline">Changes to opExperiments object</span></h4>
+<p>So first we create a new version of the <b>opExperiments</b> object.  This one has the following changes:
+</p>
+<ol><li>We set the unique parameter to ""
+</li><li>We add a function that does the following:
+<ul><li>Creates a module that will check for the element, and, if it exists, make the trial code call
+</li><li>Hides the test area using CSS before the content loads, if necessary
+</li><li>Unhides the test area if the element is not found.
+</li></ul>
+</li></ol>
+<pre>opExperiments["bsd - preferred icon AB"] = {
+	"method": "array",
+	"entity": opPageId,
+	"criteria": ["sku page","search"],
+	"condition": "equals",
+	"match": false,
+	"enabled":true,
+	"unique": "",
+	"url": "/trial/1587/p/preferrediconab/15/content.js",
+	"throttle": 1000,
+	"gum": null,
+	"domain": null,
+	"expire": null,
+        "moduleExecution":function(){
+		var hideStyle="#skuTop .sku_icons, .products .sku_icons{visibility:hidden;}";
+		var showStyle="#skuTop .sku_icons, .products .sku_icons{visibility:visible !important;}";
+		var myName="bsd - preferred icon AB";
+                optimost.createStyle(hideStyle);
+                optimost.addModule("bsd_bottom",function(opExp,id){return function(){
+		        var run=false;
+			if(opPageId == "sku page"){
+				var d_sku = document.getElementById("skuTop");
+				var ar_li = (d_sku)&nbsp;? d_sku.getElementsByTagName("li")&nbsp;: [];
+				for(var i=0; i&lt;ar_li.length; ++i){
+					if(ar_li[i].id == "icon.preferred"){
+						run=true;
+						break;
+					}
+				}
+			}
+			else{
+				//for the search pages
+				var d_prodView = document.getElementById("productView");
+				var ar_ul = (d_prodView)&nbsp;? d_prodView.getElementsByTagName("ul")&nbsp;: [];
+				for(var i=0; i&lt;ar_ul.length; ++i){
+					if(ar_ul[i].className == "sku_icons" &amp;&amp; ar_ul[i].innerHTML.indexOf("/icons/preferred.gif") &gt; -1){
+						run=true;
+						break;
+					}
+				}
+			}
+                        if(run==true){
+                                 (function(){
+					var a=optimost;a.U=opPro+opExp.url,a.ST="script",a.SA={type:"text/javascript"},a.B();
+					if(opExp.throttle&lt;1e3){
+						isIn=a.TH(opExp.throttle,opExp.gum,opExp.domain,opExp.expire);
+						if(isIn){
+							for(var b in opExp)typeof opExp[b]=="function"&amp;&amp;opExp[b]();
+							a.TX();
+						}
+					}
+					else a.R(opExp.throttle,opExp.gum,opExp.domain,opExp.expire)
+				})()
+                        }else {
+                                optimost.createStyle(showStyle);
+                        }
+                }}(opExperiments[myName], myName));
+        },
+	"modules": ["bsd_bottom"]
+};
+</pre>
+<p>Here is how it works:<br>
+</p>
+<ol><li>Set the criteria as normal to look for the correct page.  Later,
+ we will look for the content to verify that we need to make a Trial 
+Code call.
+</li><li>Change the <b>unique</b> parameter to be an empty string.  This ensure that we can delay the Trial Code call to be made in the module code.
+</li><li>Set throttling to 1000 so that, if we have a match, the functions we define are executed in the final <b>opExperiments</b> for-loop.
+</li><li>Now, if we have a match - <b>opPageId == "sku page" || opPageId == "search"</b> - we will run the <b>moduleExecution</b> function.  This does the following:
+<ul><li>First, remember that this is running in the head of the page (unless we are doing ASYNC load, ignore that for now)
+</li><li>It first hides the test area using the <b>hideStyle</b> parameter.
+</li><li>Next it checks to see if you are on the <b>"sku page"</b>, and if you are, look for the appropriate element to determine if we should ru nour Trial Code - set <b>run=true</b>.
+</li><li>If we are not on the <b>"sku page"</b>, we must be on the <b>"search"</b> page, and we look for the appropriate element to determine if we should run our Trial Code - set <b>run=true</b>.
+</li><li>If <b>run==true</b>, do a trial code call, same code as we have for when <b>opExp.unique</b> contains <b>content.js</b>, except we use <b>url</b> since <b>unique</b> was set to "".
+<ul><li>You need to unhide the test area in the template, which is what we normally do.
+</li><li>You also need to "call the module" as the last line in the setup block, in this case <b>optimost.displayModule("body")</b> or whatever yout template module is named.
+</li></ul>
+</li><li>If <b>run==false</b>, immediately unhide the test area.
+</li></ul>
+</li></ol>
+<p><br>
+</p>
+<a name="Changes_to_Global_Code_logic_.28version_2.29"></a><h4> <span class="mw-headline">Changes to Global Code logic (version 2)</span></h4>
+<p>No changes to the version 2 Global Code
+</p><p><br>
+</p><p><br>
+</p>
+<hr>
+<p>&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_TC_Tutorial" title="Optimost TC Tutorial">Optimost TC Tutorial</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tutorial_Presentations" title="Optimost Tutorial Presentations">Optimost Tutorial Presentations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Implementation" title="Optimost Implementation">Optimost Implementation</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Implementation_considerations" title="Implementation considerations">Implementation considerations</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_examples" title="Making page changes - examples">Making page changes - examples</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_complexities" title="Making page changes - complexities">Making page changes - complexities</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_AJAX" title="Making page changes - AJAX">Making page changes - AJAX</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Page_Code_and_Trial_Code" title="Page Code and Trial Code">Page Code and Trial Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_how_to_add_Optimost_code_to_Customer_pages" title="Options - how to add Optimost code to Customer pages">Options - how to add Optimost code to Customer pages</a>
+&nbsp;☀&nbsp;<strong class="selflink">Options - Global Code on Customer pages</strong>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Trial_Code_js_call_-_why_blocking_vs._non-blocking" title="Optimost Trial Code js call - why blocking vs. non-blocking">Optimost Trial Code js call - why blocking vs. non-blocking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Options_-_adding_Asynchronous_%28non-blocking%29_code_to_Customer_pages" title="Options - adding Asynchronous (non-blocking) code to Customer pages">Options - adding Asynchronous (non-blocking) code to Customer pages</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Tracking" title="Optimost Tracking">Optimost Tracking</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Trial_Code_%26_Counter_Code_calls_-_details" title="Trial Code &amp; Counter Code calls - details">Trial Code &amp; Counter Code calls - details</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Server_to_Server_-_Creating_a_Template_using_XML" title="Server to Server - Creating a Template using XML">Server to Server - Creating a Template using XML</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/MVT_vs_Concept_A/B/n_experiments" title="MVT vs Concept A/B/n experiments">MVT vs Concept A/B/n experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Debugging" title="Optimost Debugging">Optimost Debugging</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Making_page_changes_-_Gotchas_and_Issues" title="Making page changes - Gotchas and Issues">Making page changes - Gotchas and Issues</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Multi-page_experiments" title="Multi-page experiments">Multi-page experiments</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Optimost_Creative_Serving_network" title="Optimost Creative Serving network">Optimost Creative Serving network</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis" title="Testing and Data Analysis">Testing and Data Analysis</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_Data_Analysis_II" title="Testing and Data Analysis II">Testing and Data Analysis II</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Testing_and_the_Agency_Console" title="Testing and the Agency Console">Testing and the Agency Console</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/CORS_-_a_%22higher_security%22_approach_to_MVT" title="CORS - a &quot;higher security&quot; approach to MVT">CORS - a "higher security" approach to MVT</a>
+<br>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Cross-domain_cookie_workaround" title="Cross-domain cookie workaround">Cross-domain cookie workaround</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Creating_a_%22multi-cookie%22_-_putting_all_the_Optimost_%22cookies%22_into_a_single_cookie" title="Creating a &quot;multi-cookie&quot; - putting all the Optimost &quot;cookies&quot; into a single cookie">Creating a "multi-cookie" - putting all the Optimost "cookies" into a single cookie</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Selector-based_Content_modifier_and_Click_Tracking_Code" title="Selector-based Content modifier and Click Tracking Code">Selector-based Content modifier and Click Tracking Code</a>
+&nbsp;☀&nbsp;<a href="http://wiki.interwoven.com/optimost/Removing_CSS/STYLE_from_the_DOM_for_A/B_or_MVT_concept_tests" title="Removing CSS/STYLE from the DOM for A/B or MVT concept tests">Removing CSS/STYLE from the DOM for A/B or MVT concept tests</a>
+</p>
+<hr>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 102/1000000
+Post-expand include size: 3510/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key optimost_wiki:pcache:idhash:1081-0!1!0!!en!2!edit=0 and timestamp 20130815201531 -->
+<div class="printfooter">
+Retrieved from "<a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages">http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://wiki.interwoven.com/optimost/Options_-_Global_Code_on_Customer_pages" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Talk:Options_-_Global_Code_on_Customer_pages&amp;action=edit" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Options_-_Global_Code_on_Customer_pages&amp;action=edit" title="This page is protected.
+You can view its source. [alt-shift-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Options_-_Global_Code_on_Customer_pages&amp;action=history" title="Past versions of this page. [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://wiki.interwoven.com/optimost/User:10.26.10.11" title="The user page for the ip you're editing as [alt-shift-.]" accesskey="." class="new">10.26.10.11</a></li>
+				<li id="pt-anontalk"><a href="http://wiki.interwoven.com/optimost/User_talk:10.26.10.11" title="Discussion about edits from this ip address [alt-shift-n]" accesskey="n" class="new">Talk for this IP</a></li>
+				<li id="pt-anonlogin"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Special:UserLogin&amp;returnto=Options_-_Global_Code_on_Customer_pages" title="You are encouraged to log in, it is not mandatory however. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://wiki.interwoven.com/opwiki/images/1/18/Logo_optimost.gif);" href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/optimost/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" title="Search Optimost Wiki [alt-shift-f]" accesskey="f" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="http://wiki.interwoven.com/optimost/Home" title="Visit the Main Page [alt-shift-z]" accesskey="z">Home</a></li>
+				<li id="n-recentchanges"><a href="http://wiki.interwoven.com/optimost/Special:RecentChanges" title="The list of recent changes in the wiki. [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://wiki.interwoven.com/optimost/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li>
+				<li id="n-Accounts"><a href="http://wiki.interwoven.com/optimost/Accounts">Accounts</a></li>
+				<li id="n-Glossary"><a href="http://wiki.interwoven.com/optimost/Glossary">Glossary</a></li>
+				<li id="n-help"><a href="http://wiki.interwoven.com/optimost/Help:Contents" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-departments">
+		<h5>departments</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Analytics"><a href="http://wiki.interwoven.com/optimost/Analytics_%28Department%29">Analytics</a></li>
+				<li id="n-Client-Services"><a href="http://wiki.interwoven.com/optimost/Category:Client_Services">Client Services</a></li>
+				<li id="n-Documentation"><a href="http://wiki.interwoven.com/optimost/Documentation">Documentation</a></li>
+				<li id="n-Engineering"><a href="http://wiki.interwoven.com/optimost/Engineering">Engineering</a></li>
+				<li id="n-Quality-Assurance"><a href="http://wiki.interwoven.com/optimost/Category:Quality_Assurance">Quality Assurance</a></li>
+				<li id="n-Technical-Consulting"><a href="http://wiki.interwoven.com/optimost/Technical_consulting">Technical Consulting</a></li>
+				<li id="n-Training-.26-Education"><a href="http://wiki.interwoven.com/optimost/Training_and_education">Training &amp; Education</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Optimost-Console"><a href="http://asp.optimost.com/agency">Optimost Console</a></li>
+				<li id="n-Optimost-Public-Site"><a href="http://www.interwoven.com/optimost">Optimost Public Site</a></li>
+				<li id="n-Netspeed"><a href="http://netspeed/">Netspeed</a></li>
+				<li id="n-SalesSite"><a href="http://salessite/">SalesSite</a></li>
+				<li id="n-WorkSite"><a href="https://worksitemp.interwoven.com/worksitemp/link//V3/INTERWOVEN/C/F$217/C$14610/">WorkSite</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://wiki.interwoven.com/optimost/Special:WhatLinksHere/Options_-_Global_Code_on_Customer_pages" title="List of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://wiki.interwoven.com/optimost/Special:RecentChangesLinked/Options_-_Global_Code_on_Customer_pages" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://wiki.interwoven.com/optimost/Special:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://wiki.interwoven.com/optimost/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Options_-_Global_Code_on_Customer_pages&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://wiki.interwoven.com/opwiki/index.php?title=Options_-_Global_Code_on_Customer_pages&amp;oldid=6908" title="Permanent link to this version of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Options%20-%20Global%20Code%20on%20Customer%20pages%20-%20Optimost%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 4 March 2013, at 17:44.</li>
+				<li id="viewcount">This page has been accessed 236 times.</li>
+				<li id="privacy"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:Privacy_policy" title="Optimost Wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:About" title="Optimost Wiki:About">About Optimost Wiki</a></li>
+				<li id="disclaimer"><a href="http://wiki.interwoven.com/optimost/Optimost_Wiki:General_disclaimer" title="Optimost Wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.145 secs. -->
+</body></html>
