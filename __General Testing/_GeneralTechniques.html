@@ -3543,3 +3543,19 @@ var total=0, i=0, last=1, str='', found=false;
 }
 prob(.05,.80,50);
 </script>
+<script>
+//REGEXP 
+var urls=['',
+'https://agents.allstate.com/richard-hansen-salem-or.html',
+'https://agents.allstate.com/fran-white-monmouth-junction-nj.html',
+'https://messaging.allstate.com/AgentMessage.aspx?AC=0A1736&LG=&_ga=2.152620345.1883784825.1495171112-360842702.1494301386',
+'https://www.allstate.com/?_ga=2.9623026.675374872.1495130232-1196799903.1495130232',
+'https://messaging.allstate.com/AgentMessage.aspx?AC=051386&LG=&_ga=2.110405381.1666570669.1495123691-658302017.1467360168',
+'https://blog.allstate.com/the-7-item-safety-checklist-for-home-buyers/?intcid=ILC-MovingCenter-SettlingIn-150401:SafetyChecklist&_ga=2.212383636.1819975248.1495146581-2140870357.1495146581',
+''];
+var patt = /\/\/([a-zA-Z0-9.]+\/?)/, i, len, domains={}, res;
+for(i=0,len=urls.length;i<len;i+=1){
+	res = urls[i].match(patt);
+	if(res && res[1]&& !domains[res[1]])domains[res[1]]=true;
+}
+</script>
